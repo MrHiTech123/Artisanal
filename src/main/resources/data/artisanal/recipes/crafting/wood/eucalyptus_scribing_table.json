@@ -1,0 +1,26 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "Q B",
+    "XXX",
+    "Y Y"
+  ],
+  "key": {
+    "Q": {
+      "item": "artisanal:quill"
+    },
+    "B": {
+      "item": "minecraft:black_dye"
+    },
+    "X": {
+      "item": "afc:wood/planks/eucalyptus_slab"
+    },
+    "Y": {
+      "item": "afc:wood/planks/eucalyptus"
+    }
+  },
+  "result": {
+    "item": "afc:wood/scribing_table/eucalyptus"
+  }
+}
