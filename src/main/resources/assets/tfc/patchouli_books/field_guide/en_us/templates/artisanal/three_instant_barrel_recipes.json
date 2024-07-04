@@ -1,0 +1,25 @@
+{
+  "components": [
+    {
+      "type": "patchouli:custom",
+      "x": 0,
+      "y": 0,
+      "class": "net.dries007.tfc.compat.patchouli.component.InstantBarrelComponent",
+      "recipe": "#recipe"
+    },
+    {
+      "type": "patchouli:custom",
+      "x": 0,
+      "y": 40,
+      "class": "net.dries007.tfc.compat.patchouli.component.InstantBarrelComponent",
+      "recipe": "#recipe2"
+    },
+    {
+      "type": "patchouli:custom",
+      "x": 0,
+      "y": 80,
+      "class": "net.dries007.tfc.compat.patchouli.component.InstantBarrelComponent",
+      "recipe": "#recipe3"
+    }
+  ]
+}

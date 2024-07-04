@@ -1,0 +1,66 @@
+{
+  "name": "Sugar Production",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:non_perishable_sugar",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Producing sugar is a much more involved process in Artisanal than it is in ordinary TerraFirmaCraft, but the results are much more...okay, so they're actually less useful. But hey, realism!"
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/clean_sugarcane_water",
+      "text": "The first step to processing sugarcane is to clean it, which can be done by sealing it in a water barrel for 8 hours."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/clean_sugarcane_soapy_water",
+      "text": "Alternatively, sugarcane can be cleaned instantly using $(l:tfc:artisanal/soap)Soapy Water$()."
+    },
+    {
+      "type": "tfc:quern_recipe",
+      "recipe": "artisanal:quern/food/cleaned_sugarcane",
+      "text": "The sugarcane is then ground in a $(l:tfc:mechanics/quern)Quern$() to make $(thing)Wet Bagasse$()."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/dry_bagasse",
+      "text": "Placing Wet Bagasse in a barrel yields $(thing)Sugarcane Juice$(), which is used to make sugar. $(thing)Dry Bagasse$() is also produced as a byproduct, and can be used as fuel. $(br2)Boiling Sugarcane Juice in a pot will result in $(thing)Perishable Sugar$(), which has a very short shelf life."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/perishable_sugar_recipe.png"
+      ],
+      "text": "$(thing)Molassess$() is also produced as a by-product."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/filtered_sugarcane_juice",
+      "text": "Alternatively, the sugarcane juice can be further filtered using $(thing)Jute Nets$()."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/alkalized_sugarcane_juice",
+      "text": "The Sugarcane Juice is then alkalized using Lime."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/clarified_sugarcane_juice",
+      "text": "Then, the lime is filtered out using Jute Nets once again, leaving it clarified. $(br2)Clarified Sugarcane Juice is then boiled into Non-Perishable Sugar. Molasses is also produced as a by-product."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/non_perishable_sugar_recipe.png"
+      ]
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/rum",
+      "text": "Molasses can be fermented into rum. It can also be drunk normally and grants $(l)$(a)Fruit$() and $(l)$(2)Vegetable$() nutrition."
+    }
+  ],
+  "read_by_default": true
+  
+}

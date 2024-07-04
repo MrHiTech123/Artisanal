@@ -1,0 +1,30 @@
+{
+  "name": "Powdered Milk",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:powdered_milk",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Powdering milk is a great way to store it efficiently, either in a cellar or for long journeys. $(br2)The first step to making Powdered Milk is making $(thing)Condensed Milk$().$(br2)Then, the Condensed Milk is further boiled into $(thing)Milk Flakes$(). If you keep the fire going, this will happen automatically."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/condensed_milk_recipe.png",
+        "artisanal:textures/gui/book/milk_flakes_recipe.png"
+      ]
+    },
+    {
+      "type": "tfc:quern_recipe",
+      "recipe": "artisanal:quern/powdered_milk",
+      "text": "Finally, the Milk Flakes can be ground into Powdered Milk using a $(l:tfc:mechanics/quern)Quern$()."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/milk",
+      "text": "Powdered Milk can then be recombined with water at any subsequent point to create Milk."
+    }
+  ],
+  "read_by_default": true
+
+}

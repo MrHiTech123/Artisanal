@@ -164,7 +164,7 @@ def generate_barrel_recipes():
     barrel_sealed_recipe(rm, 'clean_soup_bowl_water', 'Cleaning Bowl', 8000, '#tfc:dynamic_bowl_items', '100 minecraft:water', output_item=item_stack_provider(empty_bowl=True))
     barrel_sealed_recipe(rm, 'clean_jar_water', 'Cleaning Jar', 8000, '#tfc:foods/preserves', '100 minecraft:water', output_item='tfc:empty_jar')
     barrel_sealed_recipe(rm, 'clean_sealed_jar_water', 'Cleaning Sealed Jar', 8000, '#tfc:foods/sealed_preserves', '100 minecraft:water', output_item='tfc:empty_jar')
-    barrel_sealed_recipe(rm, 'clean_sugarcane', 'Cleaning Sugarcane', 8000, not_rotten('tfc:food/sugarcane'), '100 minecraft:water', output_item=item_stack_provider('artisanal:food/cleaned_sugarcane', copy_food=True))
+    barrel_sealed_recipe(rm, 'clean_sugarcane_water', 'Cleaning Sugarcane', 8000, not_rotten('tfc:food/sugarcane'), '100 minecraft:water', output_item=item_stack_provider('artisanal:food/cleaned_sugarcane', copy_food=True))
     
     barrel_instant_recipe(rm, 'clean_jute_net_soapy_water', 'tfc:dirty_jute_net', '100 artisanal:soapy_water', output_item='tfc:jute_net')
     barrel_instant_recipe(rm, 'clean_soup_bowl_soapy_water', '#tfc:dynamic_bowl_items', '100 artisanal:soapy_water', output_item=item_stack_provider(empty_bowl=True))
@@ -289,6 +289,7 @@ def generate_item_tags():
     print('\tGenerating item tags...')
     rm.item_tag('tfc:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
     rm.item_tag('firmalife:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
+    rm.item_tag('fats', 'artisanal:bear_fat', 'artisanal:pork_fat', 'artisanal:poultry_fat', 'artisanal:suet')
 
 def generate_tags():
     print('Generating tags...')
