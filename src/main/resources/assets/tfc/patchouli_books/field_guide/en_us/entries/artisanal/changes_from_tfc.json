@@ -1,0 +1,48 @@
+{
+  "name": "Changes From TFC",
+  "category": "tfc:artisanal",
+  "icon": "tfc:powder/lime",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A list of recipes that have been changed by TFC Artisanal."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "tfc:barrel/limewater_from_lime",
+      "text": "Limewater has been renamed $(thing)Slaked Lime$(), and can now only be created using $(thing)Lime$(), not Flux."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/writable_book",
+      "text": "Book and Quills are now crafted using Black Dye instead of an Ink Sac, and a $(l:tfc:artisanal/quillmaking)Quill$() rather than a feather."
+      
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/paper",
+      "text": "Paper can now be made by bleaching Unrefined Paper in Lye, as well as by scraping it"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Cake and Pumpkin Pie can now be made with all tfc sweeteners, including Artisanal's Perishable and Non-Perishable Sugars, as well as ArborFirmaCraft's Birch and Maple Sugars."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/cake",
+      "recipe2": "artisanal:crafting/pumpkin_pie"
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/clean_soup_bowl_water",
+      "text": "Cleaning dirty things in a water barrel now takes time and requires them to be sealed in the barrel."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel:clean_jute_net_soapy_water",
+      "text": "Instantneous cleaning now requires the use of $(thing)Soapy Water$(). See $(l:tfc:artisanal/soap)Soap$()."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": -1
+}

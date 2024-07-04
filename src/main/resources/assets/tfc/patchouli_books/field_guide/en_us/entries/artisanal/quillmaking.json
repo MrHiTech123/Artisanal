@@ -1,0 +1,47 @@
+{
+  "name": "Quillmaking",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:quill",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Storing information, either through a $(thing)Scribing Table$() or a $(thing)Book and Quill$(), is a very useful ability. $(br2)In order to do so, you need a Quill."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/trimmed_feather",
+      "text": "The first step to making a quill is to trim the lower bristles off of the feather."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/soaked_feather",
+      "text": "Next, soak the feather in water."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/tempered_feather",
+      "text": "Afterwards, heat up some sand to $(7)$(bold)Very Hot**$() and craft it with the feather in order to temper it."
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/quill",
+      "text": "Finally, craft the feather with a knife again to carve out the tip and finish the quill."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/writable_book",
+      "recipe2": "artisanal:crafting/writable_book_from_dye"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/wood/chestnut_scribing_table",
+      "text": "Quills are needed to craft Scribing Tables and Book and Quills."
+    }
+  ],
+  "read_by_default": true
+
+}
