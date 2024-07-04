@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "minecraft:black_dye"
+    },
+    {
+      "item": "artisanal:quill"
+    }
+  ],
+  "result": {
+    "item": "minecraft:writable_book"
+  }
+}
