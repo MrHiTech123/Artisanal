@@ -233,6 +233,18 @@ def generate_pot_recipes():
     scalable_pot_recipe(rm, ('salt'), '125 tfc:salt_water', None, [{'item': 'tfc:powder/salt'}], 2000, 300)
     scalable_pot_recipe(rm, ('perishable_sugar'), '200 artisanal:sugarcane_juice', '100 artisanal:molasses', [{'item': 'artisanal:perishable_sugar'}], 2000, 107)
     scalable_pot_recipe(rm, ('non_perishable_sugar'), '200 artisanal:clarified_sugarcane_juice', '100 artisanal:molasses', [{'item': 'artisanal:non_perishable_sugar'}], 2000, 107)
+    scalable_pot_recipe(rm, ('maple_sap_concentrate'), '10 afc:maple_sap', '1 afc:maple_sap_concentrate')
+    scalable_pot_recipe(rm, ('maple_syrup'), '5 afc:maple_sap_concentrate', '1 afc:maple_syrup')
+    scalable_pot_recipe(rm, ('birch_sap_concentrate'), '10 afc:birch_sap', '1 afc:birch_sap_concentrate')
+    scalable_pot_recipe(rm, ('birch_syrup'), '5 afc:birch_sap_concentrate', '1 afc:birch_syrup')
+    
+    disable_recipe(rm, 'afc:pot/maple_concentrate')
+    disable_recipe(rm, 'afc:pot/maple_syrup')
+    disable_recipe(rm, 'afc:pot/maple_syrup_half_batch')
+    disable_recipe(rm, 'afc:pot/birch_concentrate')
+    disable_recipe(rm, 'afc:pot/birch_syrup')
+    
+    
     
     for fruit in JAR_FRUITS:
         for count in (2, 3, 4):
