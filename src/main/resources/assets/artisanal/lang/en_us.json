@@ -1,6 +1,10 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "tfc.jei.scalable_pot": "Scalable Pot Recipe",
+  "block.tfc.fluid.limewater": "Slaked Lime",
+  "item.tfc.bucket.limewater": "Slaked Lime Bucket",
+  "fluid.tfc.limewater": "Slaked Lime",
+  "block.tfc.cauldron.limewater": "Slaked Lime Cauldron",
   "block.artisanal.fluid.lard": "Lard",
   "item.artisanal.bucket.lard": "Lard Bucket",
   "fluid.artisanal.lard": "Lard",
