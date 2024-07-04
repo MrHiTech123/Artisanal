@@ -1,0 +1,25 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:pot",
+  "ingredients": [
+    {
+      "item": "artisanal:pork_fat"
+    },
+    {
+      "item": "artisanal:pork_fat"
+    },
+    {
+      "item": "artisanal:pork_fat"
+    }
+  ],
+  "fluid_ingredient": {
+    "ingredient": "minecraft:water",
+    "amount": 300
+  },
+  "duration": 2000,
+  "temperature": 600,
+  "fluid_output": {
+    "fluid": "artisanal:lard",
+    "amount": 300
+  }
+}
