@@ -1,9 +1,9 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "ingredient": {
-    "item": "artisanal:perishable_sugar"
+    "item": "afc:maple_sugar"
   },
   "hunger": 0,
   "saturation": 0,
-  "decay_modifier": 3
+  "decay_modifier": 0
 }

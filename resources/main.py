@@ -77,7 +77,13 @@ def generate_fuels():
 def generate_item_foods():
     print('\tGenerating item foods...')
     food_item(rm, ('cleaned_sugarcane'), 'artisanal:food/cleaned_sugarcane', Category.other, 4, 0, 0, 0.5)
-    food_item(rm, ('perishable_sugar'), 'artisanal:perishable_sugar', Category.other, 4, 0, 0, 3)
+    food_item(rm, ('perishable_sugar'), 'artisanal:perishable_sugar', Category.other, 0, 0, 0, 3)
+    food_item(rm, ('non_perishable_sugar'), 'artisanal:non_perishable_sugar', Category.other, 0, 0, 0, 0)
+    food_item(rm, ('sugar'), 'minecraft:sugar', Category.other, 0, 0, 0, 0)
+    food_item(rm, ('maple_sugar'), 'afc:maple_sugar', Category.other, 0, 0, 0, 0)
+    food_item(rm, ('birch_sugar'), 'afc:birch_sugar', Category.other, 0, 0, 0, 0)
+    
+    
     
 def generate_item_heats():
     print('\tGenerating item heats...')
@@ -173,7 +179,7 @@ def generate_barrel_recipes():
     disable_recipe(rm, 'firmaciv:barrel/large_waterproof_hide_tallow')
     barrel_sealed_recipe(rm, 'large_waterproof_hide_rendered_fat', 'Large Waterproof Hide', 8000, 'tfc:large_prepared_hide', '100 #artisanal:rendered_fats', 'firmaciv:large_waterproof_hide')
     
-    barrel_instant_recipe(rm, 'dry_bagasse', 'artisanal:wet_bagasse', None, 'artisanal:dry_bagasse', '100 artisanal:sugarcane_juice')
+    barrel_instant_recipe(rm, 'dry_bagasse', 'artisanal:wet_bagasse', None, 'artisanal:dry_bagasse', '200 artisanal:sugarcane_juice')
     barrel_sealed_recipe(rm, 'filtered_sugarcane_juice', 'Filtering Sugarcane Juice', 8000, 'tfc:jute_net', '250 artisanal:sugarcane_juice', 'tfc:dirty_jute_net', '250 artisanal:filtered_sugarcane_juice')
     barrel_sealed_recipe(rm, 'alkalized_sugarcane_juice', 'Alkalizing Sugarcane Juice', 8000, 'tfc:powder/lime', '500 artisanal:filtered_sugarcane_juice', None, '500 artisanal:alkalized_sugarcane_juice')
     barrel_sealed_recipe(rm, 'clarified_sugarcane_juice', 'Clarifying Sugarcane Juice', 8000, 'tfc:jute_net', '250 artisanal:alkalized_sugarcane_juice', 'tfc:dirty_jute_net', '250 artisanal:clarified_sugarcane_juice')
@@ -183,6 +189,10 @@ def generate_barrel_recipes():
     barrel_instant_recipe(rm, 'milk', 'artisanal:powdered_milk', '100 minecraft:water', None, '100 minecraft:milk')
     
     disable_recipe(rm, 'tfc:barrel/limewater')
+    
+    disable_recipe(rm, 'tfc:barrel/rum')
+    barrel_sealed_recipe(rm, ('rum'), 'Fermenting Rum', 72000, None, '500 artisanal:molasses', None, '500 tfc:rum')
+    
     
 def generate_crafting_recipes():
     print('\tGenerating crafting recipes...')
@@ -202,6 +212,10 @@ def generate_crafting_recipes():
     # TODO:
     #   Add scribing tables from AFC wood types
     
+    damage_shapeless(rm, 'crafting/pumpkin_pie', (not_rotten('#tfc:foods/dough'), not_rotten('tfc:food/pumpkin_chunks'), '#tfc:knives', not_rotten('minecraft:egg'), not_rotten('#tfc:sweetener')), 'minecraft:pumpkin_pie').with_advancement('tfc:pumpkin')
+    rm.crafting_shaped('crafting/cake', ['AAA', 'BEB', 'CCC'], {'A': fluid_item_ingredient('100 #tfc:milks'), 'B': not_rotten('#tfc:sweetener'), 'E': not_rotten('minecraft:egg'), 'C': not_rotten('#tfc:foods/grains')}, 'tfc:cake').with_advancement('#tfc:foods/grains')
+    disable_recipe(rm, 'tfc:crafting/cake')
+    
     
     
 def generate_pot_recipes():
@@ -219,6 +233,19 @@ def generate_pot_recipes():
     scalable_pot_recipe(rm, ('salt'), '125 tfc:salt_water', None, [{'item': 'tfc:powder/salt'}], 2000, 300)
     scalable_pot_recipe(rm, ('perishable_sugar'), '200 artisanal:sugarcane_juice', '100 artisanal:molasses', [{'item': 'artisanal:perishable_sugar'}], 2000, 107)
     scalable_pot_recipe(rm, ('non_perishable_sugar'), '200 artisanal:clarified_sugarcane_juice', '100 artisanal:molasses', [{'item': 'artisanal:non_perishable_sugar'}], 2000, 107)
+    
+    for fruit in JAR_FRUITS:
+        for count in (2, 3, 4):
+            jam_food = not_rotten(utils.ingredient('tfc:food/%s' % fruit))
+            rm.recipe(('pot', 'jam', f'{fruit}_{count}'), 'tfc:pot_jam', {
+                'ingredients': [jam_food] * count + [not_rotten(utils.ingredient('#tfc:sweetener'))],
+                'fluid_ingredient': fluid_stack_ingredient('100 minecraft:water'),
+                'duration': 500,
+                'temperature': 300,
+                'result': utils.item_stack('%s tfc:jar/%s' % (count, fruit)),
+                'texture': 'tfc:block/jar/%s' % fruit
+            })
+            disable_recipe(rm, f'tfc:pot/jam_{fruit}_{count}')
     
 def generate_quern_recipes():
     print('\tGenerating quern recipes...')
@@ -246,10 +273,16 @@ def generate_fluid_tags():
     rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:condensed_milk')
     rm.fluid_tag('tfc:usable_in_jug', '#tfc:ingredients')
     
+def generate_item_tags():
+    print('\tGenerating item tags...')
+    rm.item_tag('tfc:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
+    rm.item_tag('firmalife:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
+
 def generate_tags():
     print('Generating tags...')
     generate_entity_tags()
     generate_fluid_tags()
+    generate_item_tags()
 
 def main():
     generate_data()

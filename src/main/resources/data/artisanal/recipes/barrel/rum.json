@@ -1,0 +1,13 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_sealed",
+  "input_fluid": {
+    "ingredient": "artisanal:molasses",
+    "amount": 500
+  },
+  "output_fluid": {
+    "fluid": "tfc:rum",
+    "amount": 500
+  },
+  "duration": 72000
+}
