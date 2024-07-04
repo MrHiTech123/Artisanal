@@ -104,6 +104,10 @@ def generate_loot_modifiers():
 def generate_misc_lang():
     print('Generating misc lang...')
     rm.lang('tfc.jei.scalable_pot', 'Scalable Pot Recipe')
+    rm.lang("block.tfc.fluid.limewater", "Slaked Lime")
+    rm.lang("item.tfc.bucket.limewater", "Slaked Lime Bucket")
+    rm.lang("fluid.tfc.limewater", "Slaked Lime")
+    rm.lang("block.tfc.cauldron.limewater", "Slaked Lime Cauldron")
 
 def generate_item_models():
     print('\tGenerating item models...')
@@ -129,6 +133,8 @@ def generate_item_models():
     
     rm.item_model('milk_flakes', 'artisanal:item/milk_flakes').with_lang(lang('milk_flakes'))
     rm.item_model('powdered_milk', 'artisanal:item/powdered_milk').with_lang(lang('powdered_milk'))
+    
+    
     
 def generate_models():
     print('Generating models...')
@@ -175,6 +181,8 @@ def generate_barrel_recipes():
     barrel_sealed_recipe(rm, 'paper', 'Bleaching Paper', 1000, 'tfc:unrefined_paper', '25 tfc:lye', 'minecraft:paper')
     
     barrel_instant_recipe(rm, 'milk', 'artisanal:powdered_milk', '100 minecraft:water', None, '100 minecraft:milk')
+    
+    disable_recipe(rm, 'tfc:barrel/limewater')
     
 def generate_crafting_recipes():
     print('\tGenerating crafting recipes...')
