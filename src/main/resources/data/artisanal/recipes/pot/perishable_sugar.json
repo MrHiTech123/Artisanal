@@ -10,7 +10,7 @@
   "temperature": 107,
   "fluid_output": {
     "fluid": "artisanal:molasses",
-    "amount": 100
+    "amount": 20
   },
   "item_output": [
     {

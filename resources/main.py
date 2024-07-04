@@ -191,7 +191,7 @@ def generate_barrel_recipes():
     disable_recipe(rm, 'tfc:barrel/limewater')
     
     disable_recipe(rm, 'tfc:barrel/rum')
-    barrel_sealed_recipe(rm, ('rum'), 'Fermenting Rum', 72000, None, '500 artisanal:molasses', None, '500 tfc:rum')
+    barrel_sealed_recipe(rm, ('rum'), 'Fermenting Rum', 72000, None, '1 artisanal:molasses', None, '1 tfc:rum')
     
     
 def generate_crafting_recipes():
@@ -231,8 +231,8 @@ def generate_pot_recipes():
     scalable_pot_recipe(rm, ('condensed_milk'), '2 minecraft:milk', '1 artisanal:condensed_milk', None, 3000, 100)
     scalable_pot_recipe(rm, ('milk_flakes'), '100 artisanal:condensed_milk', None, [{'item': 'artisanal:milk_flakes'}], 3000, 100)
     scalable_pot_recipe(rm, ('salt'), '125 tfc:salt_water', None, [{'item': 'tfc:powder/salt'}], 2000, 300)
-    scalable_pot_recipe(rm, ('perishable_sugar'), '200 artisanal:sugarcane_juice', '100 artisanal:molasses', [{'item': 'artisanal:perishable_sugar'}], 2000, 107)
-    scalable_pot_recipe(rm, ('non_perishable_sugar'), '200 artisanal:clarified_sugarcane_juice', '100 artisanal:molasses', [{'item': 'artisanal:non_perishable_sugar'}], 2000, 107)
+    scalable_pot_recipe(rm, ('perishable_sugar'), '200 artisanal:sugarcane_juice', '20 artisanal:molasses', [{'item': 'artisanal:perishable_sugar'}], 2000, 107)
+    scalable_pot_recipe(rm, ('non_perishable_sugar'), '200 artisanal:clarified_sugarcane_juice', '20 artisanal:molasses', [{'item': 'artisanal:non_perishable_sugar'}], 2000, 107)
     scalable_pot_recipe(rm, ('maple_sap_concentrate'), '10 afc:maple_sap', '1 afc:maple_sap_concentrate')
     scalable_pot_recipe(rm, ('maple_syrup'), '5 afc:maple_sap_concentrate', '1 afc:maple_syrup')
     scalable_pot_recipe(rm, ('birch_sap_concentrate'), '10 afc:birch_sap', '1 afc:birch_sap_concentrate')
@@ -290,6 +290,8 @@ def generate_item_tags():
     rm.item_tag('tfc:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
     rm.item_tag('firmalife:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
     rm.item_tag('fats', 'artisanal:bear_fat', 'artisanal:pork_fat', 'artisanal:poultry_fat', 'artisanal:suet')
+    rm.item_tag('tfc:firepit_kindling', 'artisanal:dry_bagasse')
+
 
 def generate_tags():
     print('Generating tags...')
