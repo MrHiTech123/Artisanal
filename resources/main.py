@@ -3,19 +3,8 @@ import json
 from alcs_funcs import *
 from mcresources import ResourceManager
 
-SIMPLE_FLUIDS = (
-    'lard',
-    'schmaltz',
-    'soapy_water',
-    'soap',
-    'sugarcane_juice',
-    'filtered_sugarcane_juice',
-    'alkalized_sugarcane_juice',
-    'clarified_sugarcane_juice',
-    'molasses',
-    'condensed_milk',
-    'petroleum'
-)
+SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'petroleum')
+AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cypress', 'fig', 'ironwood', 'ipe')
 
 
 rm = ResourceManager('artisanal')
@@ -209,6 +198,10 @@ def generate_crafting_recipes():
         rm.crafting_shaped(('crafting', 'wood', f'{wood}_scribing_table'), ['Q B', 'XXX', 'Y Y'], {'Q': 'artisanal:quill', 'B': 'minecraft:black_dye', 'X': f'tfc:wood/planks/{wood}_slab', 'Y': f'tfc:wood/planks/{wood}'}, f'tfc:wood/scribing_table/{wood}').with_advancement(f'tfc:wood/planks/{wood}')
         disable_recipe(rm, f'tfc:crafting/wood/{wood}_scribing_table')
     
+    for wood in AFC_WOODS:
+        rm.crafting_shaped(('crafting', 'wood', f'{wood}_scribing_table'), ['Q B', 'XXX', 'Y Y'], {'Q': 'artisanal:quill', 'B': 'minecraft:black_dye', 'X': f'afc:wood/planks/{wood}_slab', 'Y': f'afc:wood/planks/{wood}'}, f'afc:wood/scribing_table/{wood}')
+        disable_recipe(rm, f'afc:crafting/wood/{wood}_scribing_table')
+        
     # TODO:
     #   Add scribing tables from AFC wood types
     
