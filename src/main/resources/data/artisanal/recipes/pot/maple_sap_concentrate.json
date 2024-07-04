@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:scalable_pot",
+  "ingredients": [],
+  "fluid_ingredient": {
+    "ingredient": "afc:maple_sap",
+    "amount": 10
+  },
+  "duration": 2000,
+  "temperature": 300,
+  "fluid_output": {
+    "fluid": "afc:maple_sap_concentrate",
+    "amount": 1
+  }
+}
