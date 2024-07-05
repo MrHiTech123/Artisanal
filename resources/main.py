@@ -1,6 +1,7 @@
 import json
 
 from alcs_funcs import *
+from itertools import repeat
 from mcresources import ResourceManager
 
 SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'petroleum')
@@ -197,17 +198,46 @@ def generate_crafting_recipes():
     for wood in WOODS:
         rm.crafting_shaped(('crafting', 'wood', f'{wood}_scribing_table'), ['Q B', 'XXX', 'Y Y'], {'Q': 'artisanal:quill', 'B': 'minecraft:black_dye', 'X': f'tfc:wood/planks/{wood}_slab', 'Y': f'tfc:wood/planks/{wood}'}, f'tfc:wood/scribing_table/{wood}').with_advancement(f'tfc:wood/planks/{wood}')
         disable_recipe(rm, f'tfc:crafting/wood/{wood}_scribing_table')
-    
+        rm.crafting_shaped(f'crafting/wood/{wood}_axle', [' w ', 'WGW'], {'w': fluid_item_ingredient('100 minecraft:water'), 'G': 'tfc:glue', 'W': f'tfc:wood/log/{wood}'}, (4, f'tfc:wood/axle/{wood}')).with_advancement(f'tfc:wood/lumber/{wood}')
+        disable_recipe(rm, f'tfc:crafting/wood/{wood}_axle')
     for wood in AFC_WOODS:
         rm.crafting_shaped(('crafting', 'wood', f'{wood}_scribing_table'), ['Q B', 'XXX', 'Y Y'], {'Q': 'artisanal:quill', 'B': 'minecraft:black_dye', 'X': f'afc:wood/planks/{wood}_slab', 'Y': f'afc:wood/planks/{wood}'}, f'afc:wood/scribing_table/{wood}')
         disable_recipe(rm, f'afc:crafting/wood/{wood}_scribing_table')
-        
-    # TODO:
-    #   Add scribing tables from AFC wood types
+        rm.crafting_shaped(f'crafting/wood/{wood}_axle', [' w ', 'WGW'], {'w': fluid_item_ingredient('100 minecraft:water'), 'G': 'tfc:glue', 'W': f'afc:wood/log/{wood}'}, (4, f'afc:wood/axle/{wood}')).with_advancement(f'afc:wood/lumber/{wood}')
+        disable_recipe(rm, f'afc:crafting/wood/{wood}_axle')
     
     damage_shapeless(rm, 'crafting/pumpkin_pie', (not_rotten('#tfc:foods/dough'), not_rotten('tfc:food/pumpkin_chunks'), '#tfc:knives', not_rotten('minecraft:egg'), not_rotten('#tfc:sweetener')), 'minecraft:pumpkin_pie').with_advancement('tfc:pumpkin')
     rm.crafting_shaped('crafting/cake', ['AAA', 'BEB', 'CCC'], {'A': fluid_item_ingredient('100 #tfc:milks'), 'B': not_rotten('#tfc:sweetener'), 'E': not_rotten('minecraft:egg'), 'C': not_rotten('#tfc:foods/grains')}, 'tfc:cake').with_advancement('#tfc:foods/grains')
     disable_recipe(rm, 'tfc:crafting/cake')
+    
+    rm.crafting_shaped('crafting/vanilla/bowl', [' w ', 'XYX', ' X '], {'w': fluid_item_ingredient('100 minecraft:water'), 'X': '#tfc:lumber', 'Y': 'tfc:glue'}, (3, 'minecraft:bowl')).with_advancement('#tfc:lumber')
+    disable_recipe(rm, 'tfc:crafting/vanilla/bowl')
+    
+    rm.crafting_shaped('crafting/glue_block', ['GGG', 'GWG', 'GGG'], {'W': fluid_item_ingredient('100 minecraft:water'), 'G': 'tfc:glue'}, 'minecraft:slime_block').with_advancement('tfc:glue')
+    rm.crafting_shapeless('crafting/glue_block_to_glue', ('minecraft:slime_block',), '8 tfc:glue').with_advancement('minecraft:slime_block')
+    
+    disable_recipe(rm, 'tfc:crafting/glue_block')
+    disable_recipe(rm, 'tfc:crafting/glue_block_to_glue')
+    
+    rm.crafting_shapeless('crafting/sandpaper', ('minecraft:paper', 'tfc:powder/flux', 'tfc:glue', '#tfc:volcanic_sand', '#tfc:gem_powders', fluid_item_ingredient('100 minecraft:water')), 'tfc:sandpaper').with_advancement('minecraft:paper')
+    disable_recipe(rm, 'tfc:crafting/sandpaper')
+    
+    rm.crafting_shapeless('crafting/soot', ('tfc:glue', 'tfc:powder/charcoal', 'tfc:powder/wood_ash', fluid_item_ingredient('100 minecraft:water')), 'tfc:soot').with_advancement('tfc:glue')
+    disable_recipe(rm, 'tfc:crafting/soot')
+    
+    rm.crafting_shaped('crafting/vanilla/redstone/sticky_piston', ['W', 'X', 'Y'], {'W': fluid_item_ingredient('100 minecraft:water'), 'X': 'tfc:glue', 'Y': 'minecraft:piston'}, 'minecraft:sticky_piston').with_advancement('tfc:glue')
+    disable_recipe(rm, 'tfc:crafting/vanilla/redstone/sticky_piston')
+    
+    rm.crafting_shaped('crafting/vanilla/shield', ['XYX', 'XXX', 'WZ '], {'X': '#tfc:lumber', 'Y': 'tfc:glue', 'Z': '#forge:rods/wooden', 'W': fluid_item_ingredient('100 minecraft:water')}, 'minecraft:shield').with_advancement('#tfc:lumber')
+    disable_recipe(rm, 'tfc:crafting/vanilla/shield')
+    
+    rm.crafting_shaped('crafting/steel_pump', [' W ', 'PGM', ' P '], {'W': fluid_item_ingredient('100 minecraft:water'), 'P': 'tfc:steel_pipe', 'G': 'tfc:glue', 'M': 'tfc:brass_mechanisms'}, 'tfc:steel_pump').with_advancement('tfc:steel_pipe')
+    disable_recipe(rm, 'tfc:crafting/steel_pump')
+    
+    for i in range(1, 1 + 5):
+        simple_pot_recipe(rm, (f'glue_{i}'), [utils.ingredient('minecraft:bone_meal')] * i, f'{200 * i} minecraft:water', None, ['tfc:glue'] * i, 2000, 300)
+    disable_recipe(rm, 'tfc:barrel/glue')
+    
     
     
     

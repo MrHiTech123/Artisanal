@@ -1,0 +1,30 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " W ",
+    "PGM",
+    " P "
+  ],
+  "key": {
+    "W": {
+      "type": "tfc:fluid_item",
+      "fluid_ingredient": {
+        "ingredient": "minecraft:water",
+        "amount": 100
+      }
+    },
+    "P": {
+      "item": "tfc:steel_pipe"
+    },
+    "G": {
+      "item": "tfc:glue"
+    },
+    "M": {
+      "item": "tfc:brass_mechanisms"
+    }
+  },
+  "result": {
+    "item": "tfc:steel_pump"
+  }
+}

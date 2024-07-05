@@ -1,0 +1,30 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYX",
+    "XXX",
+    "WZ "
+  ],
+  "key": {
+    "X": {
+      "tag": "tfc:lumber"
+    },
+    "Y": {
+      "item": "tfc:glue"
+    },
+    "Z": {
+      "tag": "forge:rods/wooden"
+    },
+    "W": {
+      "type": "tfc:fluid_item",
+      "fluid_ingredient": {
+        "ingredient": "minecraft:water",
+        "amount": 100
+      }
+    }
+  },
+  "result": {
+    "item": "minecraft:shield"
+  }
+}
