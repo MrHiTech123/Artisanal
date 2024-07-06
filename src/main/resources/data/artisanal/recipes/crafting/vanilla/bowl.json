@@ -1,0 +1,28 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " w ",
+    "XYX",
+    " X "
+  ],
+  "key": {
+    "w": {
+      "type": "tfc:fluid_item",
+      "fluid_ingredient": {
+        "ingredient": "minecraft:water",
+        "amount": 100
+      }
+    },
+    "X": {
+      "tag": "tfc:lumber"
+    },
+    "Y": {
+      "item": "tfc:glue"
+    }
+  },
+  "result": {
+    "item": "minecraft:bowl",
+    "count": 3
+  }
+}

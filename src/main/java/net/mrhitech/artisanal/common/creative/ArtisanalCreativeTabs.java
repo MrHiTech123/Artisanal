@@ -5,6 +5,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.mrhitech.artisanal.common.Waterlikes;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
+import net.mrhitech.artisanal.common.item.MagnifyingGlassMetal;
 
 public class ArtisanalCreativeTabs {
     public static void AddCreative(BuildCreativeModeTabContentsEvent event) {
@@ -43,6 +44,9 @@ public class ArtisanalCreativeTabs {
             event.accept(ArtisanalItems.SOAKED_FEATHER);
             event.accept(ArtisanalItems.TEMPERED_FEATHER);
             event.accept(ArtisanalItems.QUILL);
+            
+            event.accept(ArtisanalItems.PERISHABLE_SUGAR);
+            event.accept(ArtisanalItems.NON_PERISHABLE_SUGAR);
         }
         
         if (event.getTabKey() == TFCCreativeTabs.FLORA.tab().getKey()) {
@@ -56,9 +60,11 @@ public class ArtisanalCreativeTabs {
             event.accept(ArtisanalItems.POWDERED_MILK);
         }
         
-        if (event.getTabKey() == TFCCreativeTabs.MISC.tab().getKey()) {
-            event.accept(ArtisanalItems.PERISHABLE_SUGAR);
-            event.accept(ArtisanalItems.NON_PERISHABLE_SUGAR);
+        if (event.getTabKey() == TFCCreativeTabs.METAL.tab().getKey()) {
+            for (MagnifyingGlassMetal metal : MagnifyingGlassMetal.values()) {
+                event.accept(ArtisanalItems.MAGNIFYING_GLASSES.get(metal));
+                event.accept(ArtisanalItems.MAGNIFYING_GLASS_FRAMES.get(metal));
+            }
         }
     }
 }
