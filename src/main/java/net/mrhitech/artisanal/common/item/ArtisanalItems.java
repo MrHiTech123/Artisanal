@@ -42,7 +42,7 @@ public class ArtisanalItems {
     public static final RegistryObject<Item> POWDERED_MILK = ITEMS.register("powdered_milk", () -> new Item(new Item.Properties()));
     
     public static final Map<MagnifyingGlassMetal, RegistryObject<Item>> MAGNIFYING_GLASSES = Helpers.mapOfKeys(MagnifyingGlassMetal.class, metal ->
-            ITEMS.register("metal/magnifying_glass/" + metal.getSerializedName(), () -> new MagnifyingGlassItem(new Item.Properties())));
+            ITEMS.register("metal/magnifying_glass/" + metal.getSerializedName(), () -> new MagnifyingGlassItem(new Item.Properties().stacksTo(1))));
     
     public static final Map<MagnifyingGlassMetal, RegistryObject<Item>> MAGNIFYING_GLASS_FRAMES = Helpers.mapOfKeys(MagnifyingGlassMetal.class, metal ->
             ITEMS.register("metal/magnifying_glass_frame/" + metal.getSerializedName(), () -> new Item(new Item.Properties())));
