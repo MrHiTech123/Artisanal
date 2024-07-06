@@ -1,6 +1,6 @@
 import json
 
-from alcs_funcs import *
+from alcs_n_russians_funcs import *
 from mcresources import ResourceManager
 
 
@@ -109,7 +109,7 @@ def generate_item_foods():
     food_item(rm, ('sugar'), 'minecraft:sugar', Category.other, 0, 0, 0, 0)
     food_item(rm, ('maple_sugar'), 'afc:maple_sugar', Category.other, 0, 0, 0, 0)
     food_item(rm, ('birch_sugar'), 'afc:birch_sugar', Category.other, 0, 0, 0, 0)
-    
+    food_item(rm, ('honey'), 'firmalife:raw_honey', Category.other, 0, 0, 0, 0)
     
     
 def generate_item_heats():
@@ -266,7 +266,10 @@ def generate_crafting_recipes():
         metal_data = METALS[metal]
         rm.crafting_shapeless(('crafting', 'metal', 'magnifying_glass', metal), (f'artisanal:metal/magnifying_glass_frame/{metal}', 'tfc:lens'), f'artisanal:metal/magnifying_glass/{metal}')
         extra_products_shapeless(rm, ('crafting', 'metal', 'magnifying_glass', f'{metal}_uncraft'), (f'artisanal:metal/magnifying_glass/{metal}'), f'artisanal:metal/magnifying_glass_frame/{metal}', 'tfc:lens')
-        
+    
+    for grain in GRAINS:
+        rm.crafting_shapeless('crafting/%s_dough' % grain, (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), not_rotten('#tfc:sweetener')), (4, 'firmalife:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
+
     
     
 def generate_heat_recipes():
@@ -276,6 +279,23 @@ def generate_heat_recipes():
         metal_data = METALS[metal]
         heat_recipe(rm, ('metal', 'magnifying_glass', metal), f'artisanal:metal/magnifying_glass/{metal}', metal_data.melt_temperature, 'tfc:lens', f'50 tfc:metal/{metal}')
         heat_recipe(rm, ('metal', 'magnifying_glass_frame', metal), f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.melt_temperature, None, f'50 tfc:metal/{metal}')
+
+def generate_mixing_recipes():
+    mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), not_rotten('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
+    mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[utils.ingredient('#firmalife:foods/raw_eggs'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), not_rotten('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
+    mixing_recipe(rm, 'dark_chocolate_blend', ingredients=[not_rotten(utils.ingredient('#tfc:sweetener')), not_rotten('firmalife:food/cocoa_powder'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/dark_chocolate_blend')
+    mixing_recipe(rm, 'white_chocolate_blend', ingredients=[not_rotten(utils.ingredient('#tfc:sweetener')), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_butter')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/white_chocolate_blend')
+    mixing_recipe(rm, 'milk_chocolate_blend', ingredients=[not_rotten(utils.ingredient('#tfc:sweetener')), not_rotten('firmalife:food/cocoa_butter'), not_rotten('firmalife:food/cocoa_powder')], fluid='1000 #tfc:milks', output_item='2 firmalife:food/milk_chocolate_blend')
+    mixing_recipe(rm, 'vanilla_ice_cream', ingredients=[not_rotten(utils.ingredient('#tfc:sweetener')), utils.ingredient('firmalife:spice/vanilla'), utils.ingredient('firmalife:ice_shavings')], fluid='1000 firmalife:cream', output_item='2 firmalife:food/vanilla_ice_cream')
+    mixing_recipe(rm, 'cookie_dough', ingredients=[not_rotten('#firmalife:foods/raw_eggs'), utils.ingredient('firmalife:spice/vanilla'), not_rotten('firmalife:food/butter'), not_rotten('#tfc:sweetener'), not_rotten('#tfc:foods/flour')], output_item='4 firmalife:food/cookie_dough')
+    
+    disable_recipe(rm, 'firmalife:mixing_bowl/pie_dough')
+    disable_recipe(rm, 'firmalife:mixing_bowl/pumpkin_pie_dough')
+    disable_recipe(rm, 'firmalife:mixing_bowl/dark_chocolate_blend')
+    disable_recipe(rm, 'firmalife:mixing_bowl/white_chocolate_blend')
+    disable_recipe(rm, 'firmalife:mixing_bowl/milk_chocolate_blend')
+    disable_recipe(rm, 'firmalife:mixing_bowl/vanilla_ice_cream')
+    disable_recipe(rm, 'firmalife:mixing_bowl/cookie_dough')
     
     
 def generate_pot_recipes():
@@ -304,10 +324,11 @@ def generate_pot_recipes():
     disable_recipe(rm, 'afc:pot/birch_concentrate')
     disable_recipe(rm, 'afc:pot/birch_syrup')
     
+    simple_pot_recipe(rm, 'chocolate', [not_rotten(utils.ingredient('#tfc:sweetener')), not_rotten('#firmalife:foods/chocolate')], '1000 #tfc:milks', output_fluid='1000 firmalife:chocolate')
     
     
-    for fruit in JAR_FRUITS:
-        for count in (2, 3, 4):
+    for count in (2, 3, 4):
+        for fruit in JAR_FRUITS:
             jam_food = not_rotten(utils.ingredient('tfc:food/%s' % fruit))
             rm.recipe(('pot', 'jam', f'{fruit}_{count}'), 'tfc:pot_jam', {
                 'ingredients': [jam_food] * count + [not_rotten(utils.ingredient('#tfc:sweetener'))],
@@ -318,20 +339,45 @@ def generate_pot_recipes():
                 'texture': 'tfc:block/jar/%s' % fruit
             })
             disable_recipe(rm, f'tfc:pot/jam_{fruit}_{count}')
+        
+        for fruit in FL_FRUITS:
+            ing = not_rotten(has_trait('firmalife:food/%s' % fruit, 'firmalife:dried', True))
+            rm.recipe(('pot', 'jam_%s_%s' % (fruit, count)), 'tfc:pot_jam', {
+                'ingredients': [ing] * count + [utils.ingredient('#tfc:sweetener')],
+                'fluid_ingredient': fluid_stack_ingredient('100 minecraft:water'),
+                'duration': 500,
+                'temperature': 300,
+                'result': utils.item_stack('%s firmalife:jar/%s' % (count, fruit)),
+                'texture': 'firmalife:block/jar/%s' % fruit
+            })
+            disable_recipe(rm, f'firmalife:pot/jam_{fruit}_{count}')
+        
+        
     
 def generate_quern_recipes():
     print('\tGenerating quern recipes...')
     quern_recipe(rm, ('food', 'cleaned_sugarcane'), not_rotten('artisanal:food/cleaned_sugarcane'), 'artisanal:wet_bagasse')
     quern_recipe(rm, ('powdered_milk'), 'artisanal:milk_flakes', {'item': 'artisanal:powdered_milk', 'count': 2})
-        
+
+def generate_vat_recipes():
+    print('\tGenerating vat recipes...')
+    vat_recipe(rm, 'sugar_water', not_rotten('#tfc:sweetener'), '1000 minecraft:water', output_fluid='500 firmalife:sugar_water')
+    disable_recipe(rm, 'firmalife:vat/sugar_water')
+    
+    
+    
+    
+    
 def generate_recipes():
     print('Generating recipes...')
     generate_anvil_recipes()
     generate_barrel_recipes()
     generate_crafting_recipes()
     generate_heat_recipes()
+    generate_mixing_recipes()
     generate_pot_recipes()
     generate_quern_recipes()
+    generate_vat_recipes()
 
 def generate_entity_tags():
     print('\tGenerating entity tags...')

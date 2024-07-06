@@ -3618,3 +3618,44 @@ def item_use_on_block(block: str, item: str, name: str = 'item_use_on_block_cond
 
 def root_trigger() -> Json:
     return {'in_game_condition': {'trigger': 'minecraft:tick'}}
+
+def vat_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, length: int = None, temp: float = None, jar: str = None):
+    rm.recipe(('vat', name_parts), 'firmalife:vat', {
+        'input_item': item_stack_ingredient(input_item) if input_item is not None else None,
+        'input_fluid': fluid_stack_ingredient(input_fluid) if input_fluid is not None else None,
+        'output_item': item_stack_provider(output_item) if output_item is not None else None,
+        'output_fluid': fluid_stack(output_fluid) if output_fluid is not None else None,
+        'length': length,
+        'temperature': temp,
+        'jar': utils.item_stack(jar) if jar is not None else None
+    })
+FL_FRUITS = ('fig', 'pineapple', 'red_grapes', 'white_grapes')
+
+def mixing_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredients: Json = None, fluid: str = None, output_fluid: str = None, output_item: str = None) -> RecipeContext:
+    rm.recipe(('mixing_bowl', name_parts), 'firmalife:mixing_bowl', {
+        'ingredients': ingredients if ingredients is not None else None,
+        'fluid_ingredient': fluid_stack_ingredient(fluid) if fluid is not None else None,
+        'output_fluid': fluid_stack(output_fluid) if output_fluid is not None else None,
+        'output_item': utils.item_stack(output_item) if output_item is not None else None
+    })
+
+def drying_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, item: Any, result: Json) -> RecipeContext:
+    return rm.recipe(('drying', name), 'firmalife:drying', {
+        'ingredient': utils.ingredient(item) if isinstance(item, str) else item,
+        'result': result
+    })
+
+def stomping_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, item: Any, result: Json, input_texture: str, output_texture: str, sound: str = 'minecraft:entity.slime.squish') -> RecipeContext:
+    return rm.recipe(('stomping', name), 'firmalife:stomping', {
+        'ingredient': utils.ingredient(item) if isinstance(item, str) else item,
+        'result': result,
+        'input_texture': input_texture,
+        'output_texture': output_texture,
+        'sound': sound
+    })
+
+def smoking_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, item: Any, result: Json) -> RecipeContext:
+    return rm.recipe(('smoking', name), 'firmalife:smoking', {
+        'ingredient': utils.ingredient(item) if isinstance(item, str) else item,
+        'result': result
+    })
