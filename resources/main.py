@@ -3,14 +3,36 @@ import json
 from alcs_funcs import *
 from mcresources import ResourceManager
 
+
 SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'petroleum')
 AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cypress', 'fig', 'ironwood', 'ipe')
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
 
 
 rm = ResourceManager('artisanal')
+
 forge_rm = ResourceManager('forge')
 
+def advancement(rm: ResourceManager, name_parts: tuple, icon: dict[str, Any] | Sequence | str | int | bool | None, title: str, description: str, parent: str, criteria: dict[str, Any] | Sequence | str | int | bool | None, requirements: Sequence[Sequence[str]] | None = None, rewards: dict[str, Any] | Sequence | str | int | bool | None = None):
+    if (isinstance(name_parts, str)):
+        name_parts = (name_parts, )
+    
+    key = f'{rm.domain}.advancements.{".".join(name_parts)}'
+    
+    rm.advancement(name_parts, {
+        'icon': utils.item_stack(icon),
+        'title': {'translate': key + '.title'},
+        'description': {'translate': key + '.description'},
+        'frame': 'task',
+        'show_toast': True,
+        'announce_to_chat': True,
+        'hidden': False,
+    }, parent, criteria, requirements)
+    
+    rm.lang(key + '.title', title)
+    rm.lang(key + '.description', description)
+    
+    
 def loot_modifier_add_itemstack_min_max(rm: ResourceManager, loot_modifiers: list, name_parts, entity_tag, item, little, big):
     data = {
       "type": "artisanal:add_itemstack_min_max",
@@ -51,10 +73,17 @@ def scalable_pot_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifie
     })
 
 
+
 def generate_advancements():
     print('Generating advancements...')
-    rm.advancement('')
-
+    advancement(rm, ('story', 'magnifying_glass'), 'artisanal:metal/magnifying_glass/brass', 'Inspector Detector', 'Craft a Magnifying Glass', 'tfc:story/lens', inventory_changed('#artisanal:magnifying_glasses'))
+    advancement(rm, ('story', 'perishable_sugar'), 'artisanal:perishable_sugar', 'Sweet Tooth', 'Create Perishable Sugar', 'tfc:story/barrel', inventory_changed('artisanal:perishable_sugar'))
+    advancement(rm, ('story', 'non_perishable_sugar'), 'artisanal:non_perishable_sugar', 'Everlasting Sweet Tooth', 'Create Non-Perishable Sugar', 'artisanal:story/perishable_sugar', inventory_changed('artisanal:non_perishable_sugar'))
+    advancement(rm, ('story', 'powdered_milk'), 'artisanal:powdered_milk', 'Just Add Water!', 'Create Powdered Milk', 'tfc:story/quern', inventory_changed('artisanal:powdered_milk'))
+    advancement(rm, ('story', 'quill'), 'artisanal:quill', 'Not Quite Ballpoint', 'Create a Quill', 'tfc:story/barrel', inventory_changed('artisanal:quill'))
+    advancement(rm, ('story', 'writable_book'), 'minecraft:writable_book', 'Bookkeeper', 'Create a Book and Quill', 'artisanal:story/quill', inventory_changed('minecraft:writable_book'))
+    advancement(rm, ('story', 'soap'), 'artisanal:soap', 'Too Much is Terrible', 'Create Soap', 'tfc:story/barrel', inventory_changed('artisanal:soap'))
+    
 
 def generate_drinkables():
     print('\tGenerating drinkables...')
