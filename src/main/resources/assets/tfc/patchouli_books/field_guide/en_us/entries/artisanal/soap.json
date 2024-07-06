@@ -47,6 +47,12 @@
       "recipe3": "artisanal:barrel/clean_soup_bowl_soapy_water"
     }
   ],
-  "read_by_default": true
-
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:suet": 0,
+    "artisanal:bear_fat": 0,
+    "artisanal:pork_fat": 0,
+    "artisanal:poultry_fat": 0,
+    "artisanal:soap": 4
+  }
 }
