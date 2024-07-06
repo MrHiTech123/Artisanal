@@ -64,6 +64,8 @@ def generate_fuels():
     generate_lamp_fuels()
     fuel_item(rm, ('dry_bagasse'), 'artisanal:dry_bagasse', 750, 350)
     
+    
+    
 def generate_item_foods():
     print('\tGenerating item foods...')
     food_item(rm, ('cleaned_sugarcane'), 'artisanal:food/cleaned_sugarcane', Category.other, 4, 0, 0, 0.5)
@@ -78,6 +80,10 @@ def generate_item_foods():
 def generate_item_heats():
     print('\tGenerating item heats...')
     item_heat(rm, ('sand'), '#forge:sand', 0.8, None, None)
+    for metal in MAGNIFYING_GLASS_METALS:
+        metal_data = METALS[metal]
+        item_heat(rm, ('metal', 'magnifying_glass', metal), f'artisanal:metal/magnifying_glass/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
+        item_heat(rm, ('metal', 'magnifying_glass_frame', metal), f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
     
 def generate_data():
     print('Generating data...')
@@ -139,6 +145,13 @@ def generate_item_models():
 def generate_models():
     print('Generating models...')
     generate_item_models()
+
+def generate_anvil_recipes():
+    print('\tGenerating anvil recipes...')
+    for metal in MAGNIFYING_GLASS_METALS:
+        metal_data = METALS[metal]
+        anvil_recipe(rm, ('metal', 'magnifying_glass_frame', metal), f'tfc:metal/rod/{metal}', f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.tier, Rules.bend_last, Rules.hit_any, Rules.bend_not_last)
+    
 
 def generate_barrel_recipes():
     print('\tGenerating barrel recipes...')
@@ -214,6 +227,20 @@ def generate_crafting_recipes():
     rm.crafting_shaped('crafting/cake', ['AAA', 'BEB', 'CCC'], {'A': fluid_item_ingredient('100 #tfc:milks'), 'B': not_rotten('#tfc:sweetener'), 'E': not_rotten('minecraft:egg'), 'C': not_rotten('#tfc:foods/grains')}, 'tfc:cake').with_advancement('#tfc:foods/grains')
     disable_recipe(rm, 'tfc:crafting/cake')
     
+    for metal in MAGNIFYING_GLASS_METALS:
+        metal_data = METALS[metal]
+        rm.crafting_shapeless(('crafting', 'metal', 'magnifying_glass', metal), (f'artisanal:metal/magnifying_glass_frame/{metal}', 'tfc:lens'), f'artisanal:metal/magnifying_glass/{metal}')
+        extra_products_shapeless(rm, ('crafting', 'metal', 'magnifying_glass', f'{metal}_uncraft'), (f'artisanal:metal/magnifying_glass/{metal}'), f'artisanal:metal/magnifying_glass_frame/{metal}', 'tfc:lens')
+        
+    
+    
+def generate_heat_recipes():
+    print("\tGenerating heat recipes...")
+    
+    for metal in MAGNIFYING_GLASS_METALS:
+        metal_data = METALS[metal]
+        heat_recipe(rm, ('metal', 'magnifying_glass', metal), f'artisanal:metal/magnifying_glass/{metal}', metal_data.melt_temperature, 'tfc:lens', f'50 tfc:metal/{metal}')
+        heat_recipe(rm, ('metal', 'magnifying_glass_frame', metal), f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.melt_temperature, None, f'50 tfc:metal/{metal}')
     
     
 def generate_pot_recipes():
@@ -264,8 +291,10 @@ def generate_quern_recipes():
         
 def generate_recipes():
     print('Generating recipes...')
+    generate_anvil_recipes()
     generate_barrel_recipes()
     generate_crafting_recipes()
+    generate_heat_recipes()
     generate_pot_recipes()
     generate_quern_recipes()
 

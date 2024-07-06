@@ -62,6 +62,7 @@ public class MagnifyingGlassItem extends FirestarterItem {
                 Vec3 location = result.getLocation();
                 makeEffects(level, player, location.x(), location.y(), location.z(), countLeft, getUseDuration(stack), level.random);
             }
+            
             else if (countLeft == 1) {
                 if (FirepitBlock.canSurvive(level, targetAbovePos)) {
                     final List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, new AABB(targetAbovePos.getX() - 0.5, targetAbovePos.getY(), targetAbovePos.getZ() - 0.5, targetAbovePos.getX() + 1.5, targetAbovePos.getY() + 1, targetAbovePos.getZ() + 1.5));
