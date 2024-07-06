@@ -26,6 +26,11 @@
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/metal/magnifying_glass/tin_uncraft",
       "text": "If you would like to salvage the Lens and/or metal used to make a Magnifying Glass, you can remove the lens from a frame by placing the Magnifying Glass into your crafting grid."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/amethyst_cut",
+      "text": "Magnifying Glasses are also needed to cut $(l:tfc:mechanics/gems)Gems$(). This does not consume the Magnifying Glass."
     }
     
   ],
@@ -44,7 +49,16 @@
     "artisanal:metal/magnifying_glass/rose_gold": 3,
     "artisanal:metal/magnifying_glass/silver": 3,
     "artisanal:metal/magnifying_glass/sterling_silver": 3,
-    "artisanal:metal/magnifying_glass/tin": 3
+    "artisanal:metal/magnifying_glass/tin": 3,
+    "tfc:gem/amethyst": 5,
+    "tfc:gem/diamond": 5,
+    "tfc:gem/emerald": 5,
+    "tfc:gem/lapis_lazuli": 5,
+    "tfc:gem/opal": 5,
+    "tfc:gem/pyrite": 5,
+    "tfc:gem/ruby": 5,
+    "tfc:gem/sapphire": 5,
+    "tfc:gem/topaz": 5
   }
   
 }
