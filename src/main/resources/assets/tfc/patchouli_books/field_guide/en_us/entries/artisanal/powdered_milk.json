@@ -25,6 +25,9 @@
       "text": "Powdered Milk can then be recombined with water at any subsequent point to create Milk."
     }
   ],
-  "read_by_default": true
-
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:milk_flakes": 1,
+    "artisanal:powdered_milk": 2
+  }
 }

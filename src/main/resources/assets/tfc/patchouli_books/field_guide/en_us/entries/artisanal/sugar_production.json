@@ -61,6 +61,12 @@
       "text": "Molasses can be fermented into Rum. It can also be drunk normally and grants $(l)$(a)Fruit$() and $(l)$(2)Vegetable$() nutrition."
     }
   ],
-  "read_by_default": true
-  
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:food/cleaned_sugarcane": 1,
+    "artisanal:wet_bagasse": 3,
+    "artisanal:dry_bagasse": 4,
+    "artisanal:perishable_sugar": 5,
+    "artisanal:non_perishable_sugar": 9
+  }
 }

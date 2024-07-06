@@ -42,6 +42,12 @@
       "text": "Quills are needed to craft Scribing Tables and Book and Quills."
     }
   ],
-  "read_by_default": true
-
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:trimmed_feather": 1,
+    "artisanal:soaked_feather": 2,
+    "artisanal:tempered_feather": 3,
+    "artisanal:quill": 5,
+    "minecraft:writable_book": 6
+  }
 }
