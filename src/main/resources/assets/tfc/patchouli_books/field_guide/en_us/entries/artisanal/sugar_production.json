@@ -58,7 +58,7 @@
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/rum",
-      "text": "Molasses can be fermented into rum. It can also be drunk normally and grants $(l)$(a)Fruit$() and $(l)$(2)Vegetable$() nutrition."
+      "text": "Molasses can be fermented into Rum. It can also be drunk normally and grants $(l)$(a)Fruit$() and $(l)$(2)Vegetable$() nutrition."
     }
   ],
   "read_by_default": true
