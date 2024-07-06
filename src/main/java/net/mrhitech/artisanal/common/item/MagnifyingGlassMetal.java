@@ -3,7 +3,14 @@ package net.mrhitech.artisanal.common.item;
 import java.util.Locale;
 
 public enum MagnifyingGlassMetal {
-    BRASS();
+    BISMUTH(),
+    BRASS(),
+    GOLD(),
+    ROSE_GOLD(),
+    SILVER(),
+    STERLING_SILVER(),
+    TIN();
+    
     
     MagnifyingGlassMetal() {
         

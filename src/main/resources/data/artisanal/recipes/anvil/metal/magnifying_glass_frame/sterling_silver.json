@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:anvil",
+  "input": {
+    "item": "tfc:metal/rod/sterling_silver"
+  },
+  "result": {
+    "item": "artisanal:metal/magnifying_glass_frame/sterling_silver"
+  },
+  "tier": 1,
+  "rules": [
+    "bend_last",
+    "hit_any",
+    "bend_not_last"
+  ]
+}
