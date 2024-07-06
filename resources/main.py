@@ -32,7 +32,15 @@ def advancement(rm: ResourceManager, name_parts: tuple, icon: dict[str, Any] | S
     rm.lang(key + '.title', title)
     rm.lang(key + '.description', description)
     
-    
+def catalyst_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, group: str = None, conditions: utils.Json = None) -> RecipeContext:
+    return delegate_recipe(rm, name_parts, 'artisanal:damage_and_catalyst_shapeless_crafting', {
+        'type': 'minecraft:crafting_shapeless',
+        'group': group,
+        'ingredients': utils.item_stack_list(ingredients),
+        'result': utils.item_stack(result),
+        'conditions': utils.recipe_condition(conditions)
+    })
+
 def loot_modifier_add_itemstack_min_max(rm: ResourceManager, loot_modifiers: list, name_parts, entity_tag, item, little, big):
     data = {
       "type": "artisanal:add_itemstack_min_max",
@@ -270,7 +278,9 @@ def generate_crafting_recipes():
     for grain in GRAINS:
         rm.crafting_shapeless('crafting/%s_dough' % grain, (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), not_rotten('#tfc:sweetener')), (4, 'firmalife:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
 
-    
+    for gem in GEMS:
+        catalyst_shapeless(rm, gem + '_cut', ('tfc:ore/%s' % gem, 'tfc:sandpaper', '#artisanal:magnifying_glasses'), 'tfc:gem/%s' % gem).with_advancement('tfc:sandpaper')
+        disable_recipe(rm, f'tfc:{gem}_cut')
     
 def generate_heat_recipes():
     print("\tGenerating heat recipes...")
@@ -400,6 +410,7 @@ def generate_item_tags():
     rm.item_tag('fats', 'artisanal:bear_fat', 'artisanal:pork_fat', 'artisanal:poultry_fat', 'artisanal:suet')
     rm.item_tag('tfc:firepit_kindling', 'artisanal:dry_bagasse')
     rm.item_tag('magnifying_glasses', *[f'artisanal:metal/magnifying_glass/{metal}' for metal in MAGNIFYING_GLASS_METALS])
+    rm.item_tag('crafting_catalysts', '#artisanal:magnifying_glasses')
 
 def generate_tags():
     print('Generating tags...')

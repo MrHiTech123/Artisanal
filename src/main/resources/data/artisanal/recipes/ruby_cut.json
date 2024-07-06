@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:damage_and_catalyst_shapeless_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "item": "tfc:ore/ruby"
+      },
+      {
+        "item": "tfc:sandpaper"
+      },
+      {
+        "tag": "artisanal:magnifying_glasses"
+      }
+    ],
+    "result": {
+      "item": "tfc:gem/ruby"
+    }
+  }
+}
