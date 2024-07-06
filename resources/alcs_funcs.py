@@ -3,7 +3,7 @@
 
 from enum import Enum, auto
 from typing import Dict, List, Set, NamedTuple, Sequence, Optional, Tuple, Any, Union, Literal, get_args
-from mcresources import ResourceManager, utils, loot_tables, RecipeContext, ItemContext, BlockContext
+from mcresources import ResourceManager, utils, loot_tables, RecipeContext, ItemContext, BlockContext, advancements
 from mcresources.type_definitions import ResourceIdentifier, Json, JsonObject, VerticalAnchor
 
 class Size(Enum):
@@ -3555,3 +3555,66 @@ def rock_layers():
         'land': ['igneous_extrusive', 'sedimentary'],
         'uplift': ['sedimentary', 'uplift']
     }
+
+def kill_mob(mob: str, other: Dict = None) -> Json:
+    return generic('minecraft:player_killed_entity', {'entity': [entity_predicate(mob, other)]})
+
+# if the predicate is (and usually it will be) an EntityPredicate.Composite, this should be inside an array.
+# EntityPredicate.Composite wraps a vanilla loot event in a trigger event
+def entity_predicate(mob: str, other: Dict = None) -> Json:
+    dic = {
+        'condition': 'minecraft:entity_properties',
+        'predicate': {'type': mob},  # can be a hashtag to refer to entity tags
+        'entity': 'this',
+    }
+    if other is not None:
+        dic.update(other)
+    return dic
+
+
+def consume_item(item: str, name: str = 'item_consumed') -> Json:
+    if isinstance(item, str) and name == 'item_consumed':
+        name = item.split(':')[1]
+    return generic('minecraft:consume_item', {'item': utils.item_predicate(item)}, name=name)
+
+def icon(name: str) -> Json:
+    return {'item': name}
+
+def biome(biome_name: str) -> Json:
+    return location({'biome': 'tfc:%s' % biome_name}, biome_name)
+
+def location(location_predicate: Json, name: str):
+    return generic('minecraft:location', {
+        'player': [
+            {
+                'condition': 'minecraft:entity_properties',
+                'entity': 'this',
+                'predicate': {
+                    'location': location_predicate
+                }
+            }
+        ]}, name=name)
+
+def multiple(*conditions: Json) -> Json:
+    merged = {}
+    for c in conditions:
+        merged.update(c)
+    return merged
+
+def generic(trigger_type: str, conditions: Json, name: str = 'special_condition') -> Json:
+    return {name: {'trigger': trigger_type, 'conditions': conditions}}
+
+def inventory_changed(item: str | Json, name: str = 'item_obtained') -> Json:
+    if isinstance(item, str) and name == 'item_obtained':
+        name = item.split(':')[1]
+    return {name: advancements.inventory_changed(item)}
+
+def item_use_on_block(block: str, item: str, name: str = 'item_use_on_block_condition'):
+    block_json = {'tag': block[1:]} if block[0] == '#' else {'blocks': [block]}
+    return {name: {'trigger': 'minecraft:item_used_on_block', 'conditions': {
+        'location': {'block': block_json},
+        'item': {'items': [item]}
+    }}}
+
+def root_trigger() -> Json:
+    return {'in_game_condition': {'trigger': 'minecraft:tick'}}

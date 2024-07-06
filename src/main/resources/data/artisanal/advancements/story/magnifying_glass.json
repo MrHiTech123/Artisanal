@@ -1,0 +1,36 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "tfc:story/lens",
+  "criteria": {
+    "magnifying_glasses": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "artisanal:magnifying_glasses"
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "artisanal:metal/magnifying_glass/brass"
+    },
+    "title": {
+      "translate": "artisanal.advancements.story.magnifying_glass.title"
+    },
+    "description": {
+      "translate": "artisanal.advancements.story.magnifying_glass.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "requirements": [
+    [
+      "magnifying_glasses"
+    ]
+  ]
+}
