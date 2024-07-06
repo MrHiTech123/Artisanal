@@ -2025,7 +2025,6 @@ def dynamic_food_item(rm: ResourceManager, name_parts: utils.ResourceIdentifier,
     })
 
 def drinkable(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fluid: utils.Json, thirst: Optional[int] = None, intoxication: Optional[int] = None, effects: Optional[utils.Json] = None, food: Optional[utils.Json] = None, allow_full: bool = None):
-    print('Hi')
     rm.data(('tfc', 'drinkables', name_parts), {
         'ingredient': fluid_ingredient(fluid),
         'thirst': thirst,

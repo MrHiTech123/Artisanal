@@ -1,0 +1,50 @@
+{
+  "name": "Magnifying Glass",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:metal/magnifying_glass/brass",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The $(thing)Magnifying Glass$() can be used to start fires, much like a $(l:tfc:getting_started/firepit)firestarter$(), though more quickly and without consuming durability. $(br2)However, this efficiency comes with the tradeoff that the Magnifying Glass can only be used when you have access to sunlight. $(br2)This means that when using it, either you"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {"tag": "artisanal:magnifying_glasses"},
+      "text": "or the block you are attempting to light must be able to see the sky. Magnifying Glasses can also only be used during the day and in clear weather. $(br2)Magnifying Glasses can also be used to light $(thing)Firepits$(), $(l:tfc:getting_started/pit_kiln)Pit Kilns$(), $(thing)Torches$(), and anything else that a Firestarter can light."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "artisanal:anvil/metal/magnifying_glass_frame/brass",
+      "text": "To make a Magnifying Glass, begin by forging a $(thing)Magnifying Glass Frame$() from a rod of your chosen material. Magnifying Glasses can be made from a variety of materials including: $(br2) Bismuth$(br) Brass$(br) Gold$(br) Rose Gold$(br) Silver$(br) Sterling Silver$(br) Tin$(br2)"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/magnifying_glass/rose_gold",
+      "text": "Then, craft the frame together with a $(l:tfc:mechanics/glassworking_applications)Lens$() to create your Magnifying Glass."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/magnifying_glass/tin_uncraft",
+      "text": "If you would like to salvage the Lens and/or metal used to make a Magnifying Glass, you can remove the lens from a frame by placing the Magnifying Glass into your crafting grid."
+    }
+    
+  ],
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:metal/magnifying_glass_frame/bismuth": 2,
+    "artisanal:metal/magnifying_glass_frame/brass": 2,
+    "artisanal:metal/magnifying_glass_frame/gold": 2,
+    "artisanal:metal/magnifying_glass_frame/rose_gold": 2,
+    "artisanal:metal/magnifying_glass_frame/silver": 2,
+    "artisanal:metal/magnifying_glass_frame/sterling_silver": 2,
+    "artisanal:metal/magnifying_glass_frame/tin": 2,
+    "artisanal:metal/magnifying_glass/bismuth": 3,
+    "artisanal:metal/magnifying_glass/brass": 3,
+    "artisanal:metal/magnifying_glass/gold": 3,
+    "artisanal:metal/magnifying_glass/rose_gold": 3,
+    "artisanal:metal/magnifying_glass/silver": 3,
+    "artisanal:metal/magnifying_glass/sterling_silver": 3,
+    "artisanal:metal/magnifying_glass/tin": 3
+  }
+  
+}

@@ -39,7 +39,7 @@
     },
     {
       "type": "tfc:instant_barrel_recipe",
-      "recipe": "artisanal:barrel:clean_jute_net_soapy_water",
+      "recipe": "artisanal:barrel/clean_jute_net_soapy_water",
       "text": "Instantneous cleaning now requires the use of $(thing)Soapy Water$(). See $(l:tfc:artisanal/soap)Soap$()."
     }
   ],

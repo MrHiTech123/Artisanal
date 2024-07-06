@@ -51,11 +51,17 @@ def scalable_pot_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifie
     })
 
 
+def generate_advancements():
+    print('Generating advancements...')
+    rm.advancement('')
+
+
 def generate_drinkables():
     print('\tGenerating drinkables...')
     drinkable(rm, ('molasses'), 'artisanal:molasses', thirst=-1, food={'hunger': 4, 'saturation': 0, 'vegetables': 3, 'fruit': 3})
     
 def generate_lamp_fuels():
+    print('\tGenerating lamp fuels...')
     lamp_fuel(rm, 'lard', 'artisanal:lard', 1800)
     lamp_fuel(rm, 'schmaltz', 'artisanal:schmaltz', 1800)
 
@@ -318,7 +324,7 @@ def generate_item_tags():
     rm.item_tag('firmalife:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
     rm.item_tag('fats', 'artisanal:bear_fat', 'artisanal:pork_fat', 'artisanal:poultry_fat', 'artisanal:suet')
     rm.item_tag('tfc:firepit_kindling', 'artisanal:dry_bagasse')
-
+    rm.item_tag('magnifying_glasses', *[f'artisanal:metal/magnifying_glass/{metal}' for metal in MAGNIFYING_GLASS_METALS])
 
 def generate_tags():
     print('Generating tags...')
@@ -327,6 +333,7 @@ def generate_tags():
     generate_item_tags()
 
 def main():
+    generate_advancements()
     generate_data()
     generate_loot_modifiers()
     generate_misc_lang()
