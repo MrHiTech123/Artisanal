@@ -126,7 +126,7 @@ public class MagnifyingGlassItem extends FirestarterItem {
     @Override
     public UseAnim getUseAnimation(ItemStack stack)
     {
-        return UseAnim.SPEAR;
+        return UseAnim.BOW;
     }
     
     public boolean itsDay(Level level) {
