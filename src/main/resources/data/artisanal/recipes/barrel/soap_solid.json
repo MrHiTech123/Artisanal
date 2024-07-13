@@ -3,7 +3,7 @@
   "type": "tfc:barrel_sealed",
   "input_fluid": {
     "ingredient": "artisanal:soap",
-    "amount": 250
+    "amount": 125
   },
   "output_item": {
     "item": "artisanal:soap"
