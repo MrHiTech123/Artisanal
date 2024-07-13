@@ -289,8 +289,8 @@ def generate_crafting_recipes():
         extra_products_shapeless(rm, ('crafting', 'metal', 'magnifying_glass', f'{metal}_uncraft'), (f'artisanal:metal/magnifying_glass/{metal}'), f'artisanal:metal/magnifying_glass_frame/{metal}', 'tfc:lens')
     
     for grain in GRAINS:
-        rm.crafting_shapeless('crafting/%s_dough' % grain, (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), not_rotten('#tfc:sweetener')), (4, 'firmalife:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
-
+        rm.crafting_shapeless(f'crafting/{grain}_dough', (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), not_rotten('#tfc:sweetener')), (4, 'firmalife:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
+        disable_recipe(rm, f'firmalife:crafting/{grain}_dough')
     for gem in GEMS:
         catalyst_shapeless(rm, ('crafting', gem + '_cut'), ('tfc:ore/%s' % gem, 'tfc:sandpaper', '#artisanal:magnifying_glasses'), 'tfc:gem/%s' % gem).with_advancement('tfc:sandpaper')
         disable_recipe(rm, f'tfc:{gem}_cut')
@@ -348,7 +348,7 @@ def generate_pot_recipes():
     disable_recipe(rm, 'afc:pot/birch_syrup')
     
     simple_pot_recipe(rm, 'chocolate', [not_rotten(utils.ingredient('#tfc:sweetener')), not_rotten('#firmalife:foods/chocolate')], '1000 #tfc:milks', output_fluid='1000 firmalife:chocolate')
-    
+    disable_recipe(rm, 'firmalife:pot/chocolate')
     
     for count in (2, 3, 4):
         for fruit in JAR_FRUITS:
