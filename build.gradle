@@ -200,6 +200,9 @@ dependencies {
     implementation fg.deobf("curse.maven:firmacivilization-714158:5316956")
     // AFC
     implementation fg.deobf("curse.maven:arborfirmacraft-877545:5499276")
+    // Firmalife
+    implementation fg.deobf("curse.maven:firmalife-453394:5477629")
+    
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
