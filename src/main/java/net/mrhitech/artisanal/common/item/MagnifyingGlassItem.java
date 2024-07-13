@@ -54,6 +54,7 @@ public class MagnifyingGlassItem extends FirestarterItem {
                     (eitherCanSeeSky(level, targetAbovePos, playerAbovePos)? 1 : 0) * 
                     (itsDay(level)? 1 : 0);
             
+            // If it's not day, or it's raining, or it's indoors, return without making effects
             if (chance == 0) {
                 return;
             }
