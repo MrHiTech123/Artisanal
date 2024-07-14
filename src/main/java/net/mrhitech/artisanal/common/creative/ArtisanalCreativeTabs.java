@@ -65,6 +65,8 @@ public class ArtisanalCreativeTabs {
                 event.accept(ArtisanalItems.MAGNIFYING_GLASSES.get(metal));
                 event.accept(ArtisanalItems.MAGNIFYING_GLASS_FRAMES.get(metal));
             }
+            event.accept(ArtisanalItems.TINPLATE);
+            event.accept(ArtisanalItems.TIN_CAN);
         }
     }
 }
