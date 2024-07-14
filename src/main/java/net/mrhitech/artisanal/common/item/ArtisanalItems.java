@@ -47,6 +47,9 @@ public class ArtisanalItems {
     public static final Map<MagnifyingGlassMetal, RegistryObject<Item>> MAGNIFYING_GLASS_FRAMES = Helpers.mapOfKeys(MagnifyingGlassMetal.class, metal ->
             ITEMS.register("metal/magnifying_glass_frame/" + metal.getSerializedName(), () -> new Item(new Item.Properties())));
     
+    public static final RegistryObject<Item> TINPLATE = ITEMS.register("metal/tinplate", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> TIN_CAN = ITEMS.register("metal/tin_can", () -> new Item(new Item.Properties()));
+    
     
     
     public static void register(IEventBus bus) {

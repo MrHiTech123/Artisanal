@@ -128,6 +128,11 @@ def generate_item_heats():
         item_heat(rm, ('metal', 'magnifying_glass', metal), f'artisanal:metal/magnifying_glass/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
         item_heat(rm, ('metal', 'magnifying_glass_frame', metal), f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
     
+    
+    
+    item_heat(rm, ('metal', 'tinplate'), 'artisanal:metal/tinplate', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
+    item_heat(rm, ('metal', 'tin_can'), 'artisanal:metal/tin_can', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
+    
 def generate_data():
     print('Generating data...')
     generate_drinkables()
@@ -182,7 +187,10 @@ def generate_item_models():
     for metal in MAGNIFYING_GLASS_METALS:
         rm.item_model(('metal', 'magnifying_glass', f'{metal}'), f'artisanal:item/metal/magnifying_glass/{metal}').with_lang(lang(f'{metal}_magnifying_glass'))
         rm.item_model(('metal', 'magnifying_glass_frame', f'{metal}'), f'artisanal:item/metal/magnifying_glass_frame/{metal}').with_lang(lang(f'{metal}_magnifying_glass_frame'))
-        
+    
+    rm.item_model(('metal', 'tinplate'), 'artisanal:item/metal/tinplate').with_lang(lang('tinplate'))
+    rm.item_model(('metal', 'tin_can'), 'artisanal:item/metal/tin_can').with_lang(lang('tin_can'))
+    
     
     
 def generate_models():
@@ -195,6 +203,8 @@ def generate_anvil_recipes():
         metal_data = METALS[metal]
         anvil_recipe(rm, ('metal', 'magnifying_glass_frame', metal), f'tfc:metal/rod/{metal}', f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.tier, Rules.bend_last, Rules.hit_any, Rules.bend_not_last)
     
+    anvil_recipe(rm, ('metal', 'tin_can'), 'artisanal:metal/tinplate', 'artisanal:metal/tin_can', 1, Rules.bend_not_last, Rules.hit_not_last, Rules.hit_last)
+    welding_recipe(rm, ('metal', 'tinplate'), 'tfc:metal/double_sheet/steel', 'tfc:metal/sheet/tin', (4, 'artisanal:metal/tinplate'), 0)
 
 def generate_barrel_recipes():
     print('\tGenerating barrel recipes...')
@@ -302,6 +312,9 @@ def generate_heat_recipes():
         metal_data = METALS[metal]
         heat_recipe(rm, ('metal', 'magnifying_glass', metal), f'artisanal:metal/magnifying_glass/{metal}', metal_data.melt_temperature, 'tfc:lens', f'50 tfc:metal/{metal}')
         heat_recipe(rm, ('metal', 'magnifying_glass_frame', metal), f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.melt_temperature, None, f'50 tfc:metal/{metal}')
+    
+    
+    
 
 def generate_mixing_recipes():
     mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), not_rotten('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
