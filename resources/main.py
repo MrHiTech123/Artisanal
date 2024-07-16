@@ -41,6 +41,9 @@ def catalyst_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingr
         'conditions': utils.recipe_condition(conditions)
     })
 
+def heatable_ingredient(ingredient: str, min_temp: int):
+    return {'type': 'tfc:heatable', 'min_temp': min_temp, 'ingredient': utils.ingredient(ingredient)}
+
 def loot_modifier_add_itemstack_min_max(rm: ResourceManager, loot_modifiers: list, name_parts, entity_tag, item, little, big):
     data = {
       "type": "artisanal:add_itemstack_min_max",
@@ -270,7 +273,7 @@ def generate_barrel_recipes():
 def generate_crafting_recipes():
     print('\tGenerating crafting recipes...')
     damage_shapeless(rm, ('crafting', 'trimmed_feather'), ('#tfc:knives', 'minecraft:feather'), 'artisanal:trimmed_feather')
-    advanced_shapeless(rm, ('crafting', 'tempered_feather'), utils.ingredient_list(('artisanal:soaked_feather', {'type': 'tfc:heatable', 'min_temp': 350, 'ingredient': utils.ingredient('#forge:sand')})), {'item': 'artisanal:tempered_feather'})
+    advanced_shapeless(rm, ('crafting', 'tempered_feather'), utils.ingredient_list(('artisanal:soaked_feather', heatable_ingredient('#forge:sand', 350))), {'item': 'artisanal:tempered_feather'})
     damage_shapeless(rm, ('crafting', 'quill'), ('#tfc:knives', 'artisanal:tempered_feather'), 'artisanal:quill')
     
     
@@ -304,6 +307,10 @@ def generate_crafting_recipes():
     for gem in GEMS:
         catalyst_shapeless(rm, ('crafting', gem + '_cut'), ('tfc:ore/%s' % gem, 'tfc:sandpaper', '#artisanal:magnifying_glasses'), 'tfc:gem/%s' % gem).with_advancement('tfc:sandpaper')
         disable_recipe(rm, f'tfc:{gem}_cut')
+    
+    damage_shapeless(rm, ('crafting', 'metal', 'can_1_food'), (heatable_ingredient('artisanal:metal/tin_can', 150), 'tfc:powder/flux', '#tfc:hammers', not_rotten('#artisanal:foods/can_be_canned')), item_stack_provider('artisanal:metal/tin_can', other_modifier='artisanal:add_food_to_can'))
+    
+    
     
 def generate_heat_recipes():
     print("\tGenerating heat recipes...")
@@ -437,6 +444,7 @@ def generate_item_tags():
     rm.item_tag('tfc:firepit_kindling', 'artisanal:dry_bagasse')
     rm.item_tag('magnifying_glasses', *[f'artisanal:metal/magnifying_glass/{metal}' for metal in MAGNIFYING_GLASS_METALS])
     rm.item_tag('crafting_catalysts', '#artisanal:magnifying_glasses')
+    rm.item_tag('foods/can_be_canned', '#tfc:foods/dairy', '#tfc:foods/fruits', '#tfc:foods/grains', '#tfc:foods/meats', '#tfc:foods/vegetables')
 
 def generate_tags():
     print('Generating tags...')

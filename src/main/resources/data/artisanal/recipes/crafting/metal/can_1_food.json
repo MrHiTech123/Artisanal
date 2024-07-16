@@ -5,35 +5,32 @@
     "type": "tfc:advanced_shapeless_crafting",
     "ingredients": [
       {
-        "type": "tfc:not_rotten",
+        "type": "tfc:heatable",
+        "min_temp": 150,
         "ingredient": {
-          "tag": "tfc:foods/dough"
+          "item": "artisanal:metal/tin_can"
         }
       },
       {
-        "type": "tfc:not_rotten",
-        "ingredient": {
-          "item": "tfc:food/pumpkin_chunks"
-        }
+        "item": "tfc:powder/flux"
       },
       {
-        "tag": "tfc:knives"
+        "tag": "tfc:hammers"
       },
       {
         "type": "tfc:not_rotten",
         "ingredient": {
-          "item": "minecraft:egg"
-        }
-      },
-      {
-        "type": "tfc:not_rotten",
-        "ingredient": {
-          "tag": "tfc:sweetener"
+          "tag": "artisanal:foods/can_be_canned"
         }
       }
     ],
     "result": {
-      "item": "minecraft:pumpkin_pie"
+      "stack": {
+        "item": "artisanal:metal/tin_can"
+      },
+      "modifiers": [
+        "artisanal:add_food_to_can"
+      ]
     }
   }
 }
