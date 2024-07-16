@@ -2189,7 +2189,7 @@ def no_remainder_shaped(rm: ResourceManager, name_parts: utils.ResourceIdentifie
 
 def damage_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, group: str = None, conditions: utils.Json = None) -> RecipeContext:
     return delegate_recipe(rm, name_parts, 'tfc:damage_inputs_shapeless_crafting', {
-        'type': 'minecraft:crafting_shapeless',
+        'type': 'tfc:advanced_shapeless_crafting',
         'group': group,
         'ingredients': utils.item_stack_list(ingredients),
         'result': utils.item_stack(result),
