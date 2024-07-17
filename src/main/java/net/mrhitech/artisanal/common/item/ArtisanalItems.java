@@ -49,6 +49,8 @@ public class ArtisanalItems {
     
     public static final RegistryObject<Item> TINPLATE = ITEMS.register("metal/tinplate", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TIN_CAN = ITEMS.register("metal/tin_can", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SEALED_TIN_CAN = ITEMS.register("metal/sealed_tin_can", () -> new Item(new Item.Properties()));
+    
     
     
     

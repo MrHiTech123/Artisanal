@@ -3663,3 +3663,22 @@ def smoking_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, item: An
         'ingredient': utils.ingredient(item) if isinstance(item, str) else item,
         'result': result
     })
+
+sandwich_modifier = {
+    'food': {
+        'hunger': 4,
+        'water': 0.5,
+        'saturation': 1,
+        'decay_modifier': 4.5
+    },
+    'portions': [{
+        'ingredient': utils.ingredient('#tfc:sandwich_bread'),
+        'nutrient_modifier': 0.5,
+        'saturation_modifier': 0.5,
+        'water_modifier': 0.5,
+    }, {
+        'nutrient_modifier': 0.8,
+        'water_modifier': 0.8,
+        'saturation_modifier': 0.8,
+    }]
+}

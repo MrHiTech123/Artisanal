@@ -7,11 +7,26 @@ from mcresources import ResourceManager
 SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'petroleum')
 AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cypress', 'fig', 'ironwood', 'ipe')
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
+CANNABLE_FOOD_TAGS = ('dairy', 'fruits', 'grains', 'meats', 'vegetables')
+
+
 
 
 rm = ResourceManager('artisanal')
 
 forge_rm = ResourceManager('forge')
+
+canning_modifier = {
+    'food': {
+        'decay_modifier': 4.5
+    },
+    'portions': [{
+        'ingredient': utils.ingredient('#artisanal:foods/can_be_canned'),
+        'nutrient_modifier': 0.8,
+        'water_modifier': 0.8,
+        'saturation_modifier': 0.8,
+    }]
+}
 
 def advancement(rm: ResourceManager, name_parts: tuple, icon: dict[str, Any] | Sequence | str | int | bool | None, title: str, description: str, parent: str, criteria: dict[str, Any] | Sequence | str | int | bool | None, requirements: Sequence[Sequence[str]] | None = None, rewards: dict[str, Any] | Sequence | str | int | bool | None = None):
     if (isinstance(name_parts, str)):
@@ -121,7 +136,7 @@ def generate_item_foods():
     food_item(rm, ('maple_sugar'), 'afc:maple_sugar', Category.other, 0, 0, 0, 0)
     food_item(rm, ('birch_sugar'), 'afc:birch_sugar', Category.other, 0, 0, 0, 0)
     food_item(rm, ('honey'), 'firmalife:raw_honey', Category.other, 0, 0, 0, 0)
-    
+    dynamic_food_item(rm, ('sealed_tin_can'), 'artisanal:metal/sealed_tin_can', 'dynamic')
     
 def generate_item_heats():
     print('\tGenerating item heats...')
@@ -193,7 +208,7 @@ def generate_item_models():
     
     rm.item_model(('metal', 'tinplate'), 'artisanal:item/metal/tinplate').with_lang(lang('tinplate'))
     rm.item_model(('metal', 'tin_can'), 'artisanal:item/metal/tin_can').with_lang(lang('tin_can'))
-    
+    rm.item_model(('metal', 'sealed_tin_can'), 'artisanal:item/metal/sealed_tin_can').with_lang(lang('sealed_tin_can'))
     
     
 def generate_models():
@@ -289,8 +304,6 @@ def generate_crafting_recipes():
         rm.crafting_shaped(('crafting', 'wood', f'{wood}_scribing_table'), ['Q B', 'XXX', 'Y Y'], {'Q': 'artisanal:quill', 'B': 'minecraft:black_dye', 'X': f'afc:wood/planks/{wood}_slab', 'Y': f'afc:wood/planks/{wood}'}, f'afc:wood/scribing_table/{wood}')
         disable_recipe(rm, f'afc:crafting/wood/{wood}_scribing_table')
         
-    # TODO:
-    #   Add scribing tables from AFC wood types
     
     damage_shapeless(rm, 'crafting/pumpkin_pie', (not_rotten('#tfc:foods/dough'), not_rotten('tfc:food/pumpkin_chunks'), '#tfc:knives', not_rotten('minecraft:egg'), not_rotten('#tfc:sweetener')), 'minecraft:pumpkin_pie').with_advancement('tfc:pumpkin')
     rm.crafting_shaped('crafting/cake', ['AAA', 'BEB', 'CCC'], {'A': fluid_item_ingredient('100 #tfc:milks'), 'B': not_rotten('#tfc:sweetener'), 'E': not_rotten('minecraft:egg'), 'C': not_rotten('#tfc:foods/grains')}, 'tfc:cake').with_advancement('#tfc:foods/grains')
@@ -307,8 +320,12 @@ def generate_crafting_recipes():
     for gem in GEMS:
         catalyst_shapeless(rm, ('crafting', gem + '_cut'), ('tfc:ore/%s' % gem, 'tfc:sandpaper', '#artisanal:magnifying_glasses'), 'tfc:gem/%s' % gem).with_advancement('tfc:sandpaper')
         disable_recipe(rm, f'tfc:{gem}_cut')
+    for tag in CANNABLE_FOOD_TAGS:
+        for i in range(1, 6 + 1):
+            damage_shapeless(rm, ('crafting', 'can', f'{i}_{tag}'), (heatable_ingredient('artisanal:metal/tin_can', 150), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten(f'#tfc:foods/{tag}')] * i)), item_stack_provider('artisanal:metal/sealed_tin_can', meal=canning_modifier))
     
-    damage_shapeless(rm, ('crafting', 'metal', 'can_1_food'), (heatable_ingredient('artisanal:metal/tin_can', 150), 'tfc:powder/flux', '#tfc:hammers', not_rotten('#artisanal:foods/can_be_canned')), item_stack_provider('artisanal:metal/tin_can', other_modifier='artisanal:add_food_to_can'))
+    
+    
     
     
     
@@ -444,7 +461,7 @@ def generate_item_tags():
     rm.item_tag('tfc:firepit_kindling', 'artisanal:dry_bagasse')
     rm.item_tag('magnifying_glasses', *[f'artisanal:metal/magnifying_glass/{metal}' for metal in MAGNIFYING_GLASS_METALS])
     rm.item_tag('crafting_catalysts', '#artisanal:magnifying_glasses')
-    rm.item_tag('foods/can_be_canned', '#tfc:foods/dairy', '#tfc:foods/fruits', '#tfc:foods/grains', '#tfc:foods/meats', '#tfc:foods/vegetables')
+    rm.item_tag('foods/can_be_canned', *[f'#tfc:foods/{tag}' for tag in CANNABLE_FOOD_TAGS])
 
 def generate_tags():
     print('Generating tags...')

@@ -20,16 +20,31 @@
       {
         "type": "tfc:not_rotten",
         "ingredient": {
-          "tag": "artisanal:foods/can_be_canned"
+          "tag": "tfc:foods/meats"
         }
       }
     ],
     "result": {
       "stack": {
-        "item": "artisanal:metal/tin_can"
+        "item": "artisanal:metal/sealed_tin_can"
       },
       "modifiers": [
-        "artisanal:add_food_to_can"
+        {
+          "type": "tfc:meal",
+          "food": {
+            "decay_modifier": 4.5
+          },
+          "portions": [
+            {
+              "ingredient": {
+                "tag": "artisanal:foods/can_be_canned"
+              },
+              "nutrient_modifier": 0.8,
+              "water_modifier": 0.8,
+              "saturation_modifier": 0.8
+            }
+          ]
+        }
       ]
     }
   }

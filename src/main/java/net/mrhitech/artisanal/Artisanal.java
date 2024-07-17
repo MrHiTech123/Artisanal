@@ -21,7 +21,6 @@ import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 import net.mrhitech.artisanal.common.loot.ArtisanalLootModifiers;
 import net.mrhitech.artisanal.common.recipes.ArtisanalRecipeSerializers;
-import net.mrhitech.artisanal.common.recipes.outputs.ArtisanalItemStackModifiers;
 import org.slf4j.Logger;
 
 
@@ -43,7 +42,6 @@ public class Artisanal
         ArtisanalFluids.register(modEventBus);
         ArtisanalLootModifiers.register(modEventBus);
         ArtisanalRecipeSerializers.register(modEventBus);
-        ArtisanalItemStackModifiers.registerItemStackModifierTypes();
         ClientEventHandler.init();
         
         
