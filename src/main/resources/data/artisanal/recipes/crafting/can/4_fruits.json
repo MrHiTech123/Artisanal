@@ -1,0 +1,69 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:damage_inputs_shapeless_crafting",
+  "recipe": {
+    "type": "tfc:advanced_shapeless_crafting",
+    "ingredients": [
+      {
+        "type": "tfc:heatable",
+        "min_temp": 150,
+        "ingredient": {
+          "item": "artisanal:metal/tin_can"
+        }
+      },
+      {
+        "item": "tfc:powder/flux"
+      },
+      {
+        "tag": "tfc:hammers"
+      },
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "tag": "tfc:foods/fruits"
+        }
+      },
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "tag": "tfc:foods/fruits"
+        }
+      },
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "tag": "tfc:foods/fruits"
+        }
+      },
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "tag": "tfc:foods/fruits"
+        }
+      }
+    ],
+    "result": {
+      "stack": {
+        "item": "artisanal:metal/sealed_tin_can"
+      },
+      "modifiers": [
+        {
+          "type": "tfc:meal",
+          "food": {
+            "decay_modifier": 4.5
+          },
+          "portions": [
+            {
+              "ingredient": {
+                "tag": "artisanal:foods/can_be_canned"
+              },
+              "nutrient_modifier": 0.8,
+              "water_modifier": 0.8,
+              "saturation_modifier": 0.8
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
