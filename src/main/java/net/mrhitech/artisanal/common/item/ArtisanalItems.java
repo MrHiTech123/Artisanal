@@ -51,6 +51,9 @@ public class ArtisanalItems {
     public static final RegistryObject<Item> TIN_CAN = ITEMS.register("metal/tin_can", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SEALED_TIN_CAN = ITEMS.register("metal/sealed_tin_can", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> STERILIZED_TIN_CAN = ITEMS.register("metal/sterilized_tin_can", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DIRTY_TIN_CAN = ITEMS.register("metal/dirty_tin_can", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DENTED_TIN_CAN = ITEMS.register("metal/dented_tin_can", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DIRTY_DENTED_TIN_CAN = ITEMS.register("metal/dirty_dented_tin_can", () -> new Item(new Item.Properties()));
     
     
     

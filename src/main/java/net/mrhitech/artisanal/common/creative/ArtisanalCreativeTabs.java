@@ -69,6 +69,9 @@ public class ArtisanalCreativeTabs {
             event.accept(ArtisanalItems.TIN_CAN);
             event.accept(ArtisanalItems.SEALED_TIN_CAN);
             event.accept(ArtisanalItems.STERILIZED_TIN_CAN);
+            event.accept(ArtisanalItems.DIRTY_TIN_CAN);
+            event.accept(ArtisanalItems.DENTED_TIN_CAN);
+            event.accept(ArtisanalItems.DIRTY_DENTED_TIN_CAN);
         }
     }
 }

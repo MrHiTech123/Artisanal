@@ -2187,14 +2187,21 @@ def no_remainder_shaped(rm: ResourceManager, name_parts: utils.ResourceIdentifie
         'conditions': utils.recipe_condition(conditions)
     })
 
-def damage_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, group: str = None, conditions: utils.Json = None) -> RecipeContext:
-    return delegate_recipe(rm, name_parts, 'tfc:damage_inputs_shapeless_crafting', {
+def damage_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, group: str = None, conditions: utils.Json = None, primary_ingredient: Json = None) -> RecipeContext:
+    
+    f_data = {
         'type': 'tfc:advanced_shapeless_crafting',
         'group': group,
         'ingredients': utils.item_stack_list(ingredients),
         'result': utils.item_stack(result),
         'conditions': utils.recipe_condition(conditions)
-    })
+    }
+    
+    if primary_ingredient is not None:
+        primary_ingredient = utils.ingredient(primary_ingredient)
+        f_data['primary_ingredient'] = primary_ingredient
+    
+    return delegate_recipe(rm, name_parts, 'tfc:damage_inputs_shapeless_crafting', f_data)
 
 def damage_shaped(rm: ResourceManager, name_parts: utils.ResourceIdentifier, pattern: Sequence[str], ingredients: Json, result: Json, group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
     return delegate_recipe(rm, name_parts, 'tfc:damage_inputs_shaped_crafting', {
@@ -2222,6 +2229,7 @@ def write_crafting_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, d
     return RecipeContext(rm, res)
 
 def delegate_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, recipe_type: str, delegate: Json, data: Json = {}) -> RecipeContext:
+    
     return write_crafting_recipe(rm, name_parts, {
         'type': recipe_type,
         **data,
