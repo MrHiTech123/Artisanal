@@ -87,7 +87,20 @@ def loot_modifier(rm: ResourceManager, loot_modifiers: list, name_parts, data):
     rm.data(['loot_modifiers'] + name_parts, data)
     
     loot_modifiers.append(f'artisanal:{"/".join(name_parts)}')
-    
+
+def remove_many_traits(stack: dict, *traits: str):
+    if 'modifiers' not in stack:
+        stack = {
+            'stack': stack,
+            'modifiers': []
+        }
+    for trait in traits:
+        stack['modifiers'].append({
+            'type': 'tfc:remove_trait',
+            'trait': trait
+        })
+    return stack
+ 
 def scalable_pot_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fluid: str, output_fluid: str = None, output_items: Json = None, duration: int = 2000, temp: int = 300):
     rm.recipe(('pot', name_parts), 'artisanal:scalable_pot', {
         'ingredients': [],
@@ -367,11 +380,10 @@ def generate_heat_recipes():
         heat_recipe(rm, ('metal', 'magnifying_glass', metal), f'artisanal:metal/magnifying_glass/{metal}', metal_data.melt_temperature, 'tfc:lens', f'50 tfc:metal/{metal}')
         heat_recipe(rm, ('metal', 'magnifying_glass_frame', metal), f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.melt_temperature, None, f'50 tfc:metal/{metal}')
     
-    heat_recipe(rm, ('metal', 'sterilized_tin_can'), 'artisanal:metal/sealed_tin_can', 150, item_stack_provider('artisanal:metal/sterilized_tin_can', other_modifier='artisanal:copy_dynamic_food_never_expires'))
+    heat_recipe(rm, ('metal', 'sterilized_tin_can'), 'artisanal:metal/sealed_tin_can', 150, remove_many_traits(item_stack_provider('artisanal:metal/sterilized_tin_can', other_modifier='artisanal:copy_dynamic_food_never_expires'), 'tfc:charcoal_grilled', 'tfc:wood_grilled', 'tfc:burnt_to_a_crisp'))
     
     
-    
-    
+
 
 def generate_mixing_recipes():
     mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), not_rotten('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
