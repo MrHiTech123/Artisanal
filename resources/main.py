@@ -152,7 +152,7 @@ def generate_item_heats():
     item_heat(rm, ('metal', 'tinplate'), 'artisanal:metal/tinplate', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
     item_heat(rm, ('metal', 'tin_can'), 'artisanal:metal/tin_can', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
     item_heat(rm, ('metal', 'sealed_tin_can'), 'artisanal:metal/sealed_tin_can', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
-    
+    item_heat(rm, ('metal', 'dented_tin_can'), 'artisanal:metal/dented_tin_can', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
     
 def generate_data():
     print('Generating data...')
@@ -179,6 +179,7 @@ def generate_misc_lang():
     rm.lang("item.tfc.bucket.limewater", "Slaked Lime Bucket")
     rm.lang("fluid.tfc.limewater", "Slaked Lime")
     rm.lang("block.tfc.cauldron.limewater", "Slaked Lime Cauldron")
+    rm.lang("item.minecraft.cooked_beef", "Whatever Food Was Inside the Can")
 
 def generate_item_models():
     print('\tGenerating item models...')
@@ -213,6 +214,10 @@ def generate_item_models():
     rm.item_model(('metal', 'tin_can'), 'artisanal:item/metal/tin_can').with_lang(lang('tin_can'))
     rm.item_model(('metal', 'sealed_tin_can'), 'artisanal:item/metal/sealed_tin_can').with_lang(lang('sealed_tin_can'))
     rm.item_model(('metal', 'sterilized_tin_can'), 'artisanal:item/metal/sterilized_tin_can').with_lang(lang('sterilized_tin_can'))
+    rm.item_model(('metal', 'dirty_tin_can'), 'artisanal:item/metal/dirty_tin_can').with_lang(lang('dirty_tin_can'))
+    rm.item_model(('metal', 'dented_tin_can'), 'artisanal:item/metal/dented_tin_can').with_lang(lang('dented_tin_can'))
+    rm.item_model(('metal', 'dirty_dented_tin_can'), 'artisanal:item/metal/dirty_dented_tin_can').with_lang(lang('dirty_dented_tin_can'))
+    
     
 def generate_models():
     print('Generating models...')
@@ -226,6 +231,8 @@ def generate_anvil_recipes():
     
     anvil_recipe(rm, ('metal', 'tin_can'), 'artisanal:metal/tinplate', 'artisanal:metal/tin_can', 1, Rules.bend_not_last, Rules.hit_not_last, Rules.hit_last)
     welding_recipe(rm, ('metal', 'tinplate'), 'tfc:metal/double_sheet/steel', 'tfc:metal/sheet/tin', (4, 'artisanal:metal/tinplate'), 0)
+    anvil_recipe(rm, ('metal', 'repair_tin_can'), 'artisanal:metal/dented_tin_can', 'artisanal:metal/tin_can', 1, Rules.hit_third_last, Rules.hit_second_last, Rules.hit_last)
+
 
 def generate_barrel_recipes():
     print('\tGenerating barrel recipes...')
@@ -254,6 +261,8 @@ def generate_barrel_recipes():
     barrel_sealed_recipe(rm, 'clean_olivine_wine_bottle_water', 'Cleaning Wine Bottle', 8000, 'firmalife:olivine_wine_bottle', '100 minecraft:water', output_item='firmalife:empty_olivine_wine_bottle')
     barrel_sealed_recipe(rm, 'clean_volcanic_wine_bottle_water', 'Cleaning Wine Bottle', 8000, 'firmalife:volcanic_wine_bottle', '100 minecraft:water', output_item='firmalife:empty_volcanic_wine_bottle')
     barrel_sealed_recipe(rm, 'clean_any_bowl_water', 'Cleaning Bowl', 8000, '#firmalife:foods/washable', '100 minecraft:water', output_item=item_stack_provider(other_modifier='firmalife:empty_pan'))
+    barrel_sealed_recipe(rm, 'clean_tin_can_water', 'Cleaning Tin Can', 8000, 'artisanal:metal/dirty_tin_can', '100 minecraft:water', output_item='artisanal:metal/tin_can')
+    barrel_sealed_recipe(rm, 'clean_dented_tin_can_water', 'Cleaning Dented Tin Can', 8000, 'artisanal:metal/dirty_dented_tin_can', '100 minecraft:water', output_item='artisanal:metal/dented_tin_can')
     
     
     barrel_instant_recipe(rm, 'clean_jute_net_soapy_water', 'tfc:dirty_jute_net', '100 artisanal:soapy_water', output_item='tfc:jute_net')
@@ -265,6 +274,8 @@ def generate_barrel_recipes():
     barrel_instant_recipe(rm, 'clean_olivine_wine_bottle_soapy_water', 'firmalife:olivine_wine_bottle', '100 artisanal:soapy_water', output_item='firmalife:empty_olivine_wine_bottle')
     barrel_instant_recipe(rm, 'clean_volcanic_wine_bottle_soapy_water', 'firmalife:volcanic_wine_bottle', '100 artisanal:soapy_water', output_item='firmalife:empty_volcanic_wine_bottle')
     barrel_instant_recipe(rm, 'clean_any_bowl_soapy_water', '#firmalife:foods/washable', '100 artisanal:soapy_water', output_item=item_stack_provider(other_modifier='firmalife:empty_pan'))
+    barrel_instant_recipe(rm, 'clean_tin_can_soapy_water', 'artisanal:metal/dirty_tin_can', '100 artisanal:soapy_water', output_item='artisanal:metal/tin_can')
+    barrel_instant_recipe(rm, 'clean_dented_tin_can_soapy_water', 'artisanal:metal/dirty_dented_tin_can', '100 artisanal:soapy_water', output_item='artisanal:metal/dented_tin_can')
     
     
     disable_recipe(rm, 'tfc:barrel/candle')
@@ -327,6 +338,23 @@ def generate_crafting_recipes():
         damage_shapeless(rm, ('crafting', f'can_{i}'), (heatable_ingredient('artisanal:metal/tin_can', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider('artisanal:metal/sealed_tin_can', meal=canning_modifier, other_modifier='artisanal:homogenous_ingredients'))
     
     
+    rm.recipe(('crafting', "extract_canned_food"), "tfc:extra_products_shapeless_crafting",
+        {
+            "__comment__": "This file was automatically created by mcresources",
+            "recipe": {
+                "type": "tfc:damage_inputs_shapeless_crafting",
+                "recipe": {
+                    "type": "tfc:advanced_shapeless_crafting",
+                    "ingredients": [utils.ingredient('artisanal:metal/sterilized_tin_can'), utils.ingredient("#tfc:hammers")],
+                    "result": item_stack_provider(other_modifier="artisanal:extract_canned_food"),
+                    "primary_ingredient": utils.ingredient("artisanal:metal/sterilized_tin_can")
+                }
+            },
+            "extra_products": [
+                item_stack_provider("artisanal:metal/dirty_dented_tin_can")
+            ]
+        }
+    )
     
     
     

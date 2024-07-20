@@ -1,13 +1,14 @@
 package net.mrhitech.artisanal.common.recipes.outputs;
 
+import net.dries007.tfc.common.capabilities.food.FoodCapability;
+import net.dries007.tfc.common.capabilities.food.FoodHandler;
 import net.dries007.tfc.common.recipes.outputs.ItemStackModifier;
-import net.dries007.tfc.util.Helpers;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public enum ExtractCannedFoodModifier implements ItemStackModifier.SingleInstance<ExtractCannedFoodModifier> {
     INSTANCE;
@@ -20,20 +21,23 @@ public enum ExtractCannedFoodModifier implements ItemStackModifier.SingleInstanc
     
     public ItemStack apply(ItemStack stack, ItemStack input) {
         
-        if (input.getTag() == null) {
-            return new ItemStack(Items.AIR);
+        AtomicReference<List<ItemStack>> ingredients = new AtomicReference<>(new ArrayList<>());
+        
+        input.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> {
+            if (cap instanceof FoodHandler.Dynamic outHandler) {
+                ingredients.set(outHandler.getIngredients());
+            }
+        });
+        
+        if (ingredients.get().isEmpty()) {
+            return new ItemStack(Items.COOKED_BEEF);
         }
         
-        
-        List<ItemStack> ingredients = new ArrayList<>();
-        
-        
-        Helpers.readItemStacksFromNbt(ingredients, input.getTag().getList("ingredients", Tag.TAG_COMPOUND));
-        
-        ItemStack to_return = (ingredients.get(0));
+        ItemStack output = ingredients.get().get(0);
+        output = new ItemStack(output.getItem(), output.getCount());
         
         
-        return to_return;
+        return output;
         
     
     
