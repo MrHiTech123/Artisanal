@@ -2555,13 +2555,13 @@ def item_stack_provider(
         ('tfc:add_bait_to_rod', add_bait_to_rod),
         ('tfc:add_glass', add_glass),
         ('tfc:add_powder', add_powder),
-        (other_modifier, other_modifier is not None),
-        (other_other_modifier, other_other_modifier is not None),
         ({'type': 'tfc:add_heat', 'temperature': add_heat}, add_heat is not None),
         ({'type': 'tfc:add_trait', 'trait': add_trait}, add_trait is not None),
         ({'type': 'tfc:remove_trait', 'trait': remove_trait}, remove_trait is not None),
         ({'type': 'tfc:dye_leather', 'color': dye_color}, dye_color is not None),
         ({'type': 'tfc:meal', **(meal if meal is not None else {})}, meal is not None),
+        (other_modifier, other_modifier is not None),
+        (other_other_modifier, other_other_modifier is not None),
     ) if v]
     if modifiers:
         return {

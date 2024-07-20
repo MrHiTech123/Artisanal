@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:heating",
+  "ingredient": {
+    "item": "artisanal:metal/sealed_tin_can"
+  },
+  "result_item": {
+    "stack": {
+      "item": "artisanal:metal/sterilized_tin_can"
+    },
+    "modifiers": [
+      "artisanal:copy_dynamic_food_never_expires"
+    ]
+  },
+  "temperature": 150
+}

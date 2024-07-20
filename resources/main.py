@@ -22,9 +22,9 @@ canning_modifier = {
     },
     'portions': [{
         'ingredient': utils.ingredient('#artisanal:foods/can_be_canned'),
-        'nutrient_modifier': 0.8,
-        'water_modifier': 0.8,
-        'saturation_modifier': 0.8,
+        'nutrient_modifier': 0,
+        'water_modifier': 0,
+        'saturation_modifier': 0,
     }]
 }
 
@@ -137,6 +137,7 @@ def generate_item_foods():
     food_item(rm, ('birch_sugar'), 'afc:birch_sugar', Category.other, 0, 0, 0, 0)
     food_item(rm, ('honey'), 'firmalife:raw_honey', Category.other, 0, 0, 0, 0)
     dynamic_food_item(rm, ('sealed_tin_can'), 'artisanal:metal/sealed_tin_can', 'dynamic')
+    dynamic_food_item(rm, ('sterilized_tin_can'), 'artisanal:metal/sterilized_tin_can', 'dynamic')
     
 def generate_item_heats():
     print('\tGenerating item heats...')
@@ -150,6 +151,8 @@ def generate_item_heats():
     
     item_heat(rm, ('metal', 'tinplate'), 'artisanal:metal/tinplate', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
     item_heat(rm, ('metal', 'tin_can'), 'artisanal:metal/tin_can', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
+    item_heat(rm, ('metal', 'sealed_tin_can'), 'artisanal:metal/sealed_tin_can', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
+    
     
 def generate_data():
     print('Generating data...')
@@ -209,7 +212,7 @@ def generate_item_models():
     rm.item_model(('metal', 'tinplate'), 'artisanal:item/metal/tinplate').with_lang(lang('tinplate'))
     rm.item_model(('metal', 'tin_can'), 'artisanal:item/metal/tin_can').with_lang(lang('tin_can'))
     rm.item_model(('metal', 'sealed_tin_can'), 'artisanal:item/metal/sealed_tin_can').with_lang(lang('sealed_tin_can'))
-    
+    rm.item_model(('metal', 'sterilized_tin_can'), 'artisanal:item/metal/sterilized_tin_can').with_lang(lang('sterilized_tin_can'))
     
 def generate_models():
     print('Generating models...')
@@ -320,9 +323,8 @@ def generate_crafting_recipes():
     for gem in GEMS:
         catalyst_shapeless(rm, ('crafting', gem + '_cut'), ('tfc:ore/%s' % gem, 'tfc:sandpaper', '#artisanal:magnifying_glasses'), 'tfc:gem/%s' % gem).with_advancement('tfc:sandpaper')
         disable_recipe(rm, f'tfc:{gem}_cut')
-    for tag in CANNABLE_FOOD_TAGS:
-        for i in range(1, 6 + 1):
-            damage_shapeless(rm, ('crafting', 'can', f'{i}_{tag}'), (heatable_ingredient('artisanal:metal/tin_can', 150), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten(f'#tfc:foods/{tag}')] * i)), item_stack_provider('artisanal:metal/sealed_tin_can', meal=canning_modifier))
+    for i in range(1, 6 + 1):
+        damage_shapeless(rm, ('crafting', f'can_{i}'), (heatable_ingredient('artisanal:metal/tin_can', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider('artisanal:metal/sealed_tin_can', meal=canning_modifier, other_modifier='artisanal:homogenous_ingredients'))
     
     
     
@@ -336,6 +338,9 @@ def generate_heat_recipes():
         metal_data = METALS[metal]
         heat_recipe(rm, ('metal', 'magnifying_glass', metal), f'artisanal:metal/magnifying_glass/{metal}', metal_data.melt_temperature, 'tfc:lens', f'50 tfc:metal/{metal}')
         heat_recipe(rm, ('metal', 'magnifying_glass_frame', metal), f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.melt_temperature, None, f'50 tfc:metal/{metal}')
+    
+    heat_recipe(rm, ('metal', 'sterilized_tin_can'), 'artisanal:metal/sealed_tin_can', 150, item_stack_provider('artisanal:metal/sterilized_tin_can', other_modifier='artisanal:copy_dynamic_food_never_expires'))
+    
     
     
     

@@ -6,7 +6,7 @@
     "ingredients": [
       {
         "type": "tfc:heatable",
-        "min_temp": 150,
+        "min_temp": 120,
         "ingredient": {
           "item": "artisanal:metal/tin_can"
         }
@@ -20,7 +20,25 @@
       {
         "type": "tfc:not_rotten",
         "ingredient": {
-          "tag": "tfc:foods/meats"
+          "tag": "artisanal:foods/can_be_canned"
+        }
+      },
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "tag": "artisanal:foods/can_be_canned"
+        }
+      },
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "tag": "artisanal:foods/can_be_canned"
+        }
+      },
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "tag": "artisanal:foods/can_be_canned"
         }
       }
     ],
@@ -39,12 +57,13 @@
               "ingredient": {
                 "tag": "artisanal:foods/can_be_canned"
               },
-              "nutrient_modifier": 0.8,
-              "water_modifier": 0.8,
-              "saturation_modifier": 0.8
+              "nutrient_modifier": 0,
+              "water_modifier": 0,
+              "saturation_modifier": 0
             }
           ]
-        }
+        },
+        "artisanal:homogenous_ingredients"
       ]
     }
   }
