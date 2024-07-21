@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:scalable_pot",
+  "ingredients": [],
+  "fluid_ingredient": {
+    "ingredient": "tfc:salt_water",
+    "amount": 125
+  },
+  "duration": 2000,
+  "temperature": 300,
+  "item_output": [
+    {
+      "item": "tfc:powder/salt"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_sealed",
+  "input_fluid": {
+    "ingredient": "artisanal:soap",
+    "amount": 125
+  },
+  "output_item": {
+    "item": "artisanal:soap"
+  },
+  "duration": 8000
+}

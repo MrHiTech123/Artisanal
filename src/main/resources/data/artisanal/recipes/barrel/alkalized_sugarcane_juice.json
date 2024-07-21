@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_sealed",
+  "input_item": {
+    "ingredient": {
+      "item": "tfc:powder/lime"
+    }
+  },
+  "input_fluid": {
+    "ingredient": "artisanal:filtered_sugarcane_juice",
+    "amount": 500
+  },
+  "output_fluid": {
+    "fluid": "artisanal:alkalized_sugarcane_juice",
+    "amount": 500
+  },
+  "duration": 8000
+}

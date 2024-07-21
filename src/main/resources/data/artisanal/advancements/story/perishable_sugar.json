@@ -1,0 +1,38 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "tfc:story/barrel",
+  "criteria": {
+    "perishable_sugar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "artisanal:perishable_sugar"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "artisanal:perishable_sugar"
+    },
+    "title": {
+      "translate": "artisanal.advancements.story.perishable_sugar.title"
+    },
+    "description": {
+      "translate": "artisanal.advancements.story.perishable_sugar.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "requirements": [
+    [
+      "perishable_sugar"
+    ]
+  ]
+}

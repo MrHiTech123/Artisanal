@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+@SuppressWarnings("unchecked")
 public class ArtisanalFluids {
     public static final DeferredRegister FLUID_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, Artisanal.MOD_ID);
     public static final DeferredRegister FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, Artisanal.MOD_ID);

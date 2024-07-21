@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:anvil",
+  "input": {
+    "item": "tfc:metal/rod/brass"
+  },
+  "result": {
+    "item": "artisanal:metal/magnifying_glass_frame/brass"
+  },
+  "tier": 2,
+  "rules": [
+    "bend_last",
+    "hit_any",
+    "bend_not_last"
+  ]
+}

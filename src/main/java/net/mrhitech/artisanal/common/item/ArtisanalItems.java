@@ -1,9 +1,12 @@
 package net.mrhitech.artisanal.common.item;
 
+import net.dries007.tfc.common.TFCTiers;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.Metal;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TieredItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -55,6 +58,13 @@ public class ArtisanalItems {
     public static final RegistryObject<Item> DENTED_TIN_CAN = ITEMS.register("metal/dented_tin_can", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DIRTY_DENTED_TIN_CAN = ITEMS.register("metal/dirty_dented_tin_can", () -> new Item(new Item.Properties()));
     
+    public static final Map<Metal.Default, RegistryObject<Item>> CAN_OPENERS = Helpers.mapOfKeys(Metal.Default.class,
+            metal -> Metal.ItemType.AXE.has(metal),
+            metal -> ITEMS.register("metal/can_opener/" + metal.getSerializedName(), () -> new TieredItem(metal.toolTier(), new Item.Properties().defaultDurability(metal.toolTier().getUses()))));
+    
+    public static final Map<Metal.Default, RegistryObject<Item>> CIRCLE_BLADES = Helpers.mapOfKeys(Metal.Default.class,
+            metal -> Metal.ItemType.AXE.has(metal),
+            metal -> ITEMS.register("metal/circle_blade/" + metal.getSerializedName(), () -> new Item(new Item.Properties())));
     
     
     public static void register(IEventBus bus) {

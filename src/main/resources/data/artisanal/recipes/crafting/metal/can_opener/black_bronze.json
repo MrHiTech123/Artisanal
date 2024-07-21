@@ -1,0 +1,23 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MBR",
+    "B  ",
+    "R  "
+  ],
+  "key": {
+    "M": {
+      "item": "tfc:brass_mechanisms"
+    },
+    "B": {
+      "item": "artisanal:metal/circle_blade/black_bronze"
+    },
+    "R": {
+      "tag": "artisanal:rods/metal"
+    }
+  },
+  "result": {
+    "item": "artisanal:metal/can_opener/black_bronze"
+  }
+}

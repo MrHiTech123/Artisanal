@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "artisanal:metal/can_opener/bismuth_bronze",
+    "artisanal:metal/can_opener/black_bronze",
+    "artisanal:metal/can_opener/bronze",
+    "artisanal:metal/can_opener/copper",
+    "artisanal:metal/can_opener/wrought_iron",
+    "artisanal:metal/can_opener/steel",
+    "artisanal:metal/can_opener/black_steel",
+    "artisanal:metal/can_opener/blue_steel",
+    "artisanal:metal/can_opener/red_steel"
+  ]
+}

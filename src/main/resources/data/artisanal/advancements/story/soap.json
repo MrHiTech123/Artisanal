@@ -1,0 +1,38 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "tfc:story/barrel",
+  "criteria": {
+    "soap": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "artisanal:soap"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "artisanal:soap"
+    },
+    "title": {
+      "translate": "artisanal.advancements.story.soap.title"
+    },
+    "description": {
+      "translate": "artisanal.advancements.story.soap.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "requirements": [
+    [
+      "soap"
+    ]
+  ]
+}

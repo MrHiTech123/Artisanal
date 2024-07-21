@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfc:metal/rod/bismuth_bronze",
+    "tfc:metal/rod/black_bronze",
+    "tfc:metal/rod/bronze",
+    "tfc:metal/rod/copper",
+    "tfc:metal/rod/wrought_iron",
+    "tfc:metal/rod/steel",
+    "tfc:metal/rod/black_steel",
+    "tfc:metal/rod/blue_steel",
+    "tfc:metal/rod/red_steel"
+  ]
+}

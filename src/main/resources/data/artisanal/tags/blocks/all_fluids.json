@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "artisanal:fluid/lard",
+    "artisanal:fluid/schmaltz",
+    "artisanal:fluid/soapy_water",
+    "artisanal:fluid/soap",
+    "artisanal:fluid/sugarcane_juice",
+    "artisanal:fluid/filtered_sugarcane_juice",
+    "artisanal:fluid/alkalized_sugarcane_juice",
+    "artisanal:fluid/clarified_sugarcane_juice",
+    "artisanal:fluid/molasses",
+    "artisanal:fluid/condensed_milk",
+    "artisanal:fluid/petroleum"
+  ]
+}
