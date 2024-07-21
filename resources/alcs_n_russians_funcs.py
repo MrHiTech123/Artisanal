@@ -2538,6 +2538,7 @@ def item_stack_provider(
     add_glass: bool = False,  # glassworking specific
     add_powder: bool = False,  # glassworking specific
     add_heat: float = None,
+    cap_heat: float = None,
     add_trait: str = None,  # applies a food trait and adjusts decay accordingly
     remove_trait: str = None,  # removes a food trait and adjusts decay accordingly
     empty_bowl: bool = False,  # replaces a soup with its bowl
@@ -2566,6 +2567,7 @@ def item_stack_provider(
         ('tfc:add_glass', add_glass),
         ('tfc:add_powder', add_powder),
         ({'type': 'tfc:add_heat', 'temperature': add_heat}, add_heat is not None),
+        ({'type': 'artisanal:cap_heat', 'max_temp': cap_heat}, cap_heat is not None),
         ({'type': 'tfc:add_trait', 'trait': add_trait}, add_trait is not None),
         ({'type': 'tfc:remove_trait', 'trait': remove_trait}, remove_trait is not None),
         ({'type': 'tfc:dye_leather', 'color': dye_color}, dye_color is not None),
@@ -2574,6 +2576,7 @@ def item_stack_provider(
         (other_other_modifier, other_other_modifier is not None),
     ) if v]
     if modifiers:
+        print(modifiers)
         return {
             'stack': stack,
             'modifiers': modifiers
