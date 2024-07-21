@@ -1,9 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "ingredient": {
-    "item": "artisanal:metal/magnifying_glass/gold"
-  },
-  "heat_capacity": 0.417,
-  "forging_temperature": 636,
-  "welding_temperature": 848
-}

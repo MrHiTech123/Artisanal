@@ -1,9 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "ingredient": {
-    "item": "artisanal:metal/magnifying_glass_frame/silver"
-  },
-  "heat_capacity": 0.521,
-  "forging_temperature": 577,
-  "welding_temperature": 769
-}
