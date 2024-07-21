@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "artisanal:metal/magnifying_glass/bismuth"
+  },
+  "heat_capacity": 1.786,
+  "forging_temperature": 162,
+  "welding_temperature": 216
+}

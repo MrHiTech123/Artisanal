@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:heating",
+  "ingredient": {
+    "item": "artisanal:metal/magnifying_glass/brass"
+  },
+  "result_item": {
+    "item": "tfc:lens"
+  },
+  "result_fluid": {
+    "fluid": "tfc:metal/brass",
+    "amount": 50
+  },
+  "temperature": 930
+}

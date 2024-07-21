@@ -1,0 +1,25 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_sealed",
+  "input_item": {
+    "ingredient": {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/sugarcane"
+      }
+    }
+  },
+  "input_fluid": {
+    "ingredient": "minecraft:water",
+    "amount": 100
+  },
+  "output_item": {
+    "stack": {
+      "item": "artisanal:food/cleaned_sugarcane"
+    },
+    "modifiers": [
+      "tfc:copy_food"
+    ]
+  },
+  "duration": 8000
+}

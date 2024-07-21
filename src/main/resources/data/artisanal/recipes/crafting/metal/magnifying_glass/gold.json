@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "artisanal:metal/magnifying_glass_frame/gold"
+    },
+    {
+      "item": "tfc:lens"
+    }
+  ],
+  "result": {
+    "item": "artisanal:metal/magnifying_glass/gold"
+  }
+}

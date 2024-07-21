@@ -160,6 +160,11 @@ def generate_item_heats():
         item_heat(rm, ('metal', 'magnifying_glass', metal), f'artisanal:metal/magnifying_glass/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
         item_heat(rm, ('metal', 'magnifying_glass_frame', metal), f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
     
+    for metal, metal_data in METALS.items():
+        if 'tool' in metal_data.types:
+            item_heat(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
+    
+    
     
     
     item_heat(rm, ('metal', 'tinplate'), 'artisanal:metal/tinplate', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
@@ -231,6 +236,11 @@ def generate_item_models():
     rm.item_model(('metal', 'dented_tin_can'), 'artisanal:item/metal/dented_tin_can').with_lang(lang('dented_tin_can'))
     rm.item_model(('metal', 'dirty_dented_tin_can'), 'artisanal:item/metal/dirty_dented_tin_can').with_lang(lang('dirty_dented_tin_can'))
     
+    for metal, metal_data in METALS.items():
+        if 'tool' in metal_data.types:
+            rm.item_model(('metal', 'can_opener', metal), f'artisanal:item/metal/can_opener/{metal}').with_lang(lang(f'{metal} can opener'))
+            rm.item_model(('metal', 'circle_blade', metal), f'artisanal:item/metal/circle_blade/{metal}').with_lang(lang(f'{metal} circle blade'))
+            
     
 def generate_models():
     print('Generating models...')
@@ -242,10 +252,16 @@ def generate_anvil_recipes():
         metal_data = METALS[metal]
         anvil_recipe(rm, ('metal', 'magnifying_glass_frame', metal), f'tfc:metal/rod/{metal}', f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.tier, Rules.bend_last, Rules.hit_any, Rules.bend_not_last)
     
+    for metal, metal_data in METALS.items():
+        if 'tool' in metal_data.types:
+            anvil_recipe(rm, ('metal', 'circle_blade', metal), f'tfc:metal/ingot/{metal}', (2, f'artisanal:metal/circle_blade/{metal}'), metal_data.tier, Rules.shrink_third_last, Rules.hit_second_last, Rules.hit_last)
+    
+    
+    
     anvil_recipe(rm, ('metal', 'tin_can'), 'artisanal:metal/tinplate', 'artisanal:metal/tin_can', 1, Rules.bend_not_last, Rules.hit_not_last, Rules.hit_last)
     welding_recipe(rm, ('metal', 'tinplate'), 'tfc:metal/double_sheet/steel', 'tfc:metal/sheet/tin', (4, 'artisanal:metal/tinplate'), 0)
     anvil_recipe(rm, ('metal', 'repair_tin_can'), 'artisanal:metal/dented_tin_can', 'artisanal:metal/tin_can', 1, Rules.hit_third_last, Rules.hit_second_last, Rules.hit_last)
-
+    
 
 def generate_barrel_recipes():
     print('\tGenerating barrel recipes...')
@@ -351,7 +367,7 @@ def generate_crafting_recipes():
         damage_shapeless(rm, ('crafting', f'can_{i}'), (heatable_ingredient('artisanal:metal/tin_can', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider('artisanal:metal/sealed_tin_can', meal=canning_modifier, other_modifier='artisanal:homogenous_ingredients'))
     
     
-    rm.recipe(('crafting', "extract_canned_food"), "tfc:extra_products_shapeless_crafting",
+    rm.recipe(('crafting', "extract_canned_food_hammer"), "tfc:extra_products_shapeless_crafting",
         {
             "__comment__": "This file was automatically created by mcresources",
             "recipe": {
@@ -368,6 +384,27 @@ def generate_crafting_recipes():
             ]
         }
     )
+    rm.recipe(('crafting', 'extract_canned_food_can_opener'), 'tfc:extra_products_shapeless_crafting',
+        {
+            "__comment__": "This file was automatically created by mcresources",
+            "recipe": {
+                "type": "tfc:damage_inputs_shapeless_crafting",
+                "recipe": {
+                    "type": "tfc:advanced_shapeless_crafting",
+                    "ingredients": [utils.ingredient('artisanal:metal/sterilized_tin_can'), utils.ingredient("#artisanal:can_openers")],
+                    "result": item_stack_provider(other_modifier="artisanal:extract_canned_food"),
+                    "primary_ingredient": utils.ingredient("artisanal:metal/sterilized_tin_can")
+                }
+            },
+            "extra_products": [
+                item_stack_provider("artisanal:metal/dirty_tin_can")
+            ]
+        }
+    )
+    
+    for metal, metal_data in METALS.items():
+        if 'tool' in metal_data.types:
+            rm.crafting_shaped(('crafting', 'metal', 'can_opener', metal), ['MBR', 'B  ', 'R  '], {'M': 'tfc:brass_mechanisms', 'B': f'artisanal:metal/circle_blade/{metal}', 'R': '#artisanal:rods/metal'}, f'artisanal:metal/can_opener/{metal}')    
     
     
     
@@ -382,6 +419,9 @@ def generate_heat_recipes():
     
     heat_recipe(rm, ('metal', 'sterilized_tin_can'), 'artisanal:metal/sealed_tin_can', 150, remove_many_traits(item_stack_provider('artisanal:metal/sterilized_tin_can', other_modifier='artisanal:copy_dynamic_food_never_expires'), 'tfc:charcoal_grilled', 'tfc:wood_grilled', 'tfc:burnt_to_a_crisp'))
     
+    for metal, metal_data in METALS.items():
+        if 'tool' in metal_data.types:
+            heat_recipe(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.melt_temperature, result_fluid=f'50 tfc:metal/{metal}')
     
 
 
@@ -507,6 +547,8 @@ def generate_item_tags():
     rm.item_tag('magnifying_glasses', *[f'artisanal:metal/magnifying_glass/{metal}' for metal in MAGNIFYING_GLASS_METALS])
     rm.item_tag('crafting_catalysts', '#artisanal:magnifying_glasses')
     rm.item_tag('foods/can_be_canned', *[f'#tfc:foods/{tag}' for tag in CANNABLE_FOOD_TAGS])
+    rm.item_tag('can_openers', *[f'artisanal:metal/can_opener/{metal}' for metal in METALS if 'tool' in METALS[metal].types])
+    rm.item_tag('rods/metal', *[f'tfc:metal/rod/{metal}' for metal in METALS if 'utility' in METALS[metal].types])
 
 def generate_tags():
     print('Generating tags...')

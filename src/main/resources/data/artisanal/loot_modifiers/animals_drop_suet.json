@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:add_itemstack_min_max",
+  "conditions": [
+    {
+      "condition": "minecraft:entity_properties",
+      "predicate": {
+        "type": "#artisanal:drops_suet"
+      },
+      "entity": "this"
+    }
+  ],
+  "item": "artisanal:suet",
+  "min": 1,
+  "max": 3
+}

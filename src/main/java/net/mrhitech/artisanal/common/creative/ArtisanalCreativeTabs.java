@@ -1,6 +1,7 @@
 package net.mrhitech.artisanal.common.creative;
 
 import net.dries007.tfc.common.TFCCreativeTabs;
+import net.dries007.tfc.util.Metal;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.mrhitech.artisanal.common.Waterlikes;
@@ -72,6 +73,14 @@ public class ArtisanalCreativeTabs {
             event.accept(ArtisanalItems.DIRTY_TIN_CAN);
             event.accept(ArtisanalItems.DENTED_TIN_CAN);
             event.accept(ArtisanalItems.DIRTY_DENTED_TIN_CAN);
+            
+            for (Metal.Default metal : Metal.Default.values()) {
+                if (Metal.ItemType.AXE.has(metal)) {
+                    event.accept(ArtisanalItems.CAN_OPENERS.get(metal));
+                    event.accept(ArtisanalItems.CIRCLE_BLADES.get(metal));
+                }
+            }
+            
         }
     }
 }

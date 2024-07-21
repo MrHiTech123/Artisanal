@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": "artisanal:molasses",
+  "thirst": -1,
+  "food": {
+    "hunger": 4,
+    "saturation": 0,
+    "vegetables": 3,
+    "fruit": 3
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "artisanal:metal/magnifying_glass/bismuth",
+    "artisanal:metal/magnifying_glass/brass",
+    "artisanal:metal/magnifying_glass/gold",
+    "artisanal:metal/magnifying_glass/rose_gold",
+    "artisanal:metal/magnifying_glass/silver",
+    "artisanal:metal/magnifying_glass/sterling_silver",
+    "artisanal:metal/magnifying_glass/tin"
+  ]
+}
