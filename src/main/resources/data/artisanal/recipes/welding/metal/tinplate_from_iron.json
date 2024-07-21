@@ -9,7 +9,15 @@
   },
   "tier": 0,
   "result": {
-    "item": "artisanal:metal/tinplate",
-    "count": 4
+    "stack": {
+      "item": "artisanal:metal/tinplate",
+      "count": 4
+    },
+    "modifiers": [
+      {
+        "type": "artisanal:cap_heat",
+        "max_temp": 229
+      }
+    ]
   }
 }

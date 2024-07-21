@@ -11,6 +11,7 @@ public class ArtisanalItemStackModifiers {
     private static final BiMap<ResourceLocation, ItemStackModifier.Serializer<?>> REGISTRY = HashBiMap.create();
     
     public static void registerItemStackModifiers() {
+        register("cap_heat", CapHeatModifier.Serializer.INSTANCE);
         register("copy_dynamic_food", CopyDynamicFoodModifier.INSTANCE);
         register("copy_dynamic_food_never_expires", CopyDynamicFoodNeverExpiresModifier.INSTANCE);
         register("extract_canned_food", ExtractCannedFoodModifier.INSTANCE);
