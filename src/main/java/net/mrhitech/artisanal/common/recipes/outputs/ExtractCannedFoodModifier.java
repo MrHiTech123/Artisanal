@@ -8,6 +8,7 @@ import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 public enum ExtractCannedFoodModifier implements ItemStackModifier.SingleInstance<ExtractCannedFoodModifier> {
@@ -22,10 +23,12 @@ public enum ExtractCannedFoodModifier implements ItemStackModifier.SingleInstanc
     public ItemStack apply(ItemStack stack, ItemStack input) {
         
         AtomicReference<List<ItemStack>> ingredients = new AtomicReference<>(new ArrayList<>());
+        AtomicBoolean isRotten = new AtomicBoolean(false);
         
         input.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> {
             if (cap instanceof FoodHandler.Dynamic outHandler) {
                 ingredients.set(outHandler.getIngredients());
+                isRotten.set(outHandler.isRotten());
             }
         });
         
@@ -36,6 +39,12 @@ public enum ExtractCannedFoodModifier implements ItemStackModifier.SingleInstanc
         ItemStack output = ingredients.get().get(0);
         output = new ItemStack(output.getItem(), output.getCount());
         
+        // If the opened can is rotten (only possible in the case of sealed-but-not-sterilized cans), so is the output food.
+        if (isRotten.get()) {
+            output.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> {
+                cap.setCreationDate(1);
+            });
+        }
         
         return output;
         

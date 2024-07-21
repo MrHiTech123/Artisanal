@@ -1,0 +1,31 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:extra_products_shapeless_crafting",
+  "recipe": {
+    "type": "tfc:damage_inputs_shapeless_crafting",
+    "recipe": {
+      "type": "tfc:advanced_shapeless_crafting",
+      "ingredients": [
+        {
+          "item": "artisanal:metal/sealed_tin_can"
+        },
+        {
+          "tag": "tfc:hammers"
+        }
+      ],
+      "result": {
+        "modifiers": [
+          "artisanal:extract_canned_food"
+        ]
+      },
+      "primary_ingredient": {
+        "item": "artisanal:metal/sealed_tin_can"
+      }
+    }
+  },
+  "extra_products": [
+    {
+      "item": "artisanal:metal/dirty_dented_tin_can"
+    }
+  ]
+}

@@ -8,7 +8,7 @@ SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', '
 AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cypress', 'fig', 'ironwood', 'ipe')
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
 CANNABLE_FOOD_TAGS = ('dairy', 'fruits', 'grains', 'meats', 'vegetables')
-
+OPENABLE_CAN_ITEMS = ('sterilized_tin_can', 'sealed_tin_can')
 
 
 
@@ -367,41 +367,41 @@ def generate_crafting_recipes():
     for i in range(1, 6 + 1):
         damage_shapeless(rm, ('crafting', f'can_{i}'), (heatable_ingredient('artisanal:metal/tin_can', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider('artisanal:metal/sealed_tin_can', meal=canning_modifier, other_modifier='artisanal:homogenous_ingredients'))
     
-    
-    rm.recipe(('crafting', "open_can_hammer"), "tfc:extra_products_shapeless_crafting",
-        {
-            "__comment__": "This file was automatically created by mcresources",
-            "recipe": {
-                "type": "tfc:damage_inputs_shapeless_crafting",
+    for openable_can_item in OPENABLE_CAN_ITEMS:
+        rm.recipe(('crafting', f'open_{openable_can_item}_hammer'), 'tfc:extra_products_shapeless_crafting',
+            {
+                "__comment__": "This file was automatically created by mcresources",
                 "recipe": {
-                    "type": "tfc:advanced_shapeless_crafting",
-                    "ingredients": [utils.ingredient('artisanal:metal/sterilized_tin_can'), utils.ingredient("#tfc:hammers")],
-                    "result": item_stack_provider(other_modifier="artisanal:extract_canned_food"),
-                    "primary_ingredient": utils.ingredient("artisanal:metal/sterilized_tin_can")
-                }
-            },
-            "extra_products": [
-                item_stack_provider("artisanal:metal/dirty_dented_tin_can")
-            ]
-        }
-    )
-    rm.recipe(('crafting', 'open_can_can_opener'), 'tfc:extra_products_shapeless_crafting',
-        {
-            "__comment__": "This file was automatically created by mcresources",
-            "recipe": {
-                "type": "tfc:damage_inputs_shapeless_crafting",
+                    "type": "tfc:damage_inputs_shapeless_crafting",
+                    "recipe": {
+                        "type": "tfc:advanced_shapeless_crafting",
+                        "ingredients": [utils.ingredient(f'artisanal:metal/{openable_can_item}'), utils.ingredient("#tfc:hammers")],
+                        "result": item_stack_provider(other_modifier="artisanal:extract_canned_food"),
+                        "primary_ingredient": utils.ingredient(f"artisanal:metal/{openable_can_item}")
+                    }
+                },
+                "extra_products": [
+                    item_stack_provider("artisanal:metal/dirty_dented_tin_can")
+                ]
+            }
+        )
+        rm.recipe(('crafting', f'open_{openable_can_item}_can_opener'), 'tfc:extra_products_shapeless_crafting',
+            {
+                "__comment__": "This file was automatically created by mcresources",
                 "recipe": {
-                    "type": "tfc:advanced_shapeless_crafting",
-                    "ingredients": [utils.ingredient('artisanal:metal/sterilized_tin_can'), utils.ingredient("#artisanal:can_openers")],
-                    "result": item_stack_provider(other_modifier="artisanal:extract_canned_food"),
-                    "primary_ingredient": utils.ingredient("artisanal:metal/sterilized_tin_can")
-                }
-            },
-            "extra_products": [
-                item_stack_provider("artisanal:metal/dirty_tin_can")
-            ]
-        }
-    )
+                    "type": "tfc:damage_inputs_shapeless_crafting",
+                    "recipe": {
+                        "type": "tfc:advanced_shapeless_crafting",
+                        "ingredients": [utils.ingredient(f'artisanal:metal/{openable_can_item}'), utils.ingredient("#artisanal:can_openers")],
+                        "result": item_stack_provider(other_modifier="artisanal:extract_canned_food"),
+                        "primary_ingredient": utils.ingredient(f"artisanal:metal/{openable_can_item}")
+                    }
+                },
+                "extra_products": [
+                    item_stack_provider("artisanal:metal/dirty_tin_can")
+                ]
+            }
+        )
     
     for metal, metal_data in METALS.items():
         if 'tool' in metal_data.types:
