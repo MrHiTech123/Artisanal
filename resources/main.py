@@ -146,9 +146,9 @@ def generate_item_foods():
     food_item(rm, ('perishable_sugar'), 'artisanal:perishable_sugar', Category.other, 0, 0, 0, 3)
     food_item(rm, ('non_perishable_sugar'), 'artisanal:non_perishable_sugar', Category.other, 0, 0, 0, 0)
     food_item(rm, ('sugar'), 'minecraft:sugar', Category.other, 0, 0, 0, 0)
-    food_item(rm, ('maple_sugar'), 'afc:maple_sugar', Category.other, 0, 0, 0, 0)
-    food_item(rm, ('birch_sugar'), 'afc:birch_sugar', Category.other, 0, 0, 0, 0)
-    food_item(rm, ('honey'), 'firmalife:raw_honey', Category.other, 0, 0, 0, 0)
+    food_item(rm, ('maple_sugar'), 'afc:maple_sugar', Category.other, 0, 0, 0, 0, tag_as_food=False)
+    food_item(rm, ('birch_sugar'), 'afc:birch_sugar', Category.other, 0, 0, 0, 0, tag_as_food=False)
+    food_item(rm, ('honey'), 'firmalife:raw_honey', Category.other, 0, 0, 0, 0, tag_as_food=False)
     dynamic_food_item(rm, ('sealed_tin_can'), 'artisanal:metal/sealed_tin_can', 'dynamic')
     dynamic_food_item(rm, ('sterilized_tin_can'), 'artisanal:metal/sterilized_tin_can', 'dynamic')
     
