@@ -259,7 +259,8 @@ def generate_anvil_recipes():
     
     
     anvil_recipe(rm, ('metal', 'tin_can'), 'artisanal:metal/tinplate', 'artisanal:metal/tin_can', 1, Rules.bend_not_last, Rules.hit_not_last, Rules.hit_last)
-    welding_recipe(rm, ('metal', 'tinplate'), 'tfc:metal/double_sheet/steel', 'tfc:metal/sheet/tin', (4, 'artisanal:metal/tinplate'), 0)
+    welding_recipe(rm, ('metal', 'tinplate_from_iron'), 'tfc:metal/double_sheet/wrought_iron', 'tfc:metal/sheet/tin', (4, 'artisanal:metal/tinplate'), 0)
+    welding_recipe(rm, ('metal', 'tinplate_from_steel'), 'tfc:metal/double_sheet/steel', 'tfc:metal/sheet/tin', (8, 'artisanal:metal/tinplate'), 0)
     anvil_recipe(rm, ('metal', 'repair_tin_can'), 'artisanal:metal/dented_tin_can', 'artisanal:metal/tin_can', 1, Rules.hit_third_last, Rules.hit_second_last, Rules.hit_last)
     
 
