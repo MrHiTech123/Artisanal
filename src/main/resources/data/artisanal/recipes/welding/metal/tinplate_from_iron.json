@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:welding",
   "first_input": {
-    "item": "tfc:metal/double_sheet/steel"
+    "item": "tfc:metal/double_sheet/wrought_iron"
   },
   "second_input": {
     "item": "tfc:metal/sheet/tin"
