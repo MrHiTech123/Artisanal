@@ -1,0 +1,75 @@
+{
+  "name": "Canned Food",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:metal/sealed_tin_can",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Other forms of $(l:tfc:mechanics/decay)preservation$() are useful, but the ultimate form of preservation is $(thing)canning$(). This process involves sealing food in an airtight container, so that no microbes can reach it, and then heating the container to kill all of the microbes that are already on the food."
+    },
+    {
+      "type": "tfc:welding_recipe",
+      "recipe": "artisanal:welding/metal/tinplate_from_steel",
+      "text": "The raw material that cans are made from is called $(thing)Tinplate$(). It is made by welding a Tin Sheet to a Steel Double Sheet."
+    },
+    {
+      "type": "tfc:welding_recipe",
+      "recipe": "artisanal:welding/metal/tinplate_from_iron",
+      "text": "A Wrought Iron Double Sheet can be used instead of a Steel one, at reduced efficiency."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "artisanal:anvil/metal/tin_can",
+      "text": "Once welded, Tinplate can then be forged into an empty Tin Can."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/can_1",
+      "recipe2": "artisanal:crafting/can_2"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/can_6",
+      "text": "A heated tin can can be crafted with a $(thing)Hammer$(), $(thing)Flux$(), and up to 6 $(thing)Cannable Foods$() to create a Sealed Tin Can. Only one type of food may be kept in a given can."
+    },
+    {
+      "type": "tfc:heat_recipe",
+      "recipe": "artisanal:heating/metal/sterilized_tin_can",
+      "text": "The can is then heated to kill the microbes inside, resulting in a $(thing)Sterilized Tin Can$(). The food inside the can will last forever, until the can is opened, at which point its expiration date will start anew."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/open_can_can_opener",
+      "text": "To open a can, craft it with a $(thing)Can Opener$(). This recipe will output the food that was in the can."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/clean_tin_can_soapy_water",
+      "text": "Opening a can will also result in a $(thing)Dirty Tin Can$(). The dirty can can then be cleaned using soapy or normal water. See $(l:tfc:artisanal/soap)Soap$(). After being cleaned, the can can be reused."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/can_opener/steel",
+      "text": "Can openers are crafted using one $(thing)Brass Mechanisms$(), two $(thing)Rods$() made of any tool metal, and two $(thing)Circle Blades$()."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "artisanal:anvil/metal/circle_blade/black_bronze",
+      "text": "Circle blades are $(l:tfc:mechanics/anvils)forged$() from metal ingots."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/open_can_hammer",
+      "text": "If you don't have a Can Opener on you, you can also open a can with a Hammer. This results in a $(thing)Dirty Dented Tin Can$()."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "artisanal:anvil/metal/repair_tin_can",
+      "text": "This can must be cleaned first, like normal Dirty Tin Can. Then it can be repaired on an $(thing)Anvil$()."
+    }
+  ],
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    
+  }
+}

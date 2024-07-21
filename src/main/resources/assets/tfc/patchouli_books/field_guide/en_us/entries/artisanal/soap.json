@@ -28,7 +28,7 @@
       "images": [
         "artisanal:textures/gui/book/soap_mixture.png"
       ],
-      "text": "Mix the rendered fats with lye in a 1:1 ratio to create $(thing)Soap$()"
+      "text": "Mix the rendered fats with lye in a 9:1 ratio to create $(thing)Soap$()"
     },
     {
       "type": "tfc:sealed_barrel_recipe",
