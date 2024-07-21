@@ -368,7 +368,7 @@ def generate_crafting_recipes():
         damage_shapeless(rm, ('crafting', f'can_{i}'), (heatable_ingredient('artisanal:metal/tin_can', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider('artisanal:metal/sealed_tin_can', meal=canning_modifier, other_modifier='artisanal:homogenous_ingredients'))
     
     
-    rm.recipe(('crafting', "extract_canned_food_hammer"), "tfc:extra_products_shapeless_crafting",
+    rm.recipe(('crafting', "open_can_hammer"), "tfc:extra_products_shapeless_crafting",
         {
             "__comment__": "This file was automatically created by mcresources",
             "recipe": {
@@ -385,7 +385,7 @@ def generate_crafting_recipes():
             ]
         }
     )
-    rm.recipe(('crafting', 'extract_canned_food_can_opener'), 'tfc:extra_products_shapeless_crafting',
+    rm.recipe(('crafting', 'open_can_can_opener'), 'tfc:extra_products_shapeless_crafting',
         {
             "__comment__": "This file was automatically created by mcresources",
             "recipe": {
