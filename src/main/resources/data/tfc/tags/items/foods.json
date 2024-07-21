@@ -5,9 +5,6 @@
     "artisanal:food/cleaned_sugarcane",
     "artisanal:perishable_sugar",
     "artisanal:non_perishable_sugar",
-    "minecraft:sugar",
-    "afc:maple_sugar",
-    "afc:birch_sugar",
-    "firmalife:raw_honey"
+    "minecraft:sugar"
   ]
 }

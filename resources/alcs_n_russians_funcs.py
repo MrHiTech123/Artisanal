@@ -1991,8 +1991,10 @@ def fauna(chance: int = None, distance_below_sea_level: int = None, climate: Dic
     }
 
 
-def food_item(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, category: Category, hunger: int, saturation: float, water: int, decay: float, fruit: Optional[float] = None, veg: Optional[float] = None, protein: Optional[float] = None, grain: Optional[float] = None, dairy: Optional[float] = None):
-    rm.item_tag('tfc:foods', ingredient)
+def food_item(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, category: Category, hunger: int, saturation: float, water: int, decay: float, fruit: Optional[float] = None, veg: Optional[float] = None, protein: Optional[float] = None, grain: Optional[float] = None, dairy: Optional[float] = None, tag_as_food: bool = True):
+    if tag_as_food:
+        rm.item_tag('tfc:foods', ingredient)
+    
     rm.data(('tfc', 'food_items', name_parts), {
         'ingredient': utils.ingredient(ingredient),
         'hunger': hunger,
