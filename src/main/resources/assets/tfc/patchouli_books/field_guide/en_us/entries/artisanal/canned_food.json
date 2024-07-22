@@ -39,7 +39,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/open_can_can_opener",
+      "recipe": "artisanal:crafting/open_sterilized_tin_can_can_opener",
       "text": "To open a can, craft it with a $(thing)Can Opener$(). This recipe will output the food that was in the can."
     },
     {
@@ -59,13 +59,18 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/open_can_hammer",
+      "recipe": "artisanal:crafting/open_sterilized_tin_can_hammer",
       "text": "If you don't have a Can Opener on you, you can also open a can with a Hammer. This results in a $(thing)Dirty Dented Tin Can$()."
     },
     {
       "type": "tfc:anvil_recipe",
       "recipe": "artisanal:anvil/metal/repair_tin_can",
       "text": "This can must be cleaned first, like normal Dirty Tin Can. Then it can be repaired on an $(thing)Anvil$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/remove_can_traits",
+      "text": "Since cans are sterilized by heating, they can sometimes gain food traits, such as $(thing)Charcoal Grilled$() or $(thing)Wood Grilled$(). These traits have no effect, since sterilized cans don't expire, but can be removed for cosmetic or stacking purposes by placing the can in your crafting grid."
     }
   ],
   "read_by_default": true,
