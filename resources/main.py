@@ -407,7 +407,7 @@ def generate_crafting_recipes():
         if 'tool' in metal_data.types:
             rm.crafting_shaped(('crafting', 'metal', 'can_opener', metal), ['MBR', 'B  ', 'R  '], {'M': 'tfc:brass_mechanisms', 'B': f'artisanal:metal/circle_blade/{metal}', 'R': '#artisanal:rods/metal'}, f'artisanal:metal/can_opener/{metal}')    
     
-    
+    advanced_shapeless(rm, ('crafting', 'metal', 'remove_can_traits'), ('artisanal:metal/sterilized_tin_can'), remove_many_traits(item_stack_provider('artisanal:metal/sterilized_tin_can', other_modifier='artisanal:copy_dynamic_food'), 'tfc:charcoal_grilled', 'tfc:wood_grilled', 'tfc:burnt_to_a_crisp'), primary_ingredient='artisanal:metal/sterilized_tin_can')
     
     
 def generate_heat_recipes():

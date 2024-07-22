@@ -27,6 +27,7 @@ public enum CopyDynamicFoodModifier implements ItemStackModifier.SingleInstance<
                     {
                         outHandler.setFood(inHandler.getData());
                         outHandler.setCreationDate(FoodCapability.getRoundedCreationDate());
+                        outHandler.setIngredients(inHandler.getIngredients());
                     }
                     if (cap instanceof DynamicBowlHandler outBowl && inputCap instanceof DynamicBowlHandler inBowl)
                     {
