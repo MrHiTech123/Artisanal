@@ -75,6 +75,30 @@
   ],
   "read_by_default": true,
   "extra_recipe_mappings": {
-    
+    "artisanal:metal/tinplate": 1,
+    "artisanal:metal/tin_can": 3,
+    "artisanal:metal/sealed_tin_can": 4,
+    "artisanal:metal/sterilized_tin_can": 6,
+    "artisanal:metal/dirty_tin_can": 8,
+    "artisanal:metal/dirty_dented_tin_can": 8,
+    "artisanal:metal/can_opener/bismuth_bronze": 9,
+    "artisanal:metal/can_opener/black_bronze": 9,
+    "artisanal:metal/can_opener/bronze": 9,
+    "artisanal:metal/can_opener/copper": 9,
+    "artisanal:metal/can_opener/wrought_iron": 9,
+    "artisanal:metal/can_opener/steel": 9,
+    "artisanal:metal/can_opener/black_steel": 9,
+    "artisanal:metal/can_opener/blue_steel": 9,
+    "artisanal:metal/can_opener/red_steel": 9,
+    "artisanal:metal/circle_blade/bismuth_bronze": 10,
+    "artisanal:metal/circle_blade/black_bronze": 10,
+    "artisanal:metal/circle_blade/bronze": 10,
+    "artisanal:metal/circle_blade/copper": 10,
+    "artisanal:metal/circle_blade/wrought_iron": 10,
+    "artisanal:metal/circle_blade/steel": 10,
+    "artisanal:metal/circle_blade/black_steel": 10,
+    "artisanal:metal/circle_blade/blue_steel": 10,
+    "artisanal:metal/circle_blade/red_steel": 10,
+    "artisanal:metal/dented_tin_can": 12
   }
 }
