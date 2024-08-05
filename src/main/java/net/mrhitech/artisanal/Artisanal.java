@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.mrhitech.artisanal.client.ClientEventHandler;
 import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
@@ -44,7 +45,10 @@ public class Artisanal
         ArtisanalLootModifiers.register(modEventBus);
         ArtisanalRecipeSerializers.register(modEventBus);
         ArtisanalItemStackModifiers.registerItemStackModifiers();
-        ClientEventHandler.init();
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            ClientEventHandler.init();
+        }
+        
         
         
         // Register the commonSetup method for modloading
