@@ -1,0 +1,9 @@
+Code licensed with gratitude:
+
+
+From:              Under:
+TerraFirmaCraft    EUPL v1.2
+FirmaLife          MIT
+
+
+
