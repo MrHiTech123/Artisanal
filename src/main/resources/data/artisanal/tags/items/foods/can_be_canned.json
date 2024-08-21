@@ -2,10 +2,14 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
+    "#tfc:foods/breads",
     "#tfc:foods/dairy",
+    "#tfc:foods/flour",
     "#tfc:foods/fruits",
     "#tfc:foods/grains",
     "#tfc:foods/meats",
-    "#tfc:foods/vegetables"
+    "#tfc:foods/vegetables",
+    "#firmalife:foods/flatbreads",
+    "#firmalife:foods/slices"
   ]
 }
