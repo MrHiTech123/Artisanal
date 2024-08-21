@@ -1,0 +1,23 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "item": "artisanal:metal/striker/black_steel"
+    },
+    {
+      "item": "minecraft:flint"
+    }
+  ],
+  "result": {
+    "stack": {
+      "item": "artisanal:metal/flint_and/black_steel"
+    },
+    "modifiers": [
+      "tfc:copy_forging_bonus"
+    ]
+  },
+  "primary_ingredient": {
+    "item": "artisanal:metal/striker/black_steel"
+  }
+}

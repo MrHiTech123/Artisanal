@@ -3,10 +3,7 @@ package net.mrhitech.artisanal.common.item;
 import net.dries007.tfc.common.TFCTiers;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
-import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -65,6 +62,13 @@ public class ArtisanalItems {
     public static final Map<Metal.Default, RegistryObject<Item>> CIRCLE_BLADES = Helpers.mapOfKeys(Metal.Default.class,
             metal -> Metal.ItemType.AXE.has(metal),
             metal -> ITEMS.register("metal/circle_blade/" + metal.getSerializedName(), () -> new Item(new Item.Properties())));
+    
+    public static final Map<SteelMetal, RegistryObject<Item>> STRIKERS = Helpers.mapOfKeys(SteelMetal.class, metal ->
+            ITEMS.register("metal/striker/" + metal.getSerializedName(), () -> new Item(new Item.Properties())));
+    
+    public static final Map<SteelMetal, RegistryObject<Item>> FLINT_ANDS = Helpers.mapOfKeys(SteelMetal.class, metal -> !metal.equals(SteelMetal.STEEL), metal ->
+            ITEMS.register("metal/flint_and/" + metal.getSerializedName(), () -> new FlintAndSteelItem(new Item.Properties().durability(metal.getTier().getUses()))));
+    
     
     
     public static void register(IEventBus bus) {
