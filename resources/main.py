@@ -9,6 +9,7 @@ AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cy
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
 OPENABLE_CAN_ITEMS = ('sterilized_tin_can', 'sealed_tin_can')
+STEELS = {metal: METALS[metal] for metal in ('steel', 'black_steel', 'blue_steel', 'red_steel')}
 
 
 
@@ -172,6 +173,9 @@ def generate_item_heats():
     item_heat(rm, ('metal', 'sealed_tin_can'), 'artisanal:metal/sealed_tin_can', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
     item_heat(rm, ('metal', 'dented_tin_can'), 'artisanal:metal/dented_tin_can', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
     
+    for metal, metal_data in STEELS.items():
+        item_heat(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
+    
 def generate_data():
     print('Generating data...')
     generate_drinkables()
@@ -240,7 +244,14 @@ def generate_item_models():
         if 'tool' in metal_data.types:
             rm.item_model(('metal', 'can_opener', metal), f'artisanal:item/metal/can_opener/{metal}').with_lang(lang(f'{metal} can opener'))
             rm.item_model(('metal', 'circle_blade', metal), f'artisanal:item/metal/circle_blade/{metal}').with_lang(lang(f'{metal} circle blade'))
-            
+    
+    for metal in STEELS:
+        rm.item_model(('metal', 'striker', metal), f'artisanal:item/metal/striker/{metal}').with_lang(lang(f'{metal}_striker'))
+        if metal != 'steel':
+            rm.item_model(('metal', 'flint_and', metal), f'artisanal:item/metal/flint_and/{metal}').with_lang(lang(f'flint_and_{metal}'))
+        
+        
+    
     
 def generate_models():
     print('Generating models...')
@@ -256,6 +267,8 @@ def generate_anvil_recipes():
         if 'tool' in metal_data.types:
             anvil_recipe(rm, ('metal', 'circle_blade', metal), f'tfc:metal/ingot/{metal}', (2, f'artisanal:metal/circle_blade/{metal}'), metal_data.tier, Rules.shrink_third_last, Rules.hit_second_last, Rules.hit_last)
     
+    for metal, metal_data in STEELS.items():
+        anvil_recipe(rm, ('metal', 'striker', metal), f'tfc:metal/rod/{metal}', f'artisanal:metal/striker/{metal}', metal_data.tier, Rules.bend_any, Rules.hit_any, Rules.punch_any, bonus=True)
     
     
     anvil_recipe(rm, ('metal', 'tin_can'), 'artisanal:metal/tinplate', 'artisanal:metal/tin_can', 1, Rules.bend_not_last, Rules.hit_not_last, Rules.hit_last)
@@ -410,6 +423,17 @@ def generate_crafting_recipes():
     advanced_shapeless(rm, ('crafting', 'metal', 'remove_can_traits'), ('artisanal:metal/sterilized_tin_can'), remove_many_traits(item_stack_provider('artisanal:metal/sterilized_tin_can', other_modifier='artisanal:copy_dynamic_food'), 'tfc:charcoal_grilled', 'tfc:wood_grilled', 'tfc:burnt_to_a_crisp'), primary_ingredient='artisanal:metal/sterilized_tin_can')
     
     
+    for metal, metal_data in STEELS.items():
+        if metal == 'steel':
+            result = 'minecraft:flint_and_steel'
+        else:
+            result = f'artisanal:metal/flint_and/{metal}'
+        
+        advanced_shapeless(rm, ('metal', 'flint_and', metal), (f'artisanal:metal/striker/{metal}', 'minecraft:flint'), item_stack_provider(result, copy_forging=True), f'artisanal:metal/striker/{metal}')
+        
+    disable_recipe(rm, 'tfc:crafting/vanilla/flint_and_steel')
+    
+    
 def generate_heat_recipes():
     print("\tGenerating heat recipes...")
     
@@ -424,6 +448,8 @@ def generate_heat_recipes():
         if 'tool' in metal_data.types:
             heat_recipe(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.melt_temperature, result_fluid=f'50 tfc:metal/{metal}')
     
+    for metal, metal_data in STEELS.items():
+        heat_recipe(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.melt_temperature, result_fluid=f'50 tfc:metal/{metal}')
 
 
 def generate_mixing_recipes():
@@ -550,6 +576,7 @@ def generate_item_tags():
     rm.item_tag('foods/can_be_canned', *[f'#tfc:foods/{tag}' for tag in CANNABLE_FOOD_TAGS], '#firmalife:foods/flatbreads', '#firmalife:foods/slices')
     rm.item_tag('can_openers', *[f'artisanal:metal/can_opener/{metal}' for metal in METALS if 'tool' in METALS[metal].types])
     rm.item_tag('rods/metal', *[f'tfc:metal/rod/{metal}' for metal in METALS if 'utility' in METALS[metal].types])
+    rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'])
 
 def generate_tags():
     print('Generating tags...')

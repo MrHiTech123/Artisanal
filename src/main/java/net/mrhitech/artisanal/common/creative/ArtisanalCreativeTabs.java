@@ -7,6 +7,7 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.mrhitech.artisanal.common.Waterlikes;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 import net.mrhitech.artisanal.common.item.MagnifyingGlassMetal;
+import net.mrhitech.artisanal.common.item.SteelMetal;
 
 public class ArtisanalCreativeTabs {
     public static void AddCreative(BuildCreativeModeTabContentsEvent event) {
@@ -78,6 +79,13 @@ public class ArtisanalCreativeTabs {
                 if (Metal.ItemType.AXE.has(metal)) {
                     event.accept(ArtisanalItems.CAN_OPENERS.get(metal));
                     event.accept(ArtisanalItems.CIRCLE_BLADES.get(metal));
+                }
+            }
+            
+            for (SteelMetal metal : SteelMetal.values()) {
+                event.accept(ArtisanalItems.STRIKERS.get(metal));
+                if (!metal.equals(SteelMetal.STEEL)) {
+                    event.accept(ArtisanalItems.FLINT_ANDS.get(metal));
                 }
             }
             
