@@ -2576,7 +2576,6 @@ def item_stack_provider(
         (other_other_modifier, other_other_modifier is not None),
     ) if v]
     if modifiers:
-        print(modifiers)
         return {
             'stack': stack,
             'modifiers': modifiers
