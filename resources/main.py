@@ -16,19 +16,19 @@ class CleaningRecipe(NamedTuple):
     input_item: str
     output_item: str
     
-cleanables = (
+CLEANABLES = (
     CleaningRecipe('jute_net', 'tfc:dirty_jute_net', 'tfc:jute_net'),
     CleaningRecipe('soup_bowl', '#tfc:dynamic_bowl_items', item_stack_provider(empty_bowl=True)),
-    CleaningRecipe('jar', '#tfc:foods/preserves', 'tfc:empty_jar'),
+    CleaningRecipe('filled_jar', '#tfc:foods/preserves', 'tfc:empty_jar'),
     CleaningRecipe('sealed_jar', '#tfc:foods/sealed_preserves', 'tfc:empty_jar'),
+    CleaningRecipe('empty_jar', 'artisanal:dirty_jar', 'tfc:empty_jar'),
     CleaningRecipe('sugarcane', not_rotten('tfc:food/sugarcane'), item_stack_provider('artisanal:food/cleaned_sugarcane', copy_food=True)),
     CleaningRecipe('hematitic_wine_bottle', 'firmalife:hematitic_wine_bottle', 'firmalife:empty_hematitic_wine_bottle'),
     CleaningRecipe('olivine_wine_bottle', 'firmalife:olivine_wine_bottle', 'firmalife:empty_olivine_wine_bottle'),
     CleaningRecipe('volcanic_wine_bottle', 'firmalife:volcanic_wine_bottle', 'firmalife:empty_volcanic_wine_bottle'),
     CleaningRecipe('any_bowl', '#firmalife:foods/washable', item_stack_provider(other_modifier='firmalife:empty_pan')),
     CleaningRecipe('tin_can', 'artisanal:metal/dirty_tin_can', 'artisanal:metal/tin_can'),
-    CleaningRecipe('dented_tin_can', 'artisanal:metal/dirty_dented_tin_can', 'artisanal:metal/dented_tin_can'),
-    CleaningRecipe('jar', 'artisanal:dirty_jar', 'tfc:empty_jar')
+    CleaningRecipe('dented_tin_can', 'artisanal:metal/dirty_dented_tin_can', 'artisanal:metal/dented_tin_can')
 )
 
 
@@ -318,7 +318,7 @@ def generate_barrel_recipes():
     disable_recipe(rm, 'tfc:barrel/sugar')
     
     
-    for cleanable in cleanables:
+    for cleanable in CLEANABLES:
         barrel_sealed_recipe(rm, f'clean_{cleanable.item_name}_water', f'Cleaning {lang(cleanable.item_name)}', 8000, cleanable.input_item, '100 minecraft:water', output_item=cleanable.output_item)
         barrel_instant_recipe(rm, f'clean_{cleanable.item_name}_soapy_water', cleanable.input_item, '100 artisanal:soapy_water', output_item=cleanable.output_item)
     
@@ -436,7 +436,12 @@ def generate_crafting_recipes():
         
     disable_recipe(rm, 'tfc:crafting/vanilla/flint_and_steel')
     
-    
+    for cleanable in CLEANABLES:
+        advanced_shapeless(rm, ('crafting', 'clean', cleanable.item_name, 'water'), (fluid_item_ingredient('100 minecraft:water'), cleanable.input_item), utils.item_stack(cleanable.output_item), primary_ingredient=cleanable.input_item)
+        if isinstance(cleanable.output_item, str):
+            for i in range(1, 8 + 1):
+                advanced_shapeless(rm, ('crafting', 'clean', cleanable.item_name, f'soapy_water_{i}'), (fluid_item_ingredient('100 artisanal:soapy_water'), *([cleanable.input_item] * i)), utils.item_stack((i, cleanable.output_item)), primary_ingredient=cleanable.input_item)
+        
 def generate_heat_recipes():
     print("\tGenerating heat recipes...")
     

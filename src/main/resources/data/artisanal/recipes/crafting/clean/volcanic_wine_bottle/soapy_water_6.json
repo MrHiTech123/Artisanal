@@ -1,0 +1,38 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "type": "tfc:fluid_item",
+      "fluid_ingredient": {
+        "ingredient": "artisanal:soapy_water",
+        "amount": 100
+      }
+    },
+    {
+      "item": "firmalife:volcanic_wine_bottle"
+    },
+    {
+      "item": "firmalife:volcanic_wine_bottle"
+    },
+    {
+      "item": "firmalife:volcanic_wine_bottle"
+    },
+    {
+      "item": "firmalife:volcanic_wine_bottle"
+    },
+    {
+      "item": "firmalife:volcanic_wine_bottle"
+    },
+    {
+      "item": "firmalife:volcanic_wine_bottle"
+    }
+  ],
+  "result": {
+    "item": "firmalife:empty_volcanic_wine_bottle",
+    "count": 6
+  },
+  "primary_ingredient": {
+    "item": "firmalife:volcanic_wine_bottle"
+  }
+}
