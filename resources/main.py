@@ -585,6 +585,7 @@ def generate_item_tags():
     rm.item_tag('can_openers', *[f'artisanal:metal/can_opener/{metal}' for metal in METALS if 'tool' in METALS[metal].types])
     rm.item_tag('rods/metal', *[f'tfc:metal/rod/{metal}' for metal in METALS if 'utility' in METALS[metal].types])
     rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'])
+    rm.item_tag('tfc:compost_browns_high', 'artisanal:dry_bagasse')
 
 def generate_tags():
     print('Generating tags...')
