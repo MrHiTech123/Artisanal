@@ -199,10 +199,13 @@ dependencies {
     // FirmaCiv
     implementation fg.deobf("curse.maven:firmacivilization-714158:5316956")
     // AFC
-    implementation fg.deobf("curse.maven:arborfirmacraft-877545:5499276")
+    implementation fg.deobf("curse.maven:arborfirmacraft-877545:5525258")
     // Firmalife
     implementation fg.deobf("curse.maven:firmalife-453394:5477629")
-    
+    // Jade
+    implementation fg.deobf("curse.maven:jade-324717:5493390")
+//    // Thermal deposits
+//    implementation fg.deobf("curse.maven:tfc-thermal-deposits-962578:5317918")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
