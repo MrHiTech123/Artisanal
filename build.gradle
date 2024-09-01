@@ -208,6 +208,15 @@ dependencies {
 //    implementation fg.deobf("curse.maven:tfc-thermal-deposits-962578:5317918")
 }
 
+mixin {
+    // MixinGradle Settings
+    add sourceSets.main, 'artisanal.refmap.json'
+    config 'mixins.artisanal.json'
+
+    debug.verbose = true
+    debug.export = true
+}
+
 // This block of code expands all declared replace properties in the specified resource targets.
 // A missing property will result in an error. Properties are expanded using ${} Groovy notation.
 // When "copyIdeResources" is enabled, this will also run before the game launches in IDE environments.
