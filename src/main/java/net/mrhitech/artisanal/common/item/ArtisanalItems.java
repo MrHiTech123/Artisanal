@@ -1,6 +1,5 @@
 package net.mrhitech.artisanal.common.item;
 
-import net.dries007.tfc.common.TFCTiers;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
 import net.minecraft.world.item.*;
@@ -69,6 +68,7 @@ public class ArtisanalItems {
     public static final Map<SteelMetal, RegistryObject<Item>> FLINT_ANDS = Helpers.mapOfKeys(SteelMetal.class, metal -> !metal.equals(SteelMetal.STEEL), metal ->
             ITEMS.register("metal/flint_and/" + metal.getSerializedName(), () -> new FlintAndSteelItem(new Item.Properties().durability(metal.getTier().getUses()))));
     
+    public static final RegistryObject<Item> DIRTY_JAR = ITEMS.register("dirty_jar", () -> new Item(new Item.Properties()));
     
     
     public static void register(IEventBus bus) {

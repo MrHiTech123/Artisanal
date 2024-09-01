@@ -11,6 +11,27 @@ CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', '
 OPENABLE_CAN_ITEMS = ('sterilized_tin_can', 'sealed_tin_can')
 STEELS = {metal: METALS[metal] for metal in ('steel', 'black_steel', 'blue_steel', 'red_steel')}
 
+class CleaningRecipe(NamedTuple):
+    item_name: str
+    input_item: str
+    output_item: str
+    
+cleanables = (
+    CleaningRecipe('jute_net', 'tfc:dirty_jute_net', 'tfc:jute_net'),
+    CleaningRecipe('soup_bowl', '#tfc:dynamic_bowl_items', item_stack_provider(empty_bowl=True)),
+    CleaningRecipe('jar', '#tfc:foods/preserves', 'tfc:empty_jar'),
+    CleaningRecipe('sealed_jar', '#tfc:foods/sealed_preserves', 'tfc:empty_jar'),
+    CleaningRecipe('sugarcane', not_rotten('tfc:food/sugarcane'), item_stack_provider('artisanal:food/cleaned_sugarcane', copy_food=True)),
+    CleaningRecipe('hematitic_wine_bottle', 'firmalife:hematitic_wine_bottle', 'firmalife:empty_hematitic_wine_bottle'),
+    CleaningRecipe('olivine_wine_bottle', 'firmalife:olivine_wine_bottle', 'firmalife:empty_olivine_wine_bottle'),
+    CleaningRecipe('volcanic_wine_bottle', 'firmalife:volcanic_wine_bottle', 'firmalife:empty_volcanic_wine_bottle'),
+    CleaningRecipe('any_bowl', '#firmalife:foods/washable', item_stack_provider(other_modifier='firmalife:empty_pan')),
+    CleaningRecipe('tin_can', 'artisanal:metal/dirty_tin_can', 'artisanal:metal/tin_can'),
+    CleaningRecipe('dented_tin_can', 'artisanal:metal/dirty_dented_tin_can', 'artisanal:metal/dented_tin_can'),
+    CleaningRecipe('jar', 'artisanal:dirty_jar', 'tfc:empty_jar')
+)
+
+
 
 
 rm = ResourceManager('artisanal')
@@ -249,7 +270,8 @@ def generate_item_models():
         rm.item_model(('metal', 'striker', metal), f'artisanal:item/metal/striker/{metal}').with_lang(lang(f'{metal}_striker'))
         if metal != 'steel':
             rm.item_model(('metal', 'flint_and', metal), f'artisanal:item/metal/flint_and/{metal}').with_lang(lang(f'flint_and_{metal}'))
-        
+    
+    rm.item_model('dirty_jar', 'artisanal:item/dirty_jar').with_lang('Dirty Jar')
         
     
     
@@ -295,30 +317,11 @@ def generate_barrel_recipes():
     disable_recipe(rm, 'firmalife:barrel/clean_any_bowl')
     disable_recipe(rm, 'tfc:barrel/sugar')
     
-    barrel_sealed_recipe(rm, 'clean_jute_net_water', 'Cleaning Jute Net', 8000, 'tfc:dirty_jute_net', '100 minecraft:water', output_item='tfc:jute_net')
-    barrel_sealed_recipe(rm, 'clean_soup_bowl_water', 'Cleaning Bowl', 8000, '#tfc:dynamic_bowl_items', '100 minecraft:water', output_item=item_stack_provider(empty_bowl=True))
-    barrel_sealed_recipe(rm, 'clean_jar_water', 'Cleaning Jar', 8000, '#tfc:foods/preserves', '100 minecraft:water', output_item='tfc:empty_jar')
-    barrel_sealed_recipe(rm, 'clean_sealed_jar_water', 'Cleaning Sealed Jar', 8000, '#tfc:foods/sealed_preserves', '100 minecraft:water', output_item='tfc:empty_jar')
-    barrel_sealed_recipe(rm, 'clean_sugarcane_water', 'Cleaning Sugarcane', 8000, not_rotten('tfc:food/sugarcane'), '100 minecraft:water', output_item=item_stack_provider('artisanal:food/cleaned_sugarcane', copy_food=True))
-    barrel_sealed_recipe(rm, 'clean_hematitic_wine_bottle_water', 'Cleaning Wine Bottle', 8000, 'firmalife:hematitic_wine_bottle', '100 minecraft:water', output_item='firmalife:empty_hematitic_wine_bottle')
-    barrel_sealed_recipe(rm, 'clean_olivine_wine_bottle_water', 'Cleaning Wine Bottle', 8000, 'firmalife:olivine_wine_bottle', '100 minecraft:water', output_item='firmalife:empty_olivine_wine_bottle')
-    barrel_sealed_recipe(rm, 'clean_volcanic_wine_bottle_water', 'Cleaning Wine Bottle', 8000, 'firmalife:volcanic_wine_bottle', '100 minecraft:water', output_item='firmalife:empty_volcanic_wine_bottle')
-    barrel_sealed_recipe(rm, 'clean_any_bowl_water', 'Cleaning Bowl', 8000, '#firmalife:foods/washable', '100 minecraft:water', output_item=item_stack_provider(other_modifier='firmalife:empty_pan'))
-    barrel_sealed_recipe(rm, 'clean_tin_can_water', 'Cleaning Tin Can', 8000, 'artisanal:metal/dirty_tin_can', '100 minecraft:water', output_item='artisanal:metal/tin_can')
-    barrel_sealed_recipe(rm, 'clean_dented_tin_can_water', 'Cleaning Dented Tin Can', 8000, 'artisanal:metal/dirty_dented_tin_can', '100 minecraft:water', output_item='artisanal:metal/dented_tin_can')
     
+    for cleanable in cleanables:
+        barrel_sealed_recipe(rm, f'clean_{cleanable.item_name}_water', f'Cleaning {lang(cleanable.item_name)}', 8000, cleanable.input_item, '100 minecraft:water', output_item=cleanable.output_item)
+        barrel_instant_recipe(rm, f'clean_{cleanable.item_name}_soapy_water', cleanable.input_item, '100 artisanal:soapy_water', output_item=cleanable.output_item)
     
-    barrel_instant_recipe(rm, 'clean_jute_net_soapy_water', 'tfc:dirty_jute_net', '100 artisanal:soapy_water', output_item='tfc:jute_net')
-    barrel_instant_recipe(rm, 'clean_soup_bowl_soapy_water', '#tfc:dynamic_bowl_items', '100 artisanal:soapy_water', output_item=item_stack_provider(empty_bowl=True))
-    barrel_instant_recipe(rm, 'clean_jar_soapy_water', '#tfc:foods/preserves', '100 artisanal:soapy_water', output_item='tfc:empty_jar')
-    barrel_instant_recipe(rm, 'clean_sealed_jar_soapy_water', '#tfc:foods/sealed_preserves', '100 artisanal:soapy_water', output_item='tfc:empty_jar')
-    barrel_instant_recipe(rm, 'clean_sugarcane_soapy_water', not_rotten('tfc:food/sugarcane'), '100 artisanal:soapy_water', output_item=item_stack_provider('artisanal:food/cleaned_sugarcane', copy_food=True))
-    barrel_instant_recipe(rm, 'clean_hematitic_wine_bottle_soapy_water', 'firmalife:hematitic_wine_bottle', '100 artisanal:soapy_water', output_item='firmalife:empty_hematitic_wine_bottle')
-    barrel_instant_recipe(rm, 'clean_olivine_wine_bottle_soapy_water', 'firmalife:olivine_wine_bottle', '100 artisanal:soapy_water', output_item='firmalife:empty_olivine_wine_bottle')
-    barrel_instant_recipe(rm, 'clean_volcanic_wine_bottle_soapy_water', 'firmalife:volcanic_wine_bottle', '100 artisanal:soapy_water', output_item='firmalife:empty_volcanic_wine_bottle')
-    barrel_instant_recipe(rm, 'clean_any_bowl_soapy_water', '#firmalife:foods/washable', '100 artisanal:soapy_water', output_item=item_stack_provider(other_modifier='firmalife:empty_pan'))
-    barrel_instant_recipe(rm, 'clean_tin_can_soapy_water', 'artisanal:metal/dirty_tin_can', '100 artisanal:soapy_water', output_item='artisanal:metal/tin_can')
-    barrel_instant_recipe(rm, 'clean_dented_tin_can_soapy_water', 'artisanal:metal/dirty_dented_tin_can', '100 artisanal:soapy_water', output_item='artisanal:metal/dented_tin_can')
     
     
     disable_recipe(rm, 'tfc:barrel/candle')
