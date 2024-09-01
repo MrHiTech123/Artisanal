@@ -2254,6 +2254,7 @@ def advanced_shaped(rm: ResourceManager, name_parts: ResourceIdentifier, pattern
 
 def advanced_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, primary_ingredient: Json = None, group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
     res = utils.resource_location(rm.domain, name_parts)
+    item_stack_provider()
     rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', res.path), {
         'type': 'tfc:advanced_shapeless_crafting',
         'group': group,

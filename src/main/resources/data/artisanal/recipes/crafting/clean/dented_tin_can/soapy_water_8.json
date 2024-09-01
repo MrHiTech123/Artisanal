@@ -1,0 +1,44 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "type": "tfc:fluid_item",
+      "fluid_ingredient": {
+        "ingredient": "artisanal:soapy_water",
+        "amount": 100
+      }
+    },
+    {
+      "item": "artisanal:metal/dirty_dented_tin_can"
+    },
+    {
+      "item": "artisanal:metal/dirty_dented_tin_can"
+    },
+    {
+      "item": "artisanal:metal/dirty_dented_tin_can"
+    },
+    {
+      "item": "artisanal:metal/dirty_dented_tin_can"
+    },
+    {
+      "item": "artisanal:metal/dirty_dented_tin_can"
+    },
+    {
+      "item": "artisanal:metal/dirty_dented_tin_can"
+    },
+    {
+      "item": "artisanal:metal/dirty_dented_tin_can"
+    },
+    {
+      "item": "artisanal:metal/dirty_dented_tin_can"
+    }
+  ],
+  "result": {
+    "item": "artisanal:metal/dented_tin_can",
+    "count": 8
+  },
+  "primary_ingredient": {
+    "item": "artisanal:metal/dirty_dented_tin_can"
+  }
+}

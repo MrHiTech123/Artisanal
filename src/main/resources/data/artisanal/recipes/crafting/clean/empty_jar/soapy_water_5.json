@@ -1,0 +1,35 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "type": "tfc:fluid_item",
+      "fluid_ingredient": {
+        "ingredient": "artisanal:soapy_water",
+        "amount": 100
+      }
+    },
+    {
+      "item": "artisanal:dirty_jar"
+    },
+    {
+      "item": "artisanal:dirty_jar"
+    },
+    {
+      "item": "artisanal:dirty_jar"
+    },
+    {
+      "item": "artisanal:dirty_jar"
+    },
+    {
+      "item": "artisanal:dirty_jar"
+    }
+  ],
+  "result": {
+    "item": "tfc:empty_jar",
+    "count": 5
+  },
+  "primary_ingredient": {
+    "item": "artisanal:dirty_jar"
+  }
+}
