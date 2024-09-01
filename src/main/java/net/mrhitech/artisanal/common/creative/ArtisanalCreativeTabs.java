@@ -60,6 +60,8 @@ public class ArtisanalCreativeTabs {
             event.accept(ArtisanalItems.CLEANED_SUGARCANE);
             event.accept(ArtisanalItems.MILK_FLAKES);
             event.accept(ArtisanalItems.POWDERED_MILK);
+            
+            event.accept(ArtisanalItems.DIRTY_JAR);
         }
         
         if (event.getTabKey() == TFCCreativeTabs.METAL.tab().getKey()) {

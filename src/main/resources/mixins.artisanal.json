@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.mrhitech.artisanal.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "JarItemMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "artisanal.refmap.json"
+}

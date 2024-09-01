@@ -3,7 +3,7 @@
   "type": "tfc:barrel_sealed",
   "input_item": {
     "ingredient": {
-      "tag": "tfc:foods/preserves"
+      "item": "artisanal:dirty_jar"
     }
   },
   "input_fluid": {
