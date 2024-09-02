@@ -1,0 +1,63 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "item": "artisanal:ceramic/small_pot_and_lid"
+    },
+    {
+      "item": "firmalife:food/butter"
+    },
+    {
+      "item": "tfc:powder/saltpeter"
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "artisanal:foods/can_be_potted"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "artisanal:foods/can_be_potted"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "artisanal:foods/can_be_potted"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "artisanal:foods/can_be_potted"
+      }
+    }
+  ],
+  "result": {
+    "stack": {
+      "item": "artisanal:ceramic/closed_small_pot"
+    },
+    "modifiers": [
+      {
+        "type": "tfc:meal",
+        "food": {
+          "decay_modifier": 4.5
+        },
+        "portions": [
+          {
+            "ingredient": {
+              "tag": "artisanal:foods/can_be_canned"
+            },
+            "nutrient_modifier": 0,
+            "water_modifier": 0,
+            "saturation_modifier": 0
+          }
+        ]
+      },
+      "artisanal:homogenous_ingredients"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "artisanal:ceramic/small_pot"
+    },
+    {
+      "item": "artisanal:ceramic/small_pot_lid"
+    }
+  ],
+  "result": {
+    "item": "artisanal:ceramic/small_pot_and_lid"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:extra_products_shapeless_crafting",
+  "recipe": {
+    "type": "tfc:damage_inputs_shapeless_crafting",
+    "recipe": {
+      "type": "tfc:advanced_shapeless_crafting",
+      "ingredients": [
+        {
+          "item": "artisanal:ceramic/closed_small_pot"
+        }
+      ],
+      "result": {
+        "modifiers": [
+          "artisanal:extract_canned_food"
+        ]
+      },
+      "primary_ingredient": {
+        "item": "artisanal:ceramic/closed_small_pot"
+      }
+    }
+  },
+  "extra_products": [
+    {
+      "item": "artisanal:ceramic/dirty_small_pot"
+    },
+    {
+      "item": "artisanal:ceramic/small_pot_lid"
+    }
+  ]
+}

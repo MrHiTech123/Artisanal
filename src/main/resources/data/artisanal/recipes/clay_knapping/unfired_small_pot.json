@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:knapping",
+  "knapping_type": "tfc:clay",
+  "outside_slot_required": false,
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "result": {
+    "item": "artisanal:ceramic/unfired_small_pot"
+  }
+}
