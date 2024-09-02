@@ -71,6 +71,15 @@ public class ArtisanalItems {
     public static final RegistryObject<Item> DIRTY_JAR = ITEMS.register("dirty_jar", () -> new Item(new Item.Properties()));
     
     
+    public static final RegistryObject<Item> DIRTY_SMALL_POT = ITEMS.register("ceramic/dirty_small_pot", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SMALL_POT = ITEMS.register("ceramic/small_pot", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SMALL_POT_LID = ITEMS.register("ceramic/small_pot_lid", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SMALL_POT_AND_LID = ITEMS.register("ceramic/small_pot_and_lid", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> UNFIRED_SMALL_POT = ITEMS.register("ceramic/unfired_small_pot", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> UNFIRED_SMALL_POT_LID = ITEMS.register("ceramic/unfired_small_pot_lid", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> CLOSED_SMALL_POT = ITEMS.register("ceramic/closed_small_pot", () -> new Item(new Item.Properties().craftRemainder(DIRTY_SMALL_POT.get())));
+    
+    
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
     }

@@ -25,14 +25,14 @@ public enum HomogenousIngredientsModifier implements ItemStackModifier.SingleIns
         
         });
         
-        if (numOfDiffIngredients.get() == 1) {
-            return stack;
-        }
-        else if (numOfDiffIngredients.get() > 1){
+        if (numOfDiffIngredients.get() > 1){
             return new ItemStack(Items.AIR);
         }
+        else {
+            return stack;
+        }
         
-        return new ItemStack(ArtisanalItems.SEALED_TIN_CAN.get());
+        
         
         
         

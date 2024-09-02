@@ -8,6 +8,7 @@ SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', '
 AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cypress', 'fig', 'ironwood', 'ipe')
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
+POTTABLE_FOOD_TAGS = ('meats', 'vegetables')
 OPENABLE_CAN_ITEMS = ('sterilized_tin_can', 'sealed_tin_can')
 STEELS = {metal: METALS[metal] for metal in ('steel', 'black_steel', 'blue_steel', 'red_steel')}
 
@@ -173,6 +174,7 @@ def generate_item_foods():
     food_item(rm, ('honey'), 'firmalife:raw_honey', Category.other, 0, 0, 0, 0, tag_as_food=False)
     dynamic_food_item(rm, ('sealed_tin_can'), 'artisanal:metal/sealed_tin_can', 'dynamic')
     dynamic_food_item(rm, ('sterilized_tin_can'), 'artisanal:metal/sterilized_tin_can', 'dynamic')
+    dynamic_food_item(rm, ('closed_small_pot'), 'artisanal:ceramic/closed_small_pot', 'dynamic')
     
 def generate_item_heats():
     print('\tGenerating item heats...')
@@ -196,6 +198,10 @@ def generate_item_heats():
     
     for metal, metal_data in STEELS.items():
         item_heat(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
+    
+    item_heat(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', POTTERY_HEAT_CAPACITY)
+    item_heat(rm, ('ceramic', 'unfired_small_pot_lid'), 'artisanal:ceramic/unfired_small_pot_lid', POTTERY_HEAT_CAPACITY)
+    
     
 def generate_data():
     print('Generating data...')
@@ -272,7 +278,15 @@ def generate_item_models():
             rm.item_model(('metal', 'flint_and', metal), f'artisanal:item/metal/flint_and/{metal}').with_lang(lang(f'flint_and_{metal}'))
     
     rm.item_model('dirty_jar', 'artisanal:item/dirty_jar').with_lang('Dirty Jar')
-        
+    
+    rm.item_model(('ceramic', 'dirty_small_pot'), 'artisanal:item/ceramic/dirty_small_pot').with_lang(lang('dirty_small_pot'))
+    rm.item_model(('ceramic', 'small_pot'), 'artisanal:item/ceramic/small_pot').with_lang(lang('small_pot'))
+    rm.item_model(('ceramic', 'small_pot_lid'), 'artisanal:item/ceramic/small_pot_lid').with_lang(lang('small_pot_lid'))
+    rm.item_model(('ceramic', 'small_pot_and_lid'), 'artisanal:item/ceramic/small_pot_and_lid').with_lang(lang('small_pot_and_lid'))
+    rm.item_model(('ceramic', 'unfired_small_pot'), 'artisanal:item/ceramic/unfired_small_pot').with_lang(lang('unfired_small_pot'))
+    rm.item_model(('ceramic', 'unfired_small_pot_lid'), 'artisanal:item/ceramic/unfired_small_pot_lid').with_lang(lang('unfired_small_pot_lid'))
+    rm.item_model(('ceramic', 'closed_small_pot'), 'artisanal:item/ceramic/closed_small_pot').with_lang(lang('closed_small_pot'))
+    
     
     
 def generate_models():
@@ -382,7 +396,9 @@ def generate_crafting_recipes():
         disable_recipe(rm, f'tfc:{gem}_cut')
     for i in range(1, 6 + 1):
         damage_shapeless(rm, ('crafting', f'can_{i}'), (heatable_ingredient('artisanal:metal/tin_can', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider('artisanal:metal/sealed_tin_can', meal=canning_modifier, other_modifier='artisanal:homogenous_ingredients'))
-    
+        advanced_shapeless(rm, ('crafting', f'pot_{i}'), ('artisanal:ceramic/small_pot_and_lid', fluid_item_ingredient('100 #artisanal:rendered_fats'), 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, other_modifier='artisanal:homogenous_ingredients'))
+        advanced_shapeless(rm, ('crafting', f'pot_{i}_butter'), ('artisanal:ceramic/small_pot_and_lid', 'firmalife:food/butter', 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, other_modifier='artisanal:homogenous_ingredients'))
+        
     for openable_can_item in OPENABLE_CAN_ITEMS:
         rm.recipe(('crafting', f'open_{openable_can_item}_hammer'), 'tfc:extra_products_shapeless_crafting',
             {
@@ -418,6 +434,25 @@ def generate_crafting_recipes():
                 ]
             }
         )
+        
+    rm.recipe(('crafting', 'open_pot'), 'tfc:extra_products_shapeless_crafting',
+        {
+            "__comment__": "This file was automatically created by mcresources",
+            "recipe": {
+                "type": "tfc:damage_inputs_shapeless_crafting",
+                "recipe": {
+                    "type": "tfc:advanced_shapeless_crafting",
+                    "ingredients": [utils.ingredient('artisanal:ceramic/closed_small_pot')],
+                    "result": item_stack_provider(other_modifier="artisanal:extract_canned_food"),
+                    "primary_ingredient": utils.ingredient("artisanal:ceramic/closed_small_pot")
+                }
+            },
+            "extra_products": [
+                item_stack_provider("artisanal:ceramic/dirty_small_pot"),
+                item_stack_provider("artisanal:ceramic/small_pot_lid")
+            ]
+        }
+    )
     
     for metal, metal_data in METALS.items():
         if 'tool' in metal_data.types:
@@ -441,7 +476,16 @@ def generate_crafting_recipes():
         if isinstance(cleanable.output_item, str):
             for i in range(1, 8 + 1):
                 advanced_shapeless(rm, ('crafting', 'clean', cleanable.item_name, f'soapy_water_{i}'), (fluid_item_ingredient('100 artisanal:soapy_water'), *([cleanable.input_item] * i)), utils.item_stack((i, cleanable.output_item)), primary_ingredient=cleanable.input_item)
-        
+    rm.crafting_shapeless(('ceramic', 'small_pot_and_lid'), ('artisanal:ceramic/small_pot', 'artisanal:ceramic/small_pot_lid'), 'artisanal:ceramic/small_pot_and_lid')
+
+def generate_knapping_recipes():
+    print("\tGenerating knapping recipes...")
+    clay_knapping(rm, ('unfired_small_pot'), ('X X', 'XXX', 'XXX'), 'artisanal:ceramic/unfired_small_pot', False)
+    clay_knapping(rm, ('unfired_small_pot_lid'), (' X ', 'XXX'), 'artisanal:ceramic/unfired_small_pot_lid', False)
+    clay_knapping(rm, ('unfired_small_pot_lid_2'), (' X ', 'XXX', '   ', ' X ', 'XXX'), 'artisanal:ceramic/unfired_small_pot_lid', False)
+    
+    
+
 def generate_heat_recipes():
     print("\tGenerating heat recipes...")
     
@@ -458,8 +502,12 @@ def generate_heat_recipes():
     
     for metal, metal_data in STEELS.items():
         heat_recipe(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.melt_temperature, result_fluid=f'50 tfc:metal/{metal}')
-
-
+    
+    heat_recipe(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', POTTERY_MELT, 'artisanal:ceramic/small_pot')
+    heat_recipe(rm, ('ceramic', 'unfired_small_pot_lid'), 'artisanal:ceramic/unfired_small_pot_lid', POTTERY_MELT, 'artisanal:ceramic/small_pot_lid')
+    
+    
+    
 def generate_mixing_recipes():
     mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), not_rotten('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
     mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[utils.ingredient('#firmalife:foods/raw_eggs'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), not_rotten('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
@@ -553,6 +601,7 @@ def generate_recipes():
     generate_anvil_recipes()
     generate_barrel_recipes()
     generate_crafting_recipes()
+    generate_knapping_recipes()
     generate_heat_recipes()
     generate_mixing_recipes()
     generate_pot_recipes()
@@ -582,6 +631,7 @@ def generate_item_tags():
     rm.item_tag('magnifying_glasses', *[f'artisanal:metal/magnifying_glass/{metal}' for metal in MAGNIFYING_GLASS_METALS])
     rm.item_tag('crafting_catalysts', '#artisanal:magnifying_glasses')
     rm.item_tag('foods/can_be_canned', *[f'#tfc:foods/{tag}' for tag in CANNABLE_FOOD_TAGS], '#firmalife:foods/flatbreads', '#firmalife:foods/slices')
+    rm.item_tag('foods/can_be_potted', *[f'#tfc:foods/{tag}' for tag in POTTABLE_FOOD_TAGS])
     rm.item_tag('can_openers', *[f'artisanal:metal/can_opener/{metal}' for metal in METALS if 'tool' in METALS[metal].types])
     rm.item_tag('rods/metal', *[f'tfc:metal/rod/{metal}' for metal in METALS if 'utility' in METALS[metal].types])
     rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'])
