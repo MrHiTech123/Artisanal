@@ -10,17 +10,15 @@
       }
     },
     {
-      "tag": "tfc:foods/sealed_preserves"
-    },
-    {
-      "tag": "tfc:foods/sealed_preserves"
+      "tag": "tfc:dynamic_bowl_items"
     }
   ],
   "result": {
-    "item": "tfc:empty_jar",
-    "count": 2
+    "modifiers": [
+      "tfc:empty_bowl"
+    ]
   },
   "primary_ingredient": {
-    "tag": "tfc:foods/sealed_preserves"
+    "tag": "tfc:dynamic_bowl_items"
   }
 }

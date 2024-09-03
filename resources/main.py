@@ -473,9 +473,7 @@ def generate_crafting_recipes():
     
     for cleanable in CLEANABLES:
         advanced_shapeless(rm, ('crafting', 'clean', cleanable.item_name, 'water'), (fluid_item_ingredient('100 minecraft:water'), cleanable.input_item), utils.item_stack(cleanable.output_item), primary_ingredient=cleanable.input_item)
-        if isinstance(cleanable.output_item, str):
-            for i in range(1, 8 + 1):
-                advanced_shapeless(rm, ('crafting', 'clean', cleanable.item_name, f'soapy_water_{i}'), (fluid_item_ingredient('100 artisanal:soapy_water'), *([cleanable.input_item] * i)), utils.item_stack((i, cleanable.output_item)), primary_ingredient=cleanable.input_item)
+        advanced_shapeless(rm, ('crafting', 'clean', cleanable.item_name, 'soapy_water'), (fluid_item_ingredient('100 artisanal:soapy_water'), cleanable.input_item), utils.item_stack(cleanable.output_item), primary_ingredient=cleanable.input_item)
     rm.crafting_shapeless(('ceramic', 'small_pot_and_lid'), ('artisanal:ceramic/small_pot', 'artisanal:ceramic/small_pot_lid'), 'artisanal:ceramic/small_pot_and_lid')
 
 def generate_knapping_recipes():

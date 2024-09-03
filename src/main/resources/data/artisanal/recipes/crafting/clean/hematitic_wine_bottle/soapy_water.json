@@ -10,26 +10,13 @@
       }
     },
     {
-      "tag": "tfc:foods/sealed_preserves"
-    },
-    {
-      "tag": "tfc:foods/sealed_preserves"
-    },
-    {
-      "tag": "tfc:foods/sealed_preserves"
-    },
-    {
-      "tag": "tfc:foods/sealed_preserves"
-    },
-    {
-      "tag": "tfc:foods/sealed_preserves"
+      "item": "firmalife:hematitic_wine_bottle"
     }
   ],
   "result": {
-    "item": "tfc:empty_jar",
-    "count": 5
+    "item": "firmalife:empty_hematitic_wine_bottle"
   },
   "primary_ingredient": {
-    "tag": "tfc:foods/sealed_preserves"
+    "item": "firmalife:hematitic_wine_bottle"
   }
 }

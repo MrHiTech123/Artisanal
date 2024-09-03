@@ -11,29 +11,10 @@
     },
     {
       "tag": "tfc:foods/preserves"
-    },
-    {
-      "tag": "tfc:foods/preserves"
-    },
-    {
-      "tag": "tfc:foods/preserves"
-    },
-    {
-      "tag": "tfc:foods/preserves"
-    },
-    {
-      "tag": "tfc:foods/preserves"
-    },
-    {
-      "tag": "tfc:foods/preserves"
-    },
-    {
-      "tag": "tfc:foods/preserves"
     }
   ],
   "result": {
-    "item": "tfc:empty_jar",
-    "count": 7
+    "item": "tfc:empty_jar"
   },
   "primary_ingredient": {
     "tag": "tfc:foods/preserves"

@@ -10,23 +10,13 @@
       }
     },
     {
-      "item": "firmalife:volcanic_wine_bottle"
-    },
-    {
-      "item": "firmalife:volcanic_wine_bottle"
-    },
-    {
-      "item": "firmalife:volcanic_wine_bottle"
-    },
-    {
-      "item": "firmalife:volcanic_wine_bottle"
+      "item": "artisanal:dirty_jar"
     }
   ],
   "result": {
-    "item": "firmalife:empty_volcanic_wine_bottle",
-    "count": 4
+    "item": "tfc:empty_jar"
   },
   "primary_ingredient": {
-    "item": "firmalife:volcanic_wine_bottle"
+    "item": "artisanal:dirty_jar"
   }
 }

@@ -10,14 +10,13 @@
       }
     },
     {
-      "item": "artisanal:metal/dirty_tin_can"
+      "tag": "tfc:foods/sealed_preserves"
     }
   ],
   "result": {
-    "item": "artisanal:metal/tin_can",
-    "count": 1
+    "item": "tfc:empty_jar"
   },
   "primary_ingredient": {
-    "item": "artisanal:metal/dirty_tin_can"
+    "tag": "tfc:foods/sealed_preserves"
   }
 }
