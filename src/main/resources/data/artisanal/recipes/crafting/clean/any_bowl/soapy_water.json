@@ -10,14 +10,15 @@
       }
     },
     {
-      "item": "tfc:dirty_jute_net"
+      "tag": "firmalife:foods/washable"
     }
   ],
   "result": {
-    "item": "tfc:jute_net",
-    "count": 1
+    "modifiers": [
+      "firmalife:empty_pan"
+    ]
   },
   "primary_ingredient": {
-    "item": "tfc:dirty_jute_net"
+    "tag": "firmalife:foods/washable"
   }
 }

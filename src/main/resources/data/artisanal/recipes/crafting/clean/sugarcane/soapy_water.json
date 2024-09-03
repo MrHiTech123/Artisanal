@@ -10,20 +10,24 @@
       }
     },
     {
-      "item": "firmalife:olivine_wine_bottle"
-    },
-    {
-      "item": "firmalife:olivine_wine_bottle"
-    },
-    {
-      "item": "firmalife:olivine_wine_bottle"
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/sugarcane"
+      }
     }
   ],
   "result": {
-    "item": "firmalife:empty_olivine_wine_bottle",
-    "count": 3
+    "stack": {
+      "item": "artisanal:food/cleaned_sugarcane"
+    },
+    "modifiers": [
+      "tfc:copy_food"
+    ]
   },
   "primary_ingredient": {
-    "item": "firmalife:olivine_wine_bottle"
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "item": "tfc:food/sugarcane"
+    }
   }
 }
