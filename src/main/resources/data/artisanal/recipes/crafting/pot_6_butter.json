@@ -69,7 +69,14 @@
           }
         ]
       },
+      {
+        "type": "artisanal:inherit_decay",
+        "decay_multiplier": 0.5
+      },
       "artisanal:homogenous_ingredients"
     ]
+  },
+  "primary_ingredient": {
+    "tag": "artisanal:foods/can_be_potted"
   }
 }

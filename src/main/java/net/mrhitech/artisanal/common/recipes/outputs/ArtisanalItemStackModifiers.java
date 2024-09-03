@@ -16,6 +16,7 @@ public class ArtisanalItemStackModifiers {
         register("copy_dynamic_food_never_expires", CopyDynamicFoodNeverExpiresModifier.INSTANCE);
         register("extract_canned_food", ExtractCannedFoodModifier.INSTANCE);
         register("homogenous_ingredients", HomogenousIngredientsModifier.INSTANCE);
+        register("inherit_decay", InheritDecayModifier.Serializer.INSTANCE);
     }
     
     

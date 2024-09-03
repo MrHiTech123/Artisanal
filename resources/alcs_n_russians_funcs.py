@@ -2548,7 +2548,8 @@ def item_stack_provider(
     dye_color: str = None,  # applies a dye color to leather dye-able armor
     other_modifier: str | Json = None,
     other_other_modifier: str = None,
-    meal: Json = None  # makes a meal from input specified in json
+    meal: Json = None,  # makes a meal from input specified in json
+    inherit_decay: float = None
 ) -> Json:
     if isinstance(data_in, dict):
         return data_in
@@ -2573,6 +2574,7 @@ def item_stack_provider(
         ({'type': 'tfc:remove_trait', 'trait': remove_trait}, remove_trait is not None),
         ({'type': 'tfc:dye_leather', 'color': dye_color}, dye_color is not None),
         ({'type': 'tfc:meal', **(meal if meal is not None else {})}, meal is not None),
+        ({'type': 'artisanal:inherit_decay', 'decay_multiplier': inherit_decay}, inherit_decay is not None),
         (other_modifier, other_modifier is not None),
         (other_other_modifier, other_other_modifier is not None),
     ) if v]
