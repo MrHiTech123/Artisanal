@@ -63,8 +63,15 @@
             }
           ]
         },
+        {
+          "type": "artisanal:inherit_decay",
+          "decay_multiplier": 1
+        },
         "artisanal:homogenous_ingredients"
       ]
+    },
+    "primary_ingredient": {
+      "tag": "artisanal:foods/can_be_canned"
     }
   }
 }
