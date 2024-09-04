@@ -2559,10 +2559,9 @@ def item_stack_provider(
         # First, modifiers that replace the entire stack (copy input style)
         # Then, modifiers that only mutate an existing stack
         ('tfc:empty_bowl', empty_bowl),
+        ({'type': 'tfc:meal', **(meal if meal is not None else {})}, meal is not None),
         ('tfc:copy_input', copy_input),
         ('tfc:copy_heat', copy_heat),
-        ('tfc:copy_food', copy_food),
-        ('tfc:copy_oldest_food', copy_oldest_food),
         ('tfc:reset_food', reset_food),
         ('tfc:copy_forging_bonus', copy_forging),
         ('tfc:add_bait_to_rod', add_bait_to_rod),
@@ -2573,10 +2572,11 @@ def item_stack_provider(
         ({'type': 'tfc:add_trait', 'trait': add_trait}, add_trait is not None),
         ({'type': 'tfc:remove_trait', 'trait': remove_trait}, remove_trait is not None),
         ({'type': 'tfc:dye_leather', 'color': dye_color}, dye_color is not None),
-        ({'type': 'tfc:meal', **(meal if meal is not None else {})}, meal is not None),
         ({'type': 'artisanal:inherit_decay', 'decay_multiplier': inherit_decay}, inherit_decay is not None),
         (other_modifier, other_modifier is not None),
         (other_other_modifier, other_other_modifier is not None),
+        ('tfc:copy_food', copy_food),
+        ('tfc:copy_oldest_food', copy_oldest_food)
     ) if v]
     if modifiers:
         return {
