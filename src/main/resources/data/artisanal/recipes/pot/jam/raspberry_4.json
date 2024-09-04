@@ -43,5 +43,14 @@
     "item": "tfc:jar/raspberry",
     "count": 4
   },
-  "texture": "tfc:block/jar/raspberry"
+  "texture": "tfc:block/jar/raspberry",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

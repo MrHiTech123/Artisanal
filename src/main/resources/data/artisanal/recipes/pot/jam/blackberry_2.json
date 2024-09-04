@@ -31,5 +31,14 @@
     "item": "tfc:jar/blackberry",
     "count": 2
   },
-  "texture": "tfc:block/jar/blackberry"
+  "texture": "tfc:block/jar/blackberry",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

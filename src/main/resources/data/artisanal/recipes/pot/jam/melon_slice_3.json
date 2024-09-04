@@ -37,5 +37,14 @@
     "item": "tfc:jar/melon_slice",
     "count": 3
   },
-  "texture": "tfc:block/jar/melon_slice"
+  "texture": "tfc:block/jar/melon_slice",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

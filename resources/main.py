@@ -564,21 +564,43 @@ def generate_pot_recipes():
                 'temperature': 300,
                 'result': utils.item_stack('%s tfc:jar/%s' % (count, fruit)),
                 'texture': 'tfc:block/jar/%s' % fruit
-            })
+            }, conditions=[{'type': 'forge:not', 'value': {'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}}])
             disable_recipe(rm, f'tfc:pot/jam_{fruit}_{count}')
-        
+            
+            jam_food = not_rotten(utils.ingredient('tfc:food/%s' % fruit))
+            rm.recipe(('pot', 'jam', 'lithic', f'{fruit}_{count}'), 'tfc:pot_jam', {
+                'ingredients': [jam_food] * count + [not_rotten(utils.ingredient('#tfc:sweetener'))],
+                'fluid_ingredient': fluid_stack_ingredient('100 minecraft:water'),
+                'duration': 500,
+                'temperature': 300,
+                'result': utils.item_stack('%s tfc:jar/%s_unsealed' % (count, fruit)),
+                'texture': 'tfc:block/jar/%s' % fruit
+            }, conditions=[{'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}])
+            
+            
+            
         for fruit in FL_FRUITS:
-            ing = not_rotten(has_trait('firmalife:food/%s' % fruit, 'firmalife:dried', True))
-            rm.recipe(('pot', 'jam_%s_%s' % (fruit, count)), 'tfc:pot_jam', {
-                'ingredients': [ing] * count + [utils.ingredient('#tfc:sweetener')],
+            ingredient = not_rotten(has_trait('firmalife:food/%s' % fruit, 'firmalife:dried', True))
+            rm.recipe(('pot', 'jam', f'{fruit}_{count}'), 'tfc:pot_jam', {
+                'ingredients': [ingredient] * count + [utils.ingredient('#tfc:sweetener')],
                 'fluid_ingredient': fluid_stack_ingredient('100 minecraft:water'),
                 'duration': 500,
                 'temperature': 300,
                 'result': utils.item_stack('%s firmalife:jar/%s' % (count, fruit)),
                 'texture': 'firmalife:block/jar/%s' % fruit
-            })
+            }, conditions=[{'type': 'forge:not', 'value': {'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}}])
             disable_recipe(rm, f'firmalife:pot/jam_{fruit}_{count}')
-        
+            
+            rm.recipe(('pot', 'jam', 'lithic', f'{fruit}_{count}'), 'tfc:pot_jam', {
+                'ingredients': [ingredient] * count + [utils.ingredient('#tfc:sweetener')],
+                'fluid_ingredient': fluid_stack_ingredient('100 minecraft:water'),
+                'duration': 500,
+                'temperature': 300,
+                'result': utils.item_stack('%s firmalife:jar/%s_unsealed' % (count, fruit)),
+                'texture': 'firmalife:block/jar/%s' % fruit
+            }, conditions=[{'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}])
+            
+            
         
     
 def generate_quern_recipes():

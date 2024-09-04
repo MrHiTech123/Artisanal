@@ -31,5 +31,14 @@
     "item": "tfc:jar/green_apple",
     "count": 2
   },
-  "texture": "tfc:block/jar/green_apple"
+  "texture": "tfc:block/jar/green_apple",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

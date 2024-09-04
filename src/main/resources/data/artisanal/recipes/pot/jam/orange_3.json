@@ -37,5 +37,14 @@
     "item": "tfc:jar/orange",
     "count": 3
   },
-  "texture": "tfc:block/jar/orange"
+  "texture": "tfc:block/jar/orange",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

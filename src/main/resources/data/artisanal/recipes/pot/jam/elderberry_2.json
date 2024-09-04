@@ -31,5 +31,14 @@
     "item": "tfc:jar/elderberry",
     "count": 2
   },
-  "texture": "tfc:block/jar/elderberry"
+  "texture": "tfc:block/jar/elderberry",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

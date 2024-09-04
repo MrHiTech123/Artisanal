@@ -43,5 +43,14 @@
     "item": "tfc:jar/wintergreen_berry",
     "count": 4
   },
-  "texture": "tfc:block/jar/wintergreen_berry"
+  "texture": "tfc:block/jar/wintergreen_berry",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

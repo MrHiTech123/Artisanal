@@ -43,5 +43,14 @@
     "item": "tfc:jar/strawberry",
     "count": 4
   },
-  "texture": "tfc:block/jar/strawberry"
+  "texture": "tfc:block/jar/strawberry",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

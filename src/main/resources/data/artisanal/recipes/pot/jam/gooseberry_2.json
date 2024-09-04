@@ -31,5 +31,14 @@
     "item": "tfc:jar/gooseberry",
     "count": 2
   },
-  "texture": "tfc:block/jar/gooseberry"
+  "texture": "tfc:block/jar/gooseberry",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

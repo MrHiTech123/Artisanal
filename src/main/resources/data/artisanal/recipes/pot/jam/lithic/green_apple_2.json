@@ -1,0 +1,41 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:pot_jam",
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/green_apple"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/green_apple"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "tfc:sweetener"
+      }
+    }
+  ],
+  "fluid_ingredient": {
+    "ingredient": "minecraft:water",
+    "amount": 100
+  },
+  "duration": 500,
+  "temperature": 300,
+  "result": {
+    "item": "tfc:jar/green_apple_unsealed",
+    "count": 2
+  },
+  "texture": "tfc:block/jar/green_apple",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "lithicaddon"
+    }
+  ]
+}

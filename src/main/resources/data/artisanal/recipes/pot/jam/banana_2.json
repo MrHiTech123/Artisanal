@@ -31,5 +31,14 @@
     "item": "tfc:jar/banana",
     "count": 2
   },
-  "texture": "tfc:block/jar/banana"
+  "texture": "tfc:block/jar/banana",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

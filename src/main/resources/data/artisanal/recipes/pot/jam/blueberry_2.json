@@ -31,5 +31,14 @@
     "item": "tfc:jar/blueberry",
     "count": 2
   },
-  "texture": "tfc:block/jar/blueberry"
+  "texture": "tfc:block/jar/blueberry",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

@@ -31,5 +31,14 @@
     "item": "tfc:jar/peach",
     "count": 2
   },
-  "texture": "tfc:block/jar/peach"
+  "texture": "tfc:block/jar/peach",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }
