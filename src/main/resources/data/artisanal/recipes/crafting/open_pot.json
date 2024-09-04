@@ -12,7 +12,8 @@
       ],
       "result": {
         "modifiers": [
-          "artisanal:extract_canned_food"
+          "artisanal:extract_canned_food",
+          "tfc:copy_food"
         ]
       },
       "primary_ingredient": {

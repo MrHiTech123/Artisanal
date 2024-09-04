@@ -395,9 +395,9 @@ def generate_crafting_recipes():
         catalyst_shapeless(rm, ('crafting', gem + '_cut'), ('tfc:ore/%s' % gem, 'tfc:sandpaper', '#artisanal:magnifying_glasses'), 'tfc:gem/%s' % gem).with_advancement('tfc:sandpaper')
         disable_recipe(rm, f'tfc:{gem}_cut')
     for i in range(1, 6 + 1):
-        damage_shapeless(rm, ('crafting', f'can_{i}'), (heatable_ingredient('artisanal:metal/tin_can', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider('artisanal:metal/sealed_tin_can', meal=canning_modifier, inherit_decay=1, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_canned')
-        advanced_shapeless(rm, ('crafting', f'pot_{i}'), ('artisanal:ceramic/small_pot_and_lid', fluid_item_ingredient('100 #artisanal:rendered_fats'), 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, inherit_decay=0.5, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
-        advanced_shapeless(rm, ('crafting', f'pot_{i}_butter'), ('artisanal:ceramic/small_pot_and_lid', 'firmalife:food/butter', 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, inherit_decay=0.5, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
+        damage_shapeless(rm, ('crafting', f'can_{i}'), (heatable_ingredient('artisanal:metal/tin_can', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider('artisanal:metal/sealed_tin_can', meal=canning_modifier, inherit_decay=1, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_canned')
+        advanced_shapeless(rm, ('crafting', f'pot_{i}'), ('artisanal:ceramic/small_pot_and_lid', fluid_item_ingredient('100 #artisanal:rendered_fats'), 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, inherit_decay=0.5, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
+        advanced_shapeless(rm, ('crafting', f'pot_{i}_butter'), ('artisanal:ceramic/small_pot_and_lid', 'firmalife:food/butter', 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, inherit_decay=0.5, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
         
     for openable_can_item in OPENABLE_CAN_ITEMS:
         rm.recipe(('crafting', f'open_{openable_can_item}_hammer'), 'tfc:extra_products_shapeless_crafting',
@@ -408,7 +408,7 @@ def generate_crafting_recipes():
                     "recipe": {
                         "type": "tfc:advanced_shapeless_crafting",
                         "ingredients": [utils.ingredient(f'artisanal:metal/{openable_can_item}'), utils.ingredient("#tfc:hammers")],
-                        "result": item_stack_provider(other_modifier="artisanal:extract_canned_food"),
+                        "result": item_stack_provider(other_modifier="artisanal:extract_canned_food", copy_food=(openable_can_item == 'sealed_tin_can')),
                         "primary_ingredient": utils.ingredient(f"artisanal:metal/{openable_can_item}")
                     }
                 },
@@ -425,7 +425,7 @@ def generate_crafting_recipes():
                     "recipe": {
                         "type": "tfc:advanced_shapeless_crafting",
                         "ingredients": [utils.ingredient(f'artisanal:metal/{openable_can_item}'), utils.ingredient("#artisanal:can_openers")],
-                        "result": item_stack_provider(other_modifier="artisanal:extract_canned_food"),
+                        "result": item_stack_provider(other_modifier="artisanal:extract_canned_food", copy_food=(openable_can_item == 'sealed_tin_can')),
                         "primary_ingredient": utils.ingredient(f"artisanal:metal/{openable_can_item}")
                     }
                 },
@@ -443,7 +443,7 @@ def generate_crafting_recipes():
                 "recipe": {
                     "type": "tfc:advanced_shapeless_crafting",
                     "ingredients": [utils.ingredient('artisanal:ceramic/closed_small_pot')],
-                    "result": item_stack_provider(other_modifier="artisanal:extract_canned_food"),
+                    "result": item_stack_provider(other_modifier="artisanal:extract_canned_food", copy_food=True),
                     "primary_ingredient": utils.ingredient("artisanal:ceramic/closed_small_pot")
                 }
             },
