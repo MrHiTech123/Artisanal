@@ -589,6 +589,11 @@ def generate_quern_recipes():
 def generate_vat_recipes():
     print('\tGenerating vat recipes...')
     vat_recipe(rm, 'sugar_water', not_rotten('#tfc:sweetener'), '1000 minecraft:water', output_fluid='500 firmalife:sugar_water')
+    vat_recipe(rm, 'perishable_sugar', 'minecraft:stick', '200 artisanal:sugarcane_juice', 'artisanal:perishable_sugar', '20 artisanal:molasses')
+    vat_recipe(rm, 'perishable_sugar_from_filtered', 'minecraft:stick', '200 artisanal:filtered_sugarcane_juice', 'artisanal:perishable_sugar', '20 artisanal:molasses')
+    vat_recipe(rm, 'non_perishable_sugar', 'minecraft:stick', '200 artisanal:clarified_sugarcane_juice', 'artisanal:non_perishable_sugar', '20 artisanal:molasses')
+    
+    
     disable_recipe(rm, 'firmalife:vat/sugar_water')
     
     
