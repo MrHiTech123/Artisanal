@@ -2007,7 +2007,6 @@ def food_item(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredi
         'grain': grain,
         'dairy': dairy
     })
-    rm.item_tag('foods', ingredient)
     if category in (Category.fruit, Category.vegetable):
         rm.item_tag('foods/%ss' % category.name.lower(), ingredient)
     if category in (Category.meat, Category.cooked_meat):
