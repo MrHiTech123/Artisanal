@@ -31,5 +31,14 @@
     "item": "tfc:jar/snowberry",
     "count": 2
   },
-  "texture": "tfc:block/jar/snowberry"
+  "texture": "tfc:block/jar/snowberry",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

@@ -37,5 +37,14 @@
     "item": "tfc:jar/cranberry",
     "count": 3
   },
-  "texture": "tfc:block/jar/cranberry"
+  "texture": "tfc:block/jar/cranberry",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

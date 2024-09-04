@@ -43,5 +43,14 @@
     "item": "tfc:jar/cherry",
     "count": 4
   },
-  "texture": "tfc:block/jar/cherry"
+  "texture": "tfc:block/jar/cherry",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

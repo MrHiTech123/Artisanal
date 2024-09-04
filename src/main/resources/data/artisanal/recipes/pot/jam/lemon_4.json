@@ -43,5 +43,14 @@
     "item": "tfc:jar/lemon",
     "count": 4
   },
-  "texture": "tfc:block/jar/lemon"
+  "texture": "tfc:block/jar/lemon",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

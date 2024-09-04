@@ -37,5 +37,14 @@
     "item": "tfc:jar/plum",
     "count": 3
   },
-  "texture": "tfc:block/jar/plum"
+  "texture": "tfc:block/jar/plum",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }

@@ -37,5 +37,14 @@
     "item": "tfc:jar/cloudberry",
     "count": 3
   },
-  "texture": "tfc:block/jar/cloudberry"
+  "texture": "tfc:block/jar/cloudberry",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ]
 }
