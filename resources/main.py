@@ -167,8 +167,8 @@ def generate_item_foods():
     print('\tGenerating item foods...')
     food_item(rm, ('cleaned_sugarcane'), 'artisanal:food/cleaned_sugarcane', Category.other, 4, 0, 0, 0.5)
     food_item(rm, ('perishable_sugar'), 'artisanal:perishable_sugar', Category.other, 0, 0, 0, 3)
-    food_item(rm, ('non_perishable_sugar'), 'artisanal:non_perishable_sugar', Category.other, 0, 0, 0, 0)
-    food_item(rm, ('sugar'), 'minecraft:sugar', Category.other, 0, 0, 0, 0)
+    food_item(rm, ('non_perishable_sugar'), 'artisanal:non_perishable_sugar', Category.other, 0, 0, 0, 0, tag_as_food=False)
+    food_item(rm, ('sugar'), 'minecraft:sugar', Category.other, 0, 0, 0, 0, tag_as_food=False)
     food_item(rm, ('maple_sugar'), 'afc:maple_sugar', Category.other, 0, 0, 0, 0, tag_as_food=False)
     food_item(rm, ('birch_sugar'), 'afc:birch_sugar', Category.other, 0, 0, 0, 0, tag_as_food=False)
     food_item(rm, ('honey'), 'firmalife:raw_honey', Category.other, 0, 0, 0, 0, tag_as_food=False)
@@ -537,7 +537,8 @@ def generate_pot_recipes():
     scalable_pot_recipe(rm, ('condensed_milk'), '2 minecraft:milk', '1 artisanal:condensed_milk', None, 3000, 100)
     scalable_pot_recipe(rm, ('milk_flakes'), '100 artisanal:condensed_milk', None, [{'item': 'artisanal:milk_flakes'}], 3000, 100)
     scalable_pot_recipe(rm, ('salt'), '125 tfc:salt_water', None, [{'item': 'tfc:powder/salt'}], 2000, 300)
-    scalable_pot_recipe(rm, ('perishable_sugar'), '200 artisanal:sugarcane_juice', '20 artisanal:molasses', [{'item': 'artisanal:perishable_sugar'}], 2000, 107)
+    scalable_pot_recipe(rm, ('perishable_sugar'), '200 artisanal:sugarcane_juice', '20 artisanal:molasses', [item_stack_provider('artisanal:perishable_sugar')], 2000, 107)
+    scalable_pot_recipe(rm, ('perishable_sugar_from_filtered'), '200 artisanal:filtered_sugarcane_juice', '20 artisanal:molasses', [item_stack_provider('artisanal:perishable_sugar')], 2000, 107)
     scalable_pot_recipe(rm, ('non_perishable_sugar'), '200 artisanal:clarified_sugarcane_juice', '20 artisanal:molasses', [{'item': 'artisanal:non_perishable_sugar'}], 2000, 107)
     scalable_pot_recipe(rm, ('maple_sap_concentrate'), '10 afc:maple_sap', '1 afc:maple_sap_concentrate')
     scalable_pot_recipe(rm, ('maple_syrup'), '5 afc:maple_sap_concentrate', '1 afc:maple_syrup')
@@ -634,6 +635,7 @@ def generate_item_tags():
     rm.item_tag('rods/metal', *[f'tfc:metal/rod/{metal}' for metal in METALS if 'utility' in METALS[metal].types])
     rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'])
     rm.item_tag('tfc:compost_browns_high', 'artisanal:dry_bagasse')
+    rm.item_tag('tfc:foods', '#tfc:sweetener')
 
 def generate_tags():
     print('Generating tags...')

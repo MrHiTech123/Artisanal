@@ -4,7 +4,6 @@
   "values": [
     "artisanal:food/cleaned_sugarcane",
     "artisanal:perishable_sugar",
-    "artisanal:non_perishable_sugar",
-    "minecraft:sugar"
+    "#tfc:sweetener"
   ]
 }

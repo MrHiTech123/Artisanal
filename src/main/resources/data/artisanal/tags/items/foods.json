@@ -2,13 +2,6 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "artisanal:food/cleaned_sugarcane",
-    "artisanal:perishable_sugar",
-    "artisanal:non_perishable_sugar",
-    "minecraft:sugar",
-    "afc:maple_sugar",
-    "afc:birch_sugar",
-    "firmalife:raw_honey",
     "artisanal:metal/sealed_tin_can",
     "artisanal:metal/sterilized_tin_can",
     "artisanal:ceramic/closed_small_pot"
