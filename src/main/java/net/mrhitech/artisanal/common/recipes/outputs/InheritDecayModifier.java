@@ -33,8 +33,9 @@ public record InheritDecayModifier(float decayMultiplier) implements ItemStackMo
                         inHandler.getData().nutrients(),
                         baseDecayMod.get() * decayMultiplier
                 );
-                
-                inHandler.setFood(replacedData);
+                if (baseDecayMod.get() != -1.0) {
+                    inHandler.setFood(replacedData);
+                }
                 
             }
         });
