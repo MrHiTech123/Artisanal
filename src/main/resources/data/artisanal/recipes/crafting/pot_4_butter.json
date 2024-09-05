@@ -57,6 +57,7 @@
           }
         ]
       },
+      "artisanal:remove_butter",
       {
         "type": "artisanal:inherit_decay",
         "decay_multiplier": 0.5

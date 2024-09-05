@@ -2539,6 +2539,7 @@ def item_stack_provider(
     add_powder: bool = False,  # glassworking specific
     add_heat: float = None,
     cap_heat: float = None,
+    remove_butter: bool = None,
     add_trait: str = None,  # applies a food trait and adjusts decay accordingly
     remove_trait: str = None,  # removes a food trait and adjusts decay accordingly
     empty_bowl: bool = False,  # replaces a soup with its bowl
@@ -2559,6 +2560,7 @@ def item_stack_provider(
         # Then, modifiers that only mutate an existing stack
         ('tfc:empty_bowl', empty_bowl),
         ({'type': 'tfc:meal', **(meal if meal is not None else {})}, meal is not None),
+        ('artisanal:remove_butter', remove_butter),
         ('tfc:copy_input', copy_input),
         ('tfc:copy_heat', copy_heat),
         ('tfc:reset_food', reset_food),

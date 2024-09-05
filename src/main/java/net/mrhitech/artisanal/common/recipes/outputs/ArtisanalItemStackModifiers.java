@@ -17,6 +17,7 @@ public class ArtisanalItemStackModifiers {
         register("extract_canned_food", ExtractCannedFoodModifier.INSTANCE);
         register("homogenous_ingredients", HomogenousIngredientsModifier.INSTANCE);
         register("inherit_decay", InheritDecayModifier.Serializer.INSTANCE);
+        register("remove_butter", RemoveButterModifier.INSTANCE);
     }
     
     

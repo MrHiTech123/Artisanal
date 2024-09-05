@@ -1,0 +1,22 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "type": "tfc:fluid_item",
+      "fluid_ingredient": {
+        "ingredient": "artisanal:soapy_water",
+        "amount": 100
+      }
+    },
+    {
+      "item": "artisanal:ceramic/dirty_small_pot"
+    }
+  ],
+  "result": {
+    "item": "artisanal:ceramic/small_pot"
+  },
+  "primary_ingredient": {
+    "item": "artisanal:ceramic/dirty_small_pot"
+  }
+}
