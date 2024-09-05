@@ -3,7 +3,7 @@
   "type": "tfc:advanced_shapeless_crafting",
   "ingredients": [
     {
-      "item": "artisanal:ceramic/small_pot_and_lid"
+      "item": "artisanal:ceramic/small_pot"
     },
     {
       "type": "tfc:fluid_item",

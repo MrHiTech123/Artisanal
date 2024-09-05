@@ -65,10 +65,7 @@ public class ArtisanalCreativeTabs {
             
             event.accept(ArtisanalItems.DIRTY_SMALL_POT);
             event.accept(ArtisanalItems.SMALL_POT);
-            event.accept(ArtisanalItems.SMALL_POT_LID);
-            event.accept(ArtisanalItems.SMALL_POT_AND_LID);
             event.accept(ArtisanalItems.UNFIRED_SMALL_POT);
-            event.accept(ArtisanalItems.UNFIRED_SMALL_POT_LID);
             event.accept(ArtisanalItems.CLOSED_SMALL_POT);
         }
         
