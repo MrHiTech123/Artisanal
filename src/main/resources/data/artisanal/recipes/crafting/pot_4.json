@@ -65,7 +65,7 @@
       },
       {
         "type": "artisanal:inherit_decay",
-        "decay_multiplier": 0.5
+        "decay_multiplier": 0.33
       },
       "artisanal:homogenous_ingredients",
       "tfc:copy_oldest_food"
