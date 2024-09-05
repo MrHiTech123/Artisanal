@@ -4,9 +4,9 @@
   "knapping_type": "tfc:clay",
   "outside_slot_required": false,
   "pattern": [
-    "XXX  ",
-    " X   ",
-    "  X X",
+    " XX  ",
+    "XX   ",
+    "X X X",
     "  XXX",
     "  XXX"
   ],

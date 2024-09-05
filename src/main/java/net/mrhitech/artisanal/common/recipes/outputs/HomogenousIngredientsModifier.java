@@ -6,6 +6,7 @@ import net.dries007.tfc.common.recipes.outputs.ItemStackModifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 
 import java.util.List;
