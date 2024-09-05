@@ -2,7 +2,6 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "artisanal:ceramic/unfired_small_pot",
-    "artisanal:ceramic/unfired_small_pot_lid"
+    "artisanal:ceramic/unfired_small_pot"
   ]
 }

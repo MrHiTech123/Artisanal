@@ -199,9 +199,7 @@ def generate_item_heats():
     for metal, metal_data in STEELS.items():
         item_heat(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
     
-    item_heat(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', POTTERY_HEAT_CAPACITY)
-    item_heat(rm, ('ceramic', 'unfired_small_pot_lid'), 'artisanal:ceramic/unfired_small_pot_lid', POTTERY_HEAT_CAPACITY)
-    
+    item_heat(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', POTTERY_HEAT_CAPACITY)    
     
 def generate_data():
     print('Generating data...')
@@ -281,10 +279,7 @@ def generate_item_models():
     
     rm.item_model(('ceramic', 'dirty_small_pot'), 'artisanal:item/ceramic/dirty_small_pot').with_lang(lang('dirty_small_pot'))
     rm.item_model(('ceramic', 'small_pot'), 'artisanal:item/ceramic/small_pot').with_lang(lang('small_pot'))
-    rm.item_model(('ceramic', 'small_pot_lid'), 'artisanal:item/ceramic/small_pot_lid').with_lang(lang('small_pot_lid'))
-    rm.item_model(('ceramic', 'small_pot_and_lid'), 'artisanal:item/ceramic/small_pot_and_lid').with_lang(lang('small_pot_and_lid'))
     rm.item_model(('ceramic', 'unfired_small_pot'), 'artisanal:item/ceramic/unfired_small_pot').with_lang(lang('unfired_small_pot'))
-    rm.item_model(('ceramic', 'unfired_small_pot_lid'), 'artisanal:item/ceramic/unfired_small_pot_lid').with_lang(lang('unfired_small_pot_lid'))
     rm.item_model(('ceramic', 'closed_small_pot'), 'artisanal:item/ceramic/closed_small_pot').with_lang(lang('closed_small_pot'))
     
     
@@ -396,8 +391,8 @@ def generate_crafting_recipes():
         disable_recipe(rm, f'tfc:{gem}_cut')
     for i in range(1, 6 + 1):
         damage_shapeless(rm, ('crafting', f'can_{i}'), (heatable_ingredient('artisanal:metal/tin_can', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider('artisanal:metal/sealed_tin_can', meal=canning_modifier, inherit_decay=1, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_canned')
-        advanced_shapeless(rm, ('crafting', f'pot_{i}'), ('artisanal:ceramic/small_pot_and_lid', fluid_item_ingredient('100 #artisanal:rendered_fats'), 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, inherit_decay=0.5, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
-        advanced_shapeless(rm, ('crafting', f'pot_{i}_butter'), ('artisanal:ceramic/small_pot_and_lid', 'firmalife:food/butter', 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, inherit_decay=0.5, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
+        advanced_shapeless(rm, ('crafting', f'pot_{i}'), ('artisanal:ceramic/small_pot', fluid_item_ingredient('100 #artisanal:rendered_fats'), 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, inherit_decay=0.5, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
+        advanced_shapeless(rm, ('crafting', f'pot_{i}_butter'), ('artisanal:ceramic/small_pot', 'firmalife:food/butter', 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, inherit_decay=0.5, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
         
     for openable_can_item in OPENABLE_CAN_ITEMS:
         rm.recipe(('crafting', f'open_{openable_can_item}_hammer'), 'tfc:extra_products_shapeless_crafting',
@@ -448,8 +443,7 @@ def generate_crafting_recipes():
                 }
             },
             "extra_products": [
-                item_stack_provider("artisanal:ceramic/dirty_small_pot"),
-                item_stack_provider("artisanal:ceramic/small_pot_lid")
+                item_stack_provider("artisanal:ceramic/dirty_small_pot")
             ]
         }
     )
@@ -474,14 +468,11 @@ def generate_crafting_recipes():
     for cleanable in CLEANABLES:
         advanced_shapeless(rm, ('crafting', 'clean', cleanable.item_name, 'water'), (fluid_item_ingredient('100 minecraft:water'), cleanable.input_item), utils.item_stack(cleanable.output_item), primary_ingredient=cleanable.input_item)
         advanced_shapeless(rm, ('crafting', 'clean', cleanable.item_name, 'soapy_water'), (fluid_item_ingredient('100 artisanal:soapy_water'), cleanable.input_item), utils.item_stack(cleanable.output_item), primary_ingredient=cleanable.input_item)
-    rm.crafting_shapeless(('ceramic', 'small_pot_and_lid'), ('artisanal:ceramic/small_pot', 'artisanal:ceramic/small_pot_lid'), 'artisanal:ceramic/small_pot_and_lid')
-
+    
+    
 def generate_knapping_recipes():
     print("\tGenerating knapping recipes...")
-    clay_knapping(rm, ('unfired_small_pot'), ('X X', 'XXX', 'XXX'), 'artisanal:ceramic/unfired_small_pot', False)
-    clay_knapping(rm, ('unfired_small_pot_lid'), (' X ', 'XXX'), 'artisanal:ceramic/unfired_small_pot_lid', False)
-    clay_knapping(rm, ('unfired_small_pot_lid_2'), (' X ', 'XXX', '   ', ' X ', 'XXX'), 'artisanal:ceramic/unfired_small_pot_lid', False)
-    
+    clay_knapping(rm, ('unfired_small_pot'), (' XX  ', 'XX   ', 'X X X', '  XXX', '  XXX'), 'artisanal:ceramic/unfired_small_pot', False)
     
 
 def generate_heat_recipes():
@@ -501,9 +492,7 @@ def generate_heat_recipes():
     for metal, metal_data in STEELS.items():
         heat_recipe(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.melt_temperature, result_fluid=f'50 tfc:metal/{metal}')
     
-    heat_recipe(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', POTTERY_MELT, 'artisanal:ceramic/small_pot')
-    heat_recipe(rm, ('ceramic', 'unfired_small_pot_lid'), 'artisanal:ceramic/unfired_small_pot_lid', POTTERY_MELT, 'artisanal:ceramic/small_pot_lid')
-    
+    heat_recipe(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', POTTERY_MELT, 'artisanal:ceramic/small_pot')    
     
     
 def generate_mixing_recipes():
