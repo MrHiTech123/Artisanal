@@ -653,6 +653,7 @@ def generate_item_tags():
     rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'])
     rm.item_tag('tfc:compost_browns_high', 'artisanal:dry_bagasse')
     rm.item_tag('tfc:foods', '#tfc:sweetener')
+    rm.item_tag('tfc:firepit_fuel', 'artisanal:dry_bagasse')
 
 def generate_tags():
     print('Generating tags...')
