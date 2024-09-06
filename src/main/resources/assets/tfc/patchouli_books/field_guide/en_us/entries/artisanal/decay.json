@@ -1,11 +1,42 @@
 {
-  "name": "Canned Food",
+  "name": "Preservation",
   "category": "tfc:artisanal",
   "icon": "artisanal:metal/sealed_tin_can",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Other forms of $(l:tfc:mechanics/decay)preservation$() are useful, but the ultimate form of preservation is $(thing)canning$(). This process involves sealing food in an airtight container, so that no microbes can reach it, and then heating the container to kill all of the microbes that are already on the food."
+      "text": "Various ways to preserve food past its normal expiration date.$(br2)$(bold)Contents$()$(br)$(li)$(l:tfc:artisanal/decay#potted_food)Potted food$(/t)$(li)$(l:tfc:artisanal/decay#canned_food)Canned food$(/t)"
+    },
+    {
+      "type": "tfc:knapping_recipe",
+      "recipe": "artisanal:clay_knapping/unfired_small_pot",
+      "text": "One way to preserve food is to pot it, a process in which the food is isolated in liquid fat and kept inside a pot.",
+      "anchor": "potted_food"
+    },
+    {
+      "type": "tfc:heat_recipe",
+      "recipe": "artisanal:heating/ceramic/unfired_small_pot",
+      "text": "The first step for this process is to knap a small pot from clay and fire it in a $(l:tfc:getting_started/pit_kiln)Pit Kiln$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/pot_1",
+      "text": "Then, craft the fired small pot with $(l:tfc:artisanal/soap#rendered_fats)Rendered Fat$(), $(l:tfc:the_world/ores_and_minerals#saltpeter)Saltpeter$(), and up to six $(thing)meats$() or $(thing)vegetables$() that you wish to pot. Pots can hold only one type of food at a time."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/pot_2",
+      "recipe2": "artisanal:crafting/pot_6"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/pot_4_butter",
+      "text": "If you have the Firmalife addon installed, you can also use $(thing)Butter$() in place of the Rendered Fat."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Other forms of $(l:tfc:mechanics/decay)preservation$() are useful, but the ultimate form of preservation is $(thing)canning$(). This process involves sealing food in an airtight container, so that no microbes can reach it, and then heating the container to kill all of the microbes that are already on the food.",
+      "anchor": "canned_food"
     },
     {
       "type": "tfc:welding_recipe",
