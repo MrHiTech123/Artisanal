@@ -30,15 +30,9 @@ public class DynamicBowlHandlerMixin{
         }
         else {
             ItemStack toReturn = new ItemStack(ArtisanalItems.DIRTY_BOWL.get());
-            System.out.println("Inside the function");
             toReturn.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> {
-                System.out.println("Inside the capability");
                 if (cap instanceof DynamicBowlHandler bowlHandler) {
-                    System.out.println(this.bowl.getItem());
                     bowlHandler.setBowl(this.bowl);
-                    System.out.println(this.bowl.getItem());
-                    System.out.println("Bowl handler's bowl is:");
-                    System.out.println(bowlHandler.getBowl());
                 }
             });
             
