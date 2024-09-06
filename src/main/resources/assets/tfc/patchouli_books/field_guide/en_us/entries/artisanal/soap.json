@@ -21,6 +21,7 @@
         "artisanal:textures/gui/book/pork_fat_to_lard.png",
         "artisanal:textures/gui/book/poultry_fat_to_schmaltz.png"
       ],
+      "anchor": "rendered_fats",
       "text": "Then, boil the animal fats in a pot with 100 mb water per fat item to render them."
     },
     {
@@ -42,7 +43,7 @@
     },
     {
       "type": "tfc:artisanal/three_instant_barrel_recipes",
-      "recipe": "artisanal:barrel/clean_jar_soapy_water",
+      "recipe": "artisanal:barrel/clean_empty_jar_soapy_water",
       "recipe2": "artisanal:barrel/clean_jute_net_soapy_water",
       "recipe3": "artisanal:barrel/clean_soup_bowl_soapy_water"
     }
