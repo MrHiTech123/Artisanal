@@ -2,9 +2,6 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "artisanal:metal/sealed_tin_can",
-    "artisanal:metal/sterilized_tin_can",
-    "artisanal:ceramic/closed_small_pot",
     "artisanal:dirty_bowl"
   ]
 }

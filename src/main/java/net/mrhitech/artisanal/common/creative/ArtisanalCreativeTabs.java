@@ -67,6 +67,8 @@ public class ArtisanalCreativeTabs {
             event.accept(ArtisanalItems.SMALL_POT);
             event.accept(ArtisanalItems.UNFIRED_SMALL_POT);
             event.accept(ArtisanalItems.CLOSED_SMALL_POT);
+            
+            event.accept(ArtisanalItems.DIRTY_BOWL);
         }
         
         if (event.getTabKey() == TFCCreativeTabs.METAL.tab().getKey()) {

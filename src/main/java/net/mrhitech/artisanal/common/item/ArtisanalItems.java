@@ -76,6 +76,7 @@ public class ArtisanalItems {
     public static final RegistryObject<Item> UNFIRED_SMALL_POT = ITEMS.register("ceramic/unfired_small_pot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CLOSED_SMALL_POT = ITEMS.register("ceramic/closed_small_pot", () -> new Item(new Item.Properties()));
     
+    public static final RegistryObject<Item> DIRTY_BOWL = ITEMS.register("dirty_bowl", () -> new Item(new Item.Properties()));
     
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
