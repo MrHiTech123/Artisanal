@@ -4,6 +4,7 @@
   "package": "net.mrhitech.artisanal.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "DynamicBowlHandlerMixin",
     "JarItemMixin"
   ],
   "client": [],

@@ -176,6 +176,7 @@ def generate_item_foods():
     dynamic_food_item(rm, ('sealed_tin_can'), 'artisanal:metal/sealed_tin_can', 'dynamic')
     dynamic_food_item(rm, ('sterilized_tin_can'), 'artisanal:metal/sterilized_tin_can', 'dynamic')
     dynamic_food_item(rm, ('closed_small_pot'), 'artisanal:ceramic/closed_small_pot', 'dynamic')
+    dynamic_food_item(rm, ('dirty_bowl'), 'artisanal:dirty_bowl', 'dynamic_bowl')
     
 def generate_item_heats():
     print('\tGenerating item heats...')
@@ -654,6 +655,7 @@ def generate_item_tags():
     rm.item_tag('tfc:compost_browns_high', 'artisanal:dry_bagasse')
     rm.item_tag('tfc:foods', '#tfc:sweetener')
     rm.item_tag('tfc:firepit_fuel', 'artisanal:dry_bagasse')
+    rm.item_tag('tfc:dynamic_bowl_items', 'artisanal:dirty_bowl')
 
 def generate_tags():
     print('Generating tags...')
