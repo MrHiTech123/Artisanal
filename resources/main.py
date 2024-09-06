@@ -284,6 +284,7 @@ def generate_item_models():
     rm.item_model(('ceramic', 'unfired_small_pot'), 'artisanal:item/ceramic/unfired_small_pot').with_lang(lang('unfired_small_pot'))
     rm.item_model(('ceramic', 'closed_small_pot'), 'artisanal:item/ceramic/closed_small_pot').with_lang(lang('closed_small_pot'))
     
+    rm.item_model(('dirty_bowl'), 'artisanal:item/dirty_bowl').with_lang(lang('dirty_bowl'))
     
     
 def generate_models():
