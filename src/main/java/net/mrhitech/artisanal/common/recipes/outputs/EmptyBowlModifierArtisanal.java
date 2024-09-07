@@ -2,9 +2,12 @@ package net.mrhitech.artisanal.common.recipes.outputs;
 
 import net.dries007.tfc.common.capabilities.food.DynamicBowlHandler;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
+import net.dries007.tfc.common.capabilities.food.FoodHandler;
 import net.dries007.tfc.common.capabilities.food.IFood;
 import net.dries007.tfc.common.recipes.outputs.ItemStackModifier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.mrhitech.artisanal.common.item.ArtisanalItems;
 
 public enum EmptyBowlModifierArtisanal implements ItemStackModifier.SingleInstance<EmptyBowlModifierArtisanal> {
     INSTANCE;
@@ -15,15 +18,16 @@ public enum EmptyBowlModifierArtisanal implements ItemStackModifier.SingleInstan
     
     public ItemStack apply(ItemStack stack, ItemStack input) {
         
+        if (input.getItem() == Items.AIR) {
+            return new ItemStack(Items.BOWL);
+        }
         
         boolean currentlyDynamicBowl = true;
         
         while (currentlyDynamicBowl) {
-            IFood cap = FoodCapability.get(input);
-            if (cap instanceof DynamicBowlHandler bowlHandler) {
-                input = bowlHandler.getBowl();
-            }
-            else {
+            input = oneStep(input);
+            
+            if (!(FoodCapability.get(input) instanceof DynamicBowlHandler)) {
                 currentlyDynamicBowl = false;
             }
             
