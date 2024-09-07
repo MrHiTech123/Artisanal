@@ -2558,7 +2558,7 @@ def item_stack_provider(
         # Ordering is important here
         # First, modifiers that replace the entire stack (copy input style)
         # Then, modifiers that only mutate an existing stack
-        ('tfc:empty_bowl', empty_bowl),
+        ('artisanal:empty_bowl', empty_bowl),
         ({'type': 'tfc:meal', **(meal if meal is not None else {})}, meal is not None),
         ('artisanal:remove_butter', remove_butter),
         ('tfc:copy_input', copy_input),
