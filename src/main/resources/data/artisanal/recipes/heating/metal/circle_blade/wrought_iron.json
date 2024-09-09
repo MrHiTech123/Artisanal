@@ -5,7 +5,7 @@
     "item": "artisanal:metal/circle_blade/wrought_iron"
   },
   "result_fluid": {
-    "fluid": "tfc:metal/wrought_iron",
+    "fluid": "tfc:metal/cast_iron",
     "amount": 50
   },
   "temperature": 1535
