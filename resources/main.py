@@ -472,6 +472,8 @@ def generate_crafting_recipes():
         advanced_shapeless(rm, ('crafting', 'clean', cleanable.item_name, 'water'), (fluid_item_ingredient('100 minecraft:water'), cleanable.input_item), utils.item_stack(cleanable.output_item), primary_ingredient=cleanable.input_item)
         advanced_shapeless(rm, ('crafting', 'clean', cleanable.item_name, 'soapy_water'), (fluid_item_ingredient('100 artisanal:soapy_water'), cleanable.input_item), utils.item_stack(cleanable.output_item), primary_ingredient=cleanable.input_item)
     
+    rm.crafting_shapeless(('crafting', 'aggregate'), ('#forge:gravel', '#forge:sand', '#forge:gravel', '#forge:sand', 'tfc:powder/lime', '#forge:sand', '#forge:gravel', '#forge:sand', '#forge:gravel'), (8, 'tfc:aggregate'))
+    disable_recipe(rm, 'tfc:crafting/aggregate')
     
 def generate_knapping_recipes():
     print("\tGenerating knapping recipes...")
