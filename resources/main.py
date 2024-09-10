@@ -33,11 +33,20 @@ CLEANABLES = (
     CleaningRecipe('small_pot', 'artisanal:ceramic/dirty_small_pot', 'artisanal:ceramic/small_pot')
 )
 
+def juicing_recipe(rm: ResourceManager, name: ResourceIdentifier, item: str, result: str, count: int = 1) -> RecipeContext:
+    result = result if not isinstance(result, str) else fluid_stack(result)
+    return rm.recipe(('juicing', name), 'artisanal:juicing', {
+        'ingredient': utils.ingredient(item),
+        'result': result
+    })
+    
+
 def melt_metal(name: str, mb: int):
     metal = METALS[name]
     if metal.melt_metal is not None:
         name = metal.melt_metal
     return f'{mb} tfc:metal/{name}'
+
 
 
 rm = ResourceManager('artisanal')
@@ -483,7 +492,7 @@ def generate_knapping_recipes():
     print("\tGenerating knapping recipes...")
     clay_knapping(rm, ('unfired_small_pot'), (' XX  ', 'XX   ', 'X X X', '  XXX', '  XXX'), 'artisanal:ceramic/unfired_small_pot', False)
     
-
+    
 def generate_heat_recipes():
     print("\tGenerating heat recipes...")
     
@@ -503,7 +512,10 @@ def generate_heat_recipes():
     
     heat_recipe(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', POTTERY_MELT, 'artisanal:ceramic/small_pot')
     
-    
+def generate_juicing_recipes():
+    print('\tGenerating juicing recipes...')
+    juicing_recipe(rm, ('sugarcane_juice'), 'artisanal:food/cleaned_sugarcane', '100 artisanal:sugarcane_juice')
+
 def generate_mixing_recipes():
     mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), not_rotten('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
     mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[utils.ingredient('#firmalife:foods/raw_eggs'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), not_rotten('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
@@ -520,7 +532,6 @@ def generate_mixing_recipes():
     disable_recipe(rm, 'firmalife:mixing_bowl/milk_chocolate_blend')
     disable_recipe(rm, 'firmalife:mixing_bowl/vanilla_ice_cream')
     disable_recipe(rm, 'firmalife:mixing_bowl/cookie_dough')
-    
     
 def generate_pot_recipes():
     print('\tGenerating pot recipes...')
@@ -631,6 +642,7 @@ def generate_recipes():
     generate_crafting_recipes()
     generate_knapping_recipes()
     generate_heat_recipes()
+    generate_juicing_recipes()
     generate_mixing_recipes()
     generate_pot_recipes()
     generate_quern_recipes()
