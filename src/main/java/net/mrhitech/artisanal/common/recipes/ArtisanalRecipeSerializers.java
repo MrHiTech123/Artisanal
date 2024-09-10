@@ -13,6 +13,7 @@ public class ArtisanalRecipeSerializers {
     
     public static final RegistryObject<RecipeSerializer<?>> SCALABLE_POT = RECIPE_SERIALIZERS.register("scalable_pot", ScalablePotRecipe.Serializer::new);
     public static final RegistryObject<RecipeSerializer<?>> DAMAGE_AND_CATALYST_SHAPELESS = RECIPE_SERIALIZERS.register("damage_and_catalyst_shapeless_crafting", () -> DelegateRecipe.Serializer.shapeless(DamageAndCatalystRecipe.Shapeless::new));
+    public static final RegistryObject<RecipeSerializer<?>> JUICING_RECIPE = RECIPE_SERIALIZERS.register("juicing", () -> new SimpleFluidRecipe.Serializer<>(JuicingRecipe::new));
     
     public static void register(IEventBus bus) {
         RECIPE_SERIALIZERS.register(bus);
