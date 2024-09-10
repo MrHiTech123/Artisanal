@@ -614,7 +614,7 @@ def generate_pot_recipes():
     
 def generate_quern_recipes():
     print('\tGenerating quern recipes...')
-    quern_recipe(rm, ('food', 'cleaned_sugarcane'), not_rotten('artisanal:food/cleaned_sugarcane'), 'artisanal:wet_bagasse')
+    quern_recipe(rm, ('food', 'cleaned_sugarcane'), not_rotten('artisanal:food/cleaned_sugarcane'), 'artisanal:dry_bagasse')
     quern_recipe(rm, ('powdered_milk'), 'artisanal:milk_flakes', {'item': 'artisanal:powdered_milk', 'count': 2})
 
 def generate_vat_recipes():
