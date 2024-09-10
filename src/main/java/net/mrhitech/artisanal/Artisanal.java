@@ -18,6 +18,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.mrhitech.artisanal.client.ClientEventHandler;
 import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
 import net.mrhitech.artisanal.common.creative.ArtisanalCreativeTabs;
+import net.mrhitech.artisanal.common.event.ArtisanalEvents;
 import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 import net.mrhitech.artisanal.common.loot.ArtisanalLootModifiers;
@@ -33,7 +34,7 @@ public class Artisanal
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "artisanal";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     public Artisanal()
     {
         
@@ -45,6 +46,7 @@ public class Artisanal
         ArtisanalLootModifiers.register(modEventBus);
         ArtisanalRecipeSerializers.register(modEventBus);
         ArtisanalItemStackModifiers.registerItemStackModifiers();
+        ArtisanalEvents.init();
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ClientEventHandler.init();
         }
