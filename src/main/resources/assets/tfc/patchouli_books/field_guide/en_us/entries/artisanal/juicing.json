@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Sometimes, grinding an item up in a $(l:tfc:mechanics/quern)Quern$() will cause liquid to be released. This liquid can be collected in a barrel placed underneath the quern."
+      "text": "Sometimes, grinding an item up in a $(l:tfc:mechanics/quern)Quern$() will cause liquid to be released. This liquid can be collected in a barrel placed underneath the quern. $(br2)Note that the barrel must be open in order to accept fluid. If the barrel is closed, the result fluid will be wasted."
     },
     {
       "type": "patchouli:multiblock",
