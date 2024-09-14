@@ -46,7 +46,7 @@ public abstract class SimpleFluidRecipe implements ISimpleRecipe<ItemStackInvent
         return this.getIngredient().test(wrapper.getStack());
     }
     
-    public FluidStack getResultFluid(@Nullable RegistryAccess access) {
+    public FluidStack getResultFluid() {
         return FluidStack.EMPTY;
     }
     
