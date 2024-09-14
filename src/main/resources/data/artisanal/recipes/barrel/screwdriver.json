@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_instant_fluid",
+  "primary_fluid": {
+    "ingredient": "tfc:vodka",
+    "amount": 1
+  },
+  "added_fluid": {
+    "ingredient": "artisanal:orange_juice",
+    "amount": 1
+  },
+  "output_fluid": {
+    "fluid": "artisanal:screwdriver",
+    "amount": 2
+  }
+}

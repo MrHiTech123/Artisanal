@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": "artisanal:lemon_juice",
+  "thirst": 10,
+  "food": {
+    "hunger": 1,
+    "saturation": 0,
+    "fruit": 0.5
+  }
+}

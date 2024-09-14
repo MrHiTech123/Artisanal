@@ -4,11 +4,11 @@
   "ingredient": {
     "type": "tfc:not_rotten",
     "ingredient": {
-      "item": "artisanal:food/cleaned_sugarcane"
+      "item": "tfc:food/orange"
     }
   },
   "result": {
-    "fluid": "artisanal:sugarcane_juice",
+    "fluid": "artisanal:orange_juice",
     "amount": 100
   }
 }

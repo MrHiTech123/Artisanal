@@ -1,14 +1,14 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "type": "artisanal:juicing",
+  "type": "tfc:quern",
   "ingredient": {
     "type": "tfc:not_rotten",
     "ingredient": {
-      "item": "artisanal:food/cleaned_sugarcane"
+      "item": "tfc:food/green_apple"
     }
   },
   "result": {
-    "fluid": "artisanal:sugarcane_juice",
-    "amount": 100
+    "item": "artisanal:food/fruit_mash",
+    "count": 1
   }
 }

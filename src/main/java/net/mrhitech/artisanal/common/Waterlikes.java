@@ -14,6 +14,10 @@ public enum Waterlikes {
     CLARIFIED_SUGARCANE_JUICE(-18491),
     MOLASSES(-13562873),
     CONDENSED_MILK(-1251141),
+    APPLE_JUICE(-11263),
+    LEMON_JUICE(-6525),
+    ORANGE_JUICE(-28671),
+    SCREWDRIVER(-1198481),
     PETROLEUM(-16777216);
     
     private final int color;

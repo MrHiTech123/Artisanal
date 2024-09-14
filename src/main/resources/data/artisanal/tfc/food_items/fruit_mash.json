@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "artisanal:food/fruit_mash"
+  },
+  "hunger": 4,
+  "saturation": 0,
+  "decay_modifier": 3,
+  "fruit": 0.5
+}

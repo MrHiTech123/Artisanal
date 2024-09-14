@@ -1,0 +1,13 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_sealed",
+  "input_fluid": {
+    "ingredient": "artisanal:apple_juice",
+    "amount": 1
+  },
+  "output_fluid": {
+    "fluid": "tfc:cider",
+    "amount": 1
+  },
+  "duration": 72000
+}
