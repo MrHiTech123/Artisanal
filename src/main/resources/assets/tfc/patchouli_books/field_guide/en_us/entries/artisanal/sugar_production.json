@@ -20,7 +20,7 @@
     {
       "type": "tfc:artisanal/juicing_recipe",
       "recipe": "artisanal:juicing/sugarcane_juice",
-      "text": "The sugarcane is then Juiced in a Quern to create $(thing)Sugarcane Juice."
+      "text": "The sugarcane is then $(l:tfc:artisanal/juicing)Juiced$() in a Quern to create $(thing)Sugarcane Juice."
     },
     {
       "type": "tfc:quern_recipe",
