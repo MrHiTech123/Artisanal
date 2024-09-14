@@ -25,6 +25,7 @@ import net.mrhitech.artisanal.common.loot.ArtisanalLootModifiers;
 import net.mrhitech.artisanal.common.recipes.ArtisanalRecipeSerializers;
 import net.mrhitech.artisanal.common.recipes.ArtisanalRecipeTypes;
 import net.mrhitech.artisanal.common.recipes.outputs.ArtisanalItemStackModifiers;
+import net.mrhitech.artisanal.compat.patchouli.PatchouliIntegration;
 import org.slf4j.Logger;
 
 
@@ -72,6 +73,7 @@ public class Artisanal
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
         LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
+        PatchouliIntegration.registerMultiBlocks();
     }
 
     // Add the example block item to the building blocks tab
