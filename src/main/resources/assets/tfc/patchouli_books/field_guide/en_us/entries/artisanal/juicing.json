@@ -10,18 +10,7 @@
     {
       "type": "patchouli:multiblock",
       "name": "Juicing Apparatus",
-      "multiblock": {
-        "mapping": {
-          "q": "tfc:quern[has_handstone=true]",
-          "0": "tfc:wood/barrel/sequoia",
-          "a": "minecraft:air"
-        },
-        "pattern": [
-          ["q"],
-          ["0"],
-          ["a"]
-        ]
-      },
+      "multiblock_id": "artisanal:juicing_apparatus",
       "text": "A juicing apparatus. Liquid from items that are ground by the quern will collect in the barrel below."
     },
     {

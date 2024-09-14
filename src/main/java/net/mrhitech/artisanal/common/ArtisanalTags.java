@@ -5,6 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.mrhitech.artisanal.Artisanal;
 
 public class ArtisanalTags {
@@ -16,6 +17,16 @@ public class ArtisanalTags {
             return TagKey.create(Registries.ITEM, new ResourceLocation(modId, itemId));
         }
         private static TagKey<Item> create(String id) {
+            return create(Artisanal.MOD_ID, id);
+        }
+    }
+    public static final class BLOCKS {
+        public static final TagKey<Block> TFC_BARRELS = create(TerraFirmaCraft.MOD_ID, "barrels");
+        
+        private static TagKey<Block> create(String modId, String itemId) {
+            return TagKey.create(Registries.BLOCK, new ResourceLocation(modId, itemId));
+        }
+        private static TagKey<Block> create(String id) {
             return create(Artisanal.MOD_ID, id);
         }
     }
