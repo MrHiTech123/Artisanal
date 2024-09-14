@@ -167,7 +167,7 @@ def generate_drinkables():
     drinkable(rm, ('apple_juice'), 'artisanal:apple_juice', thirst=10, food={'hunger': 1, 'saturation': 0, 'fruit': 0.5})
     drinkable(rm, ('lemon_juice'), 'artisanal:lemon_juice', thirst=10, food={'hunger': 1, 'saturation': 0, 'fruit': 0.5})
     drinkable(rm, ('orange_juice'), 'artisanal:orange_juice', thirst=10, food={'hunger': 1, 'saturation': 0, 'fruit': 0.5})
-    
+    drinkable(rm, ('screwdriver'), 'artisanal:screwdriver', thirst=10, food={'fruit': 0.5}, intoxication=2000, allow_full=True)
     
 def generate_lamp_fuels():
     print('\tGenerating lamp fuels...')
@@ -678,8 +678,7 @@ def generate_fluid_tags():
     print('\tGenerating fluid tags...')
     rm.fluid_tag('rendered_fats', 'tfc:tallow', 'artisanal:lard', 'artisanal:schmaltz')
     rm.fluid_tag('tfc:ingredients', '#artisanal:rendered_fats', 'artisanal:soap', 'artisanal:soapy_water', 'artisanal:sugarcane_juice', 'artisanal:filtered_sugarcane_juice', 'artisanal:alkalized_sugarcane_juice', 'artisanal:clarified_sugarcane_juice', 'artisanal:molasses', 'artisanal:petroleum')
-    rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:condensed_milk', 'artisanal:apple_juice', 'artisanal:lemon_juice', 'artisanal:orange_juice')
-    rm.fluid_tag('tfc:alcohols', 'artisanal:screwdriver')
+    rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:condensed_milk', 'artisanal:apple_juice', 'artisanal:lemon_juice', 'artisanal:orange_juice', 'artisanal:screwdriver')
     rm.fluid_tag('tfc:usable_in_jug', '#tfc:ingredients')
     
 def generate_item_tags():
