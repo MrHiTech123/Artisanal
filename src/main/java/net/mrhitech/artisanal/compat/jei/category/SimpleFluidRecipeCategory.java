@@ -15,6 +15,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.fluids.FluidStack;
 import net.mrhitech.artisanal.common.recipes.SimpleFluidRecipe;
 
 import javax.annotation.Nullable;
@@ -38,7 +39,6 @@ public abstract class SimpleFluidRecipeCategory<T extends SimpleFluidRecipe> ext
         {
             toolSlot = builder.addSlot(RecipeIngredientRole.CATALYST, 26, 5);
         }
-        IRecipeSlotBuilder outputSlot = builder.addSlot(RecipeIngredientRole.OUTPUT, 76, 5);
         
         final Ingredient ingredient = recipe.getIngredient();
         final List<ItemStack> inputList = List.of(ingredient.getItems());
@@ -49,9 +49,15 @@ public abstract class SimpleFluidRecipeCategory<T extends SimpleFluidRecipe> ext
             toolSlot.addIngredients(Ingredient.of(getToolTag()));
             toolSlot.setBackground(slot, -1, -1);
         }
-        
-        outputSlot.addFluidStack(recipe.getResultFluid().getFluid(), recipe.getResultFluid().getAmount());
-        outputSlot.setBackground(slot, -1, -1);
+        IRecipeSlotBuilder outputSlot = null;
+        FluidStack outputFluid = recipe.getResultFluid();
+        outputSlot = builder.addSlot(RecipeIngredientRole.OUTPUT, 76, 5);
+        if (!outputFluid.isEmpty())
+        {
+            outputSlot.addIngredient(JEIIntegration.FLUID_STACK, outputFluid);
+            outputSlot.setFluidRenderer(1, false, 16, 16);
+            outputSlot.setBackground(slot, -1, -1);
+        }
         
         if (!addItemsToOutputSlot(recipe, outputSlot, inputList))
         {

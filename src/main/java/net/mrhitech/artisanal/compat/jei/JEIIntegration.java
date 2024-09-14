@@ -34,6 +34,7 @@ import java.util.stream.Collectors;
 
 @JeiPlugin
 public class JEIIntegration implements IModPlugin {
+    
     private static <C extends Container, T extends Recipe<C>> List<T> recipes(net.minecraft.world.item.crafting.RecipeType<T> type)
     {
         return ClientHelpers.getLevelOrThrow().getRecipeManager().getAllRecipesFor(type);

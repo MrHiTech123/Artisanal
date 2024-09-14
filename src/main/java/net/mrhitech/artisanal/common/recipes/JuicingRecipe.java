@@ -42,7 +42,7 @@ public class JuicingRecipe extends SimpleFluidRecipe {
         return ItemStack.EMPTY;
     }
     
-    public FluidStack getResultFluid(RegistryAccess access) {
+    public FluidStack getResultFluid() {
         return this.result.copy();
     }
     

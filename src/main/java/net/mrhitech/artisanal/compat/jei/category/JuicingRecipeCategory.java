@@ -20,6 +20,6 @@ public class JuicingRecipeCategory extends SimpleFluidRecipeCategory<JuicingReci
     @Override
     protected TagKey<Item> getToolTag()
     {
-        return ArtisanalTags.ITEMS.USED_IN_JUICING;
+        return TFCTags.Items.HANDSTONE;
     }
 }
