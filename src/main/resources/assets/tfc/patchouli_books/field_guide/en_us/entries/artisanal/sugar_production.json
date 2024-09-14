@@ -18,31 +18,31 @@
       "text": "Alternatively, sugarcane can be cleaned instantly using $(l:tfc:artisanal/soap)Soapy Water$()."
     },
     {
-      "type": "tfc:quern_recipe",
-      "recipe": "artisanal:quern/food/cleaned_sugarcane",
-      "text": "The sugarcane is then ground in a $(l:tfc:mechanics/quern)Quern$() to make $(thing)Wet Bagasse$()."
+      "type": "tfc:artisanal/juicing_recipe",
+      "recipe": "artisanal:juicing/sugarcane_juice",
+      "text": "The sugarcane is then Juiced in a Quern to create $(thing)Sugarcane Juice."
     },
     {
-      "type": "tfc:instant_barrel_recipe",
-      "recipe": "artisanal:barrel/dry_bagasse",
-      "text": "Placing Wet Bagasse in a barrel yields $(thing)Sugarcane Juice$(), which is used to make sugar. $(thing)Dry Bagasse$() is also produced as a byproduct, and can be used as fuel. $(br2)Boiling Sugarcane Juice in a pot will result in $(thing)Perishable Sugar$(), which has a very short shelf life."
+      "type": "tfc:quern_recipe",
+      "recipe": "artisanal:quern/food/cleaned_sugarcane",
+      "text": "During this process, $(thing)Dry Bagasse$() is created as a by-product. It can be used as firepit fuel, kindling, or compost. $(br2)Sugarcane Juice can be boiled in a pot to create $(thing)Perishable Sugar$(). $(thing)Molassess$() is also produced as a by-product."
     },
     {
       "type": "patchouli:image",
       "images": [
         "artisanal:textures/gui/book/perishable_sugar_recipe.png"
       ],
-      "text": "$(thing)Molassess$() is also produced as a by-product."
+      "text": ""
     },
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/filtered_sugarcane_juice",
-      "text": "Alternatively, the sugarcane juice can be further filtered using $(thing)Jute Nets$()."
+      "text": "Alternatively, the Sugarcane Juice can be further filtered using $(thing)Jute Nets$()."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/alkalized_sugarcane_juice",
-      "text": "The Sugarcane Juice is then alkalized using Lime."
+      "text": "The juice is then alkalized using Lime."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
