@@ -33,7 +33,9 @@ public class JuicingHandler {
             level.getBlockEntity(pos.below(), TFCBlockEntities.BARREL.get()).ifPresent(barrel -> {
                 barrel.getCapability(Capabilities.FLUID, Direction.UP).ifPresent(cap -> {
                     cap.fill(outputStack, IFluidHandler.FluidAction.EXECUTE);
-                    Helpers.playSound(level, barrel.getBlockPos(), SoundEvents.BREWING_STAND_BREW);
+                    if (barrel.canModify()) {
+                        Helpers.playSound(level, barrel.getBlockPos(), SoundEvents.BREWING_STAND_BREW);
+                    }
                 });
             });
         }
