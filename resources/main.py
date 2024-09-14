@@ -4,7 +4,7 @@ from alcs_n_russians_funcs import *
 from mcresources import ResourceManager
 
 
-SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'petroleum')
+SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'petroleum', 'apple_juice', 'lemon_juice', 'orange_juice', 'screwdriver')
 AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cypress', 'fig', 'ironwood', 'ipe')
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
@@ -33,7 +33,7 @@ CLEANABLES = (
     CleaningRecipe('small_pot', 'artisanal:ceramic/dirty_small_pot', 'artisanal:ceramic/small_pot')
 )
 
-def juicing_recipe(rm: ResourceManager, name: ResourceIdentifier, item: str, result: str, count: int = 1) -> RecipeContext:
+def juicing_recipe(rm: ResourceManager, name: ResourceIdentifier, item: str, result: str) -> RecipeContext:
     result = result if not isinstance(result, str) else fluid_stack(result)
     return rm.recipe(('juicing', name), 'artisanal:juicing', {
         'ingredient': utils.ingredient(item),
@@ -164,6 +164,10 @@ def generate_advancements():
 def generate_drinkables():
     print('\tGenerating drinkables...')
     drinkable(rm, ('molasses'), 'artisanal:molasses', thirst=-1, food={'hunger': 4, 'saturation': 0, 'vegetables': 3, 'fruit': 3})
+    drinkable(rm, ('apple_juice'), 'artisanal:apple_juice', thirst=10, food={'hunger': 1, 'saturation': 0, 'fruit': 0.5})
+    drinkable(rm, ('lemon_juice'), 'artisanal:lemon_juice', thirst=10, food={'hunger': 1, 'saturation': 0, 'fruit': 0.5})
+    drinkable(rm, ('orange_juice'), 'artisanal:orange_juice', thirst=10, food={'hunger': 1, 'saturation': 0, 'fruit': 0.5})
+    
     
 def generate_lamp_fuels():
     print('\tGenerating lamp fuels...')
@@ -180,6 +184,7 @@ def generate_fuels():
 def generate_item_foods():
     print('\tGenerating item foods...')
     food_item(rm, ('cleaned_sugarcane'), 'artisanal:food/cleaned_sugarcane', Category.other, 4, 0, 0, 0.5)
+    food_item(rm, ('fruit_mash'), 'artisanal:food/fruit_mash', Category.fruit, 4, 0, 0, 3, fruit=0.5)
     food_item(rm, ('perishable_sugar'), 'artisanal:perishable_sugar', Category.other, 0, 0, 0, 3)
     food_item(rm, ('non_perishable_sugar'), 'artisanal:non_perishable_sugar', Category.other, 0, 0, 0, 0, tag_as_food=False)
     food_item(rm, ('sugar'), 'minecraft:sugar', Category.other, 0, 0, 0, 0, tag_as_food=False)
@@ -301,6 +306,7 @@ def generate_item_models():
     
     rm.item_model(('dirty_bowl'), 'artisanal:item/dirty_bowl').with_lang(lang('dirty_bowl'))
     
+    rm.item_model(('food', 'fruit_mash'), 'artisanal:item/food/fruit_mash').with_lang(lang('fruit_mash'))
     
 def generate_models():
     print('Generating models...')
@@ -368,9 +374,11 @@ def generate_barrel_recipes():
     barrel_instant_recipe(rm, 'milk', 'artisanal:powdered_milk', '100 minecraft:water', None, '100 minecraft:milk')
     
     disable_recipe(rm, 'tfc:barrel/limewater')
-    
     disable_recipe(rm, 'tfc:barrel/rum')
+    disable_recipe(rm, 'tfc:barrel/cider')
     barrel_sealed_recipe(rm, ('rum'), 'Fermenting Rum', 72000, None, '1 artisanal:molasses', None, '1 tfc:rum')
+    barrel_sealed_recipe(rm, ('cider'), 'Fermenting Cider', 72000, None, '1 artisanal:apple_juice', None, '1 tfc:cider')
+    barrel_instant_fluid_recipe(rm, ('screwdriver'), '1 tfc:vodka', '1 artisanal:orange_juice', '2 artisanal:screwdriver')
     
     
 def generate_crafting_recipes():
@@ -517,8 +525,12 @@ def generate_heat_recipes():
     
 def generate_juicing_recipes():
     print('\tGenerating juicing recipes...')
-    juicing_recipe(rm, ('sugarcane_juice'), 'artisanal:food/cleaned_sugarcane', '100 artisanal:sugarcane_juice')
-
+    juicing_recipe(rm, ('apple_juice_from_red'), not_rotten('tfc:food/red_apple'), '100 artisanal:apple_juice')
+    juicing_recipe(rm, ('apple_juice_from_green'), not_rotten('tfc:food/green_apple'), '100 artisanal:apple_juice')
+    juicing_recipe(rm, ('lemon_juice'), not_rotten('tfc:food/lemon'), '100 artisanal:lemon_juice')
+    juicing_recipe(rm, ('orange'), not_rotten('tfc:food/orange'), '100 artisanal:orange_juice')
+    juicing_recipe(rm, ('sugarcane_juice'), not_rotten('artisanal:food/cleaned_sugarcane'), '100 artisanal:sugarcane_juice')
+    
 def generate_mixing_recipes():
     mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), not_rotten('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
     mixing_recipe(rm, 'pumpkin_pie_dough', ingredients=[utils.ingredient('#firmalife:foods/raw_eggs'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('tfc:food/pumpkin_chunks'), not_rotten('#tfc:foods/flour'), not_rotten('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pumpkin_pie_dough')
@@ -618,6 +630,10 @@ def generate_pot_recipes():
 def generate_quern_recipes():
     print('\tGenerating quern recipes...')
     quern_recipe(rm, ('food', 'cleaned_sugarcane'), not_rotten('artisanal:food/cleaned_sugarcane'), 'artisanal:dry_bagasse')
+    quern_recipe(rm, ('food', 'red_apple'), not_rotten('tfc:food/red_apple'), 'artisanal:food/fruit_mash')
+    quern_recipe(rm, ('food', 'green_apple'), not_rotten('tfc:food/green_apple'), 'artisanal:food/fruit_mash')
+    quern_recipe(rm, ('food', 'lemon'), not_rotten('tfc:food/lemon'), 'artisanal:food/fruit_mash')
+    quern_recipe(rm, ('food', 'orange'), not_rotten('tfc:food/orange'), 'artisanal:food/fruit_mash')
     quern_recipe(rm, ('powdered_milk'), 'artisanal:milk_flakes', {'item': 'artisanal:powdered_milk', 'count': 2})
 
 def generate_vat_recipes():
@@ -662,7 +678,8 @@ def generate_fluid_tags():
     print('\tGenerating fluid tags...')
     rm.fluid_tag('rendered_fats', 'tfc:tallow', 'artisanal:lard', 'artisanal:schmaltz')
     rm.fluid_tag('tfc:ingredients', '#artisanal:rendered_fats', 'artisanal:soap', 'artisanal:soapy_water', 'artisanal:sugarcane_juice', 'artisanal:filtered_sugarcane_juice', 'artisanal:alkalized_sugarcane_juice', 'artisanal:clarified_sugarcane_juice', 'artisanal:molasses', 'artisanal:petroleum')
-    rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:condensed_milk')
+    rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:condensed_milk', 'artisanal:apple_juice', 'artisanal:lemon_juice', 'artisanal:orange_juice')
+    rm.fluid_tag('tfc:alcohols', 'artisanal:screwdriver')
     rm.fluid_tag('tfc:usable_in_jug', '#tfc:ingredients')
     
 def generate_item_tags():
@@ -682,6 +699,7 @@ def generate_item_tags():
     rm.item_tag('tfc:foods', '#tfc:sweetener')
     rm.item_tag('tfc:firepit_fuel', 'artisanal:dry_bagasse')
     rm.item_tag('tfc:dynamic_bowl_items', 'artisanal:dirty_bowl')
+    rm.item_tag('tfc:foods/fruit', 'artisanal:food/fruit_mash')
 
 def generate_tags():
     print('Generating tags...')

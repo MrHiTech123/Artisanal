@@ -31,7 +31,7 @@ public class ArtisanalItems {
     public static final RegistryObject<Item> TEMPERED_FEATHER = ITEMS.register("tempered_feather", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> QUILL = ITEMS.register("quill", () -> new Item(new Item.Properties()));
     
-    public static final RegistryObject<Item> CLEANED_SUGARCANE = ITEMS.register("food/cleaned_sugarcane", () -> new Item(new Item.Properties().food(ArtisanalFoods.CLEANED_SUGARCANE)));
+    public static final RegistryObject<Item> CLEANED_SUGARCANE = ITEMS.register("food/cleaned_sugarcane", () -> new Item(new Item.Properties().food(ArtisanalFoods.BLANK_FOOD)));
     public static final RegistryObject<Item> WET_BAGASSE = ITEMS.register("wet_bagasse", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DRY_BAGASSE = ITEMS.register("dry_bagasse", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> PERISHABLE_SUGAR = ITEMS.register("perishable_sugar", () -> new Item(new Item.Properties()));
@@ -77,6 +77,8 @@ public class ArtisanalItems {
     public static final RegistryObject<Item> CLOSED_SMALL_POT = ITEMS.register("ceramic/closed_small_pot", () -> new Item(new Item.Properties()));
     
     public static final RegistryObject<Item> DIRTY_BOWL = ITEMS.register("dirty_bowl", () -> new Item(new Item.Properties()));
+    
+    public static final RegistryObject<Item> FRUIT_MASH = ITEMS.register("food/fruit_mash", () -> new Item(new Item.Properties().food(ArtisanalFoods.BLANK_FOOD)));
     
     public static void register(IEventBus bus) {
         ITEMS.register(bus);

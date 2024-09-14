@@ -58,6 +58,7 @@ public class ArtisanalCreativeTabs {
         
         if (event.getTabKey() == TFCCreativeTabs.FOOD.tab().getKey()) {
             event.accept(ArtisanalItems.CLEANED_SUGARCANE);
+            event.accept(ArtisanalItems.FRUIT_MASH);
             event.accept(ArtisanalItems.MILK_FLAKES);
             event.accept(ArtisanalItems.POWDERED_MILK);
             

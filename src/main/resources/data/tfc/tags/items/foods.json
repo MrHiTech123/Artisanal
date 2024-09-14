@@ -3,6 +3,7 @@
   "replace": false,
   "values": [
     "artisanal:food/cleaned_sugarcane",
+    "artisanal:food/fruit_mash",
     "artisanal:perishable_sugar",
     "#tfc:sweetener"
   ]
