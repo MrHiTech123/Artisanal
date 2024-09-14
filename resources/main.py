@@ -679,6 +679,7 @@ def generate_item_tags():
     rm.item_tag('tfc:foods', '#tfc:sweetener')
     rm.item_tag('tfc:firepit_fuel', 'artisanal:dry_bagasse')
     rm.item_tag('tfc:dynamic_bowl_items', 'artisanal:dirty_bowl')
+    rm.item_tag('used_in_juicing', 'tfc:handstone', '#tfc:barrels')
 
 def generate_tags():
     print('Generating tags...')
