@@ -16,7 +16,24 @@
     {
       "type": "tfc:artisanal/juicing_recipe",
       "recipe": "artisanal:juicing/sugarcane_juice",
-      "text": "One thing that can be juiced is Sugarcane. This results in Sugarcane Juice, which is used in $(l:tfc:artisanal/sugar_production)Sugar Production$()"
+      "text": "One thing that can be juiced is Sugarcane. This results in Sugarcane Juice, which is used in $(l:tfc:artisanal/sugar_production)Sugar Production$()."
+    },
+    {
+      "type": "tfc:artisanal/juicing_recipe",
+      "recipe": "artisanal:juicing/lemon_juice",
+      "text": "Apples, lemons, and oranges can also be juiced. The resulting juices can be drunk for fruit nutrition."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/cider",
+      "text": "Apple juice can be further fermented to make Cider."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/screwdriver_mixture.png"
+      ],
+      "text": "Orange juice can be mixed with vodka to make $(thing)Screwdriver$()."
     }
   ],
   "read_by_default": true
