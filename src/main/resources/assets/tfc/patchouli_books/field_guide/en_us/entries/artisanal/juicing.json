@@ -1,0 +1,34 @@
+{
+  "name": "Juicing",
+  "category": "tfc:artisanal",
+  "icon": "tfc:handstone",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Sometimes, grinding an item up in a $(l:tfc:mechanics/quern)Quern$() will cause liquid to be released. This liquid can be collected in a barrel placed underneath the quern."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Juicing Apparatus",
+      "multiblock": {
+        "mapping": {
+          "q": "tfc:quern[has_handstone=true]",
+          "0": "tfc:wood/barrel/sequoia",
+          "a": "minecraft:air"
+        },
+        "pattern": [
+          ["q"],
+          ["0"],
+          ["a"]
+        ]
+      },
+      "text": "A juicing apparatus. Liquid from items that are ground by the quern will collect in the barrel below."
+    },
+    {
+      "type": "tfc:artisanal/juicing_recipe",
+      "recipe": "artisanal:juicing/sugarcane_juice",
+      "text": "One thing that can be juiced is Sugarcane. This results in Sugarcane Juice, which is used in $(l:tfc:artisanal/sugar_production)Sugar Production$()"
+    }
+  ],
+  "read_by_default": true
+}

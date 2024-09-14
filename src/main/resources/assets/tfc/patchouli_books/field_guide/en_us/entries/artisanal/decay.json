@@ -35,7 +35,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Other forms of $(l:tfc:mechanics/decay)preservation$() are useful, but the ultimate form of preservation is $(thing)canning$(). This process involves sealing food in an airtight container, so that no microbes can reach it, and then heating the container to kill all of the microbes that are already on the food.",
+      "text": "Other forms of preservation are useful, but the ultimate form of preservation is $(thing)canning$(). This process involves sealing food in an airtight container, so that no microbes can reach it, and then heating the container to kill all of the microbes that are already on the food.",
       "anchor": "canned_food"
     },
     {
