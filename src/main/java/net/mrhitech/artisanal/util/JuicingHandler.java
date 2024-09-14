@@ -29,7 +29,7 @@ public class JuicingHandler {
         ItemStackInventory wrapper = new ItemStackInventory(inputStack);
         JuicingRecipe recipe = JuicingRecipe.getRecipe(level, wrapper);
         if (recipe != null && recipe.matches(wrapper, level)) {
-            FluidStack outputStack = recipe.getResultFluid(level.registryAccess());
+            FluidStack outputStack = recipe.getResultFluid();
             level.getBlockEntity(pos.below(), TFCBlockEntities.BARREL.get()).ifPresent(barrel -> {
                 barrel.getCapability(Capabilities.FLUID, Direction.UP).ifPresent(cap -> {
                     cap.fill(outputStack, IFluidHandler.FluidAction.EXECUTE);

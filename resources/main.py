@@ -242,6 +242,8 @@ def generate_misc_lang():
     rm.lang("fluid.tfc.limewater", "Slaked Lime")
     rm.lang("block.tfc.cauldron.limewater", "Slaked Lime Cauldron")
     rm.lang("item.minecraft.cooked_beef", "Whatever Food Was Inside the Can")
+    rm.lang('tfc.jei.juicing', 'Juicing Recipe')
+
 
 def generate_item_models():
     print('\tGenerating item models...')
@@ -679,7 +681,6 @@ def generate_item_tags():
     rm.item_tag('tfc:foods', '#tfc:sweetener')
     rm.item_tag('tfc:firepit_fuel', 'artisanal:dry_bagasse')
     rm.item_tag('tfc:dynamic_bowl_items', 'artisanal:dirty_bowl')
-    rm.item_tag('used_in_juicing', 'tfc:handstone', '#tfc:barrels')
 
 def generate_tags():
     print('Generating tags...')
