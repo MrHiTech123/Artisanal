@@ -330,6 +330,7 @@ def generate_barrel_recipes():
     print('\tGenerating barrel recipes...')
     barrel_sealed_recipe(rm, ('soaked_feather'), 'Soaking Feather', 8000, 'artisanal:trimmed_feather', '200 minecraft:water', 'artisanal:soaked_feather', None)
     barrel_instant_fluid_recipe(rm, ('soap_fluid'), '9 #artisanal:rendered_fats', '1 tfc:lye', '10 artisanal:soap')
+    barrel_instant_fluid_recipe(rm, ('soap_fluid_from_olive_oil'), '9 tfc:olive_oil', '1 tfc:lye', '10 artisanal:soap')
     barrel_sealed_recipe(rm, ('soap_solid'), 'Solidifying Soap', 8000, None, '125 artisanal:soap', 'artisanal:soap', None, None)
     
     barrel_instant_recipe(rm, ('soapy_water'), 'artisanal:soap', '1000 minecraft:water', None, '1000 artisanal:soapy_water')
