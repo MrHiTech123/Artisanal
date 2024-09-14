@@ -11,7 +11,7 @@
     "amount": 100
   },
   "output_fluid": {
-    "fluid": "tfc:schmaltz",
+    "fluid": "artisanal:schmaltz",
     "amount": 100
   }
 }

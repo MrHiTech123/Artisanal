@@ -627,8 +627,8 @@ def generate_vat_recipes():
     vat_recipe(rm, 'non_perishable_sugar', 'minecraft:stick', '200 artisanal:clarified_sugarcane_juice', 'artisanal:non_perishable_sugar', '20 artisanal:molasses')
     
     vat_recipe(rm, 'tallow', 'artisanal:suet', '100 minecraft:water', output_fluid='100 tfc:tallow')
-    vat_recipe(rm, 'lard', 'artisanal:pork_fat', '100 minecraft:water', output_fluid='100 tfc:lard')
-    vat_recipe(rm, 'schmaltz', 'artisanal:poultry_fat', '100 minecraft:water', output_fluid='100 tfc:schmaltz')
+    vat_recipe(rm, 'lard', 'artisanal:pork_fat', '100 minecraft:water', output_fluid='100 artisanal:lard')
+    vat_recipe(rm, 'schmaltz', 'artisanal:poultry_fat', '100 minecraft:water', output_fluid='100 artisanal:schmaltz')
     
     
     disable_recipe(rm, 'firmalife:vat/sugar_water')
