@@ -525,11 +525,11 @@ def generate_heat_recipes():
     
 def generate_juicing_recipes():
     print('\tGenerating juicing recipes...')
-    juicing_recipe(rm, ('apple_juice_from_red'), not_rotten('tfc:food/red_apple'), '100 artisanal:apple_juice')
-    juicing_recipe(rm, ('apple_juice_from_green'), not_rotten('tfc:food/green_apple'), '100 artisanal:apple_juice')
-    juicing_recipe(rm, ('lemon_juice'), not_rotten('tfc:food/lemon'), '100 artisanal:lemon_juice')
-    juicing_recipe(rm, ('orange'), not_rotten('tfc:food/orange'), '100 artisanal:orange_juice')
-    juicing_recipe(rm, ('sugarcane_juice'), not_rotten('artisanal:food/cleaned_sugarcane'), '100 artisanal:sugarcane_juice')
+    juicing_recipe(rm, ('apple_juice_from_red'), not_rotten('tfc:food/red_apple'), '200 artisanal:apple_juice')
+    juicing_recipe(rm, ('apple_juice_from_green'), not_rotten('tfc:food/green_apple'), '200 artisanal:apple_juice')
+    juicing_recipe(rm, ('lemon_juice'), not_rotten('tfc:food/lemon'), '200 artisanal:lemon_juice')
+    juicing_recipe(rm, ('orange'), not_rotten('tfc:food/orange'), '200 artisanal:orange_juice')
+    juicing_recipe(rm, ('sugarcane_juice'), not_rotten('artisanal:food/cleaned_sugarcane'), '200 artisanal:sugarcane_juice')
     
 def generate_mixing_recipes():
     mixing_recipe(rm, 'pie_dough', ingredients=[not_rotten('firmalife:food/butter'), not_rotten('#tfc:foods/flour'), not_rotten('#tfc:sweetener')], fluid='1000 minecraft:water', output_item='firmalife:food/pie_dough')
