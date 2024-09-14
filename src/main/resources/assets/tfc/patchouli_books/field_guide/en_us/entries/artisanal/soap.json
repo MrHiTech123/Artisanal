@@ -29,7 +29,7 @@
       "images": [
         "artisanal:textures/gui/book/soap_mixture.png"
       ],
-      "text": "Mix the rendered fats with lye in a 9:1 ratio to create $(thing)Soap$()"
+      "text": "Mix the rendered fats (or $(l:tfc:mechanics/lamps#olives)Olive Oil$()) with lye in a 9:1 ratio to create liquid Soap."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
