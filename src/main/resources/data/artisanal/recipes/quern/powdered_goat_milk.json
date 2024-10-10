@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:quern",
+  "ingredient": {
+    "item": "artisanal:goat_milk_flakes"
+  },
+  "result": {
+    "item": "artisanal:powdered_goat_milk",
+    "count": 2
+  }
+}

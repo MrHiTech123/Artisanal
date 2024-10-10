@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:quern",
+  "ingredient": {
+    "item": "artisanal:yak_milk_flakes"
+  },
+  "result": {
+    "item": "artisanal:powdered_yak_milk",
+    "count": 2
+  }
+}

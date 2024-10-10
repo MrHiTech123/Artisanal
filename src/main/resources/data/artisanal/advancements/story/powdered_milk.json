@@ -2,14 +2,12 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "tfc:story/quern",
   "criteria": {
-    "powdered_milk": {
+    "powdered_milks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [
-              "artisanal:powdered_milk"
-            ]
+            "tag": "artisanal:powdered_milks"
           }
         ]
       }
@@ -32,7 +30,7 @@
   },
   "requirements": [
     [
-      "powdered_milk"
+      "powdered_milks"
     ]
   ]
 }

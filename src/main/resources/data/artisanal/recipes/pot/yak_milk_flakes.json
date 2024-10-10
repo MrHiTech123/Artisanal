@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:scalable_pot",
+  "ingredients": [],
+  "fluid_ingredient": {
+    "ingredient": "artisanal:condensed_yak_milk",
+    "amount": 100
+  },
+  "duration": 3000,
+  "temperature": 100,
+  "item_output": [
+    {
+      "item": "artisanal:yak_milk_flakes"
+    }
+  ]
+}
