@@ -1,0 +1,46 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:no_remainder_shapeless_crafting",
+  "recipe": {
+    "type": "tfc:advanced_shapeless_crafting",
+    "ingredients": [
+      {
+        "type": "tfc:fluid_item",
+        "fluid_ingredient": {
+          "ingredient": "minecraft:water",
+          "amount": 1
+        }
+      },
+      {
+        "item": "artisanal:powdered_yak_milk"
+      }
+    ],
+    "result": {
+      "stack": {
+        "item": "tfc:ceramic/jug"
+      },
+      "modifiers": [
+        {
+          "type": "artisanal:modify_fluid",
+          "fluid": {
+            "fluid": "firmalife:yak_milk",
+            "amount": 100
+          }
+        }
+      ]
+    },
+    "conditions": [
+      {
+        "type": "forge:mod_loaded",
+        "modid": "firmalife"
+      }
+    ],
+    "primary_ingredient": {
+      "type": "tfc:fluid_item",
+      "fluid_ingredient": {
+        "ingredient": "minecraft:water",
+        "amount": 1
+      }
+    }
+  }
+}

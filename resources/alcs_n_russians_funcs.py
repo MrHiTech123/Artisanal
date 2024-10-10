@@ -2169,18 +2169,23 @@ def stone_cutting(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ite
         'count': count
     })
 
-def no_remainder_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, group: str = None, conditions: utils.Json = None) -> RecipeContext:
-    return delegate_recipe(rm, name_parts, 'tfc:no_remainder_shapeless_crafting', {
-        'type': 'minecraft:crafting_shapeless',
+def no_remainder_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, group: str = None, conditions: utils.Json = None, primary_ingredient = None) -> RecipeContext:
+    data_out = {
+        'type': 'tfc:advanced_shapeless_crafting',
         'group': group,
         'ingredients': utils.item_stack_list(ingredients),
         'result': utils.item_stack(result),
         'conditions': utils.recipe_condition(conditions)
-    })
+    }
+    
+    if primary_ingredient is not None:
+        data_out['primary_ingredient'] = utils.item_stack(primary_ingredient)
+    
+    return delegate_recipe(rm, name_parts, 'tfc:no_remainder_shapeless_crafting', data_out)
 
 def no_remainder_shaped(rm: ResourceManager, name_parts: utils.ResourceIdentifier, pattern: Sequence[str], ingredients: Json, result: Json, group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
     return delegate_recipe(rm, name_parts, 'tfc:no_remainder_shaped_crafting', {
-        'type': 'minecraft:crafting_shaped',
+        'type': 'tfc:advanced_shaped_crafting',
         'group': group,
         'pattern': pattern,
         'key': utils.item_stack_dict(ingredients, ''.join(pattern)[0]),
@@ -2463,6 +2468,8 @@ def sewing_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, sti
     })
 
 def fluid_stack(data_in: Json) -> Json:
+    if data_in is None:
+        return None
     if isinstance(data_in, dict):
         return data_in
     fluid, tag, amount, _ = utils.parse_item_stack(data_in, False)
@@ -2530,6 +2537,7 @@ def fluid_item_ingredient(fluid: Json, delegate: Json = None):
 def item_stack_provider(
     data_in: Json = None,
     # Possible Modifiers
+    modify_fluid = None,
     copy_input: bool = False,
     copy_heat: bool = False,
     copy_food: bool = False,  # copies both decay and traits
@@ -2559,6 +2567,7 @@ def item_stack_provider(
         # First, modifiers that replace the entire stack (copy input style)
         # Then, modifiers that only mutate an existing stack
         ('artisanal:empty_bowl', empty_bowl),
+        ({'type': 'artisanal:modify_fluid', 'fluid': fluid_stack(modify_fluid)}, modify_fluid is not None),
         ({'type': 'tfc:meal', **(meal if meal is not None else {})}, meal is not None),
         ('artisanal:remove_butter', remove_butter),
         ('tfc:copy_input', copy_input),
