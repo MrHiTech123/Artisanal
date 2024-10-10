@@ -4,7 +4,7 @@ from alcs_n_russians_funcs import *
 from mcresources import ResourceManager
 
 
-SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'petroleum', 'apple_juice', 'lemon_juice', 'orange_juice', 'screwdriver')
+SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'petroleum', 'apple_juice', 'lemon_juice', 'orange_juice', 'screwdriver')
 AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cypress', 'fig', 'ironwood', 'ipe')
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
@@ -138,7 +138,7 @@ def remove_many_traits(stack: dict, *traits: str):
         })
     return stack
  
-def scalable_pot_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fluid: str, output_fluid: str = None, output_items: Json = None, duration: int = 2000, temp: int = 300):
+def scalable_pot_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fluid: str, output_fluid: str = None, output_items: Json = None, duration: int = 2000, temp: int = 300, conditions=None):
     rm.recipe(('pot', name_parts), 'artisanal:scalable_pot', {
         'ingredients': [],
         'fluid_ingredient': fluid_stack_ingredient(fluid),
@@ -146,7 +146,7 @@ def scalable_pot_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifie
         'temperature': temp,
         'fluid_output': fluid_stack(output_fluid) if output_fluid is not None else None,
         'item_output': [utils.item_stack(item) for item in output_items] if output_items is not None else None
-    })
+    }, conditions=conditions)
 
 
 
@@ -155,7 +155,7 @@ def generate_advancements():
     advancement(rm, ('story', 'magnifying_glass'), 'artisanal:metal/magnifying_glass/brass', 'Inspector Detector', 'Craft a Magnifying Glass', 'tfc:story/lens', inventory_changed('#artisanal:magnifying_glasses'))
     advancement(rm, ('story', 'perishable_sugar'), 'artisanal:perishable_sugar', 'Sweet Tooth', 'Create Perishable Sugar', 'tfc:story/barrel', inventory_changed('artisanal:perishable_sugar'))
     advancement(rm, ('story', 'non_perishable_sugar'), 'artisanal:non_perishable_sugar', 'Everlasting Sweet Tooth', 'Create Non-Perishable Sugar', 'artisanal:story/perishable_sugar', inventory_changed('artisanal:non_perishable_sugar'))
-    advancement(rm, ('story', 'powdered_milk'), 'artisanal:powdered_milk', 'Just Add Water', 'Create Powdered Milk', 'tfc:story/quern', inventory_changed('artisanal:powdered_milk'))
+    advancement(rm, ('story', 'powdered_milk'), 'artisanal:powdered_milk', 'Just Add Water', 'Create Powdered Milk', 'tfc:story/quern', inventory_changed('#artisanal:powdered_milks'))
     advancement(rm, ('story', 'quill'), 'artisanal:quill', 'Not Quite Ballpoint', 'Create a Quill', 'tfc:story/barrel', inventory_changed('artisanal:quill'))
     advancement(rm, ('story', 'writable_book'), 'minecraft:writable_book', 'Bookkeeper', 'Create a Book and Quill', 'artisanal:story/quill', inventory_changed('minecraft:writable_book'))
     advancement(rm, ('story', 'soap'), 'artisanal:soap', 'Clean as a Whistle', 'Create Soap', 'tfc:story/barrel', inventory_changed('artisanal:soap'))
@@ -273,7 +273,12 @@ def generate_item_models():
     rm.item_model('non_perishable_sugar', 'artisanal:item/non_perishable_sugar').with_lang('Non-Perishable Sugar')
     
     rm.item_model('milk_flakes', 'artisanal:item/milk_flakes').with_lang(lang('milk_flakes'))
+    rm.item_model('goat_milk_flakes', 'artisanal:item/goat_milk_flakes').with_lang(lang('goat_milk_flakes'))
+    rm.item_model('yak_milk_flakes', 'artisanal:item/yak_milk_flakes').with_lang(lang('yak_milk_flakes'))
+    
     rm.item_model('powdered_milk', 'artisanal:item/powdered_milk').with_lang(lang('powdered_milk'))
+    rm.item_model('powdered_goat_milk', 'artisanal:item/powdered_goat_milk').with_lang(lang('powdered_goat_milk'))
+    rm.item_model('powdered_yak_milk', 'artisanal:item/powdered_yak_milk').with_lang(lang('powdered_yak_milk'))
     
     for metal in MAGNIFYING_GLASS_METALS:
         rm.item_model(('metal', 'magnifying_glass', f'{metal}'), f'artisanal:item/metal/magnifying_glass/{metal}').with_lang(lang(f'{metal}_magnifying_glass'))
@@ -372,6 +377,9 @@ def generate_barrel_recipes():
     barrel_sealed_recipe(rm, 'paper', 'Bleaching Paper', 1000, 'tfc:unrefined_paper', '25 tfc:lye', 'minecraft:paper')
     
     barrel_instant_recipe(rm, 'milk', 'artisanal:powdered_milk', '100 minecraft:water', None, '100 minecraft:milk')
+    barrel_instant_recipe(rm, 'goat_milk', 'artisanal:powdered_goat_milk', '100 minecraft:water', None, '100 firmalife:goat_milk', conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
+    barrel_instant_recipe(rm, 'yak_milk', 'artisanal:powdered_yak_milk', '100 minecraft:water', None, '100 firmalife:yak_milk', conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
+    
     
     disable_recipe(rm, 'tfc:barrel/limewater')
     disable_recipe(rm, 'tfc:barrel/rum')
@@ -559,7 +567,12 @@ def generate_pot_recipes():
         
     
     scalable_pot_recipe(rm, ('condensed_milk'), '2 minecraft:milk', '1 artisanal:condensed_milk', None, 3000, 100)
+    scalable_pot_recipe(rm, ('condensed_goat_milk'), '2 firmalife:goat_milk', '1 artisanal:condensed_goat_milk', None, 3000, 100, conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
+    scalable_pot_recipe(rm, ('condensed_yak_milk'), '2 firmalife:yak_milk', '1 artisanal:condensed_yak_milk', None, 3000, 100, conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
     scalable_pot_recipe(rm, ('milk_flakes'), '100 artisanal:condensed_milk', None, [{'item': 'artisanal:milk_flakes'}], 3000, 100)
+    scalable_pot_recipe(rm, ('goat_milk_flakes'), '100 artisanal:condensed_goat_milk', None, [{'item': 'artisanal:goat_milk_flakes'}], 3000, 100)
+    scalable_pot_recipe(rm, ('yak_milk_flakes'), '100 artisanal:condensed_yak_milk', None, [{'item': 'artisanal:yak_milk_flakes'}], 3000, 100)
+    
     scalable_pot_recipe(rm, ('salt'), '125 tfc:salt_water', None, [{'item': 'tfc:powder/salt'}], 2000, 300)
     scalable_pot_recipe(rm, ('perishable_sugar'), '200 artisanal:sugarcane_juice', '20 artisanal:molasses', [item_stack_provider('artisanal:perishable_sugar')], 2000, 107)
     scalable_pot_recipe(rm, ('perishable_sugar_from_filtered'), '200 artisanal:filtered_sugarcane_juice', '20 artisanal:molasses', [item_stack_provider('artisanal:perishable_sugar')], 2000, 107)
@@ -635,6 +648,9 @@ def generate_quern_recipes():
     quern_recipe(rm, ('food', 'lemon'), not_rotten('tfc:food/lemon'), 'artisanal:food/fruit_mash')
     quern_recipe(rm, ('food', 'orange'), not_rotten('tfc:food/orange'), 'artisanal:food/fruit_mash')
     quern_recipe(rm, ('powdered_milk'), 'artisanal:milk_flakes', {'item': 'artisanal:powdered_milk', 'count': 2})
+    quern_recipe(rm, ('powdered_goat_milk'), 'artisanal:goat_milk_flakes', {'item': 'artisanal:powdered_goat_milk', 'count': 2})
+    quern_recipe(rm, ('powdered_yak_milk'), 'artisanal:yak_milk_flakes', {'item': 'artisanal:powdered_yak_milk', 'count': 2})
+    
 
 def generate_vat_recipes():
     print('\tGenerating vat recipes...')
@@ -677,8 +693,8 @@ def generate_entity_tags():
 def generate_fluid_tags():
     print('\tGenerating fluid tags...')
     rm.fluid_tag('rendered_fats', 'tfc:tallow', 'artisanal:lard', 'artisanal:schmaltz')
-    rm.fluid_tag('tfc:ingredients', '#artisanal:rendered_fats', 'artisanal:soap', 'artisanal:soapy_water', 'artisanal:sugarcane_juice', 'artisanal:filtered_sugarcane_juice', 'artisanal:alkalized_sugarcane_juice', 'artisanal:clarified_sugarcane_juice', 'artisanal:molasses', 'artisanal:petroleum')
-    rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:condensed_milk', 'artisanal:apple_juice', 'artisanal:lemon_juice', 'artisanal:orange_juice', 'artisanal:screwdriver')
+    rm.fluid_tag('tfc:ingredients', '#artisanal:rendered_fats', 'artisanal:soap', 'artisanal:soapy_water', 'artisanal:sugarcane_juice', 'artisanal:filtered_sugarcane_juice', 'artisanal:alkalized_sugarcane_juice', 'artisanal:clarified_sugarcane_juice', 'artisanal:molasses', 'artisanal:petroleum', 'artisanal:condensed_milk', 'artisanal:condensed_goat_milk', 'artisanal:condensed_yak_milk')
+    rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:apple_juice', 'artisanal:lemon_juice', 'artisanal:orange_juice', 'artisanal:screwdriver')
     rm.fluid_tag('tfc:usable_in_jug', '#tfc:ingredients')
     
 def generate_item_tags():

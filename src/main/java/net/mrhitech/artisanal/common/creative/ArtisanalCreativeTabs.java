@@ -60,7 +60,12 @@ public class ArtisanalCreativeTabs {
             event.accept(ArtisanalItems.CLEANED_SUGARCANE);
             event.accept(ArtisanalItems.FRUIT_MASH);
             event.accept(ArtisanalItems.MILK_FLAKES);
+            event.accept(ArtisanalItems.GOAT_MILK_FLAKES);
+            event.accept(ArtisanalItems.YAK_MILK_FLAKES);
             event.accept(ArtisanalItems.POWDERED_MILK);
+            event.accept(ArtisanalItems.POWDERED_GOAT_MILK);
+            event.accept(ArtisanalItems.POWDERED_YAK_MILK);
+            
             
             event.accept(ArtisanalItems.DIRTY_JAR);
             
