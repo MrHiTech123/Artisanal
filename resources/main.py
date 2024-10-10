@@ -507,9 +507,12 @@ def generate_crafting_recipes():
     rm.crafting_shapeless(('crafting', 'aggregate'), ('#forge:gravel', '#forge:sand', '#forge:gravel', '#forge:sand', 'tfc:powder/lime', '#forge:sand', '#forge:gravel', '#forge:sand', '#forge:gravel'), (8, 'tfc:aggregate'))
     disable_recipe(rm, 'tfc:crafting/aggregate')
     
-    no_remainder_shapeless(rm, ('crafting', 'milk'), (fluid_item_ingredient('1 minecraft:water'), 'artisanal:powdered_milk'), item_stack_provider('tfc:ceramic/jug', modify_fluid='100 minecraft:milk'), primary_ingredient=fluid_item_ingredient('1 minecraft:water'))
-    no_remainder_shapeless(rm, ('crafting', 'goat_milk'), (fluid_item_ingredient('1 minecraft:water'), 'artisanal:powdered_goat_milk'), item_stack_provider('tfc:ceramic/jug', modify_fluid='100 firmalife:goat_milk'), primary_ingredient=fluid_item_ingredient('1 minecraft:water'), conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
-    no_remainder_shapeless(rm, ('crafting', 'yak_milk'), (fluid_item_ingredient('1 minecraft:water'), 'artisanal:powdered_yak_milk'), item_stack_provider('tfc:ceramic/jug', modify_fluid='100 firmalife:yak_milk'), primary_ingredient=fluid_item_ingredient('1 minecraft:water'), conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
+    for i in range(1, 8 + 1):
+        max_amount = 100 * i
+        min_amount = (100 * (i - 1)) + 1
+        no_remainder_shapeless(rm, ('crafting', f'milk_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} minecraft:milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'))
+        no_remainder_shapeless(rm, ('crafting', f'goat_milk_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_goat_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} firmalife:goat_milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'), conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
+        no_remainder_shapeless(rm, ('crafting', f'yak_milk_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_yak_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} firmalife:yak_milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'), conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
     
     
 def generate_knapping_recipes():

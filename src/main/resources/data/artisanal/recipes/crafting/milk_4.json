@@ -1,0 +1,49 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:no_remainder_shapeless_crafting",
+  "recipe": {
+    "type": "tfc:advanced_shapeless_crafting",
+    "ingredients": [
+      {
+        "type": "tfc:fluid_item",
+        "fluid_ingredient": {
+          "ingredient": "minecraft:water",
+          "amount": 301
+        }
+      },
+      {
+        "item": "artisanal:powdered_milk"
+      },
+      {
+        "item": "artisanal:powdered_milk"
+      },
+      {
+        "item": "artisanal:powdered_milk"
+      },
+      {
+        "item": "artisanal:powdered_milk"
+      }
+    ],
+    "result": {
+      "stack": {
+        "item": "tfc:ceramic/jug"
+      },
+      "modifiers": [
+        {
+          "type": "artisanal:modify_fluid",
+          "fluid": {
+            "fluid": "minecraft:milk",
+            "amount": 400
+          }
+        }
+      ]
+    },
+    "primary_ingredient": {
+      "type": "tfc:fluid_item",
+      "fluid_ingredient": {
+        "ingredient": "minecraft:water",
+        "amount": 301
+      }
+    }
+  }
+}

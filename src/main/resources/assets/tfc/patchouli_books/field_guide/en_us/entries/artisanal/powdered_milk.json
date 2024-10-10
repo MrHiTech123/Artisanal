@@ -23,7 +23,27 @@
       "type": "tfc:instant_barrel_recipe",
       "recipe": "artisanal:barrel/milk",
       "text": "Powdered Milk can then be recombined with water at any subsequent point to create Milk."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/milk_1",
+      "text": "Powdered milk can also be crafted with a water jug to turn it into a milk jug, if you want to use it on the go."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/milk_8",
+      "text": "You can also craft any fluid container with up to 8 powdered milks, to make 100 mb of milk per powdered milk used."
+    },
+    {
+      "type": "tfc:quern_recipe",
+      "recipe": "artisanal:quern/powdered_goat_milk",
+      "text": "If you have the Firmalife addon installed, you can make Powdered Milk variants for Goat and Yak Milk as well."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/yak_milk"
     }
+  
   ],
   "read_by_default": true,
   "extra_recipe_mappings": {
