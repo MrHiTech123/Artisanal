@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfc:beer",
+    "tfc:corn_whiskey",
+    "tfc:rye_whiskey",
+    "tfc:sake",
+    "tfc:whiskey"
+  ]
+}
