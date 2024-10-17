@@ -1,11 +1,12 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "ingredient": "artisanal:screwdriver",
+  "ingredient": {
+    "tag": "artisanal:alcohols/fruit"
+  },
   "thirst": 10,
-  "intoxication": 2000,
+  "intoxication": 4000,
   "food": {
-    "fruit": 0.5,
-    "vegetables": 0.5
+    "fruit": 1.0
   },
   "may_drink_when_full": true
 }

@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "tag": "artisanal:alcohols/no_nutrition"
+  },
+  "thirst": 10,
+  "intoxication": 4000,
+  "may_drink_when_full": true
+}

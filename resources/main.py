@@ -4,7 +4,7 @@ from alcs_n_russians_funcs import *
 from mcresources import ResourceManager
 
 
-SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'petroleum', 'apple_juice', 'lemon_juice', 'orange_juice', 'screwdriver')
+SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'petroleum', 'apple_juice', 'carrot_juice', 'lemon_juice', 'orange_juice', 'tomato_juice', 'screwdriver')
 AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cypress', 'fig', 'ironwood', 'ipe')
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
@@ -32,6 +32,13 @@ CLEANABLES = (
     CleaningRecipe('dented_tin_can', 'artisanal:metal/dirty_dented_tin_can', 'artisanal:metal/dented_tin_can'),
     CleaningRecipe('small_pot', 'artisanal:ceramic/dirty_small_pot', 'artisanal:ceramic/small_pot')
 )
+
+def disable_data(rm: ResourceManager, name_parts: ResourceIdentifier):
+    # noinspection PyTypeChecker
+    rm.data(name_parts, {
+            'group': None,
+            **{},
+            'conditions': utils.recipe_condition('forge:false')})
 
 def juicing_recipe(rm: ResourceManager, name: ResourceIdentifier, item: str, result: str) -> RecipeContext:
     result = result if not isinstance(result, str) else fluid_stack(result)
@@ -164,10 +171,21 @@ def generate_advancements():
 def generate_drinkables():
     print('\tGenerating drinkables...')
     drinkable(rm, ('molasses'), 'artisanal:molasses', thirst=-1, food={'hunger': 4, 'saturation': 0, 'vegetables': 3, 'fruit': 3})
-    drinkable(rm, ('apple_juice'), 'artisanal:apple_juice', thirst=10, food={'hunger': 1, 'saturation': 0, 'fruit': 0.5})
-    drinkable(rm, ('lemon_juice'), 'artisanal:lemon_juice', thirst=10, food={'hunger': 1, 'saturation': 0, 'fruit': 0.5})
-    drinkable(rm, ('orange_juice'), 'artisanal:orange_juice', thirst=10, food={'hunger': 1, 'saturation': 0, 'fruit': 0.5})
-    drinkable(rm, ('screwdriver'), 'artisanal:screwdriver', thirst=10, food={'fruit': 0.5}, intoxication=2000, allow_full=True)
+    drinkable(rm, ('apple_juice'), 'artisanal:apple_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.5})
+    drinkable(rm, ('carrot_juice'), 'artisanal:carrot_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'vegetables': 0.5})
+    drinkable(rm, ('lemon_juice'), 'artisanal:lemon_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.5})
+    drinkable(rm, ('orange_juice'), 'artisanal:orange_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.5})
+    drinkable(rm, ('tomato_juice'), 'artisanal:tomato_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'vegetables': 0.5})
+    drinkable(rm, ('screwdriver'), 'artisanal:screwdriver', thirst=10, food={'fruit': 0.5, 'vegetables': 0.5}, intoxication=2000, allow_full=True)
+    
+    
+    disable_data(rm, 'tfc:tfc/drinkables/alcohol')
+    
+    drinkable(rm, ('alcohol/fruit'), '#artisanal:alcohols/fruit', thirst=10, intoxication=4000, allow_full=True, food={'fruit': 1.0})
+    drinkable(rm, ('alcohol/grain'), '#artisanal:alcohols/grain', thirst=10, intoxication=4000, allow_full=True, food={'grain': 1.0})
+    drinkable(rm, ('alcohol/vegetable'), '#artisanal:alcohols/vegetable', thirst=10, intoxication=4000, allow_full=True, food={'vegetables': 1.0})
+    drinkable(rm, ('alcohol/no_nutrition'), '#artisanal:alcohols/no_nutrition', thirst=10, intoxication=4000, allow_full=True)
+    
     
 def generate_lamp_fuels():
     print('\tGenerating lamp fuels...')
@@ -702,9 +720,16 @@ def generate_fluid_tags():
     print('\tGenerating fluid tags...')
     rm.fluid_tag('rendered_fats', 'tfc:tallow', 'artisanal:lard', 'artisanal:schmaltz')
     rm.fluid_tag('tfc:ingredients', '#artisanal:rendered_fats', 'artisanal:soap', 'artisanal:soapy_water', 'artisanal:sugarcane_juice', 'artisanal:filtered_sugarcane_juice', 'artisanal:alkalized_sugarcane_juice', 'artisanal:clarified_sugarcane_juice', 'artisanal:molasses', 'artisanal:petroleum', 'artisanal:condensed_milk', 'artisanal:condensed_goat_milk', 'artisanal:condensed_yak_milk')
-    rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:apple_juice', 'artisanal:lemon_juice', 'artisanal:orange_juice', 'artisanal:screwdriver')
+    rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:apple_juice', 'artisanal:carrot_juice', 'artisanal:lemon_juice', 'artisanal:orange_juice', 'artisanal:tomato_juice', 'artisanal:screwdriver')
     rm.fluid_tag('tfc:usable_in_jug', '#tfc:ingredients')
     
+    rm.fluid_tag('alcohols/fruit', 'tfc:cider')
+    rm.fluid_tag('alcohols/grain', 'tfc:beer', 'tfc:corn_whiskey', 'tfc:rye_whiskey', 'tfc:sake', 'tfc:whiskey')
+    rm.fluid_tag('alcohols/vegetable', 'tfc:vodka')
+    rm.fluid_tag('alcohols/no_nutrition', 'tfc:rum')
+    
+
+
 def generate_item_tags():
     print('\tGenerating item tags...')
     rm.item_tag('tfc:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')

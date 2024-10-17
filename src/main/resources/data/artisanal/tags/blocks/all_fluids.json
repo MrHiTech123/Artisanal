@@ -16,8 +16,10 @@
     "artisanal:fluid/condensed_yak_milk",
     "artisanal:fluid/petroleum",
     "artisanal:fluid/apple_juice",
+    "artisanal:fluid/carrot_juice",
     "artisanal:fluid/lemon_juice",
     "artisanal:fluid/orange_juice",
+    "artisanal:fluid/tomato_juice",
     "artisanal:fluid/screwdriver"
   ]
 }

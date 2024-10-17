@@ -3,7 +3,7 @@
   "ingredient": "artisanal:orange_juice",
   "thirst": 10,
   "food": {
-    "hunger": 1,
+    "hunger": 0,
     "saturation": 0,
     "fruit": 0.5
   }
