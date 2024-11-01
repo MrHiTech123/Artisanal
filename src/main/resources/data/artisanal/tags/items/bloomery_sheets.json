@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfc:metal/double_sheet/bismuth_bronze",
+    "tfc:metal/double_sheet/black_bronze",
+    "tfc:metal/double_sheet/bronze",
+    "tfc:metal/double_sheet/wrought_iron",
+    "tfc:metal/double_sheet/steel",
+    "tfc:metal/double_sheet/black_steel",
+    "tfc:metal/double_sheet/blue_steel",
+    "tfc:metal/double_sheet/red_steel"
+  ]
+}
