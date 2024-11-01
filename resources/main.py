@@ -10,6 +10,7 @@ MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 's
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
 POTTABLE_FOOD_TAGS = ('meats', 'vegetables')
 OPENABLE_CAN_ITEMS = ('sterilized_tin_can', 'sealed_tin_can')
+BLOOMERY_SHEETS = ['bismuth_bronze', 'black_bronze', 'bronze', 'wrought_iron', 'steel', 'black_steel', 'blue_steel', 'red_steel']
 STEELS = {metal: METALS[metal] for metal in ('steel', 'black_steel', 'blue_steel', 'red_steel')}
 
 class CleaningRecipe(NamedTuple):
@@ -537,6 +538,9 @@ def generate_crafting_recipes():
         no_remainder_shapeless(rm, ('crafting', f'goat_milk_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_goat_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} firmalife:goat_milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'), conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
         no_remainder_shapeless(rm, ('crafting', f'yak_milk_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_yak_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} firmalife:yak_milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'), conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
     
+    disable_recipe(rm, 'tfc:crafting/bloomery')
+    rm.crafting_shaped(('crafting', 'bloomery'), ('XXX', 'X X', 'XXX'), {'X': '#artisanal:bloomery_sheets'}, 'tfc:bloomery')
+    
     
 def generate_knapping_recipes():
     print("\tGenerating knapping recipes...")
@@ -743,7 +747,7 @@ def generate_fluid_tags():
 
 def generate_item_tags():
     print('\tGenerating item tags...')
-    rm.item_tag('tfc:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
+    rm.item_tag('bloomery_sheets', *[f'tfc:metal/double_sheet/{metal}' for metal in BLOOMERY_SHEETS])
     rm.item_tag('firmalife:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
     rm.item_tag('fats', 'artisanal:bear_fat', 'artisanal:pork_fat', 'artisanal:poultry_fat', 'artisanal:suet')
     rm.item_tag('tfc:firepit_kindling', 'artisanal:dry_bagasse')
@@ -755,11 +759,14 @@ def generate_item_tags():
     rm.item_tag('rods/metal', *[f'tfc:metal/rod/{metal}' for metal in METALS if 'utility' in METALS[metal].types])
     rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'])
     rm.item_tag('tfc:compost_browns_high', 'artisanal:dry_bagasse')
-    rm.item_tag('tfc:foods', '#tfc:sweetener')
-    rm.item_tag('tfc:firepit_fuel', 'artisanal:dry_bagasse')
     rm.item_tag('tfc:dynamic_bowl_items', 'artisanal:dirty_bowl')
+    rm.item_tag('tfc:firepit_fuel', 'artisanal:dry_bagasse')
+    rm.item_tag('tfc:foods', '#tfc:sweetener')
     rm.item_tag('tfc:foods/fruits', 'artisanal:food/fruit_mash')
     rm.item_tag('tfc:foods/vegetables', 'artisanal:food/carrot_mash', 'artisanal:food/tomato_mash')
+    rm.item_tag('tfc:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
+
+    
 
 def generate_tags():
     print('Generating tags...')
