@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:juicing",
+  "ingredient": {
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "item": "tfc:food/tomato"
+    }
+  },
+  "result": {
+    "fluid": "artisanal:tomato_juice",
+    "amount": 200
+  }
+}

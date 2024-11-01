@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:juicing",
+  "ingredient": {
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "item": "tfc:food/carrot"
+    }
+  },
+  "result": {
+    "fluid": "artisanal:carrot_juice",
+    "amount": 100
+  }
+}

@@ -86,6 +86,11 @@ public class ArtisanalItems {
     
     public static final RegistryObject<Item> FRUIT_MASH = ITEMS.register("food/fruit_mash", () -> new Item(new Item.Properties().food(ArtisanalFoods.BLANK_FOOD)));
     
+    public static final RegistryObject<Item> CARROT_MASH = ITEMS.register("food/carrot_mash", () -> new Item(new Item.Properties().food(ArtisanalFoods.BLANK_FOOD)));
+    public static final RegistryObject<Item> TOMATO_MASH = ITEMS.register("food/tomato_mash", () -> new Item(new Item.Properties().food(ArtisanalFoods.BLANK_FOOD)));
+    
+    
+    
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
     }
