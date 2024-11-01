@@ -654,7 +654,7 @@ def generate_pot_recipes():
             }, conditions=[{'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}])
             
             disable_recipe(rm, f'tfc:crafting/unseal_{fruit}_jar')
-            extra_products_shapeless(rm, ('crafting', 'unseal', fruit), (f'tfc:jar/{fruit}'), item_stack_provider(f'tfc:jar/{fruit}_unsealed', copy_food=True), ('tfc:jar_lid'), primary_ingredient=f'tfc:jar/{fruit}')
+            extra_products_shapeless(rm, ('crafting', 'unseal', fruit), (f'tfc:jar/{fruit}'), item_stack_provider(f'tfc:jar/{fruit}_unsealed', copy_food=True), ('tfc:jar_lid'), primary_ingredient=f'tfc:jar/{fruit}', conditions={'type': 'forge:not', 'value': {'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}})
             
         for fruit in FL_FRUITS:
             ingredient = not_rotten(has_trait('firmalife:food/%s' % fruit, 'firmalife:dried', True))
@@ -678,7 +678,16 @@ def generate_pot_recipes():
             }, conditions=[{'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}])
             
             disable_recipe(rm, f'firmalife:crafting/unseal_{fruit}_jar')
-            extra_products_shapeless(rm, ('crafting', 'unseal', fruit), (f'firmalife:jar/{fruit}'), item_stack_provider(f'firmalife:jar/{fruit}_unsealed', copy_food=True), ('tfc:jar_lid'), primary_ingredient=f'firmalife:jar/{fruit}')
+            extra_products_shapeless(
+                rm, 
+                ('crafting', 'unseal', fruit), 
+                (f'firmalife:jar/{fruit}'), 
+                item_stack_provider(f'firmalife:jar/{fruit}_unsealed', copy_food=True), 
+                ('tfc:jar_lid'), 
+                primary_ingredient=f'firmalife:jar/{fruit}', 
+                conditions={'type': 'forge:not', 'value': {'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}}
+                
+            )
             
     
 def generate_quern_recipes():

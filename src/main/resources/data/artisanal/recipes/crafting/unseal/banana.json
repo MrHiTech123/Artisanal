@@ -6,6 +6,15 @@
       "item": "tfc:jar_lid"
     }
   ],
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "lithicaddon"
+      }
+    }
+  ],
   "recipe": {
     "type": "tfc:advanced_shapeless_crafting",
     "ingredients": [
