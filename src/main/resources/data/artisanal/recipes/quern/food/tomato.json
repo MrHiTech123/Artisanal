@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:quern",
+  "ingredient": {
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "item": "tfc:food/tomato"
+    }
+  },
+  "result": {
+    "item": "artisanal:food/tomato_mash",
+    "count": 1
+  }
+}

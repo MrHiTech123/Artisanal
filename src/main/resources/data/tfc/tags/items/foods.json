@@ -4,6 +4,8 @@
   "values": [
     "artisanal:food/cleaned_sugarcane",
     "artisanal:food/fruit_mash",
+    "artisanal:food/carrot_mash",
+    "artisanal:food/tomato_mash",
     "artisanal:perishable_sugar",
     "#tfc:sweetener"
   ]

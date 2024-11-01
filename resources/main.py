@@ -180,7 +180,6 @@ def generate_drinkables():
     
     
     disable_data(rm, 'tfc:tfc/drinkables/alcohol')
-    
     drinkable(rm, ('alcohol/fruit'), '#artisanal:alcohols/fruit', thirst=10, intoxication=4000, allow_full=True, food={'fruit': 1.0})
     drinkable(rm, ('alcohol/grain'), '#artisanal:alcohols/grain', thirst=10, intoxication=4000, allow_full=True, food={'grain': 1.0})
     drinkable(rm, ('alcohol/vegetable'), '#artisanal:alcohols/vegetable', thirst=10, intoxication=4000, allow_full=True, food={'vegetables': 1.0})
@@ -203,6 +202,8 @@ def generate_item_foods():
     print('\tGenerating item foods...')
     food_item(rm, ('cleaned_sugarcane'), 'artisanal:food/cleaned_sugarcane', Category.other, 4, 0, 0, 0.5)
     food_item(rm, ('fruit_mash'), 'artisanal:food/fruit_mash', Category.fruit, 4, 0, 0, 3, fruit=0.5)
+    food_item(rm, ('carrot_mash'), 'artisanal:food/carrot_mash', Category.vegetable, 4, 0, 0, 3, veg=0.5)
+    food_item(rm, ('tomato_mash'), 'artisanal:food/tomato_mash', Category.vegetable, 4, 0, 0, 3, veg=0.5)
     food_item(rm, ('perishable_sugar'), 'artisanal:perishable_sugar', Category.other, 0, 0, 0, 3)
     food_item(rm, ('non_perishable_sugar'), 'artisanal:non_perishable_sugar', Category.other, 0, 0, 0, 0, tag_as_food=False)
     food_item(rm, ('sugar'), 'minecraft:sugar', Category.other, 0, 0, 0, 0, tag_as_food=False)
@@ -330,6 +331,10 @@ def generate_item_models():
     rm.item_model(('dirty_bowl'), 'artisanal:item/dirty_bowl').with_lang(lang('dirty_bowl'))
     
     rm.item_model(('food', 'fruit_mash'), 'artisanal:item/food/fruit_mash').with_lang(lang('fruit_mash'))
+    rm.item_model(('food', 'carrot_mash'), 'artisanal:item/food/carrot_mash').with_lang(lang('carrot_mash'))
+    rm.item_model(('food', 'tomato_mash'), 'artisanal:item/food/tomato_mash').with_lang(lang('tomato_mash'))
+    
+    
     
 def generate_models():
     print('Generating models...')
@@ -562,7 +567,11 @@ def generate_juicing_recipes():
     juicing_recipe(rm, ('apple_juice_from_red'), not_rotten('tfc:food/red_apple'), '200 artisanal:apple_juice')
     juicing_recipe(rm, ('apple_juice_from_green'), not_rotten('tfc:food/green_apple'), '200 artisanal:apple_juice')
     juicing_recipe(rm, ('lemon_juice'), not_rotten('tfc:food/lemon'), '200 artisanal:lemon_juice')
-    juicing_recipe(rm, ('orange'), not_rotten('tfc:food/orange'), '200 artisanal:orange_juice')
+    juicing_recipe(rm, ('orange_juice'), not_rotten('tfc:food/orange'), '200 artisanal:orange_juice')
+    
+    juicing_recipe(rm, ('carrot_juice'), not_rotten('tfc:food/carrot'), '100 artisanal:carrot_juice')
+    juicing_recipe(rm, ('tomato_juice'), not_rotten('tfc:food/tomato'), '200 artisanal:tomato_juice')
+    
     juicing_recipe(rm, ('sugarcane_juice'), not_rotten('artisanal:food/cleaned_sugarcane'), '200 artisanal:sugarcane_juice')
     
 def generate_mixing_recipes():
@@ -673,6 +682,8 @@ def generate_quern_recipes():
     quern_recipe(rm, ('food', 'green_apple'), not_rotten('tfc:food/green_apple'), 'artisanal:food/fruit_mash')
     quern_recipe(rm, ('food', 'lemon'), not_rotten('tfc:food/lemon'), 'artisanal:food/fruit_mash')
     quern_recipe(rm, ('food', 'orange'), not_rotten('tfc:food/orange'), 'artisanal:food/fruit_mash')
+    quern_recipe(rm, ('food', 'carrot'), not_rotten('tfc:food/carrot'), 'artisanal:food/carrot_mash')
+    quern_recipe(rm, ('food', 'tomato'), not_rotten('tfc:food/tomato'), 'artisanal:food/tomato_mash')
     quern_recipe(rm, ('powdered_milk'), 'artisanal:milk_flakes', {'item': 'artisanal:powdered_milk', 'count': 2})
     quern_recipe(rm, ('powdered_goat_milk'), 'artisanal:goat_milk_flakes', {'item': 'artisanal:powdered_goat_milk', 'count': 2})
     quern_recipe(rm, ('powdered_yak_milk'), 'artisanal:yak_milk_flakes', {'item': 'artisanal:powdered_yak_milk', 'count': 2})
@@ -748,6 +759,7 @@ def generate_item_tags():
     rm.item_tag('tfc:firepit_fuel', 'artisanal:dry_bagasse')
     rm.item_tag('tfc:dynamic_bowl_items', 'artisanal:dirty_bowl')
     rm.item_tag('tfc:foods/fruits', 'artisanal:food/fruit_mash')
+    rm.item_tag('tfc:foods/vegetables', 'artisanal:food/carrot_mash', 'artisanal:food/tomato_mash')
 
 def generate_tags():
     print('Generating tags...')
