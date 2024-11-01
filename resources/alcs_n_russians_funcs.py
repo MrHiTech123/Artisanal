@@ -2220,12 +2220,18 @@ def damage_shaped(rm: ResourceManager, name_parts: utils.ResourceIdentifier, pat
         }
     )
 
-def extra_products_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: str, extra_result: str) -> RecipeContext:
-    return delegate_recipe(rm, name_parts, 'tfc:extra_products_shapeless_crafting', {
-        'type': 'minecraft:crafting_shapeless',
+def extra_products_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: str, extra_result: str, primary_ingredient: str=None) -> RecipeContext:
+    data = {
+        'type': 'tfc:advanced_shapeless_crafting',
         'ingredients': utils.ingredient_list(ingredients),
         'result': utils.item_stack(result)
-    }, {
+    }
+    
+    if primary_ingredient is not None:
+        data['primary_ingredient'] = utils.ingredient(primary_ingredient)
+    
+    
+    return delegate_recipe(rm, name_parts, 'tfc:extra_products_shapeless_crafting', data, {
         'extra_products': utils.item_stack_list(extra_result)
     })
 

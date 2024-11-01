@@ -7,7 +7,7 @@
     }
   ],
   "recipe": {
-    "type": "minecraft:crafting_shapeless",
+    "type": "tfc:advanced_shapeless_crafting",
     "ingredients": [
       {
         "item": "artisanal:metal/magnifying_glass/sterling_silver"
