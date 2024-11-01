@@ -23,10 +23,20 @@ public class DynamicBowlHandlerMixin{
         stack = new ItemStack(ArtisanalItems.DIRTY_JAR.get(), 1);
     }
     
+    /**
+     * @author hi
+     * @reason dumb stupid
+     */
     @Overwrite
     public ItemStack getBowl() {
+        
+        
+        
         if (this.stack.getItem().equals(ArtisanalItems.DIRTY_BOWL.get())) {
             return this.bowl;
+        }
+        else if (this.bowl.isEmpty()) {
+            return ItemStack.EMPTY;
         }
         else {
             ItemStack toReturn = new ItemStack(ArtisanalItems.DIRTY_BOWL.get());

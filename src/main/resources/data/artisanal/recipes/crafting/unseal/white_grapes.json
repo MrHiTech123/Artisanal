@@ -3,18 +3,26 @@
   "type": "tfc:extra_products_shapeless_crafting",
   "extra_products": [
     {
-      "item": "tfc:lens"
+      "item": "tfc:jar_lid"
     }
   ],
   "recipe": {
     "type": "tfc:advanced_shapeless_crafting",
     "ingredients": [
       {
-        "item": "artisanal:metal/magnifying_glass/gold"
+        "item": "firmalife:jar/white_grapes"
       }
     ],
     "result": {
-      "item": "artisanal:metal/magnifying_glass_frame/gold"
+      "stack": {
+        "item": "firmalife:jar/white_grapes_unsealed"
+      },
+      "modifiers": [
+        "tfc:copy_food"
+      ]
+    },
+    "primary_ingredient": {
+      "item": "firmalife:jar/white_grapes"
     }
   }
 }

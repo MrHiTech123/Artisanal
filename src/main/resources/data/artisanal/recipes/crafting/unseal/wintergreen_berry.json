@@ -3,18 +3,26 @@
   "type": "tfc:extra_products_shapeless_crafting",
   "extra_products": [
     {
-      "item": "tfc:lens"
+      "item": "tfc:jar_lid"
     }
   ],
   "recipe": {
     "type": "tfc:advanced_shapeless_crafting",
     "ingredients": [
       {
-        "item": "artisanal:metal/magnifying_glass/gold"
+        "item": "tfc:jar/wintergreen_berry"
       }
     ],
     "result": {
-      "item": "artisanal:metal/magnifying_glass_frame/gold"
+      "stack": {
+        "item": "tfc:jar/wintergreen_berry_unsealed"
+      },
+      "modifiers": [
+        "tfc:copy_food"
+      ]
+    },
+    "primary_ingredient": {
+      "item": "tfc:jar/wintergreen_berry"
     }
   }
 }
