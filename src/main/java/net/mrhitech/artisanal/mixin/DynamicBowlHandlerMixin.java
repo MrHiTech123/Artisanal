@@ -3,12 +3,17 @@ package net.mrhitech.artisanal.mixin;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.capabilities.food.DynamicBowlHandler;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
+import net.dries007.tfc.util.Helpers;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 
@@ -18,6 +23,9 @@ public class DynamicBowlHandlerMixin{
     private final ItemStack stack;
     @Shadow
     private ItemStack bowl;
+    
+    @Unique
+    private static final ResourceLocation piePanLocation = new ResourceLocation("firmalife", "pie_pan");
     
     public DynamicBowlHandlerMixin() {
         stack = new ItemStack(ArtisanalItems.DIRTY_JAR.get(), 1);
@@ -29,9 +37,6 @@ public class DynamicBowlHandlerMixin{
      */
     @Overwrite
     public ItemStack getBowl() {
-        
-        
-        
         if (this.stack.getItem().equals(ArtisanalItems.DIRTY_BOWL.get())) {
             return this.bowl;
         }
@@ -45,9 +50,9 @@ public class DynamicBowlHandlerMixin{
                     bowlHandler.setBowl(this.bowl);
                 }
             });
-            
+
             return toReturn;
-            
+
         }
     }
 }
