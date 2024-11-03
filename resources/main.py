@@ -186,6 +186,7 @@ def generate_drinkables():
     drinkable(rm, ('alcohol/fruit'), '#artisanal:alcohols/fruit', thirst=10, intoxication=4000, allow_full=True, food={'fruit': 1.0})
     drinkable(rm, ('alcohol/grain'), '#artisanal:alcohols/grain', thirst=10, intoxication=4000, allow_full=True, food={'grain': 1.0})
     drinkable(rm, ('alcohol/vegetable'), '#artisanal:alcohols/vegetable', thirst=10, intoxication=4000, allow_full=True, food={'vegetables': 1.0})
+    drinkable(rm, ('alcohol/fruit_and_veg'), '#artisanal:alcohols/fruit_and_veg', thirst=10, intoxication=4000, allow_full=True, food={'fruit': 1.0, 'vegetables': 1.0})
     drinkable(rm, ('alcohol/no_nutrition'), '#artisanal:alcohols/no_nutrition', thirst=10, intoxication=4000, allow_full=True)
     
     
@@ -756,7 +757,8 @@ def generate_fluid_tags():
     rm.fluid_tag('alcohols/fruit', 'tfc:cider')
     rm.fluid_tag('alcohols/grain', 'tfc:beer', 'tfc:corn_whiskey', 'tfc:rye_whiskey', 'tfc:sake', 'tfc:whiskey')
     rm.fluid_tag('alcohols/vegetable', 'tfc:vodka')
-    rm.fluid_tag('alcohols/no_nutrition', 'tfc:rum')
+    rm.fluid_tag('alcohols/fruit_and_veg', 'tfc:rum')
+    rm.fluid_tag('alcohols/no_nutrition')
     
 
 
