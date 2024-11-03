@@ -4,7 +4,7 @@ from alcs_n_russians_funcs import *
 from mcresources import ResourceManager
 
 
-SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'petroleum', 'apple_juice', 'carrot_juice', 'lemon_juice', 'orange_juice', 'tomato_juice', 'screwdriver')
+SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'petroleum', 'apple_juice', 'carrot_juice', 'lemon_juice', 'orange_juice', 'peach_juice', 'pineapple_juice', 'tomato_juice', 'screwdriver')
 AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cypress', 'fig', 'ironwood', 'ipe')
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
@@ -172,11 +172,13 @@ def generate_advancements():
 def generate_drinkables():
     print('\tGenerating drinkables...')
     drinkable(rm, ('molasses'), 'artisanal:molasses', thirst=-1, food={'hunger': 4, 'saturation': 0, 'vegetables': 3, 'fruit': 3})
-    drinkable(rm, ('apple_juice'), 'artisanal:apple_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.5})
-    drinkable(rm, ('carrot_juice'), 'artisanal:carrot_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'vegetables': 0.5})
-    drinkable(rm, ('lemon_juice'), 'artisanal:lemon_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.5})
-    drinkable(rm, ('orange_juice'), 'artisanal:orange_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.5})
-    drinkable(rm, ('tomato_juice'), 'artisanal:tomato_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'vegetables': 0.5})
+    drinkable(rm, ('apple_juice'), 'artisanal:apple_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 1.0})
+    drinkable(rm, ('carrot_juice'), 'artisanal:carrot_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'vegetables': 1.0})
+    drinkable(rm, ('lemon_juice'), 'artisanal:lemon_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 1.0})
+    drinkable(rm, ('orange_juice'), 'artisanal:orange_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 1.0})
+    drinkable(rm, ('peach_juice'), 'artisanal:peach_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 1.0})
+    drinkable(rm, ('pineapple_juice'), 'artisanal:pineapple_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 1.0})
+    drinkable(rm, ('tomato_juice'), 'artisanal:tomato_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'vegetables': 1.0})
     drinkable(rm, ('screwdriver'), 'artisanal:screwdriver', thirst=10, food={'fruit': 0.5, 'vegetables': 0.5}, intoxication=2000, allow_full=True)
     
     
@@ -572,10 +574,10 @@ def generate_juicing_recipes():
     juicing_recipe(rm, ('apple_juice_from_green'), not_rotten('tfc:food/green_apple'), '200 artisanal:apple_juice')
     juicing_recipe(rm, ('lemon_juice'), not_rotten('tfc:food/lemon'), '200 artisanal:lemon_juice')
     juicing_recipe(rm, ('orange_juice'), not_rotten('tfc:food/orange'), '200 artisanal:orange_juice')
-    
+    juicing_recipe(rm, ('peach_juice'), not_rotten('tfc:food/peach'), '200 artisanal:peach_juice')
+    juicing_recipe(rm, ('pineapple_juice'), not_rotten('firmalife:food/pineapple'), '200 artisanal:pineapple_juice')
     juicing_recipe(rm, ('carrot_juice'), not_rotten('tfc:food/carrot'), '100 artisanal:carrot_juice')
     juicing_recipe(rm, ('tomato_juice'), not_rotten('tfc:food/tomato'), '200 artisanal:tomato_juice')
-    
     juicing_recipe(rm, ('sugarcane_juice'), not_rotten('artisanal:food/cleaned_sugarcane'), '200 artisanal:sugarcane_juice')
     
 def generate_mixing_recipes():
@@ -697,6 +699,8 @@ def generate_quern_recipes():
     quern_recipe(rm, ('food', 'green_apple'), not_rotten('tfc:food/green_apple'), 'artisanal:food/fruit_mash')
     quern_recipe(rm, ('food', 'lemon'), not_rotten('tfc:food/lemon'), 'artisanal:food/fruit_mash')
     quern_recipe(rm, ('food', 'orange'), not_rotten('tfc:food/orange'), 'artisanal:food/fruit_mash')
+    quern_recipe(rm, ('food', 'peach'), not_rotten('tfc:food/peach'), 'artisanal:food/fruit_mash')
+    quern_recipe(rm, ('food', 'pineapple'), not_rotten('firmalife:food/pineapple'), 'artisanal:food/fruit_mash')
     quern_recipe(rm, ('food', 'carrot'), not_rotten('tfc:food/carrot'), 'artisanal:food/carrot_mash')
     quern_recipe(rm, ('food', 'tomato'), not_rotten('tfc:food/tomato'), 'artisanal:food/tomato_mash')
     quern_recipe(rm, ('powdered_milk'), 'artisanal:milk_flakes', {'item': 'artisanal:powdered_milk', 'count': 2})
@@ -746,7 +750,7 @@ def generate_fluid_tags():
     print('\tGenerating fluid tags...')
     rm.fluid_tag('rendered_fats', 'tfc:tallow', 'artisanal:lard', 'artisanal:schmaltz')
     rm.fluid_tag('tfc:ingredients', '#artisanal:rendered_fats', 'artisanal:soap', 'artisanal:soapy_water', 'artisanal:sugarcane_juice', 'artisanal:filtered_sugarcane_juice', 'artisanal:alkalized_sugarcane_juice', 'artisanal:clarified_sugarcane_juice', 'artisanal:molasses', 'artisanal:petroleum', 'artisanal:condensed_milk', 'artisanal:condensed_goat_milk', 'artisanal:condensed_yak_milk')
-    rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:apple_juice', 'artisanal:carrot_juice', 'artisanal:lemon_juice', 'artisanal:orange_juice', 'artisanal:tomato_juice', 'artisanal:screwdriver')
+    rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:apple_juice', 'artisanal:carrot_juice', 'artisanal:lemon_juice', 'artisanal:orange_juice', 'artisanal:peach_juice', 'artisanal:pineapple_juice', 'artisanal:tomato_juice', 'artisanal:screwdriver')
     rm.fluid_tag('tfc:usable_in_jug', '#tfc:ingredients')
     
     rm.fluid_tag('alcohols/fruit', 'tfc:cider')

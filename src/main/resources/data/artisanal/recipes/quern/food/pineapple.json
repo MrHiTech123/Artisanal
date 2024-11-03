@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:quern",
+  "ingredient": {
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "item": "firmalife:food/pineapple"
+    }
+  },
+  "result": {
+    "item": "artisanal:food/fruit_mash",
+    "count": 1
+  }
+}
