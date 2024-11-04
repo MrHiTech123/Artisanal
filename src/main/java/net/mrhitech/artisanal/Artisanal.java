@@ -39,7 +39,6 @@ public class Artisanal
     public static final Logger LOGGER = LogUtils.getLogger();
     public Artisanal()
     {
-        
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ArtisanalItems.register(modEventBus);
@@ -54,12 +53,8 @@ public class Artisanal
             ClientEventHandler.init();
         }
         
-        
-        
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
-
-
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
