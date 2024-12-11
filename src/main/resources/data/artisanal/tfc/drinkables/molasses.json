@@ -5,7 +5,7 @@
   "food": {
     "hunger": 4,
     "saturation": 0,
-    "vegetables": 3,
-    "fruit": 3
+    "vegetables": 2,
+    "fruit": 2
   }
 }

@@ -6,7 +6,7 @@
   "thirst": 10,
   "intoxication": 4000,
   "food": {
-    "grain": 1.0
+    "grain": 0.7
   },
   "may_drink_when_full": true
 }

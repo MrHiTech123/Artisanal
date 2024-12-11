@@ -171,22 +171,22 @@ def generate_advancements():
 
 def generate_drinkables():
     print('\tGenerating drinkables...')
-    drinkable(rm, ('molasses'), 'artisanal:molasses', thirst=-1, food={'hunger': 4, 'saturation': 0, 'vegetables': 3, 'fruit': 3})
-    drinkable(rm, ('apple_juice'), 'artisanal:apple_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 1.0})
-    drinkable(rm, ('carrot_juice'), 'artisanal:carrot_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'vegetables': 1.0})
-    drinkable(rm, ('lemon_juice'), 'artisanal:lemon_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 1.0})
-    drinkable(rm, ('orange_juice'), 'artisanal:orange_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 1.0})
-    drinkable(rm, ('peach_juice'), 'artisanal:peach_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 1.0})
-    drinkable(rm, ('pineapple_juice'), 'artisanal:pineapple_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 1.0})
-    drinkable(rm, ('tomato_juice'), 'artisanal:tomato_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'vegetables': 1.0})
+    drinkable(rm, ('molasses'), 'artisanal:molasses', thirst=-1, food={'hunger': 4, 'saturation': 0, 'vegetables': 2, 'fruit': 2})
+    drinkable(rm, ('apple_juice'), 'artisanal:apple_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.7})
+    drinkable(rm, ('carrot_juice'), 'artisanal:carrot_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'vegetables': 0.7})
+    drinkable(rm, ('lemon_juice'), 'artisanal:lemon_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.7})
+    drinkable(rm, ('orange_juice'), 'artisanal:orange_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.7})
+    drinkable(rm, ('peach_juice'), 'artisanal:peach_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.7})
+    drinkable(rm, ('pineapple_juice'), 'artisanal:pineapple_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.7})
+    drinkable(rm, ('tomato_juice'), 'artisanal:tomato_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'vegetables': 0.7})
     drinkable(rm, ('screwdriver'), 'artisanal:screwdriver', thirst=10, food={'fruit': 0.5, 'vegetables': 0.5}, intoxication=2000, allow_full=True)
     
     
     disable_data(rm, 'tfc:tfc/drinkables/alcohol')
-    drinkable(rm, ('alcohol/fruit'), '#artisanal:alcohols/fruit', thirst=10, intoxication=4000, allow_full=True, food={'fruit': 1.0})
-    drinkable(rm, ('alcohol/grain'), '#artisanal:alcohols/grain', thirst=10, intoxication=4000, allow_full=True, food={'grain': 1.0})
-    drinkable(rm, ('alcohol/vegetable'), '#artisanal:alcohols/vegetable', thirst=10, intoxication=4000, allow_full=True, food={'vegetables': 1.0})
-    drinkable(rm, ('alcohol/fruit_and_veg'), '#artisanal:alcohols/fruit_and_veg', thirst=10, intoxication=4000, allow_full=True, food={'fruit': 1.0, 'vegetables': 1.0})
+    drinkable(rm, ('alcohol/fruit'), '#artisanal:alcohols/fruit', thirst=10, intoxication=4000, allow_full=True, food={'fruit': 0.7})
+    drinkable(rm, ('alcohol/grain'), '#artisanal:alcohols/grain', thirst=10, intoxication=4000, allow_full=True, food={'grain': 0.7})
+    drinkable(rm, ('alcohol/vegetable'), '#artisanal:alcohols/vegetable', thirst=10, intoxication=4000, allow_full=True, food={'vegetables': 0.7})
+    drinkable(rm, ('alcohol/fruit_and_veg'), '#artisanal:alcohols/fruit_and_veg', thirst=10, intoxication=4000, allow_full=True, food={'fruit': 0.7, 'vegetables': 0.7})
     drinkable(rm, ('alcohol/no_nutrition'), '#artisanal:alcohols/no_nutrition', thirst=10, intoxication=4000, allow_full=True)
     
     
