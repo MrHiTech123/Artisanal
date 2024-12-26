@@ -2,7 +2,7 @@
 Artisanal is an addon for TerraFirmaCraft that adds various branches to the technology tree, as well as generally enhancing its realism.
 
 ### Features
-|![A magnifying glass being used to start a fire](image.png)|
+|![A magnifying glass being used to start a fire](readme/magnifying_glass.png)|
 | ---- |
 |*A magnifying glass being used to start a fire*|
 
