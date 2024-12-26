@@ -29,4 +29,5 @@ Artisanal is fully integrated with the Firmalife and Lithic Addons.
 
 ### Links
 [Download on Curseforge](https://www.curseforge.com/minecraft/mc-mods/tfc-artisanal)
+
 [Read the Field Guide](https://terrafirmacraft.github.io/Field-Guide/en_us/artisanal/) (Note that many sections can only be viewed properly with the in-game field guide due to external dependencies)
