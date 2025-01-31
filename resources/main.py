@@ -720,6 +720,7 @@ def generate_vat_recipes():
     vat_recipe(rm, 'lard', 'artisanal:pork_fat', '100 minecraft:water', output_fluid='100 artisanal:lard')
     vat_recipe(rm, 'schmaltz', 'artisanal:poultry_fat', '100 minecraft:water', output_fluid='100 artisanal:schmaltz')
     
+    vat_recipe(rm, 'salt', input_item=None, input_fluid='125 tfc:salt_water', output_item='tfc:powder/salt')
     
     disable_recipe(rm, 'firmalife:vat/sugar_water')
     

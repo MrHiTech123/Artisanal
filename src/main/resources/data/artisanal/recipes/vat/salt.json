@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "ingredient": "tfc:salt_water",
+    "amount": 125
+  },
+  "output_item": {
+    "item": "tfc:powder/salt"
+  }
+}
