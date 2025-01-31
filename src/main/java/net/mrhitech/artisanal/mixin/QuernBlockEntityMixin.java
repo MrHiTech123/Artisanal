@@ -22,12 +22,11 @@ public abstract class QuernBlockEntityMixin extends TickableInventoryBlockEntity
     
     @Inject(method = "finishGrinding", at = @At("HEAD"))
     private void finishGrindingInject(CallbackInfo info) {
-        ItemStack inputStack = ((ItemStackHandler)this.inventory).getStackInSlot(1);
-        JuicingHandler.handle(inputStack, this.level, this.getBlockPos());
+        JuicingHandler.handle(this.inventory, this.level, this.getBlockPos());
     }
     
     public QuernBlockEntityMixin(BlockPos pos, BlockState state) {
-        super((BlockEntityType) TFCBlockEntities.QUERN.get(), pos, state, defaultInventory(3), null);
+        super(TFCBlockEntities.QUERN.get(), pos, state, defaultInventory(3), null);
     }
     
     
