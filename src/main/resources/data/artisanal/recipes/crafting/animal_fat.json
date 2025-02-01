@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "tag": "artisanal:fats"
+    }
+  ],
+  "result": {
+    "stack": {
+      "item": "artisanal:animal_fat"
+    },
+    "modifiers": [
+      "artisanal:only_if_generic_animal_fat"
+    ]
+  }
+}

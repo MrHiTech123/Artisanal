@@ -8,8 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.mrhitech.artisanal.Artisanal;
 
 public class ArtisanalItemStackModifiers {
-    private static final BiMap<ResourceLocation, ItemStackModifier.Serializer<?>> REGISTRY = HashBiMap.create();
-    
     public static void registerItemStackModifiers() {
         register("cap_heat", CapHeatModifier.Serializer.INSTANCE);
         register("copy_dynamic_food", CopyDynamicFoodModifier.INSTANCE);
@@ -19,6 +17,7 @@ public class ArtisanalItemStackModifiers {
         register("homogenous_ingredients", HomogenousIngredientsModifier.INSTANCE);
         register("inherit_decay", InheritDecayModifier.Serializer.INSTANCE);
         register("modify_fluid", OutputFluidItemIngredientModifier.Serializer.CHANGE_FLUID_NBT);
+        register("only_if_generic_animal_fat", OnlyIfGenericAnimalFatModifier.INSTANCE);
         register("remove_butter", RemoveButterModifier.INSTANCE);
     }
     

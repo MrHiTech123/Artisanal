@@ -300,6 +300,7 @@ def generate_item_models():
     rm.item_model('pork_fat', 'artisanal:item/pork_fat').with_lang(lang('pork_fat'))
     rm.item_model('bear_fat', 'artisanal:item/bear_fat').with_lang(lang('bear_fat'))
     rm.item_model('poultry_fat', 'artisanal:item/poultry_fat').with_lang(lang('poultry_fat'))
+    rm.item_model('animal_fat', 'artisanal:item/animal_fat').with_lang(lang('animal_fat'))
     rm.item_model('soap', 'artisanal:item/soap').with_lang('Soap')
     
     rm.item_model('trimmed_feather', 'artisanal:item/trimmed_feather').with_lang(lang('trimmed_feather'))
@@ -356,7 +357,6 @@ def generate_item_models():
     rm.item_model(('food', 'carrot_mash'), 'artisanal:item/food/carrot_mash').with_lang(lang('carrot_mash'))
     rm.item_model(('food', 'tomato_mash'), 'artisanal:item/food/tomato_mash').with_lang(lang('tomato_mash'))
     
-    rm.item_model(('animal_fat'), 'artisanal:item/animal_fat').with_lang(lang('animal_fat'))
     
     
 def generate_models():
@@ -563,6 +563,7 @@ def generate_crafting_recipes():
     disable_recipe(rm, 'tfc:crafting/bloomery')
     rm.crafting_shaped(('crafting', 'bloomery'), ('XXX', 'X X', 'XXX'), {'X': '#artisanal:bloomery_sheets'}, 'tfc:bloomery')
     
+    advanced_shapeless(rm, ('crafting', 'animal_fat'), ('#artisanal:fats',), item_stack_provider('artisanal:animal_fat', only_if_generic_animal_fat=True))
     
 def generate_knapping_recipes():
     print("\tGenerating knapping recipes...")
@@ -625,7 +626,7 @@ def generate_pot_recipes():
         simple_pot_recipe(rm, f'lard_{i}', [utils.ingredient('artisanal:pork_fat')] * i, f'{100 * i} minecraft:water', f'{100 * i} artisanal:lard', None, 2000, 600)
         simple_pot_recipe(rm, f'lard_{i}_from_bear', [utils.ingredient('artisanal:bear_fat')] * i, f'{100 * i} minecraft:water', f'{100 * i} artisanal:lard', None, 2000, 600)
         simple_pot_recipe(rm, f'schmaltz_{i}', [utils.ingredient('artisanal:poultry_fat')] * i, f'{100 * i} minecraft:water', f'{100 * i} artisanal:schmaltz', None, 2000, 600)
-        
+        simple_pot_recipe(rm, f'tallow_{i}_from_animal', [utils.ingredient('artisanal:animal_fat')] * i, f'{100 * i} minecraft:water', f'{100 * i} tfc:tallow', None, 2000, 600)
     
     scalable_pot_recipe(rm, ('condensed_milk'), '2 minecraft:milk', '1 artisanal:condensed_milk', None, 3000, 100)
     scalable_pot_recipe(rm, ('condensed_goat_milk'), '2 firmalife:goat_milk', '1 artisanal:condensed_goat_milk', None, 3000, 100, conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
@@ -735,10 +736,11 @@ def generate_vat_recipes():
     vat_recipe(rm, 'perishable_sugar_from_filtered', 'minecraft:stick', '200 artisanal:filtered_sugarcane_juice', 'artisanal:perishable_sugar', '20 artisanal:molasses')
     vat_recipe(rm, 'non_perishable_sugar', 'minecraft:stick', '200 artisanal:clarified_sugarcane_juice', 'artisanal:non_perishable_sugar', '20 artisanal:molasses')
     
+    # TODO: BEAR FAT FROM LARD
     vat_recipe(rm, 'tallow', 'artisanal:suet', '100 minecraft:water', output_fluid='100 tfc:tallow')
     vat_recipe(rm, 'lard', 'artisanal:pork_fat', '100 minecraft:water', output_fluid='100 artisanal:lard')
     vat_recipe(rm, 'schmaltz', 'artisanal:poultry_fat', '100 minecraft:water', output_fluid='100 artisanal:schmaltz')
-    
+    vat_recipe(rm, 'tallow_from_animal', 'artisanal:animal_fat', '100 minecraft:water', output_fluid='100 tfc:tallow')
     vat_recipe(rm, 'salt', input_item=None, input_fluid='125 tfc:salt_water', output_item='tfc:powder/salt')
     
     disable_recipe(rm, 'firmalife:vat/sugar_water')
@@ -786,7 +788,7 @@ def generate_item_tags():
     print('\tGenerating item tags...')
     rm.item_tag('bloomery_sheets', *[f'tfc:metal/double_sheet/{metal}' for metal in BLOOMERY_SHEETS])
     rm.item_tag('firmalife:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
-    rm.item_tag('fats', 'artisanal:bear_fat', 'artisanal:pork_fat', 'artisanal:poultry_fat', 'artisanal:suet')
+    rm.item_tag('fats', 'artisanal:bear_fat', 'artisanal:pork_fat', 'artisanal:poultry_fat', 'artisanal:suet', 'artisanal:animal_fat')
     rm.item_tag('tfc:firepit_kindling', 'artisanal:dry_bagasse')
     rm.item_tag('magnifying_glasses', *[f'artisanal:metal/magnifying_glass/{metal}' for metal in MAGNIFYING_GLASS_METALS])
     rm.item_tag('crafting_catalysts', '#artisanal:magnifying_glasses')

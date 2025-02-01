@@ -2567,7 +2567,8 @@ def item_stack_provider(
     other_modifier: str | Json = None,
     other_other_modifier: str = None,
     meal: Json = None,  # makes a meal from input specified in json
-    inherit_decay: float = None
+    inherit_decay: float = None,
+    only_if_generic_animal_fat: bool = None
 ) -> Json:
     if isinstance(data_in, dict):
         return data_in
@@ -2576,6 +2577,7 @@ def item_stack_provider(
         # Ordering is important here
         # First, modifiers that replace the entire stack (copy input style)
         # Then, modifiers that only mutate an existing stack
+        ('artisanal:only_if_generic_animal_fat', only_if_generic_animal_fat),
         ('artisanal:empty_bowl', empty_bowl),
         ({'type': 'artisanal:modify_fluid', 'fluid': fluid_stack(modify_fluid)}, modify_fluid is not None),
         ({'type': 'tfc:meal', **(meal if meal is not None else {})}, meal is not None),

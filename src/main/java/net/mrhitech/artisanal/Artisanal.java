@@ -47,11 +47,11 @@ public class Artisanal
         ArtisanalBlocks.register(modEventBus);
         ArtisanalFluids.register(modEventBus);
         ArtisanalLootModifiers.register(modEventBus);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ArtisanalServerConfig.SPEC);
         ArtisanalRecipeSerializers.register(modEventBus);
         ArtisanalRecipeTypes.register(modEventBus);
         ArtisanalItemStackModifiers.registerItemStackModifiers();
         ArtisanalEvents.init();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ArtisanalServerConfig.SPEC);
         
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ClientEventHandler.init();
