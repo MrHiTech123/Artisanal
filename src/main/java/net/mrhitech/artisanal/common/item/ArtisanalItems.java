@@ -20,7 +20,7 @@ public class ArtisanalItems {
     public static final Map<Waterlikes, RegistryObject<Item>> FLUID_BUCKETS = Helpers.mapOfKeys(Waterlikes.class, fluid ->
             register("bucket/" + fluid.getId(), () -> new BucketItem(ArtisanalFluids.WATERLIKES.get(fluid).source(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1))));
     
-    
+    public static final RegistryObject<Item> ANIMAL_FAT = register("animal_fat", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SUET = register("suet", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> PORK_FAT = register("pork_fat", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BEAR_FAT = register("bear_fat", () -> new Item(new Item.Properties()));

@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "type": "artisanal:add_itemstack_min_max",
+  "type": "artisanal:add_fat",
   "conditions": [
     {
       "condition": "minecraft:entity_properties",

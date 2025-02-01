@@ -13,6 +13,7 @@ public class ArtisanalCreativeTabs {
     public static void AddCreative(BuildCreativeModeTabContentsEvent event) {
         
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ArtisanalItems.ANIMAL_FAT);
             event.accept(ArtisanalItems.SUET);
             event.accept(ArtisanalItems.PORK_FAT);
             event.accept(ArtisanalItems.POULTRY_FAT);

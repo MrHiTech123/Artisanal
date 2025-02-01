@@ -9,7 +9,9 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -26,6 +28,7 @@ import net.mrhitech.artisanal.common.recipes.ArtisanalRecipeSerializers;
 import net.mrhitech.artisanal.common.recipes.ArtisanalRecipeTypes;
 import net.mrhitech.artisanal.common.recipes.outputs.ArtisanalItemStackModifiers;
 import net.mrhitech.artisanal.compat.patchouli.PatchouliIntegration;
+import net.mrhitech.artisanal.config.ArtisanalServerConfig;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -48,6 +51,8 @@ public class Artisanal
         ArtisanalRecipeTypes.register(modEventBus);
         ArtisanalItemStackModifiers.registerItemStackModifiers();
         ArtisanalEvents.init();
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ArtisanalServerConfig.SPEC);
+        
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ClientEventHandler.init();
         }

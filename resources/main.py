@@ -123,6 +123,24 @@ def loot_modifier_add_itemstack_min_max(rm: ResourceManager, loot_modifiers: lis
     
     loot_modifier(rm, loot_modifiers, name_parts, data)
 
+def loot_modifier_add_fat(rm: ResourceManager, loot_modifiers: list, name_parts, entity_tag, item, little, big):
+    data = {
+      "type": "artisanal:add_fat",
+      "conditions": [
+        {
+          "condition": "minecraft:entity_properties",
+          "predicate": {
+              "type": entity_tag
+          },
+          "entity": "this"
+        }
+      ],
+      "item": item,
+      "min": little,
+      "max": big
+    }
+    
+    loot_modifier(rm, loot_modifiers, name_parts, data)
     
 def loot_modifier(rm: ResourceManager, loot_modifiers: list, name_parts, data):
 
@@ -255,10 +273,10 @@ def generate_loot_modifiers():
     print('Creating loot modifiers...')
     
     loot_modifiers = []
-    loot_modifier_add_itemstack_min_max(rm, loot_modifiers, 'animals_drop_suet', '#artisanal:drops_suet', 'artisanal:suet', 1, 3)
-    loot_modifier_add_itemstack_min_max(rm, loot_modifiers, 'animals_drop_pork_fat', '#artisanal:drops_pork_fat', 'artisanal:pork_fat', 1, 3)
-    loot_modifier_add_itemstack_min_max(rm, loot_modifiers, 'animals_drop_bear_fat', '#artisanal:drops_bear_fat', 'artisanal:bear_fat', 1, 3)
-    loot_modifier_add_itemstack_min_max(rm, loot_modifiers, 'animals_drop_poultry_fat', '#artisanal:drops_poultry_fat', 'artisanal:poultry_fat', 1, 1)
+    loot_modifier_add_fat(rm, loot_modifiers, 'animals_drop_suet', '#artisanal:drops_suet', 'artisanal:suet', 1, 3)
+    loot_modifier_add_fat(rm, loot_modifiers, 'animals_drop_pork_fat', '#artisanal:drops_pork_fat', 'artisanal:pork_fat', 1, 3)
+    loot_modifier_add_fat(rm, loot_modifiers, 'animals_drop_bear_fat', '#artisanal:drops_bear_fat', 'artisanal:bear_fat', 1, 3)
+    loot_modifier_add_fat(rm, loot_modifiers, 'animals_drop_poultry_fat', '#artisanal:drops_poultry_fat', 'artisanal:poultry_fat', 1, 1)
     
     forge_rm.data(('loot_modifiers', 'global_loot_modifiers'), {'replace': False, 'entries': loot_modifiers})
 
@@ -338,6 +356,7 @@ def generate_item_models():
     rm.item_model(('food', 'carrot_mash'), 'artisanal:item/food/carrot_mash').with_lang(lang('carrot_mash'))
     rm.item_model(('food', 'tomato_mash'), 'artisanal:item/food/tomato_mash').with_lang(lang('tomato_mash'))
     
+    rm.item_model(('animal_fat'), 'artisanal:item/animal_fat').with_lang(lang('animal_fat'))
     
     
 def generate_models():

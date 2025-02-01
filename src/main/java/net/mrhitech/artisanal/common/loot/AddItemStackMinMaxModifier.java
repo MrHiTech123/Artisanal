@@ -24,10 +24,10 @@ public class AddItemStackMinMaxModifier extends LootModifier {
             .and(Codec.INT.fieldOf("max").forGetter(m -> m.max))
             .apply(inst, AddItemStackMinMaxModifier::new)));
     
-    private final Item item;
-    private final int min;
-    private final int max;
-    private Random rand = new Random();
+    protected final Item item;
+    protected final int min;
+    protected final int max;
+    protected Random rand = new Random();
     
     
     public AddItemStackMinMaxModifier(LootItemCondition[] conditionsIn, Item f_item, int f_min, int f_max) {
