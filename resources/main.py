@@ -736,9 +736,10 @@ def generate_vat_recipes():
     vat_recipe(rm, 'perishable_sugar_from_filtered', 'minecraft:stick', '200 artisanal:filtered_sugarcane_juice', 'artisanal:perishable_sugar', '20 artisanal:molasses')
     vat_recipe(rm, 'non_perishable_sugar', 'minecraft:stick', '200 artisanal:clarified_sugarcane_juice', 'artisanal:non_perishable_sugar', '20 artisanal:molasses')
     
-    # TODO: BEAR FAT FROM LARD
+    
     vat_recipe(rm, 'tallow', 'artisanal:suet', '100 minecraft:water', output_fluid='100 tfc:tallow')
     vat_recipe(rm, 'lard', 'artisanal:pork_fat', '100 minecraft:water', output_fluid='100 artisanal:lard')
+    vat_recipe(rm, 'lard_from_bear', 'artisanal:bear_fat', '100 minecraft:water', output_fluid='100 artisanal:lard')
     vat_recipe(rm, 'schmaltz', 'artisanal:poultry_fat', '100 minecraft:water', output_fluid='100 artisanal:schmaltz')
     vat_recipe(rm, 'tallow_from_animal', 'artisanal:animal_fat', '100 minecraft:water', output_fluid='100 tfc:tallow')
     vat_recipe(rm, 'salt', input_item=None, input_fluid='125 tfc:salt_water', output_item='tfc:powder/salt')
