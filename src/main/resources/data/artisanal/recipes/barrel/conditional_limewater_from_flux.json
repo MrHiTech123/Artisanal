@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:only_if_flux_makes_limewater_instant_barrel",
+  "input_item": {
+    "ingredient": {
+      "item": "tfc:powder/flux"
+    }
+  },
+  "input_fluid": {
+    "ingredient": "minecraft:water",
+    "amount": 500
+  },
+  "output_fluid": {
+    "fluid": "tfc:limewater",
+    "amount": 500
+  }
+}

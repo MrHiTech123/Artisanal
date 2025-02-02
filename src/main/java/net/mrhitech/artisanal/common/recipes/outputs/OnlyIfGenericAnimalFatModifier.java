@@ -19,10 +19,10 @@ public enum OnlyIfGenericAnimalFatModifier implements ItemStackModifier.SingleIn
             return stack;
         }
         
-        if (!ArtisanalServerConfig.GENERIC_ANIMAL_FAT.get()) {
-            return new ItemStack(Items.AIR);
+        if (ArtisanalServerConfig.GENERIC_ANIMAL_FAT.get()) {
+            return stack;
         }
-        return stack;
+        return ItemStack.EMPTY;
     }
     
     

@@ -12,6 +12,8 @@ import net.dries007.tfc.client.ClientHelpers;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.items.TFCItems;
+import net.dries007.tfc.common.recipes.BarrelRecipe;
+import net.dries007.tfc.common.recipes.InstantBarrelRecipe;
 import net.dries007.tfc.common.recipes.PotRecipe;
 import net.dries007.tfc.common.recipes.TFCRecipeTypes;
 import net.dries007.tfc.util.Helpers;
@@ -25,6 +27,7 @@ import net.mrhitech.artisanal.common.ArtisanalTags;
 import net.mrhitech.artisanal.common.recipes.ArtisanalRecipeSerializers;
 import net.mrhitech.artisanal.common.recipes.ArtisanalRecipeTypes;
 import net.mrhitech.artisanal.common.recipes.JuicingRecipe;
+import net.mrhitech.artisanal.common.recipes.OnlyIfFluxMakesLimewaterBarrelRecipe;
 import net.mrhitech.artisanal.compat.jei.category.JuicingRecipeCategory;
 import net.mrhitech.artisanal.compat.jei.category.ScalablePotRecipeCategory;
 
@@ -47,6 +50,7 @@ public class JEIIntegration implements IModPlugin {
     
     public static final RecipeType<PotRecipe> SCALABLE_POT = RecipeType.create(Artisanal.MOD_ID, "scalable_pot", PotRecipe.class);
     public static final RecipeType<JuicingRecipe> JUICING = RecipeType.create(Artisanal.MOD_ID, "juicing", JuicingRecipe.class);
+    public static final RecipeType<InstantBarrelRecipe> ONLY_IF_FLUX_MAKES_LIMEWATER = RecipeType.create(Artisanal.MOD_ID, "barrel", InstantBarrelRecipe.class);
     
     @Override
     public ResourceLocation getPluginUid() {

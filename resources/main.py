@@ -55,6 +55,14 @@ def melt_metal(name: str, mb: int):
         name = metal.melt_metal
     return f'{mb} tfc:metal/{name}'
 
+def only_if_flux_makes_limewater_instant_barrel_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, sound: Optional[str] = None, conditions=None):
+    rm.recipe(('barrel', name_parts), 'artisanal:only_if_flux_makes_limewater_instant_barrel', {
+        'input_item': item_stack_ingredient(input_item) if input_item is not None else None,
+        'input_fluid': fluid_stack_ingredient(input_fluid) if input_fluid is not None else None,
+        'output_item': item_stack_provider(output_item) if output_item is not None else None,
+        'output_fluid': fluid_stack(output_fluid) if output_fluid is not None else None,
+        'sound': sound
+    }, conditions=conditions)
 
 
 rm = ResourceManager('artisanal')
@@ -391,6 +399,8 @@ def generate_barrel_recipes():
     barrel_sealed_recipe(rm, ('soap_solid'), 'Solidifying Soap', 8000, None, '125 artisanal:soap', 'artisanal:soap', None, None)
     
     barrel_instant_recipe(rm, ('soapy_water'), 'artisanal:soap', '1000 minecraft:water', None, '1000 artisanal:soapy_water')
+    
+    only_if_flux_makes_limewater_instant_barrel_recipe(rm, ('conditional_limewater_from_flux'), 'tfc:powder/flux', '500 minecraft:water', output_fluid='500 tfc:limewater')
     
     disable_recipe(rm, 'tfc:barrel/clean_jar')
     disable_recipe(rm, 'tfc:barrel/clean_jute_net')
