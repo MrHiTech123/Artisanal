@@ -50,7 +50,6 @@ public class JEIIntegration implements IModPlugin {
     
     public static final RecipeType<PotRecipe> SCALABLE_POT = RecipeType.create(Artisanal.MOD_ID, "scalable_pot", PotRecipe.class);
     public static final RecipeType<JuicingRecipe> JUICING = RecipeType.create(Artisanal.MOD_ID, "juicing", JuicingRecipe.class);
-    public static final RecipeType<InstantBarrelRecipe> ONLY_IF_FLUX_MAKES_LIMEWATER = RecipeType.create(Artisanal.MOD_ID, "barrel", InstantBarrelRecipe.class);
     
     @Override
     public ResourceLocation getPluginUid() {
