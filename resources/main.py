@@ -692,7 +692,7 @@ def generate_pot_recipes():
         for fruit in FL_FRUITS:
             ingredient = not_rotten(has_trait('firmalife:food/%s' % fruit, 'firmalife:dried', True))
             rm.recipe(('pot', 'jam', f'{fruit}_{count}'), 'tfc:pot_jam', {
-                'ingredients': [ingredient] * count + [utils.ingredient('#tfc:sweetener')],
+                'ingredients': [ingredient] * count + [not_rotten('#tfc:sweetener')],
                 'fluid_ingredient': fluid_stack_ingredient('100 minecraft:water'),
                 'duration': 500,
                 'temperature': 300,
@@ -702,7 +702,7 @@ def generate_pot_recipes():
             disable_recipe(rm, f'firmalife:pot/jam_{fruit}_{count}')
             
             rm.recipe(('pot', 'jam', 'lithic', f'{fruit}_{count}'), 'tfc:pot_jam', {
-                'ingredients': [ingredient] * count + [utils.ingredient('#tfc:sweetener')],
+                'ingredients': [ingredient] * count + [not_rotten('#tfc:sweetener')],
                 'fluid_ingredient': fluid_stack_ingredient('100 minecraft:water'),
                 'duration': 500,
                 'temperature': 300,

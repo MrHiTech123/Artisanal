@@ -23,7 +23,10 @@
       }
     },
     {
-      "tag": "tfc:sweetener"
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "tag": "tfc:sweetener"
+      }
     }
   ],
   "fluid_ingredient": {
