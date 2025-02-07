@@ -171,7 +171,7 @@ def remove_many_traits(stack: dict, *traits: str):
             'trait': trait
         })
     return stack
- 
+
 def scalable_pot_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fluid: str, output_fluid: str = None, output_items: Json = None, duration: int = 2000, temp: int = 300, conditions=None):
     rm.recipe(('pot', name_parts), 'artisanal:scalable_pot', {
         'ingredients': [],
@@ -182,6 +182,18 @@ def scalable_pot_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifie
         'item_output': [utils.item_stack(item) for item in output_items] if output_items is not None else None
     }, conditions=conditions)
 
+def specific_no_remainder_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, primary_ingredient: Json = None, group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
+    res = utils.resource_location(rm.domain, name_parts)
+    item_stack_provider()
+    rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', res.path), {
+        'type': 'artisanal:specific_no_remainder_shapeless',
+        'group': group,
+        'ingredients': utils.item_stack_list(ingredients),
+        'result': result,
+        'primary_ingredient': None if primary_ingredient is None else utils.ingredient(primary_ingredient),
+        'conditions': utils.recipe_condition(conditions)
+    })
+    return RecipeContext(rm, res)
 
 
 def generate_advancements():
@@ -557,8 +569,8 @@ def generate_crafting_recipes():
     disable_recipe(rm, 'tfc:crafting/vanilla/flint_and_steel')
     
     for cleanable in CLEANABLES:
-        advanced_shapeless(rm, ('crafting', 'clean', cleanable.item_name, 'water'), (fluid_item_ingredient('100 minecraft:water'), cleanable.input_item), utils.item_stack(cleanable.output_item), primary_ingredient=cleanable.input_item)
-        advanced_shapeless(rm, ('crafting', 'clean', cleanable.item_name, 'soapy_water'), (fluid_item_ingredient('100 artisanal:soapy_water'), cleanable.input_item), utils.item_stack(cleanable.output_item), primary_ingredient=cleanable.input_item)
+        specific_no_remainder_shapeless(rm, ('crafting', 'clean', cleanable.item_name, 'water'), (fluid_item_ingredient('100 minecraft:water'), cleanable.input_item), utils.item_stack(cleanable.output_item), primary_ingredient=cleanable.input_item)
+        specific_no_remainder_shapeless(rm, ('crafting', 'clean', cleanable.item_name, 'soapy_water'), (fluid_item_ingredient('100 artisanal:soapy_water'), cleanable.input_item), utils.item_stack(cleanable.output_item), primary_ingredient=cleanable.input_item)
     
     rm.crafting_shapeless(('crafting', 'aggregate'), ('#forge:gravel', '#forge:sand', '#forge:gravel', '#forge:sand', 'tfc:powder/lime', '#forge:sand', '#forge:gravel', '#forge:sand', '#forge:gravel'), (8, 'tfc:aggregate'))
     disable_recipe(rm, 'tfc:crafting/aggregate')

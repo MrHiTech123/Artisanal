@@ -51,6 +51,7 @@ public class JEIIntegration implements IModPlugin {
     public static final RecipeType<PotRecipe> SCALABLE_POT = RecipeType.create(Artisanal.MOD_ID, "scalable_pot", PotRecipe.class);
     public static final RecipeType<JuicingRecipe> JUICING = RecipeType.create(Artisanal.MOD_ID, "juicing", JuicingRecipe.class);
     
+    
     @Override
     public ResourceLocation getPluginUid() {
         return new ResourceLocation(Artisanal.MOD_ID, "jei");
@@ -68,8 +69,8 @@ public class JEIIntegration implements IModPlugin {
     
     @Override
     public void registerRecipes(IRecipeRegistration registry) {
-        registry.addRecipes(SCALABLE_POT, recipes(TFCRecipeTypes.POT.get(), recipe -> (recipe.getSerializer() == ArtisanalRecipeSerializers.SCALABLE_POT.get())));
         registry.addRecipes(JUICING, recipes(ArtisanalRecipeTypes.JUICING.get(), recipe -> (recipe.getSerializer() == ArtisanalRecipeSerializers.JUICING_RECIPE.get())));
+        registry.addRecipes(SCALABLE_POT, recipes(TFCRecipeTypes.POT.get(), recipe -> (recipe.getSerializer() == ArtisanalRecipeSerializers.SCALABLE_POT.get())));
     }
     
     @Override

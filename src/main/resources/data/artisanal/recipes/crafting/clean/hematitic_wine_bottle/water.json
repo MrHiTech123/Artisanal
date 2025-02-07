@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "type": "tfc:advanced_shapeless_crafting",
+  "type": "artisanal:specific_no_remainder_shapeless",
   "ingredients": [
     {
       "type": "tfc:fluid_item",
