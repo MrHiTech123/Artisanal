@@ -564,7 +564,7 @@ def generate_crafting_recipes():
         else:
             result = f'artisanal:metal/flint_and/{metal}'
         
-        advanced_shapeless(rm, ('metal', 'flint_and', metal), (f'artisanal:metal/striker/{metal}', 'minecraft:flint'), item_stack_provider(result, copy_forging=True), f'artisanal:metal/striker/{metal}')
+        advanced_shapeless(rm, ('crafting', 'metal', 'flint_and', metal), (f'artisanal:metal/striker/{metal}', 'minecraft:flint'), item_stack_provider(result, copy_forging=True), f'artisanal:metal/striker/{metal}')
         
     disable_recipe(rm, 'tfc:crafting/vanilla/flint_and_steel')
     
