@@ -19,6 +19,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.mrhitech.artisanal.client.ClientEventHandler;
 import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
+import net.mrhitech.artisanal.common.blockentity.ArtisanalBlockEntities;
 import net.mrhitech.artisanal.common.creative.ArtisanalCreativeTabs;
 import net.mrhitech.artisanal.common.event.ArtisanalEvents;
 import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
@@ -45,6 +46,7 @@ public class Artisanal
 
         ArtisanalItems.register(modEventBus);
         ArtisanalBlocks.register(modEventBus);
+        ArtisanalBlockEntities.register(modEventBus);
         ArtisanalFluids.register(modEventBus);
         ArtisanalLootModifiers.register(modEventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ArtisanalServerConfig.SPEC);
