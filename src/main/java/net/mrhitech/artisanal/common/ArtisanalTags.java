@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 import net.mrhitech.artisanal.Artisanal;
 
 public class ArtisanalTags {
@@ -21,6 +22,7 @@ public class ArtisanalTags {
             return create(Artisanal.MOD_ID, id);
         }
     }
+    
     public static final class BLOCKS {
         public static final TagKey<Block> TFC_BARRELS = create(TerraFirmaCraft.MOD_ID, "barrels");
         
@@ -28,6 +30,17 @@ public class ArtisanalTags {
             return TagKey.create(Registries.BLOCK, new ResourceLocation(modId, itemId));
         }
         private static TagKey<Block> create(String id) {
+            return create(Artisanal.MOD_ID, id);
+        }
+    }
+    
+    public static class FLUIDS {
+        public static final TagKey<Fluid> USABLE_IN_DRUM = create("usable_in_drum");
+        
+        private static TagKey<Fluid> create(String modId, String itemId) {
+            return TagKey.create(Registries.FLUID, new ResourceLocation(modId, itemId));
+        }
+        private static TagKey<Fluid> create(String id) {
             return create(Artisanal.MOD_ID, id);
         }
     }
