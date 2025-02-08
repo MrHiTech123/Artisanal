@@ -5,7 +5,7 @@
     "item": "artisanal:metal/striker/steel"
   },
   "result_fluid": {
-    "fluid": "tfc:metal/steel",
+    "fluid": "tfc:metal/pig_iron",
     "amount": 100
   },
   "temperature": 1540

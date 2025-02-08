@@ -1,0 +1,27 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "type": "tfc:heatable",
+      "min_temp": 1232.0,
+      "ingredient": {
+        "item": "tfc:metal/ingot/steel"
+      }
+    },
+    {
+      "item": "tfc:powder/charcoal"
+    }
+  ],
+  "result": {
+    "stack": {
+      "item": "tfc:metal/ingot/high_carbon_steel"
+    },
+    "modifiers": [
+      "tfc:copy_heat"
+    ]
+  },
+  "primary_ingredient": {
+    "item": "tfc:metal/ingot/steel"
+  }
+}

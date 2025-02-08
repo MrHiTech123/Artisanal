@@ -565,7 +565,8 @@ def generate_crafting_recipes():
             result = f'artisanal:metal/flint_and/{metal}'
         
         advanced_shapeless(rm, ('crafting', 'metal', 'flint_and', metal), (f'artisanal:metal/striker/{metal}', 'minecraft:flint'), item_stack_provider(result, copy_forging=True), f'artisanal:metal/striker/{metal}')
-        
+        advanced_shapeless(rm, ('crafting', 'metal', 'ingot', f'high_carbon_{metal}'), (heatable_ingredient(f'tfc:metal/ingot/{metal}', metal_data.melt_temperature * 0.8), 'tfc:powder/charcoal'), item_stack_provider(f'tfc:metal/ingot/high_carbon_{metal}', copy_heat=True), f'tfc:metal/ingot/{metal}')
+    
     disable_recipe(rm, 'tfc:crafting/vanilla/flint_and_steel')
     
     for cleanable in CLEANABLES:
@@ -606,8 +607,10 @@ def generate_heat_recipes():
         if 'tool' in metal_data.types:
             heat_recipe(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 50))
     
-    for metal, metal_data in STEELS.items():
-        heat_recipe(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 100))
+    heat_recipe(rm, ('metal', 'striker', "steel"), f'artisanal:metal/striker/steel', METALS['steel'].melt_temperature, result_fluid='100 tfc:metal/pig_iron')
+    heat_recipe(rm, ('metal', 'striker', "black_steel"), f'artisanal:metal/striker/black_steel', METALS['black_steel'].melt_temperature, result_fluid='100 tfc:metal/weak_steel')
+    heat_recipe(rm, ('metal', 'striker', "blue_steel"), f'artisanal:metal/striker/blue_steel', METALS['blue_steel'].melt_temperature, result_fluid='100 tfc:metal/weak_blue_steel')
+    heat_recipe(rm, ('metal', 'striker', "red_steel"), f'artisanal:metal/striker/red_steel', METALS['red_steel'].melt_temperature, result_fluid='100 tfc:metal/weak_red_steel')
     
     heat_recipe(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', POTTERY_MELT, 'artisanal:ceramic/small_pot')
     

@@ -5,7 +5,7 @@
     "item": "artisanal:metal/striker/blue_steel"
   },
   "result_fluid": {
-    "fluid": "tfc:metal/blue_steel",
+    "fluid": "tfc:metal/weak_blue_steel",
     "amount": 100
   },
   "temperature": 1540
