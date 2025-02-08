@@ -394,7 +394,7 @@ def generate_anvil_recipes():
             anvil_recipe(rm, ('metal', 'circle_blade', metal), f'tfc:metal/ingot/{metal}', (2, f'artisanal:metal/circle_blade/{metal}'), metal_data.tier, Rules.shrink_third_last, Rules.hit_second_last, Rules.hit_last)
     
     for metal, metal_data in STEELS.items():
-        anvil_recipe(rm, ('metal', 'striker', metal), f'tfc:metal/rod/{metal}', f'artisanal:metal/striker/{metal}', metal_data.tier, Rules.bend_any, Rules.hit_any, Rules.punch_any, bonus=True)
+        anvil_recipe(rm, ('metal', 'striker', metal), f'tfc:metal/ingot/high_carbon_{metal}', f'artisanal:metal/striker/{metal}', metal_data.tier, Rules.bend_any, Rules.hit_any, Rules.punch_any, bonus=True)
     
     
     anvil_recipe(rm, ('metal', 'tin_can'), 'artisanal:metal/tinplate', 'artisanal:metal/tin_can', 1, Rules.bend_not_last, Rules.hit_not_last, Rules.hit_last)
@@ -607,7 +607,7 @@ def generate_heat_recipes():
             heat_recipe(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 50))
     
     for metal, metal_data in STEELS.items():
-        heat_recipe(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 50))
+        heat_recipe(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 100))
     
     heat_recipe(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', POTTERY_MELT, 'artisanal:ceramic/small_pot')
     
