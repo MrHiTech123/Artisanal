@@ -1,8 +1,9 @@
 package net.mrhitech.artisanal.common.block;
 
 
+import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
+import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
-import net.dries007.tfc.common.blocks.devices.BarrelBlock;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
@@ -10,7 +11,6 @@ import net.dries007.tfc.util.registry.RegistrationHelpers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -20,8 +20,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.mrhitech.artisanal.Artisanal;
 import net.mrhitech.artisanal.common.Waterlikes;
-import net.mrhitech.artisanal.common.blockentity.ArtisanalBlockEntities;
-import net.mrhitech.artisanal.common.blockentity.DrumBlockEntity;
 import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
 
 import javax.annotation.Nullable;
@@ -37,7 +35,7 @@ public class ArtisanalBlocks {
             register("fluid/" + fluid.getId(), () -> new LiquidBlock(ArtisanalFluids.WATERLIKES.get(fluid).source(), BlockBehaviour.Properties.copy(Blocks.WATER))));
     
     public static final Map<Metal.Default, RegistryObject<Block>> DRUMS = Helpers.mapOfKeys(Metal.Default.class, metal -> 
-            register("metal/drum/" + metal.name().toLowerCase(Locale.ROOT), () -> new DrumBlock(ExtendedProperties.of(Blocks.IRON_BLOCK).blockEntity(ArtisanalBlockEntities.DRUM).serverTicks(DrumBlockEntity::serverTick))));
+            register("metal/drum/" + metal.name().toLowerCase(Locale.ROOT), () -> new DrumBlock(ExtendedProperties.of(Blocks.IRON_BLOCK).blockEntity(TFCBlockEntities.BARREL).serverTicks(BarrelBlockEntity::serverTick))));
     
     
     public static void register(IEventBus bus) {
