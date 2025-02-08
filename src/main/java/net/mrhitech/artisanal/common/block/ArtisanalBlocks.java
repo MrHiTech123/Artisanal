@@ -21,6 +21,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.mrhitech.artisanal.Artisanal;
 import net.mrhitech.artisanal.common.Waterlikes;
 import net.mrhitech.artisanal.common.blockentity.ArtisanalBlockEntities;
+import net.mrhitech.artisanal.common.blockentity.DrumBlockEntity;
 import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
 
 import javax.annotation.Nullable;
@@ -36,7 +37,7 @@ public class ArtisanalBlocks {
             register("fluid/" + fluid.getId(), () -> new LiquidBlock(ArtisanalFluids.WATERLIKES.get(fluid).source(), BlockBehaviour.Properties.copy(Blocks.WATER))));
     
     public static final Map<Metal.Default, RegistryObject<Block>> DRUMS = Helpers.mapOfKeys(Metal.Default.class, metal -> 
-            register("metal/drum/" + metal.name().toLowerCase(Locale.ROOT), () -> new BarrelBlock(ExtendedProperties.of(Blocks.IRON_BLOCK).blockEntity(ArtisanalBlockEntities.DRUM))));
+            register("metal/drum/" + metal.name().toLowerCase(Locale.ROOT), () -> new DrumBlock(ExtendedProperties.of(Blocks.IRON_BLOCK).blockEntity(ArtisanalBlockEntities.DRUM).serverTicks(DrumBlockEntity::serverTick))));
     
     
     public static void register(IEventBus bus) {

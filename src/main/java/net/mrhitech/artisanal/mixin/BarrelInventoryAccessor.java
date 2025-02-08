@@ -6,6 +6,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(BarrelBlockEntity.BarrelInventory.class)
-public interface BarrelInventoryMixin {
+public interface BarrelInventoryAccessor {
     @Accessor(remap = false) InventoryFluidTank getTank();
 }
