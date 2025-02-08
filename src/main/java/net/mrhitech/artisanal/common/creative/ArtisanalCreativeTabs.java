@@ -103,10 +103,14 @@ public class ArtisanalCreativeTabs {
             for (SteelMetal metal : SteelMetal.values()) {
                 event.accept(ArtisanalItems.STRIKERS.get(metal));
                 if (!metal.equals(SteelMetal.STEEL)) {
-                    event.accept(ArtisanalItems.FLINT_ANDS.get(metal));
+                    event.accept(ArtisanalItems.FLINT_AND_STEELS.get(metal));
                 }
             }
             
+        }
+        if (event.getTabKey() == TFCCreativeTabs.ROCKS.tab().getKey()) {
+            event.accept(ArtisanalItems.FLINT_AND_PYRITE.get());
+            event.accept(ArtisanalItems.FLINT_AND_CUT_PYRITE.get());
         }
     }
 }

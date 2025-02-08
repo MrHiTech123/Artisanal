@@ -72,8 +72,12 @@ public class ArtisanalItems {
     public static final Map<SteelMetal, RegistryObject<Item>> STRIKERS = Helpers.mapOfKeys(SteelMetal.class, metal ->
             register("metal/striker/" + metal.getSerializedName(), () -> new Item(new Item.Properties().rarity(metal.getRarity()))));
     
-    public static final Map<SteelMetal, RegistryObject<Item>> FLINT_ANDS = Helpers.mapOfKeys(SteelMetal.class, metal -> !metal.equals(SteelMetal.STEEL), metal ->
+    public static final Map<SteelMetal, RegistryObject<Item>> FLINT_AND_STEELS = Helpers.mapOfKeys(SteelMetal.class, metal -> !metal.equals(SteelMetal.STEEL), metal ->
             register("metal/flint_and/" + metal.getSerializedName(), () -> new FlintAndSteelItem(new Item.Properties().durability(metal.getTier().getUses()).rarity(metal.getRarity()))));
+    
+    public static final RegistryObject<Item> FLINT_AND_PYRITE = register("stone/flint_and/pyrite", () -> new FlintAndSteelItem(new Item.Properties().durability(70)));
+    public static final RegistryObject<Item> FLINT_AND_CUT_PYRITE = register("stone/flint_and/cut_pyrite", () -> new FlintAndSteelItem(new Item.Properties().durability(70)));
+    
     
     public static final RegistryObject<Item> DIRTY_JAR = register("dirty_jar", () -> new Item(new Item.Properties()));
     

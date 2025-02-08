@@ -364,6 +364,9 @@ def generate_item_models():
         if metal != 'steel':
             rm.item_model(('metal', 'flint_and', metal), f'artisanal:item/metal/flint_and/{metal}').with_lang(lang(f'flint_and_{metal}'))
     
+    rm.item_model(('stone', 'flint_and', 'pyrite'), f'artisanal:item/stone/flint_and/pyrite').with_lang(lang('flint_and_pyrite'))
+    rm.item_model(('stone', 'flint_and', 'cut_pyrite'), f'artisanal:item/stone/flint_and/cut_pyrite').with_lang(lang('flint_and_cut_pyrite'))
+    
     rm.item_model('dirty_jar', 'artisanal:item/dirty_jar').with_lang('Dirty Jar')
     
     rm.item_model(('ceramic', 'dirty_small_pot'), 'artisanal:item/ceramic/dirty_small_pot').with_lang(lang('dirty_small_pot'))
@@ -587,6 +590,10 @@ def generate_crafting_recipes():
     rm.crafting_shaped(('crafting', 'bloomery'), ('XXX', 'X X', 'XXX'), {'X': '#artisanal:bloomery_sheets'}, 'tfc:bloomery')
     
     advanced_shapeless(rm, ('crafting', 'animal_fat'), ('#artisanal:fats',), item_stack_provider('artisanal:animal_fat', only_if_generic_animal_fat=True))
+    
+    rm.crafting_shapeless(('crafting', 'stone', 'flint_and', 'pyrite'), ('tfc:ore/pyrite', 'minecraft:flint'), 'artisanal:stone/flint_and/pyrite')
+    rm.crafting_shapeless(('crafting', 'stone', 'flint_and', 'cut_pyrite'), ('tfc:gem/pyrite', 'minecraft:flint'), 'artisanal:stone/flint_and/cut_pyrite')
+    
     
 def generate_knapping_recipes():
     print("\tGenerating knapping recipes...")
