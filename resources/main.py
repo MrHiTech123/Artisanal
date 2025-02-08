@@ -829,7 +829,7 @@ def generate_item_tags():
     rm.item_tag('foods/can_be_potted', *[f'#tfc:foods/{tag}' for tag in POTTABLE_FOOD_TAGS])
     rm.item_tag('can_openers', *[f'artisanal:metal/can_opener/{metal}' for metal in METALS if 'tool' in METALS[metal].types])
     rm.item_tag('rods/metal', *[f'tfc:metal/rod/{metal}' for metal in METALS if 'utility' in METALS[metal].types])
-    rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'])
+    rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'], 'artisanal:stone/flint_and/pyrite', 'artisanal:stone/flint_and/cut_pyrite')
     rm.item_tag('tfc:compost_browns_high', 'artisanal:dry_bagasse')
     rm.item_tag('tfc:dynamic_bowl_items', 'artisanal:dirty_bowl')
     rm.item_tag('tfc:firepit_fuel', 'artisanal:dry_bagasse')

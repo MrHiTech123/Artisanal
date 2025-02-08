@@ -4,6 +4,8 @@
   "values": [
     "artisanal:metal/flint_and/black_steel",
     "artisanal:metal/flint_and/blue_steel",
-    "artisanal:metal/flint_and/red_steel"
+    "artisanal:metal/flint_and/red_steel",
+    "artisanal:stone/flint_and/pyrite",
+    "artisanal:stone/flint_and/cut_pyrite"
   ]
 }
