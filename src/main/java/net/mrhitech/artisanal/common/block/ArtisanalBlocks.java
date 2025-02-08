@@ -21,6 +21,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.mrhitech.artisanal.Artisanal;
 import net.mrhitech.artisanal.common.Waterlikes;
 import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
+import net.mrhitech.artisanal.common.item.ArtisanalItems;
 
 import javax.annotation.Nullable;
 import java.util.Locale;
@@ -59,7 +60,7 @@ public class ArtisanalBlocks {
     
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory)
     {
-        return RegistrationHelpers.registerBlock(BLOCKS, TFCItems.ITEMS, name, blockSupplier, blockItemFactory);
+        return RegistrationHelpers.registerBlock(BLOCKS, ArtisanalItems.ITEMS, name, blockSupplier, blockItemFactory);
     }
     
     
