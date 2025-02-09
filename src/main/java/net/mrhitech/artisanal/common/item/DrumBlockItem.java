@@ -18,7 +18,9 @@ public class DrumBlockItem extends BarrelBlockItem {
     
     @Override
     public InteractionResult useOn(UseOnContext context) {
-        return super.useOn(context);
+        InteractionResult toReturn = super.useOn(context);
+        // context.getClickedFace().getStepX();
+        return toReturn;
     }
     
 }
