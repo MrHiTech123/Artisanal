@@ -29,8 +29,13 @@ public class DrumBlock extends BarrelBlock {
         return entity;
     }
     
-    public static void modifyBlockEntity(BarrelBlockEntity barrel) {
-        ((BarrelInventoryAccessor)((IBarrelBlockEntityMixin)barrel).getInventory()).getTank().setValidator(
-                fluid -> Helpers.isFluid(fluid.getFluid(), ArtisanalTags.FLUIDS.USABLE_IN_DRUM));
+    private static void modifyBlockEntity(BarrelBlockEntity barrel) {
+        ((IBarrelBlockEntityMixin)barrel).makeDrum();
     }
+    
+    //
+    // public static void modifyBlockEntity(BarrelBlockEntity barrel) {
+    //     ((BarrelInventoryAccessor)((IBarrelBlockEntityMixin)barrel).getInventory()).getTank().setValidator(
+    //             fluid -> Helpers.isFluid(fluid.getFluid(), ArtisanalTags.FLUIDS.USABLE_IN_DRUM));
+    // }
 }

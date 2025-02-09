@@ -6,6 +6,7 @@ import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -30,24 +31,35 @@ public abstract class BarrelBlockEntityMixin extends TickableInventoryBlockEntit
         return inventory;
     }
     
-    private AtomicBoolean drumFluidsNeedBeEnabled = new AtomicBoolean(false);
+    private boolean isDrum = false;
     
-    public void requireDrumFluids() {
-        drumFluidsNeedBeEnabled.set(true);
+    public void makeDrum() {
+        isDrum = true;
+        enableDrumFluids();
     }
     
     public void enableDrumFluids() {
-        if (drumFluidsNeedBeEnabled.get()) {
-            ((BarrelInventoryAccessor)inventory).getTank().setValidator(
-                    fluid -> Helpers.isFluid(fluid.getFluid(), ArtisanalTags.FLUIDS.USABLE_IN_DRUM));
-            drumFluidsNeedBeEnabled.set(false);
+        ((BarrelInventoryAccessor)inventory).getTank().setValidator(
+                fluid -> Helpers.isFluid(fluid.getFluid(), ArtisanalTags.FLUIDS.USABLE_IN_DRUM));
+    }
+    
+    @Inject(method = "saveAdditional", remap = false, at = @At("RETURN"))
+    public void saveAdditional$Inject(CompoundTag nbt, CallbackInfo info) {
+        nbt.putBoolean("isDrum", isDrum);
+    }
+
+    @Inject(method = "loadAdditional", remap = false, at = @At("RETURN"))
+    public void loadAdditional$Inject(CompoundTag nbt, CallbackInfo info) {
+        isDrum = nbt.getBoolean("isDrum");
+        if (isDrum) {
+            enableDrumFluids();
         }
     }
     
     
-    @Inject(method = "serverTick", remap = false, at = @At("HEAD"))
-    private static void serverTick$Inject(Level level, BlockPos pos, BlockState state, BarrelBlockEntity barrel, CallbackInfo info) {
-        ((IBarrelBlockEntityMixin)barrel).enableDrumFluids();
-    }
+    // @Inject(method = "serverTick", remap = false, at = @At("HEAD"))
+    // private static void serverTick$Inject(Level level, BlockPos pos, BlockState state, BarrelBlockEntity barrel, CallbackInfo info) {
+    //     ((IBarrelBlockEntityMixin)barrel).enableDrumFluids();
+    // }
     
 }
