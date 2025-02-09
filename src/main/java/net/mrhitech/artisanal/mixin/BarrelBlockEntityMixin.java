@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.mrhitech.artisanal.common.ArtisanalTags;
+import net.mrhitech.artisanal.common.block.DrumBlock;
 import net.mrhitech.artisanal.util.IBarrelBlockEntityMixin;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,35 +32,49 @@ public abstract class BarrelBlockEntityMixin extends TickableInventoryBlockEntit
         return inventory;
     }
     
-    private boolean isDrum = false;
-    
-    public void makeDrum() {
-        isDrum = true;
-        enableDrumFluids();
-    }
+    // private boolean isDrum = false;
+    //
+    // public void makeDrum() {
+    //     isDrum = true;
+    //     enableDrumFluids();
+    // }
     
     public void enableDrumFluids() {
         ((BarrelInventoryAccessor)inventory).getTank().setValidator(
                 fluid -> Helpers.isFluid(fluid.getFluid(), ArtisanalTags.FLUIDS.USABLE_IN_DRUM));
     }
     
-    @Inject(method = "saveAdditional", remap = false, at = @At("RETURN"))
-    public void saveAdditional$Inject(CompoundTag nbt, CallbackInfo info) {
-        nbt.putBoolean("isDrum", isDrum);
-    }
-
-    @Inject(method = "loadAdditional", remap = false, at = @At("RETURN"))
-    public void loadAdditional$Inject(CompoundTag nbt, CallbackInfo info) {
-        isDrum = nbt.getBoolean("isDrum");
-        if (isDrum) {
-            enableDrumFluids();
-        }
-    }
-    
-    
-    // @Inject(method = "serverTick", remap = false, at = @At("HEAD"))
-    // private static void serverTick$Inject(Level level, BlockPos pos, BlockState state, BarrelBlockEntity barrel, CallbackInfo info) {
-    //     ((IBarrelBlockEntityMixin)barrel).enableDrumFluids();
+    // @Inject(method = "saveAdditional", remap = false, at = @At("RETURN"))
+    // public void saveAdditional$Inject(CompoundTag nbt, CallbackInfo info) {
+    //     nbt.putBoolean("isDrum", isDrum);
     // }
+    //
+    // @Inject(method = "loadAdditional", remap = false, at = @At("RETURN"))
+    // public void loadAdditional$Inject(CompoundTag nbt, CallbackInfo info) {
+    //     isDrum = nbt.getBoolean("isDrum");
+    //     if (isDrum) {
+    //         enableDrumFluids();
+    //     }
+    // }
+    
+    private boolean checkedIfDrum = false;
+    
+    public boolean getCheckedIfDrum() {
+        return checkedIfDrum;
+    }
+    public void setCheckedIfDrum(boolean f_checkedIfDrum) {
+        checkedIfDrum = f_checkedIfDrum;
+    }
+    
+    @Inject(method = "serverTick", remap = false, at = @At("HEAD"))
+    private static void serverTick$Inject(Level level, BlockPos pos, BlockState state, BarrelBlockEntity barrel, CallbackInfo info) {
+        if (((IBarrelBlockEntityMixin)barrel).getCheckedIfDrum()) {
+            return;
+        }
+        if (barrel.getBlockState().getBlock() instanceof DrumBlock) {
+            ((IBarrelBlockEntityMixin)barrel).enableDrumFluids();
+        }
+        ((IBarrelBlockEntityMixin)barrel).setCheckedIfDrum(true);
+    }
     
 }
