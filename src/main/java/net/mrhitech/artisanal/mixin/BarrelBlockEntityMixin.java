@@ -49,32 +49,12 @@ public abstract class BarrelBlockEntityMixin extends TickableInventoryBlockEntit
     //     nbt.putBoolean("isDrum", isDrum);
     // }
     //
-    // @Inject(method = "loadAdditional", remap = false, at = @At("RETURN"))
-    // public void loadAdditional$Inject(CompoundTag nbt, CallbackInfo info) {
-    //     isDrum = nbt.getBoolean("isDrum");
-    //     if (isDrum) {
-    //         enableDrumFluids();
-    //     }
-    // }
-    
-    private boolean checkedIfDrum = false;
-    
-    public boolean getCheckedIfDrum() {
-        return checkedIfDrum;
-    }
-    public void setCheckedIfDrum(boolean f_checkedIfDrum) {
-        checkedIfDrum = f_checkedIfDrum;
-    }
-    
-    @Inject(method = "serverTick", remap = false, at = @At("HEAD"))
-    private static void serverTick$Inject(Level level, BlockPos pos, BlockState state, BarrelBlockEntity barrel, CallbackInfo info) {
-        if (((IBarrelBlockEntityMixin)barrel).getCheckedIfDrum()) {
-            return;
+    @Inject(method = "loadAdditional", remap = false, at = @At("RETURN"))
+    public void loadAdditional$Inject(CompoundTag nbt, CallbackInfo info) {
+        if (getBlockState().getBlock() instanceof DrumBlock) {
+            enableDrumFluids();
         }
-        if (barrel.getBlockState().getBlock() instanceof DrumBlock) {
-            ((IBarrelBlockEntityMixin)barrel).enableDrumFluids();
-        }
-        ((IBarrelBlockEntityMixin)barrel).setCheckedIfDrum(true);
     }
+    
     
 }
