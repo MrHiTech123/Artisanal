@@ -56,13 +56,13 @@ public class ScalablePotRecipe extends SimplePotRecipe {
                 final ItemStack input = inventory.getStackInSlot(i);
                 inventory.setStackInSlot(currentSlot + PotBlockEntity.SLOT_EXTRA_INPUT_START, providers.get(i).getSingleStack(input));
             }
-            if (!stack.isEmpty()) {
-                stack.setAmount(stack.getAmount() * scaleFactor);
+            FluidStack toFill = stack.copy();
+            if (!toFill.isEmpty()) {
+                toFill.setAmount(toFill.getAmount() * scaleFactor);
             }
             
-            
             inventory.drain(FluidHelpers.BUCKET_VOLUME, IFluidHandler.FluidAction.EXECUTE);
-            inventory.fill(stack.copy(), IFluidHandler.FluidAction.EXECUTE);
+            inventory.fill(toFill, IFluidHandler.FluidAction.EXECUTE);
         }
     }
     
