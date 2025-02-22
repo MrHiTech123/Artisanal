@@ -28,9 +28,9 @@ public abstract class BarrelBlockEntityMixin extends TickableInventoryBlockEntit
         super(type, pos, state, inventory, defaultName);
     }
     
-    public BarrelBlockEntity.BarrelInventory getInventory() {
-        return inventory;
-    }
+    // public BarrelBlockEntity.BarrelInventory getInventory() {
+    //     return inventory;
+    // }
     
     // private boolean isDrum = false;
     //
@@ -39,22 +39,22 @@ public abstract class BarrelBlockEntityMixin extends TickableInventoryBlockEntit
     //     enableDrumFluids();
     // }
     
-    public void enableDrumFluids() {
-        ((BarrelInventoryAccessor)inventory).getTank().setValidator(
-                fluid -> Helpers.isFluid(fluid.getFluid(), ArtisanalTags.FLUIDS.USABLE_IN_DRUM));
-    }
+    // public void enableDrumFluids() {
+    //     ((BarrelInventoryAccessor)inventory).getTank().setValidator(
+    //             fluid -> Helpers.isFluid(fluid.getFluid(), ArtisanalTags.FLUIDS.USABLE_IN_DRUM));
+    // }
     
     // @Inject(method = "saveAdditional", remap = false, at = @At("RETURN"))
     // public void saveAdditional$Inject(CompoundTag nbt, CallbackInfo info) {
     //     nbt.putBoolean("isDrum", isDrum);
     // }
     //
-    @Inject(method = "loadAdditional", remap = false, at = @At("RETURN"))
-    public void loadAdditional$Inject(CompoundTag nbt, CallbackInfo info) {
-        if (getBlockState().getBlock() instanceof DrumBlock) {
-            enableDrumFluids();
-        }
-    }
+    // @Inject(method = "loadAdditional", remap = false, at = @At("RETURN"))
+    // public void loadAdditional$Inject(CompoundTag nbt, CallbackInfo info) {
+    //     if (getBlockState().getBlock() instanceof DrumBlock) {
+    //         enableDrumFluids();
+    //     }
+    // }
     
     
 }
