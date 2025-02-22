@@ -32,7 +32,7 @@ public class DrumBlock extends BarrelBlock {
     }
     
     private static void modifyBlockEntity(BarrelBlockEntity barrel) {
-        ((IBarrelBlockEntityMixin)barrel).enableDrumFluids();
+        // ((IBarrelBlockEntityMixin)barrel).enableDrumFluids();
     }
     
     //
