@@ -25,14 +25,14 @@ public class DrumBlock extends BarrelBlock {
         BlockEntity entity = super.newBlockEntity(pos, state);
         if (entity instanceof BarrelBlockEntity barrel) {
             modifyBlockEntity(barrel);
-            // barrel.getBlockState().getBlock();
+            barrel.getBlockState().getBlock();
         }
         
         return entity;
     }
     
     private static void modifyBlockEntity(BarrelBlockEntity barrel) {
-        // ((IBarrelBlockEntityMixin)barrel).enableDrumFluids();
+        ((IBarrelBlockEntityMixin)barrel).enableDrumFluids();
     }
     
     //
