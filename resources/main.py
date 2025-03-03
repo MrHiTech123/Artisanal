@@ -324,7 +324,7 @@ def generate_block_models():
             'facing=%s,rack=%s,sealed=%s' % (face, rack, is_seal), {'model': 'artisanal:block/metal/%s/%s%s%s' % (seal_type, metal, '_side' if face != 'up' else '', suffix if face != 'up' else ''), 'y': yrot if yrot != 0 else None}
         ) for face, yrot in faces for rack, suffix in racks for is_seal, seal_type in seals))
 
-        item_model_property(rm, ('metal', 'drum', metal), [{'predicate': {'tfc:sealed': 1.0}, 'model': f'tfc:block/metal/drum_sealed/{metal}'}], {'parent': f'tfc:block/metal/drum/{metal}'})
+        item_model_property(rm, ('metal', 'drum', metal), [{'predicate': {'tfc:sealed': 1.0}, 'model': f'artisanal:block/metal/drum_sealed/{metal}'}], {'parent': f'artisanal:block/metal/drum/{metal}'})
         block.with_block_model(textures, 'tfc:block/barrel')
         rm.block_model(('metal', 'drum', metal + '_side'), textures, 'tfc:block/barrel_side')
         rm.block_model(('metal', 'drum', metal + '_side_rack'), textures, 'tfc:block/barrel_side_rack')
