@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "tfc:block/barrel_side_sealed_rack",
+  "textures": {
+    "particle": "tfc:block/metal/block/steel",
+    "planks": "tfc:block/metal/block/steel",
+    "sheet": "tfc:block/metal/smooth/steel"
+  }
+}

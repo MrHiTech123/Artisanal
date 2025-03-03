@@ -10,6 +10,7 @@ MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 's
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
 POTTABLE_FOOD_TAGS = ('meats', 'vegetables')
 OPENABLE_CAN_ITEMS = ('sterilized_tin_can', 'sealed_tin_can')
+DRUM_METALS = ['bismuth_bronze', 'black_bronze', 'bronze', 'steel']
 BLOOMERY_SHEETS = ['bismuth_bronze', 'black_bronze', 'bronze', 'wrought_iron', 'steel', 'black_steel', 'blue_steel', 'red_steel']
 STEELS = {metal: METALS[metal] for metal in ('steel', 'black_steel', 'blue_steel', 'red_steel')}
 
@@ -310,6 +311,32 @@ def generate_misc_lang():
     rm.lang("item.minecraft.cooked_beef", "Whatever Food Was Inside the Can")
     rm.lang('tfc.jei.juicing', 'Juicing Recipe')
 
+def generate_block_models():
+    print('\tGenerating block models...')
+    for metal in DRUM_METALS:
+        texture = f'tfc:block/metal/block/{metal}'
+        textures = {'particle': texture, 'planks': texture, 'sheet': f'tfc:block/metal/smooth/{metal}'}
+
+        faces = (('up', 0), ('east', 0), ('west', 180), ('south', 90), ('north', 270))
+        seals = (('true', 'drum_sealed'), ('false', 'drum'))
+        racks = (('true', '_rack'), ('false', ''))
+        block = rm.blockstate(('metal', 'drum', metal), variants=dict((
+            'facing=%s,rack=%s,sealed=%s' % (face, rack, is_seal), {'model': 'artisanal:block/metal/%s/%s%s%s' % (seal_type, metal, '_side' if face != 'up' else '', suffix if face != 'up' else ''), 'y': yrot if yrot != 0 else None}
+        ) for face, yrot in faces for rack, suffix in racks for is_seal, seal_type in seals))
+
+        item_model_property(rm, ('metal', 'drum', metal), [{'predicate': {'tfc:sealed': 1.0}, 'model': f'tfc:block/metal/drum_sealed/{metal}'}], {'parent': f'tfc:block/metal/drum/{metal}'})
+        block.with_block_model(textures, 'tfc:block/barrel')
+        rm.block_model(('metal', 'drum', metal + '_side'), textures, 'tfc:block/barrel_side')
+        rm.block_model(('metal', 'drum', metal + '_side_rack'), textures, 'tfc:block/barrel_side_rack')
+        rm.block_model(('metal', 'drum_sealed', metal + '_side_rack'), textures, 'tfc:block/barrel_side_sealed_rack')
+        rm.block_model(('metal', 'drum_sealed', metal), textures, 'tfc:block/barrel_sealed')
+        rm.block_model(('metal', 'drum_sealed', metal + '_side'), textures, 'tfc:block/barrel_side_sealed')
+        block.with_lang(lang(f'{metal} drum'))
+        block.with_block_loot(({
+            'name': f'artisanal:metal/drum/{metal}',
+            'functions': [loot_tables.copy_block_entity_name(), loot_tables.copy_block_entity_nbt()],
+            'conditions': [loot_tables.block_state_property(f'artisanal:metal/drum/{metal}[sealed=true]')]
+        }, f'artisanal:metal/drum/{metal}'))
 
 def generate_item_models():
     print('\tGenerating item models...')
@@ -384,6 +411,7 @@ def generate_item_models():
     
 def generate_models():
     print('Generating models...')
+    generate_block_models()
     generate_item_models()
 
 def generate_anvil_recipes():

@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "tfc:block/barrel_sealed",
+  "textures": {
+    "particle": "tfc:block/metal/block/black_bronze",
+    "planks": "tfc:block/metal/block/black_bronze",
+    "sheet": "tfc:block/metal/smooth/black_bronze"
+  }
+}
