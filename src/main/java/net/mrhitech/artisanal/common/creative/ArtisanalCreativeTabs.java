@@ -5,6 +5,8 @@ import net.dries007.tfc.util.Metal;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.mrhitech.artisanal.common.Waterlikes;
+import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
+import net.mrhitech.artisanal.common.block.DrumMetal;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 import net.mrhitech.artisanal.common.item.MagnifyingGlassMetal;
 import net.mrhitech.artisanal.common.item.SteelMetal;
@@ -105,6 +107,10 @@ public class ArtisanalCreativeTabs {
                 if (!metal.equals(SteelMetal.STEEL)) {
                     event.accept(ArtisanalItems.FLINT_AND_STEELS.get(metal));
                 }
+            }
+            
+            for (DrumMetal metal : DrumMetal.values()) {
+                event.accept(ArtisanalBlocks.DRUMS.get(metal));
             }
             
         }

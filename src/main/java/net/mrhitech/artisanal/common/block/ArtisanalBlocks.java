@@ -4,6 +4,7 @@ package net.mrhitech.artisanal.common.block;
 import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
@@ -35,8 +36,9 @@ public class ArtisanalBlocks {
     public static final Map<Waterlikes, RegistryObject<LiquidBlock>> WATERLIKES = Helpers.mapOfKeys(Waterlikes.class, fluid ->
             register("fluid/" + fluid.getId(), () -> new LiquidBlock(ArtisanalFluids.WATERLIKES.get(fluid).source(), BlockBehaviour.Properties.copy(Blocks.WATER))));
     
-    public static final Map<Metal.Default, RegistryObject<Block>> DRUMS = Helpers.mapOfKeys(Metal.Default.class, metal -> 
-            register("metal/drum/" + metal.name().toLowerCase(Locale.ROOT), () -> new DrumBlock(ExtendedProperties.of(Blocks.IRON_BLOCK).blockEntity(TFCBlockEntities.BARREL).serverTicks(BarrelBlockEntity::serverTick))));
+    public static final Map<DrumMetal, RegistryObject<Block>> DRUMS = Helpers.mapOfKeys(DrumMetal.class, drumMetal -> 
+            register("metal/drum/" + drumMetal.getMetal().name().toLowerCase(Locale.ROOT), () -> 
+                    new DrumBlock(ExtendedProperties.of(TFCBlocks.METALS.get(drumMetal.getMetal()).get(Metal.BlockType.BLOCK).get()).blockEntity(TFCBlockEntities.BARREL).serverTicks(BarrelBlockEntity::serverTick))));
     
     
     public static void register(IEventBus bus) {
