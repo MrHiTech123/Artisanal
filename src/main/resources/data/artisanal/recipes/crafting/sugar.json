@@ -1,0 +1,30 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:damage_inputs_shaped_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "N",
+      "S",
+      "T"
+    ],
+    "key": {
+      "N": {
+        "item": "artisanal:non_perishable_sugar"
+      },
+      "S": {
+        "type": "tfc:heatable",
+        "min_temp": 175,
+        "ingredient": {
+          "item": "tfc:powder/sulfur"
+        }
+      },
+      "T": {
+        "tag": "tfc:tuyeres"
+      }
+    },
+    "result": {
+      "item": "minecraft:sugar"
+    }
+  }
+}

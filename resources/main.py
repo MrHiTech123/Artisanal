@@ -283,7 +283,7 @@ def generate_item_heats():
     item_heat(rm, ('metal', 'pickled_double_sheet', 'wrought_iron'), 'artisanal:metal/pickled_double_sheet/wrought_iron', METALS['wrought_iron'].melt_temperature, 400)
     item_heat(rm, ('metal', 'pickled_double_sheet', 'steel'), 'artisanal:metal/pickled_double_sheet/steel', METALS['steel'].melt_temperature, 400)
     
-    
+    item_heat(rm, ('powder', 'sulfur'), 'tfc:powder/sulfur', 0.8, None, None)
     
     
 def generate_data():
@@ -319,7 +319,7 @@ def generate_block_models():
     for metal in DRUM_METALS:
         texture = f'tfc:block/metal/block/{metal}'
         textures = {'particle': texture, 'planks': texture, 'sheet': f'tfc:block/metal/smooth/{metal}', 'hoop': texture}
-
+        
         faces = (('up', 0), ('east', 0), ('west', 180), ('south', 90), ('north', 270))
         seals = (('true', 'drum_sealed'), ('false', 'drum'))
         racks = (('true', '_rack'), ('false', ''))
@@ -631,6 +631,8 @@ def generate_crafting_recipes():
     rm.crafting_shapeless(('crafting', 'stone', 'flint_and', 'pyrite'), ('tfc:ore/pyrite', 'minecraft:flint'), 'artisanal:stone/flint_and/pyrite')
     rm.crafting_shapeless(('crafting', 'stone', 'flint_and', 'cut_pyrite'), ('tfc:gem/pyrite', 'minecraft:flint'), 'artisanal:stone/flint_and/cut_pyrite')
     
+    damage_shaped(rm, ('crafting', 'sugar'), ['N', 'S', 'T'], {'N': 'artisanal:non_perishable_sugar', 'S': heatable_ingredient('tfc:powder/sulfur', 175), 'T': '#tfc:tuyeres'}, 'minecraft:sugar')
+    
     
 def generate_knapping_recipes():
     print("\tGenerating knapping recipes...")
@@ -796,9 +798,15 @@ def generate_quern_recipes():
     quern_recipe(rm, ('food', 'pineapple'), not_rotten('firmalife:food/pineapple'), 'artisanal:food/fruit_mash')
     quern_recipe(rm, ('food', 'carrot'), not_rotten('tfc:food/carrot'), 'artisanal:food/carrot_mash')
     quern_recipe(rm, ('food', 'tomato'), not_rotten('tfc:food/tomato'), 'artisanal:food/tomato_mash')
-    quern_recipe(rm, ('powdered_milk'), 'artisanal:milk_flakes', {'item': 'artisanal:powdered_milk', 'count': 2})
-    quern_recipe(rm, ('powdered_goat_milk'), 'artisanal:goat_milk_flakes', {'item': 'artisanal:powdered_goat_milk', 'count': 2})
-    quern_recipe(rm, ('powdered_yak_milk'), 'artisanal:yak_milk_flakes', {'item': 'artisanal:powdered_yak_milk', 'count': 2})
+    quern_recipe(rm, ('powdered_milk'), 'artisanal:milk_flakes', 'artisanal:powdered_milk', 2)
+    quern_recipe(rm, ('powdered_goat_milk'), 'artisanal:goat_milk_flakes', 'artisanal:powdered_goat_milk', 2)
+    quern_recipe(rm, ('powdered_yak_milk'), 'artisanal:yak_milk_flakes', 'artisanal:powdered_yak_milk', 2)
+    
+    disable_recipe(rm, 'tfc:quern/pyrite')
+    disable_recipe(rm, 'tfc:quern/pyrite_cut')
+    disable_recipe(rm, 'firmaciv:quern/pyrite')
+    quern_recipe(rm, 'pyrite', 'tfc:ore/pyrite', 'tfc:powder/sulfur', 4)
+    quern_recipe(rm, 'pyrite', 'tfc:gem/pyrite', 'tfc:powder/sulfur', 4)
     
 
 def generate_vat_recipes():
