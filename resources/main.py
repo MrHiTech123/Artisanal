@@ -4,7 +4,7 @@ from alcs_n_russians_funcs import *
 from mcresources import ResourceManager
 
 
-SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'petroleum', 'apple_juice', 'carrot_juice', 'lemon_juice', 'orange_juice', 'peach_juice', 'pineapple_juice', 'tomato_juice', 'screwdriver', 'sulfuric_acid')
+SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'petroleum', 'apple_juice', 'carrot_juice', 'lemon_juice', 'diluted_lemon_juice', 'orange_juice', 'peach_juice', 'pineapple_juice', 'tomato_juice', 'screwdriver', 'sulfuric_acid')
 AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cypress', 'fig', 'ironwood', 'ipe')
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
@@ -213,7 +213,7 @@ def generate_drinkables():
     drinkable(rm, ('molasses'), 'artisanal:molasses', thirst=-1, food={'hunger': 4, 'saturation': 0, 'vegetables': 2, 'fruit': 2})
     drinkable(rm, ('apple_juice'), 'artisanal:apple_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.7})
     drinkable(rm, ('carrot_juice'), 'artisanal:carrot_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'vegetables': 0.7})
-    drinkable(rm, ('lemon_juice'), 'artisanal:lemon_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.7})
+    drinkable(rm, ('diluted_lemon_juice'), 'artisanal:diluted_lemon_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.7})
     drinkable(rm, ('orange_juice'), 'artisanal:orange_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.7})
     drinkable(rm, ('peach_juice'), 'artisanal:peach_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.7})
     drinkable(rm, ('pineapple_juice'), 'artisanal:pineapple_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.7})
@@ -485,7 +485,6 @@ def generate_barrel_recipes():
     barrel_instant_recipe(rm, 'goat_milk', 'artisanal:powdered_goat_milk', '100 minecraft:water', None, '100 firmalife:goat_milk', conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
     barrel_instant_recipe(rm, 'yak_milk', 'artisanal:powdered_yak_milk', '100 minecraft:water', None, '100 firmalife:yak_milk', conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
     
-    
     disable_recipe(rm, 'tfc:barrel/limewater')
     disable_recipe(rm, 'tfc:barrel/rum')
     disable_recipe(rm, 'tfc:barrel/cider')
@@ -496,6 +495,7 @@ def generate_barrel_recipes():
     barrel_sealed_recipe(rm, ('metal', 'pickled_double_sheet', 'wrought_iron'), lang('Pickling Wrought Iron Double Sheet'), 1000, 'tfc:metal/double_sheet/wrought_iron', '100 #artisanal:acids', 'artisanal:metal/pickled_double_sheet/wrought_iron')
     barrel_sealed_recipe(rm, ('metal', 'pickled_double_sheet', 'steel'), lang('Pickling Steel Double Sheet'), 1000, 'tfc:metal/double_sheet/steel', '100 #artisanal:acids', 'artisanal:metal/pickled_double_sheet/steel')
     
+    barrel_instant_fluid_recipe(rm, ('diluted_lemon_juice'), '1 artisanal:lemon_juice', '1 minecraft:water', '2 artisanal:diluted_lemon_juice')
     
 def generate_crafting_recipes():
     print('\tGenerating crafting recipes...')
@@ -665,7 +665,7 @@ def generate_juicing_recipes():
     print('\tGenerating juicing recipes...')
     juicing_recipe(rm, ('apple_juice_from_red'), not_rotten('tfc:food/red_apple'), '200 artisanal:apple_juice')
     juicing_recipe(rm, ('apple_juice_from_green'), not_rotten('tfc:food/green_apple'), '200 artisanal:apple_juice')
-    juicing_recipe(rm, ('lemon_juice'), not_rotten('tfc:food/lemon'), '200 artisanal:lemon_juice')
+    juicing_recipe(rm, ('lemon_juice'), not_rotten('tfc:food/lemon'), '100 artisanal:lemon_juice')
     juicing_recipe(rm, ('orange_juice'), not_rotten('tfc:food/orange'), '200 artisanal:orange_juice')
     juicing_recipe(rm, ('peach_juice'), not_rotten('tfc:food/peach'), '200 artisanal:peach_juice')
     juicing_recipe(rm, ('pineapple_juice'), not_rotten('firmalife:food/pineapple'), '200 artisanal:pineapple_juice')
@@ -853,8 +853,8 @@ def generate_fluid_tags():
     rm.fluid_tag('acids', 'artisanal:sulfuric_acid', 'artisanal:lemon_juice')
     rm.fluid_tag('usable_in_drum', '#tfc:usable_in_barrel', '#artisanal:acids', 'tfc:metal/gold')
     rm.fluid_tag('tfc:ingredients', '#artisanal:rendered_fats', 'artisanal:soap', 'artisanal:soapy_water', 'artisanal:sugarcane_juice', 'artisanal:filtered_sugarcane_juice', 'artisanal:alkalized_sugarcane_juice', 'artisanal:clarified_sugarcane_juice', 'artisanal:molasses', 'artisanal:petroleum', 'artisanal:condensed_milk', 'artisanal:condensed_goat_milk', 'artisanal:condensed_yak_milk')
-    rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:apple_juice', 'artisanal:carrot_juice', 'artisanal:lemon_juice', 'artisanal:orange_juice', 'artisanal:peach_juice', 'artisanal:pineapple_juice', 'artisanal:tomato_juice', 'artisanal:screwdriver')
-    rm.fluid_tag('tfc:usable_in_jug', '#tfc:ingredients')
+    rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:apple_juice', 'artisanal:carrot_juice', 'artisanal:diluted_lemon_juice', 'artisanal:orange_juice', 'artisanal:peach_juice', 'artisanal:pineapple_juice', 'artisanal:tomato_juice', 'artisanal:screwdriver')
+    rm.fluid_tag('tfc:usable_in_jug', '#tfc:ingredients', '#artisanal:acids')
     
     rm.fluid_tag('alcohols/fruit', 'tfc:cider')
     rm.fluid_tag('alcohols/grain', 'tfc:beer', 'tfc:corn_whiskey', 'tfc:rye_whiskey', 'tfc:sake', 'tfc:whiskey')
@@ -885,7 +885,7 @@ def generate_item_tags():
     rm.item_tag('tfc:foods/vegetables', 'artisanal:food/carrot_mash', 'artisanal:food/tomato_mash')
     rm.item_tag('tfc:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
     rm.item_tag('tfc:usable_on_tool_rack', '#artisanal:magnifying_glasses')
-
+    
     
 
 def generate_tags():

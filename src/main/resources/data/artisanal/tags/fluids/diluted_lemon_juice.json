@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "artisanal:sulfuric_acid",
-    "artisanal:lemon_juice"
+    "artisanal:diluted_lemon_juice",
+    "artisanal:flowing_diluted_lemon_juice"
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_instant_fluid",
+  "primary_fluid": {
+    "ingredient": "artisanal:lemon_juice",
+    "amount": 1
+  },
+  "added_fluid": {
+    "ingredient": "minecraft:water",
+    "amount": 1
+  },
+  "output_fluid": {
+    "fluid": "artisanal:diluted_lemon_juice",
+    "amount": 2
+  }
+}

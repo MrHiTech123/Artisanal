@@ -1,0 +1,6 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "loader": "forge:fluid_container",
+  "parent": "forge:item/bucket",
+  "fluid": "artisanal:diluted_lemon_juice"
+}

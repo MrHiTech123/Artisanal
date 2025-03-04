@@ -7,7 +7,9 @@
     }
   },
   "input_fluid": {
-    "ingredient": "artisanal:sulfuric_acid",
+    "ingredient": {
+      "tag": "artisanal:acids"
+    },
     "amount": 100
   },
   "output_item": {
