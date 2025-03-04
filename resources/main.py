@@ -318,7 +318,7 @@ def generate_block_models():
     print('\tGenerating block models...')
     for metal in DRUM_METALS:
         texture = f'tfc:block/metal/block/{metal}'
-        textures = {'particle': texture, 'planks': texture, 'sheet': f'tfc:block/metal/smooth/{metal}'}
+        textures = {'particle': texture, 'planks': texture, 'sheet': f'tfc:block/metal/smooth/{metal}', 'hoop': texture}
 
         faces = (('up', 0), ('east', 0), ('west', 180), ('south', 90), ('north', 270))
         seals = (('true', 'drum_sealed'), ('false', 'drum'))

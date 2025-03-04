@@ -4,6 +4,7 @@
   "textures": {
     "particle": "tfc:block/metal/block/black_bronze",
     "planks": "tfc:block/metal/block/black_bronze",
-    "sheet": "tfc:block/metal/smooth/black_bronze"
+    "sheet": "tfc:block/metal/smooth/black_bronze",
+    "hoop": "tfc:block/metal/block/black_bronze"
   }
 }
