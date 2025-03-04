@@ -823,6 +823,11 @@ def generate_recipes():
     generate_quern_recipes()
     generate_vat_recipes()
 
+def generate_block_tags():
+    print('\tGenerating block tags...')
+    block_and_item_tag(rm, 'metal/drums', *[f'artisanal:metal/drum/{metal}' for metal in DRUM_METALS])
+    block_and_item_tag(rm, 'minecraft:mineable/pickaxe', "#artisanal:metal/drums")
+
 def generate_entity_tags():
     print('\tGenerating entity tags...')
     rm.entity_tag('drops_suet', 'tfc:cow', 'tfc:goat', 'tfc:yak', 'tfc:alpaca', 'tfc:sheep', 'tfc:musk_ox', 'tfc:deer', 'tfc:caribou', 'tfc:bongo', 'tfc:gazelle', 'tfc:moose', 'tfc:wildebeest')
@@ -872,6 +877,7 @@ def generate_item_tags():
 
 def generate_tags():
     print('Generating tags...')
+    generate_block_tags()
     generate_entity_tags()
     generate_fluid_tags()
     generate_item_tags()

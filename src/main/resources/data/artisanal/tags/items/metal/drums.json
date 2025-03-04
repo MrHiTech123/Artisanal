@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "artisanal:metal/drum/bismuth_bronze",
+    "artisanal:metal/drum/black_bronze",
+    "artisanal:metal/drum/bronze",
+    "artisanal:metal/drum/steel"
+  ]
+}
