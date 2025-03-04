@@ -4,11 +4,12 @@ import net.dries007.tfc.common.TFCCreativeTabs;
 import net.dries007.tfc.util.Metal;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.mrhitech.artisanal.common.Waterlikes;
+import net.mrhitech.artisanal.common.fluids.Waterlikes;
 import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
 import net.mrhitech.artisanal.common.block.DrumMetal;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 import net.mrhitech.artisanal.common.item.MagnifyingGlassMetal;
+import net.mrhitech.artisanal.common.item.PicklableMetal;
 import net.mrhitech.artisanal.common.item.SteelMetal;
 
 public class ArtisanalCreativeTabs {
@@ -111,6 +112,10 @@ public class ArtisanalCreativeTabs {
             
             for (DrumMetal metal : DrumMetal.values()) {
                 event.accept(ArtisanalBlocks.DRUMS.get(metal));
+            }
+            
+            for (PicklableMetal metal : PicklableMetal.values()) {
+                event.accept(ArtisanalItems.PICKLED_DOUBLE_SHEETS.get(metal));
             }
             
         }

@@ -2,8 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "#tfc:usable_in_barrel",
-    "#artisanal:acids",
-    "tfc:metal/gold"
+    "artisanal:sulfuric_acid",
+    "artisanal:flowing_sulfuric_acid"
   ]
 }

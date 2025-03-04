@@ -1,4 +1,4 @@
-package net.mrhitech.artisanal.common;
+package net.mrhitech.artisanal.common.fluids;
 
 import java.util.Locale;
 
@@ -24,7 +24,8 @@ public enum Waterlikes {
     PINEAPPLE_JUICE(-4213136),
     TOMATO_JUICE(-1035741),
     SCREWDRIVER(-1198481),
-    PETROLEUM(-16777216);
+    PETROLEUM(-16777216),
+    SULFURIC_ACID(-2240864);
     
     private final int color;
     private final String id;

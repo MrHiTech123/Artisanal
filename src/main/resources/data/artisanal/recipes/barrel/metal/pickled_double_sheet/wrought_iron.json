@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_sealed",
+  "input_item": {
+    "ingredient": {
+      "item": "tfc:metal/double_sheet/wrought_iron"
+    }
+  },
+  "input_fluid": {
+    "ingredient": "artisanal:sulfuric_acid",
+    "amount": 100
+  },
+  "output_item": {
+    "item": "artisanal:metal/pickled_double_sheet/wrought_iron"
+  },
+  "duration": 1000
+}

@@ -5,7 +5,6 @@ import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
-import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
@@ -20,7 +19,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.mrhitech.artisanal.Artisanal;
-import net.mrhitech.artisanal.common.Waterlikes;
+import net.mrhitech.artisanal.common.fluids.Waterlikes;
 import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 

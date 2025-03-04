@@ -88,6 +88,9 @@
   "block.artisanal.fluid.screwdriver": "Screwdriver",
   "item.artisanal.bucket.screwdriver": "Screwdriver Bucket",
   "fluid.artisanal.screwdriver": "Screwdriver",
+  "block.artisanal.fluid.sulfuric_acid": "Sulfuric Acid",
+  "item.artisanal.bucket.sulfuric_acid": "Sulfuric Acid Bucket",
+  "fluid.artisanal.sulfuric_acid": "Sulfuric Acid",
   "item.artisanal.suet": "Suet",
   "item.artisanal.pork_fat": "Pork Fat",
   "item.artisanal.bear_fat": "Bear Fat",
@@ -166,6 +169,8 @@
   "item.artisanal.food.fruit_mash": "Fruit Mash",
   "item.artisanal.food.carrot_mash": "Carrot Mash",
   "item.artisanal.food.tomato_mash": "Tomato Mash",
+  "item.artisanal.metal.pickled_double_sheet.wrought_iron": "Pickled Wrought Iron Double Sheet",
+  "item.artisanal.metal.pickled_double_sheet.steel": "Pickled Steel Double Sheet",
   "tfc.recipe.barrel.artisanal.barrel.soaked_feather": "Soaking Feather",
   "tfc.recipe.barrel.artisanal.barrel.soap_solid": "Solidifying Soap",
   "tfc.recipe.barrel.artisanal.barrel.clean_jute_net_water": "Cleaning Jute Net",
@@ -188,5 +193,7 @@
   "tfc.recipe.barrel.artisanal.barrel.clarified_sugarcane_juice": "Clarifying Sugarcane Juice",
   "tfc.recipe.barrel.artisanal.barrel.paper": "Bleaching Paper",
   "tfc.recipe.barrel.artisanal.barrel.rum": "Fermenting Rum",
-  "tfc.recipe.barrel.artisanal.barrel.cider": "Fermenting Cider"
+  "tfc.recipe.barrel.artisanal.barrel.cider": "Fermenting Cider",
+  "tfc.recipe.barrel.artisanal.barrel.metal.pickled_double_sheet.wrought_iron": "Pickling Wrought Iron Double Sheet",
+  "tfc.recipe.barrel.artisanal.barrel.metal.pickled_double_sheet.steel": "Pickling Steel Double Sheet"
 }

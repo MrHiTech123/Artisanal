@@ -4,7 +4,7 @@ from alcs_n_russians_funcs import *
 from mcresources import ResourceManager
 
 
-SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'petroleum', 'apple_juice', 'carrot_juice', 'lemon_juice', 'orange_juice', 'peach_juice', 'pineapple_juice', 'tomato_juice', 'screwdriver')
+SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'petroleum', 'apple_juice', 'carrot_juice', 'lemon_juice', 'orange_juice', 'peach_juice', 'pineapple_juice', 'tomato_juice', 'screwdriver', 'sulfuric_acid')
 AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cypress', 'fig', 'ironwood', 'ipe')
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
@@ -270,9 +270,6 @@ def generate_item_heats():
         if 'tool' in metal_data.types:
             item_heat(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
     
-    
-    
-    
     item_heat(rm, ('metal', 'tinplate'), 'artisanal:metal/tinplate', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
     item_heat(rm, ('metal', 'tin_can'), 'artisanal:metal/tin_can', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
     item_heat(rm, ('metal', 'sealed_tin_can'), 'artisanal:metal/sealed_tin_can', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
@@ -282,6 +279,12 @@ def generate_item_heats():
         item_heat(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
     
     item_heat(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', POTTERY_HEAT_CAPACITY)    
+    
+    item_heat(rm, ('metal', 'pickled_double_sheet', 'wrought_iron'), 'artisanal:metal/pickled_double_sheet/wrought_iron', METALS['wrought_iron'].melt_temperature, 400)
+    item_heat(rm, ('metal', 'pickled_double_sheet', 'steel'), 'artisanal:metal/pickled_double_sheet/steel', METALS['steel'].melt_temperature, 400)
+    
+    
+    
     
 def generate_data():
     print('Generating data...')
@@ -407,6 +410,9 @@ def generate_item_models():
     rm.item_model(('food', 'carrot_mash'), 'artisanal:item/food/carrot_mash').with_lang(lang('carrot_mash'))
     rm.item_model(('food', 'tomato_mash'), 'artisanal:item/food/tomato_mash').with_lang(lang('tomato_mash'))
     
+    rm.item_model(('metal', 'pickled_double_sheet', 'wrought_iron'), 'artisanal:item/metal/pickled_double_sheet/wrought_iron').with_lang(lang('pickled_wrought_iron_double_sheet'))
+    rm.item_model(('metal', 'pickled_double_sheet', 'steel'), 'artisanal:item/metal/pickled_double_sheet/steel').with_lang(lang('pickled_steel_double_sheet'))
+    
     
     
 def generate_models():
@@ -486,6 +492,9 @@ def generate_barrel_recipes():
     barrel_sealed_recipe(rm, ('rum'), 'Fermenting Rum', 72000, None, '1 artisanal:molasses', None, '1 tfc:rum')
     barrel_sealed_recipe(rm, ('cider'), 'Fermenting Cider', 72000, None, '1 artisanal:apple_juice', None, '1 tfc:cider')
     barrel_instant_fluid_recipe(rm, ('screwdriver'), '1 tfc:vodka', '1 artisanal:orange_juice', '2 artisanal:screwdriver')
+    
+    barrel_sealed_recipe(rm, ('metal', 'pickled_double_sheet', 'wrought_iron'), lang('Pickling Wrought Iron Double Sheet'), 1000, 'tfc:metal/double_sheet/wrought_iron', '100 #artisanal:acids', 'artisanal:metal/pickled_double_sheet/wrought_iron')
+    barrel_sealed_recipe(rm, ('metal', 'pickled_double_sheet', 'steel'), lang('Pickling Steel Double Sheet'), 1000, 'tfc:metal/double_sheet/steel', '100 #artisanal:acids', 'artisanal:metal/pickled_double_sheet/steel')
     
     
 def generate_crafting_recipes():
@@ -648,6 +657,9 @@ def generate_heat_recipes():
     heat_recipe(rm, ('metal', 'striker', "red_steel"), f'artisanal:metal/striker/red_steel', METALS['red_steel'].melt_temperature, result_fluid='100 tfc:metal/weak_red_steel')
     
     heat_recipe(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', POTTERY_MELT, 'artisanal:ceramic/small_pot')
+    
+    heat_recipe(rm, ('metal', 'pickled_double_sheet', 'wrought_iron'), 'artisanal:metal/pickled_double_sheet/wrought_iron', METALS['wrought_iron'].melt_temperature, result_fluid=f'{melt_metal("wrought_iron", 400)}')
+    heat_recipe(rm, ('metal', 'pickled_double_sheet', 'steel'), 'artisanal:metal/pickled_double_sheet/steel', METALS['steel'].melt_temperature, result_fluid=f'{melt_metal("steel", 400)}')
     
 def generate_juicing_recipes():
     print('\tGenerating juicing recipes...')
@@ -838,7 +850,8 @@ def generate_entity_tags():
 def generate_fluid_tags():
     print('\tGenerating fluid tags...')
     rm.fluid_tag('rendered_fats', 'tfc:tallow', 'artisanal:lard', 'artisanal:schmaltz')
-    rm.fluid_tag('usable_in_drum', '#tfc:usable_in_barrel', 'tfc:metal/gold')
+    rm.fluid_tag('acids', 'artisanal:sulfuric_acid', 'artisanal:lemon_juice')
+    rm.fluid_tag('usable_in_drum', '#tfc:usable_in_barrel', '#artisanal:acids', 'tfc:metal/gold')
     rm.fluid_tag('tfc:ingredients', '#artisanal:rendered_fats', 'artisanal:soap', 'artisanal:soapy_water', 'artisanal:sugarcane_juice', 'artisanal:filtered_sugarcane_juice', 'artisanal:alkalized_sugarcane_juice', 'artisanal:clarified_sugarcane_juice', 'artisanal:molasses', 'artisanal:petroleum', 'artisanal:condensed_milk', 'artisanal:condensed_goat_milk', 'artisanal:condensed_yak_milk')
     rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:apple_juice', 'artisanal:carrot_juice', 'artisanal:lemon_juice', 'artisanal:orange_juice', 'artisanal:peach_juice', 'artisanal:pineapple_juice', 'artisanal:tomato_juice', 'artisanal:screwdriver')
     rm.fluid_tag('tfc:usable_in_jug', '#tfc:ingredients')

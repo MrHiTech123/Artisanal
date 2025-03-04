@@ -13,7 +13,6 @@ import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.mrhitech.artisanal.Artisanal;
-import net.mrhitech.artisanal.common.Waterlikes;
 import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 

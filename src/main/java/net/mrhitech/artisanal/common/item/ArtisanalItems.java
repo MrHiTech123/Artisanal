@@ -1,6 +1,5 @@
 package net.mrhitech.artisanal.common.item;
 
-import net.dries007.tfc.common.items.BarrelBlockItem;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
 import net.minecraft.world.item.*;
@@ -9,8 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.mrhitech.artisanal.Artisanal;
-import net.mrhitech.artisanal.common.Waterlikes;
-import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
+import net.mrhitech.artisanal.common.fluids.Waterlikes;
 import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
 
 import java.util.Locale;
@@ -96,6 +94,10 @@ public class ArtisanalItems {
     
     public static final RegistryObject<Item> CARROT_MASH = register("food/carrot_mash", () -> new Item(new Item.Properties().food(ArtisanalFoods.BLANK_FOOD)));
     public static final RegistryObject<Item> TOMATO_MASH = register("food/tomato_mash", () -> new Item(new Item.Properties().food(ArtisanalFoods.BLANK_FOOD)));
+    
+    public static final Map<PicklableMetal, RegistryObject<Item>> PICKLED_DOUBLE_SHEETS = Helpers.mapOfKeys(PicklableMetal.class, (metal) ->
+            register("metal/pickled_double_sheet/" + metal.getMetal().getSerializedName().toLowerCase(Locale.ROOT),
+                    () -> new Item(new Item.Properties())));
     
     public static <T extends Item> RegistryObject<T> register(String name, Supplier<T> supplier) {
         return ITEMS.register(name, supplier);
