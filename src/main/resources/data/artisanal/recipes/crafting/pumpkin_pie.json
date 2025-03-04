@@ -35,5 +35,14 @@
     "result": {
       "item": "minecraft:pumpkin_pie"
     }
-  }
+  },
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "firmalife"
+      }
+    }
+  ]
 }
