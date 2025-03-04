@@ -97,7 +97,7 @@ public class ArtisanalItems {
     
     public static final Map<PicklableMetal, RegistryObject<Item>> PICKLED_DOUBLE_SHEETS = Helpers.mapOfKeys(PicklableMetal.class, (metal) ->
             register("metal/pickled_double_sheet/" + metal.getMetal().getSerializedName().toLowerCase(Locale.ROOT),
-                    () -> new Item(new Item.Properties())));
+                    () -> new Item(new Item.Properties().rarity(metal.getMetal().getRarity()))));
     
     public static <T extends Item> RegistryObject<T> register(String name, Supplier<T> supplier) {
         return ITEMS.register(name, supplier);
