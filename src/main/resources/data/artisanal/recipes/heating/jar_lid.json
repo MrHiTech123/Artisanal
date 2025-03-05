@@ -1,0 +1,30 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:heating",
+  "ingredient": {
+    "item": "tfc:jar_lid"
+  },
+  "result_fluid": {
+    "fluid": "tfc:metal/tin",
+    "amount": 6
+  },
+  "temperature": 230,
+  "conditions": [
+    {
+      "type": "forge:or",
+      "values": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "lithicaddon"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:mod_loaded",
+            "modid": "firmalife"
+          }
+        }
+      ]
+    }
+  ]
+}

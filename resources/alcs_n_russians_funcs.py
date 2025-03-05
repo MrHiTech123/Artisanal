@@ -2355,7 +2355,7 @@ def knapping_type(rm: ResourceManager, name_parts: ResourceIdentifier, item_inpu
     })
 
 
-def heat_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, ingredient: Json, temperature: float, result_item: Optional[Union[str, Json]] = None, result_fluid: Optional[str] = None, use_durability: Optional[bool] = None, chance: Optional[float] = None) -> RecipeContext:
+def heat_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, ingredient: Json, temperature: float, result_item: Optional[Union[str, Json]] = None, result_fluid: Optional[str] = None, use_durability: Optional[bool] = None, chance: Optional[float] = None, conditions: list[dict[str, Any]] = None) -> RecipeContext:
     result_item = item_stack_provider(result_item) if isinstance(result_item, str) else result_item
     result_fluid = None if result_fluid is None else fluid_stack(result_fluid)
     return rm.recipe(('heating', name_parts), 'tfc:heating', {
@@ -2365,7 +2365,7 @@ def heat_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, ingredient:
         'temperature': temperature,
         'use_durability': use_durability if use_durability else None,
         'chance': chance,
-    })
+    }, conditions=utils.recipe_condition(conditions))
 
 
 def casting_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, mold: str, metal: str, amount: int, break_chance: float, result_item: str = None):
@@ -2448,14 +2448,14 @@ def loom_recipe(rm: ResourceManager, name: utils.ResourceIdentifier, ingredient:
     })
 
 
-def anvil_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: Json, result: Json, tier: int, *rules: Rules, bonus: bool = None):
+def anvil_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: Json, result: Json, tier: int, *rules: Rules, bonus: bool = None, conditions: list[dict] = None):
     rm.recipe(('anvil', name_parts), 'tfc:anvil', {
         'input': utils.ingredient(ingredient),
         'result': item_stack_provider(result),
         'tier': tier,
         'rules': [r.name for r in rules],
         'apply_forging_bonus': bonus
-    })
+    }, conditions=conditions)
 
 
 def welding_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, first_input: Json, second_input: Json, result: Json, tier: int, combine_forging: bool = None):

@@ -201,9 +201,11 @@ dependencies {
     // AFC
     implementation fg.deobf("curse.maven:arborfirmacraft-877545:5525258")
     // Firmalife
-    implementation fg.deobf("curse.maven:firmalife-453394:5684922")
+    implementation fg.deobf("curse.maven:firmalife-453394:6249092")
     // Jade
     implementation fg.deobf("curse.maven:jade-324717:5493390")
+    // Lithic Addon
+//    implementation fg.deobf("curse.maven:lithic-addon-mod-1006182:5864422")
 //    // Thermal deposits
 //    implementation fg.deobf("curse.maven:tfc-thermal-deposits-962578:5317918")
 }

@@ -442,6 +442,14 @@ def generate_anvil_recipes():
     welding_recipe(rm, ('metal', 'tinplate_from_steel'), 'tfc:metal/double_sheet/steel', 'tfc:metal/sheet/tin', item_stack_provider((8, 'artisanal:metal/tinplate'), cap_heat=METALS['tin'].melt_temperature - 1), 0)
     anvil_recipe(rm, ('metal', 'repair_tin_can'), 'artisanal:metal/dented_tin_can', 'artisanal:metal/tin_can', 1, Rules.hit_third_last, Rules.hit_second_last, Rules.hit_last)
     
+    disable_recipe(rm, 'firmalife:anvil/stainless_steel_jar_lid')
+    anvil_recipe(rm, 'stainless_steel_jar_lid', 'firmalife:metal/ingot/stainless_steel', (16, 'tfc:jar_lid'), 4, Rules.hit_last, Rules.hit_second_last, Rules.punch_third_last, conditions=[
+        forge_condition.and_(
+            forge_condition.mod_loaded('firmalife'),
+            forge_condition.mod_not_loaded('lithicaddon')
+        )
+    ])
+    
 def generate_barrel_recipes():
     print('\tGenerating barrel recipes...')
     barrel_sealed_recipe(rm, ('soaked_feather'), 'Soaking Feather', 8000, 'artisanal:trimmed_feather', '200 minecraft:water', 'artisanal:soaked_feather', None)
@@ -665,6 +673,14 @@ def generate_heat_recipes():
     
     heat_recipe(rm, ('metal', 'pickled_double_sheet', 'wrought_iron'), 'artisanal:metal/pickled_double_sheet/wrought_iron', METALS['wrought_iron'].melt_temperature, result_fluid=f'{melt_metal("wrought_iron", 400)}')
     heat_recipe(rm, ('metal', 'pickled_double_sheet', 'steel'), 'artisanal:metal/pickled_double_sheet/steel', METALS['steel'].melt_temperature, result_fluid=f'{melt_metal("steel", 400)}')
+    
+    disable_recipe(rm, 'tfc:heating/jar_lid')
+    heat_recipe(rm, ('jar_lid'), 'tfc:jar_lid', METALS['tin'].melt_temperature, result_fluid='6 tfc:metal/tin', conditions=[
+        forge_condition.or_(
+            forge_condition.mod_loaded('lithicaddon'),
+            forge_condition.mod_not_loaded('firmalife')
+        )
+    ])
     
 def generate_juicing_recipes():
     print('\tGenerating juicing recipes...')

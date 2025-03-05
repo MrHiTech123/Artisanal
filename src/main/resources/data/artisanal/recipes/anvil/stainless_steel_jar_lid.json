@@ -1,0 +1,35 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:anvil",
+  "input": {
+    "item": "firmalife:metal/ingot/stainless_steel"
+  },
+  "result": {
+    "item": "tfc:jar_lid",
+    "count": 16
+  },
+  "tier": 4,
+  "rules": [
+    "hit_last",
+    "hit_second_last",
+    "punch_third_last"
+  ],
+  "conditions": [
+    {
+      "type": "forge:and",
+      "values": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "firmalife"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:mod_loaded",
+            "modid": "lithicaddon"
+          }
+        }
+      ]
+    }
+  ]
+}
