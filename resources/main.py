@@ -1,5 +1,6 @@
 import json
 
+import forge_condition
 from alcs_n_russians_funcs import *
 from mcresources import ResourceManager
 
@@ -56,11 +57,7 @@ def melt_metal(name: str, mb: int):
         name = metal.melt_metal
     return f'{mb} tfc:metal/{name}'
 
-def mod_loaded(mod: str) -> dict[str, str]:
-    return {'type': 'forge:mod_loaded', 'modid': mod}
 
-def mod_not_loaded(mod: str) -> dict[str, str]:
-    return {'type': 'forge:not', 'value': mod_loaded(mod)}
 
 def only_if_flux_makes_limewater_instant_barrel_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, sound: Optional[str] = None, conditions=None):
     rm.recipe(('barrel', name_parts), 'artisanal:only_if_flux_makes_limewater_instant_barrel', {
@@ -445,7 +442,6 @@ def generate_anvil_recipes():
     welding_recipe(rm, ('metal', 'tinplate_from_steel'), 'tfc:metal/double_sheet/steel', 'tfc:metal/sheet/tin', item_stack_provider((8, 'artisanal:metal/tinplate'), cap_heat=METALS['tin'].melt_temperature - 1), 0)
     anvil_recipe(rm, ('metal', 'repair_tin_can'), 'artisanal:metal/dented_tin_can', 'artisanal:metal/tin_can', 1, Rules.hit_third_last, Rules.hit_second_last, Rules.hit_last)
     
-
 def generate_barrel_recipes():
     print('\tGenerating barrel recipes...')
     barrel_sealed_recipe(rm, ('soaked_feather'), 'Soaking Feather', 8000, 'artisanal:trimmed_feather', '200 minecraft:water', 'artisanal:soaked_feather', None)
@@ -488,8 +484,8 @@ def generate_barrel_recipes():
     barrel_sealed_recipe(rm, 'paper', 'Bleaching Paper', 1000, 'tfc:unrefined_paper', '25 tfc:lye', 'minecraft:paper')
     
     barrel_instant_recipe(rm, 'milk', 'artisanal:powdered_milk', '100 minecraft:water', None, '100 minecraft:milk')
-    barrel_instant_recipe(rm, 'goat_milk', 'artisanal:powdered_goat_milk', '100 minecraft:water', None, '100 firmalife:goat_milk', conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
-    barrel_instant_recipe(rm, 'yak_milk', 'artisanal:powdered_yak_milk', '100 minecraft:water', None, '100 firmalife:yak_milk', conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
+    barrel_instant_recipe(rm, 'goat_milk', 'artisanal:powdered_goat_milk', '100 minecraft:water', None, '100 firmalife:goat_milk', conditions=[forge_condition.mod_loaded('firmalife')])
+    barrel_instant_recipe(rm, 'yak_milk', 'artisanal:powdered_yak_milk', '100 minecraft:water', None, '100 firmalife:yak_milk', conditions=[forge_condition.mod_loaded('firmalife')])
     
     disable_recipe(rm, 'tfc:barrel/limewater')
     disable_recipe(rm, 'tfc:barrel/rum')
@@ -523,7 +519,7 @@ def generate_crafting_recipes():
         disable_recipe(rm, f'afc:crafting/wood/{wood}_scribing_table')
         
     
-    damage_shapeless(rm, 'crafting/pumpkin_pie', (not_rotten('#tfc:foods/dough'), not_rotten('tfc:food/pumpkin_chunks'), '#tfc:knives', not_rotten('minecraft:egg'), not_rotten('#tfc:sweetener')), 'minecraft:pumpkin_pie', conditions=[mod_not_loaded('firmalife')]).with_advancement('tfc:pumpkin')
+    damage_shapeless(rm, 'crafting/pumpkin_pie', (not_rotten('#tfc:foods/dough'), not_rotten('tfc:food/pumpkin_chunks'), '#tfc:knives', not_rotten('minecraft:egg'), not_rotten('#tfc:sweetener')), 'minecraft:pumpkin_pie', conditions=[forge_condition.mod_not_loaded('firmalife')]).with_advancement('tfc:pumpkin')
     rm.crafting_shaped('crafting/cake', ['AAA', 'BEB', 'CCC'], {'A': fluid_item_ingredient('100 #tfc:milks'), 'B': not_rotten('#tfc:sweetener'), 'E': not_rotten('minecraft:egg'), 'C': not_rotten('#tfc:foods/grains')}, 'tfc:cake').with_advancement('#tfc:foods/grains')
     disable_recipe(rm, 'tfc:crafting/cake')
     disable_recipe(rm, 'tfc:crafting/pumpkin_pie')
@@ -627,8 +623,8 @@ def generate_crafting_recipes():
         max_amount = 100 * i
         min_amount = (100 * (i - 1)) + 1
         no_remainder_shapeless(rm, ('crafting', f'milk_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} minecraft:milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'))
-        no_remainder_shapeless(rm, ('crafting', f'goat_milk_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_goat_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} firmalife:goat_milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'), conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
-        no_remainder_shapeless(rm, ('crafting', f'yak_milk_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_yak_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} firmalife:yak_milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'), conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
+        no_remainder_shapeless(rm, ('crafting', f'goat_milk_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_goat_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} firmalife:goat_milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'), conditions=[forge_condition.mod_loaded('firmalife')])
+        no_remainder_shapeless(rm, ('crafting', f'yak_milk_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_yak_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} firmalife:yak_milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'), conditions=[forge_condition.mod_loaded('firmalife')])
     
     disable_recipe(rm, 'tfc:crafting/bloomery')
     rm.crafting_shaped(('crafting', 'bloomery'), ('XXX', 'X X', 'XXX'), {'X': '#artisanal:bloomery_sheets'}, 'tfc:bloomery')
@@ -710,8 +706,8 @@ def generate_pot_recipes():
         simple_pot_recipe(rm, f'tallow_{i}_from_animal', [utils.ingredient('artisanal:animal_fat')] * i, f'{100 * i} minecraft:water', f'{100 * i} tfc:tallow', None, 2000, 600)
     
     scalable_pot_recipe(rm, ('condensed_milk'), '2 minecraft:milk', '1 artisanal:condensed_milk', None, 3000, 100)
-    scalable_pot_recipe(rm, ('condensed_goat_milk'), '2 firmalife:goat_milk', '1 artisanal:condensed_goat_milk', None, 3000, 100, conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
-    scalable_pot_recipe(rm, ('condensed_yak_milk'), '2 firmalife:yak_milk', '1 artisanal:condensed_yak_milk', None, 3000, 100, conditions={'type': 'forge:mod_loaded', 'modid': 'firmalife'})
+    scalable_pot_recipe(rm, ('condensed_goat_milk'), '2 firmalife:goat_milk', '1 artisanal:condensed_goat_milk', None, 3000, 100, conditions=[forge_condition.mod_loaded('firmalife')])
+    scalable_pot_recipe(rm, ('condensed_yak_milk'), '2 firmalife:yak_milk', '1 artisanal:condensed_yak_milk', None, 3000, 100, conditions=[forge_condition.mod_loaded('firmalife')])
     scalable_pot_recipe(rm, ('milk_flakes'), '100 artisanal:condensed_milk', None, [{'item': 'artisanal:milk_flakes'}], 3000, 100)
     scalable_pot_recipe(rm, ('goat_milk_flakes'), '100 artisanal:condensed_goat_milk', None, [{'item': 'artisanal:goat_milk_flakes'}], 3000, 100)
     scalable_pot_recipe(rm, ('yak_milk_flakes'), '100 artisanal:condensed_yak_milk', None, [{'item': 'artisanal:yak_milk_flakes'}], 3000, 100)
@@ -744,7 +740,7 @@ def generate_pot_recipes():
                 'temperature': 300,
                 'result': utils.item_stack('%s tfc:jar/%s' % (count, fruit)),
                 'texture': 'tfc:block/jar/%s' % fruit
-            }, conditions=[{'type': 'forge:not', 'value': {'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}}])
+            }, conditions=[forge_condition.mod_not_loaded('lithicaddon')])
             disable_recipe(rm, f'tfc:pot/jam_{fruit}_{count}')
             
             jam_food = not_rotten(utils.ingredient('tfc:food/%s' % fruit))
@@ -755,10 +751,10 @@ def generate_pot_recipes():
                 'temperature': 300,
                 'result': utils.item_stack('%s tfc:jar/%s_unsealed' % (count, fruit)),
                 'texture': 'tfc:block/jar/%s' % fruit
-            }, conditions=[{'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}])
+            }, conditions=[forge_condition.mod_loaded('lithicaddon')])
             
             disable_recipe(rm, f'tfc:crafting/unseal_{fruit}_jar')
-            extra_products_shapeless(rm, ('crafting', 'unseal', fruit), (f'tfc:jar/{fruit}'), item_stack_provider(f'tfc:jar/{fruit}_unsealed', copy_food=True), ('tfc:jar_lid'), primary_ingredient=f'tfc:jar/{fruit}', conditions={'type': 'forge:not', 'value': {'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}})
+            extra_products_shapeless(rm, ('crafting', 'unseal', fruit), (f'tfc:jar/{fruit}'), item_stack_provider(f'tfc:jar/{fruit}_unsealed', copy_food=True), ('tfc:jar_lid'), primary_ingredient=f'tfc:jar/{fruit}', conditions=forge_condition.mod_not_loaded('lithicaddon'))
             
         for fruit in FL_FRUITS:
             ingredient = not_rotten(has_trait('firmalife:food/%s' % fruit, 'firmalife:dried', True))
@@ -769,7 +765,7 @@ def generate_pot_recipes():
                 'temperature': 300,
                 'result': utils.item_stack('%s firmalife:jar/%s' % (count, fruit)),
                 'texture': 'firmalife:block/jar/%s' % fruit
-            }, conditions=[{'type': 'forge:not', 'value': {'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}}])
+            }, conditions=[forge_condition.mod_not_loaded('lithicaddon')])
             disable_recipe(rm, f'firmalife:pot/jam_{fruit}_{count}')
             
             rm.recipe(('pot', 'jam', 'lithic', f'{fruit}_{count}'), 'tfc:pot_jam', {
@@ -779,7 +775,7 @@ def generate_pot_recipes():
                 'temperature': 300,
                 'result': utils.item_stack('%s firmalife:jar/%s_unsealed' % (count, fruit)),
                 'texture': 'firmalife:block/jar/%s' % fruit
-            }, conditions=[{'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}])
+            }, conditions=[forge_condition.mod_loaded('lithicaddon')])
             
             disable_recipe(rm, f'firmalife:crafting/unseal_{fruit}_jar')
             extra_products_shapeless(
@@ -789,7 +785,7 @@ def generate_pot_recipes():
                 item_stack_provider(f'firmalife:jar/{fruit}_unsealed', copy_food=True), 
                 ('tfc:jar_lid'), 
                 primary_ingredient=f'firmalife:jar/{fruit}', 
-                conditions={'type': 'forge:not', 'value': {'type': 'forge:mod_loaded', 'modid': 'lithicaddon'}}
+                conditions=[forge_condition.mod_not_loaded('lithicaddon')]
                 
             )
             
