@@ -56,6 +56,12 @@ def melt_metal(name: str, mb: int):
         name = metal.melt_metal
     return f'{mb} tfc:metal/{name}'
 
+def mod_loaded(mod: str) -> dict[str, str]:
+    return {'type': 'forge:mod_loaded', 'modid': mod}
+
+def mod_not_loaded(mod: str) -> dict[str, str]:
+    return {'type': 'forge:not', 'value': mod_loaded(mod)}
+
 def only_if_flux_makes_limewater_instant_barrel_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, sound: Optional[str] = None, conditions=None):
     rm.recipe(('barrel', name_parts), 'artisanal:only_if_flux_makes_limewater_instant_barrel', {
         'input_item': item_stack_ingredient(input_item) if input_item is not None else None,
@@ -517,7 +523,7 @@ def generate_crafting_recipes():
         disable_recipe(rm, f'afc:crafting/wood/{wood}_scribing_table')
         
     
-    damage_shapeless(rm, 'crafting/pumpkin_pie', (not_rotten('#tfc:foods/dough'), not_rotten('tfc:food/pumpkin_chunks'), '#tfc:knives', not_rotten('minecraft:egg'), not_rotten('#tfc:sweetener')), 'minecraft:pumpkin_pie').with_advancement('tfc:pumpkin')
+    damage_shapeless(rm, 'crafting/pumpkin_pie', (not_rotten('#tfc:foods/dough'), not_rotten('tfc:food/pumpkin_chunks'), '#tfc:knives', not_rotten('minecraft:egg'), not_rotten('#tfc:sweetener')), 'minecraft:pumpkin_pie', conditions=[mod_not_loaded('firmalife')]).with_advancement('tfc:pumpkin')
     rm.crafting_shaped('crafting/cake', ['AAA', 'BEB', 'CCC'], {'A': fluid_item_ingredient('100 #tfc:milks'), 'B': not_rotten('#tfc:sweetener'), 'E': not_rotten('minecraft:egg'), 'C': not_rotten('#tfc:foods/grains')}, 'tfc:cake').with_advancement('#tfc:foods/grains')
     disable_recipe(rm, 'tfc:crafting/cake')
     

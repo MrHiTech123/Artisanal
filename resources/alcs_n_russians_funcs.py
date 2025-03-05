@@ -2199,15 +2199,14 @@ def damage_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingred
         'type': 'tfc:advanced_shapeless_crafting',
         'group': group,
         'ingredients': utils.item_stack_list(ingredients),
-        'result': utils.item_stack(result),
-        'conditions': utils.recipe_condition(conditions)
+        'result': utils.item_stack(result)
     }
     
     if primary_ingredient is not None:
         primary_ingredient = utils.ingredient(primary_ingredient)
         f_data['primary_ingredient'] = primary_ingredient
     
-    return delegate_recipe(rm, name_parts, 'tfc:damage_inputs_shapeless_crafting', f_data)
+    return delegate_recipe(rm, name_parts, 'tfc:damage_inputs_shapeless_crafting', f_data, conditions=conditions)
 
 def damage_shaped(rm: ResourceManager, name_parts: utils.ResourceIdentifier, pattern: Sequence[str], ingredients: Json, result: Json, group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
     return delegate_recipe(rm, name_parts, 'tfc:damage_inputs_shaped_crafting', {
@@ -2244,13 +2243,18 @@ def write_crafting_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, d
     rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', res.path), data)
     return RecipeContext(rm, res)
 
-def delegate_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, recipe_type: str, delegate: Json, data: Json = {}) -> RecipeContext:
+def delegate_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, recipe_type: str, delegate: Json, data: Json = {}, conditions: list[dict]=None) -> RecipeContext:
     
-    return write_crafting_recipe(rm, name_parts, {
+    f_data = {
         'type': recipe_type,
         **data,
         'recipe': delegate,
-    })
+    }
+    
+    if conditions != None:
+        f_data['conditions'] = conditions
+    
+    return write_crafting_recipe(rm, name_parts, f_data)
 
 def advanced_shaped(rm: ResourceManager, name_parts: ResourceIdentifier, pattern: Sequence[str], ingredients: Json, result: Json, input_xy: Tuple[int, int], group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
     res = utils.resource_location(rm.domain, name_parts)
