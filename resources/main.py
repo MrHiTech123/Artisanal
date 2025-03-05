@@ -438,8 +438,10 @@ def generate_anvil_recipes():
     
     
     anvil_recipe(rm, ('metal', 'tin_can'), 'artisanal:metal/tinplate', 'artisanal:metal/tin_can', 1, Rules.bend_not_last, Rules.hit_not_last, Rules.hit_last)
-    welding_recipe(rm, ('metal', 'tinplate_from_iron'), 'tfc:metal/double_sheet/wrought_iron', 'tfc:metal/sheet/tin', item_stack_provider((4, 'artisanal:metal/tinplate'), cap_heat=METALS['tin'].melt_temperature - 1), 0)
+    welding_recipe(rm, ('metal', 'tinplate_from_iron'), 'tfc:metal/double_sheet/wrought_iron', 'tfc:metal/sheet/tin', item_stack_provider((3, 'artisanal:metal/tinplate'), cap_heat=METALS['tin'].melt_temperature - 1), 0)
+    welding_recipe(rm, ('metal', 'tinplate_from_pickled_iron'), 'artisanal:metal/pickled_double_sheet/wrought_iron', 'tfc:metal/sheet/tin', item_stack_provider((5, 'artisanal:metal/tinplate'), cap_heat=METALS['tin'].melt_temperature - 1), 0)
     welding_recipe(rm, ('metal', 'tinplate_from_steel'), 'tfc:metal/double_sheet/steel', 'tfc:metal/sheet/tin', item_stack_provider((8, 'artisanal:metal/tinplate'), cap_heat=METALS['tin'].melt_temperature - 1), 0)
+    welding_recipe(rm, ('metal', 'tinplate_from_pickled_steel'), 'artisanal:metal/pickled_double_sheet/steel', 'tfc:metal/sheet/tin', item_stack_provider((12, 'artisanal:metal/tinplate'), cap_heat=METALS['tin'].melt_temperature - 1), 0)
     anvil_recipe(rm, ('metal', 'repair_tin_can'), 'artisanal:metal/dented_tin_can', 'artisanal:metal/tin_can', 1, Rules.hit_third_last, Rules.hit_second_last, Rules.hit_last)
     
     disable_recipe(rm, 'firmalife:anvil/stainless_steel_jar_lid')

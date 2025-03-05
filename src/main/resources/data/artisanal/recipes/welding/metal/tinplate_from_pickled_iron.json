@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:welding",
   "first_input": {
-    "item": "tfc:metal/double_sheet/wrought_iron"
+    "item": "artisanal:metal/pickled_double_sheet/wrought_iron"
   },
   "second_input": {
     "item": "tfc:metal/sheet/tin"
@@ -11,7 +11,7 @@
   "result": {
     "stack": {
       "item": "artisanal:metal/tinplate",
-      "count": 3
+      "count": 5
     },
     "modifiers": [
       {
