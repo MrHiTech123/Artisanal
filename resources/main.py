@@ -526,6 +526,7 @@ def generate_crafting_recipes():
     damage_shapeless(rm, 'crafting/pumpkin_pie', (not_rotten('#tfc:foods/dough'), not_rotten('tfc:food/pumpkin_chunks'), '#tfc:knives', not_rotten('minecraft:egg'), not_rotten('#tfc:sweetener')), 'minecraft:pumpkin_pie', conditions=[mod_not_loaded('firmalife')]).with_advancement('tfc:pumpkin')
     rm.crafting_shaped('crafting/cake', ['AAA', 'BEB', 'CCC'], {'A': fluid_item_ingredient('100 #tfc:milks'), 'B': not_rotten('#tfc:sweetener'), 'E': not_rotten('minecraft:egg'), 'C': not_rotten('#tfc:foods/grains')}, 'tfc:cake').with_advancement('#tfc:foods/grains')
     disable_recipe(rm, 'tfc:crafting/cake')
+    disable_recipe(rm, 'tfc:crafting/pumpkin_pie')
     
     for metal in MAGNIFYING_GLASS_METALS:
         metal_data = METALS[metal]
