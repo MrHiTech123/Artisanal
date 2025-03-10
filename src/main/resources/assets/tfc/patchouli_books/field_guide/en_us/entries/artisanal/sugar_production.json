@@ -56,6 +56,11 @@
       ]
     },
     {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/sugar",
+      "text": "You can blow the fumes from hot sulfur onto non-perishable sugar with a $(thing)Tuyere$() to make $(thing)White Sugar$()."
+    },
+    {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/rum",
       "text": "Molasses can be fermented into Rum. It can also be drunk normally and grants $(l)$(a)Fruit$() and $(l)$(2)Vegetable$() nutrition."

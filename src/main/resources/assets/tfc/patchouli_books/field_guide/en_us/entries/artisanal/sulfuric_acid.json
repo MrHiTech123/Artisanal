@@ -1,0 +1,25 @@
+{
+  "name": "Sulfuric Acid",
+  "category": "tfc:artisanal",
+  "icon": "tfc:powder/sulfur",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Sulfuric Acid is an extremely corrosive fluid. It can only be stored in a $(l:tfc:artisanal/drums)drum$(), not a barrel."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/sulfuric_acid",
+      "text": "Sulfuric acid is made by blowing the fumes from hot $(thing)sulfur$() into a $(thing)water bottle$() with a $(thing)tuyere$()."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/metal/pickled_double_sheet/steel",
+      "text": "Sulfuric acid can be used to pickle metal sheets."
+    }
+  ],
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "tfc:powder/salt": 1
+  }
+}

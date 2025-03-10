@@ -1,0 +1,25 @@
+{
+  "name": "Drums",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:metal/drum/bismuth_bronze",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "tag": "artisanal:metal/drums"
+      },
+      "text": "Drums are special barrels that are needed to store corrosive fluids, that would dissolve wooden barrels.$(br2)Drums are needed to store $(thing)Sulfuric Acid$() and $(thing)Lemon Juice$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/drum/bronze",
+      "text": "Drums are made like $(l:tfc:mechanics/barrels)barrels$(), but with metal sheets instead of lumber."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/drum/steel",
+      "text": "Drums can be made from any bronze, as well as from steel."
+    }
+  ],
+  "read_by_default": true
+}

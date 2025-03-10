@@ -348,6 +348,7 @@ def generate_misc_lang():
     rm.lang("block.tfc.cauldron.limewater", "Slaked Lime Cauldron")
     rm.lang("item.minecraft.cooked_beef", "Whatever Food Was Inside the Can")
     rm.lang('tfc.jei.juicing', 'Juicing Recipe')
+    rm.lang('item.minecraft.sugar', 'White Sugar')
 
 def generate_block_models():
     print('\tGenerating block models...')
@@ -918,6 +919,7 @@ def generate_recipes():
 def generate_block_tags():
     print('\tGenerating block tags...')
     block_and_item_tag(rm, 'metal/drums', *[f'artisanal:metal/drum/{metal}' for metal in DRUM_METALS])
+    block_and_item_tag(rm, 'tfc:barrels', '#artisanal:metal/drums')
     block_and_item_tag(rm, 'minecraft:mineable/pickaxe', "#artisanal:metal/drums")
 
 def generate_entity_tags():
@@ -949,13 +951,13 @@ def generate_item_tags():
     rm.item_tag('bloomery_sheets', *[f'tfc:metal/double_sheet/{metal}' for metal in BLOOMERY_SHEETS])
     rm.item_tag('firmalife:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
     rm.item_tag('fats', 'artisanal:bear_fat', 'artisanal:pork_fat', 'artisanal:poultry_fat', 'artisanal:suet', 'artisanal:animal_fat')
-    rm.item_tag('tfc:firepit_kindling', 'artisanal:dry_bagasse')
     rm.item_tag('magnifying_glasses', *[f'artisanal:metal/magnifying_glass/{metal}' for metal in MAGNIFYING_GLASS_METALS])
     rm.item_tag('crafting_catalysts', '#artisanal:magnifying_glasses')
     rm.item_tag('foods/can_be_canned', *[f'#tfc:foods/{tag}' for tag in CANNABLE_FOOD_TAGS], '#firmalife:foods/flatbreads', '#firmalife:foods/slices')
     rm.item_tag('foods/can_be_potted', *[f'#tfc:foods/{tag}' for tag in POTTABLE_FOOD_TAGS])
     rm.item_tag('can_openers', *[f'artisanal:metal/can_opener/{metal}' for metal in METALS if 'tool' in METALS[metal].types])
     rm.item_tag('rods/metal', *[f'tfc:metal/rod/{metal}' for metal in METALS if 'utility' in METALS[metal].types])
+    rm.item_tag('tfc:firepit_kindling', 'artisanal:dry_bagasse')
     rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'], 'artisanal:stone/flint_and/pyrite', 'artisanal:stone/flint_and/cut_pyrite')
     rm.item_tag('tfc:compost_browns_high', 'artisanal:dry_bagasse')
     rm.item_tag('tfc:dynamic_bowl_items', 'artisanal:dirty_bowl')
@@ -964,9 +966,7 @@ def generate_item_tags():
     rm.item_tag('tfc:foods/fruits', 'artisanal:food/fruit_mash')
     rm.item_tag('tfc:foods/vegetables', 'artisanal:food/carrot_mash', 'artisanal:food/tomato_mash')
     rm.item_tag('tfc:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
-    rm.item_tag('tfc:usable_on_tool_rack', '#artisanal:magnifying_glasses')
-    
-    
+    rm.item_tag('tfc:usable_on_tool_rack', '#artisanal:magnifying_glasses')    
 
 def generate_tags():
     print('Generating tags...')

@@ -49,6 +49,11 @@
       "text": "A Wrought Iron Double Sheet can be used instead of a Steel one, at reduced efficiency."
     },
     {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/metal/pickled_double_sheet/steel",
+      "text": "Double sheets can also be pickled in $(thing)acid$(). When a pickled double sheet is used for Tinplate, the recipe produces 50% more than a non-pickled one would."
+    },
+    {
       "type": "tfc:anvil_recipe",
       "recipe": "artisanal:anvil/metal/tin_can",
       "text": "Once welded, Tinplate can then be forged into an empty Tin Can."
