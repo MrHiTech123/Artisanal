@@ -30,12 +30,14 @@ public class SpecificNoRemainderShapedRecipe extends AdvancedShapedRecipe {
     }
     
     @Override
-    public @NotNull NonNullList<ItemStack> getRemainingItems(CraftingContainer pContainer) {
-        NonNullList<ItemStack> toReturn = NonNullList.withSize(pContainer.getContainerSize(), ItemStack.EMPTY);
+    public @NotNull NonNullList<ItemStack> getRemainingItems(CraftingContainer inventory) {
+        NonNullList<ItemStack> toReturn = NonNullList.withSize(inventory.getContainerSize(), ItemStack.EMPTY);
+        
+        final int matchSlot = RecipeHelpers.translateMatch(this, inputSlot, inventory);
         
         for(int i = 0; i < toReturn.size(); ++i) {
-            ItemStack item = pContainer.getItem(i);
-            if (i == inputSlot) {
+            ItemStack item = inventory.getItem(i);
+            if (i == matchSlot) {
                 toReturn.set(i, ItemStack.EMPTY);
             }
             else if (item.hasCraftingRemainingItem()) {
