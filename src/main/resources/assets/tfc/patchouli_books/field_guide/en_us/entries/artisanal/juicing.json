@@ -21,7 +21,7 @@
     {
       "type": "tfc:artisanal/juicing_recipe",
       "recipe": "artisanal:juicing/lemon_juice",
-      "text": "Apples, lemons, and oranges can also be juiced. The resulting juices can be drunk for fruit nutrition. Note that lemon juice is an $(thing)acid$(), so it requires a $(l:tfc:artisanal/drums)drum$() to be placed under the quern, rather than a barrel."
+      "text": "Apples, lemons, and oranges can also be juiced. The resulting juices can be drunk for fruit nutrition. Note that Lemon Juice is an $(thing)acid$(), so it requires a $(l:tfc:artisanal/drums)Drum$() to be placed under the quern, rather than a barrel."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
@@ -38,7 +38,7 @@
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/metal/pickled_double_sheet/steel",
-      "text": "Lemon juice is an $(thing)acid$(), so it can only be collected in a $(l:tfc:artisanal/drums)drum$(), not a barrel.$(br2)It can be used to pickle double metal sheets."
+      "text": "Lemon juice is an $(thing)Acid$(), so it can only be collected in a $(l:tfc:artisanal/drums)Drum$(), not a Barrel.$(br2)It can be used to pickle double metal sheets."
     }
   ],
   "read_by_default": true

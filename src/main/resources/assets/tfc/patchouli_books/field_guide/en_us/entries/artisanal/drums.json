@@ -13,7 +13,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/metal/drum/bronze",
-      "text": "Drums are made like $(l:tfc:mechanics/barrels)barrels$(), but with metal sheets instead of lumber."
+      "text": "Drums are made like $(l:tfc:mechanics/barrels)Barrels$(), but with metal sheets instead of lumber."
     },
     {
       "type": "patchouli:crafting",
@@ -21,5 +21,11 @@
       "text": "Drums can be made from any bronze, as well as from steel."
     }
   ],
-  "read_by_default": true
+  "read_by_default": true,
+  "additional_recipe_mappings": {
+    "artisanal:metal/drum/bismuth_bronze": 1,
+    "artisanal:metal/drum/black_bronze": 1,
+    "artisanal:metal/drum/bronze": 1,
+    "artisanal:metal/drum/steel": 1
+  }
 }
