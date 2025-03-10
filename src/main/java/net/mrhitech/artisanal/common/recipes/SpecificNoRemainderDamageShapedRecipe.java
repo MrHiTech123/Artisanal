@@ -32,12 +32,16 @@ public class SpecificNoRemainderDamageShapedRecipe extends AdvancedShapedRecipe 
     }
     
     @Override
-    public @NotNull NonNullList<ItemStack> getRemainingItems(CraftingContainer pContainer) {
-        NonNullList<ItemStack> toReturn = NonNullList.withSize(pContainer.getContainerSize(), ItemStack.EMPTY);
+    public @NotNull NonNullList<ItemStack> getRemainingItems(CraftingContainer inventory) {
+        NonNullList<ItemStack> toReturn = NonNullList.withSize(inventory.getContainerSize(), ItemStack.EMPTY);
+        
+        RecipeHelpers.setCraftingInput(inventory); //Maybe delete?
+        final int matchSlot = RecipeHelpers.translateMatch(this, inputSlot, inventory);
+        
         
         for(int i = 0; i < toReturn.size(); ++i) {
-            ItemStack stack = pContainer.getItem(i);
-            if (i == inputSlot) {
+            ItemStack stack = inventory.getItem(i);
+            if (i == matchSlot) {
                 toReturn.set(i, ItemStack.EMPTY);
             }
             else if (stack.isDamageableItem())
