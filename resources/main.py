@@ -14,6 +14,8 @@ OPENABLE_CAN_ITEMS = ('sterilized_tin_can', 'sealed_tin_can')
 DRUM_METALS = ['bismuth_bronze', 'black_bronze', 'bronze', 'steel']
 BLOOMERY_SHEETS = ['bismuth_bronze', 'black_bronze', 'bronze', 'wrought_iron', 'steel', 'black_steel', 'blue_steel', 'red_steel']
 STEELS = {metal: METALS[metal] for metal in ('steel', 'black_steel', 'blue_steel', 'red_steel')}
+SULFUR_BURN = 175
+
 
 class CleaningRecipe(NamedTuple):
     item_name: str
@@ -186,6 +188,20 @@ def scalable_pot_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifie
         'item_output': [utils.item_stack(item) for item in output_items] if output_items is not None else None
     }, conditions=conditions)
 
+def specific_no_remainder_shaped(rm: ResourceManager, name_parts: ResourceIdentifier, pattern: Sequence[str], ingredients: Json, result: Json, input_xy: Tuple[int, int], group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
+    res = utils.resource_location(rm.domain, name_parts)
+    rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', res.path), {
+        'type': 'artisanal:specific_no_remainder_shaped',
+        'group': group,
+        'pattern': pattern,
+        'key': utils.item_stack_dict(ingredients, ''.join(pattern)[0]),
+        'result': item_stack_provider(result),
+        'input_row': input_xy[1],
+        'input_column': input_xy[0],
+        'conditions': utils.recipe_condition(conditions)
+    })
+    return RecipeContext(rm, res)
+
 def specific_no_remainder_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, primary_ingredient: Json = None, group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
     res = utils.resource_location(rm.domain, name_parts)
     item_stack_provider()
@@ -198,7 +214,6 @@ def specific_no_remainder_shapeless(rm: ResourceManager, name_parts: ResourceIde
         'conditions': utils.recipe_condition(conditions)
     })
     return RecipeContext(rm, res)
-
 
 def generate_advancements():
     print('Generating advancements...')
@@ -644,8 +659,20 @@ def generate_crafting_recipes():
     rm.crafting_shapeless(('crafting', 'stone', 'flint_and', 'pyrite'), ('tfc:ore/pyrite', 'minecraft:flint'), 'artisanal:stone/flint_and/pyrite')
     rm.crafting_shapeless(('crafting', 'stone', 'flint_and', 'cut_pyrite'), ('tfc:gem/pyrite', 'minecraft:flint'), 'artisanal:stone/flint_and/cut_pyrite')
     
-    damage_shaped(rm, ('crafting', 'sugar'), ['N', 'S', 'T'], {'N': 'artisanal:non_perishable_sugar', 'S': heatable_ingredient('tfc:powder/sulfur', 175), 'T': '#tfc:tuyeres'}, 'minecraft:sugar')
+    damage_shaped(rm, ('crafting', 'sugar'), ['N', 'S', 'T'], {'N': 'artisanal:non_perishable_sugar', 'S': heatable_ingredient('tfc:powder/sulfur', SULFUR_BURN), 'T': '#tfc:tuyeres'}, 'minecraft:sugar')
     
+    specific_no_remainder_shaped(
+        rm,
+        ('crafting', 'sulfuric_acid'),
+        ('W', 'S', 'T'),
+        {
+            'W': fluid_item_ingredient('100 minecraft:water'),
+            'S': heatable_ingredient('tfc:powder/sulfur', SULFUR_BURN),
+            'T': '#tfc:tuyeres'
+        },
+        item_stack_provider('tfc:ceramic/jug', modify_fluid=f'500 artisanal:sulfuric_acid'),
+        (0, 0)
+    )
     
 def generate_knapping_recipes():
     print("\tGenerating knapping recipes...")

@@ -1,0 +1,44 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:specific_no_remainder_shaped",
+  "pattern": [
+    "W",
+    "S",
+    "T"
+  ],
+  "key": {
+    "W": {
+      "type": "tfc:fluid_item",
+      "fluid_ingredient": {
+        "ingredient": "minecraft:water",
+        "amount": 100
+      }
+    },
+    "S": {
+      "type": "tfc:heatable",
+      "min_temp": 175,
+      "ingredient": {
+        "item": "tfc:powder/sulfur"
+      }
+    },
+    "T": {
+      "tag": "tfc:tuyeres"
+    }
+  },
+  "result": {
+    "stack": {
+      "item": "tfc:ceramic/jug"
+    },
+    "modifiers": [
+      {
+        "type": "artisanal:modify_fluid",
+        "fluid": {
+          "fluid": "artisanal:sulfuric_acid",
+          "amount": 500
+        }
+      }
+    ]
+  },
+  "input_row": 0,
+  "input_column": 0
+}
