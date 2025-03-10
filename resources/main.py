@@ -188,6 +188,20 @@ def scalable_pot_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifie
         'item_output': [utils.item_stack(item) for item in output_items] if output_items is not None else None
     }, conditions=conditions)
 
+def specific_no_remainder_damage_shaped(rm: ResourceManager, name_parts: ResourceIdentifier, pattern: Sequence[str], ingredients: Json, result: Json, input_xy: Tuple[int, int], group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
+    res = utils.resource_location(rm.domain, name_parts)
+    rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', res.path), {
+        'type': 'artisanal:specific_no_remainder_damage_shaped',
+        'group': group,
+        'pattern': pattern,
+        'key': utils.item_stack_dict(ingredients, ''.join(pattern)[0]),
+        'result': item_stack_provider(result),
+        'input_row': input_xy[1],
+        'input_column': input_xy[0],
+        'conditions': utils.recipe_condition(conditions)
+    })
+    return RecipeContext(rm, res)
+
 def specific_no_remainder_shaped(rm: ResourceManager, name_parts: ResourceIdentifier, pattern: Sequence[str], ingredients: Json, result: Json, input_xy: Tuple[int, int], group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
     res = utils.resource_location(rm.domain, name_parts)
     rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', res.path), {
@@ -661,12 +675,12 @@ def generate_crafting_recipes():
     
     damage_shaped(rm, ('crafting', 'sugar'), ['N', 'S', 'T'], {'N': 'artisanal:non_perishable_sugar', 'S': heatable_ingredient('tfc:powder/sulfur', SULFUR_BURN), 'T': '#tfc:tuyeres'}, 'minecraft:sugar')
     
-    specific_no_remainder_shaped(
+    specific_no_remainder_damage_shaped(
         rm,
         ('crafting', 'sulfuric_acid'),
         ('W', 'S', 'T'),
         {
-            'W': fluid_item_ingredient('100 minecraft:water'),
+            'W': fluid_item_ingredient('100 minecraft:water', utils.ingredient('#tfc:glass_bottles')),
             'S': heatable_ingredient('tfc:powder/sulfur', SULFUR_BURN),
             'T': '#tfc:tuyeres'
         },

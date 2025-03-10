@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "type": "artisanal:specific_no_remainder_shaped",
+  "type": "artisanal:specific_no_remainder_damage_shaped",
   "pattern": [
     "W",
     "S",
@@ -9,6 +9,9 @@
   "key": {
     "W": {
       "type": "tfc:fluid_item",
+      "ingredient": {
+        "tag": "tfc:glass_bottles"
+      },
       "fluid_ingredient": {
         "ingredient": "minecraft:water",
         "amount": 100
