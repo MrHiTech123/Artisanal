@@ -317,6 +317,9 @@ def generate_item_heats():
     
     item_heat(rm, ('powder', 'sulfur'), 'tfc:powder/sulfur', 0.8, None, None)
     
+    for metal in DRUM_METALS:
+        metal_data = METALS[metal]
+        item_heat(rm, ('metal', 'drum', metal), f'artisanal:metal/drum/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 1400)
     
 def generate_data():
     print('Generating data...')
@@ -687,6 +690,9 @@ def generate_crafting_recipes():
         item_stack_provider('tfc:ceramic/jug', modify_fluid=f'500 artisanal:sulfuric_acid'),
         (0, 0)
     )
+    for metal in DRUM_METALS:
+        rm.crafting_shaped(('crafting', 'metal', 'drum', metal), ('X X', 'X X', 'XXX'), {'X': f'tfc:metal/sheet/{metal}'}, f'artisanal:metal/drum/{metal}')
+    
     
 def generate_knapping_recipes():
     print("\tGenerating knapping recipes...")
@@ -724,6 +730,10 @@ def generate_heat_recipes():
             forge_condition.mod_not_loaded('firmalife')
         )
     ])
+    
+    for metal in DRUM_METALS:
+        metal_data = METALS[metal]
+        heat_recipe(rm, ('metal', 'drum', metal), f'artisanal:metal/drum/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 1400))
     
 def generate_juicing_recipes():
     print('\tGenerating juicing recipes...')

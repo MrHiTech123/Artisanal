@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:heating",
+  "ingredient": {
+    "item": "artisanal:metal/drum/black_bronze"
+  },
+  "result_fluid": {
+    "fluid": "tfc:metal/black_bronze",
+    "amount": 1400
+  },
+  "temperature": 1070
+}
