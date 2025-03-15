@@ -879,7 +879,7 @@ def generate_quern_recipes():
     disable_recipe(rm, 'tfc:quern/pyrite_cut')
     disable_recipe(rm, 'firmaciv:quern/pyrite')
     quern_recipe(rm, 'pyrite', 'tfc:ore/pyrite', 'tfc:powder/sulfur', 4)
-    quern_recipe(rm, 'pyrite', 'tfc:gem/pyrite', 'tfc:powder/sulfur', 4)
+    quern_recipe(rm, 'pyrite_cut', 'tfc:gem/pyrite', 'tfc:powder/sulfur', 4)
     
 
 def generate_vat_recipes():
