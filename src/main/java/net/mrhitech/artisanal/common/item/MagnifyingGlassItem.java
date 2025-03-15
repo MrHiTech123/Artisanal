@@ -1,6 +1,5 @@
 package net.mrhitech.artisanal.common.item;
 
-import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.AbstractFirepitBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
@@ -31,7 +30,6 @@ import net.minecraft.world.phys.Vec3;
 import net.dries007.tfc.util.Helpers;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +48,7 @@ public class MagnifyingGlassItem extends FirestarterItem {
             final BlockPos playerAbovePos = player.getOnPos().above();
             
             double chance = TFCConfig.SERVER.fireStarterChance.get() * 
-                    (rainingAtEither(level, targetAbovePos, playerAbovePos)? 0 : 1) * 
+                    (rainingAboveEither(level, targetAbovePos, playerAbovePos)? 0 : 1) * 
                     (eitherCanSeeSky(level, targetAbovePos, playerAbovePos)? 1 : 0) * 
                     (itsDay(level)? 1 : 0);
             
@@ -139,8 +137,14 @@ public class MagnifyingGlassItem extends FirestarterItem {
     public boolean eitherCanSeeSky(Level level, BlockPos pos1, BlockPos pos2) {
         return level.canSeeSky(pos1) || level.canSeeSky(pos2);
     }
-    public boolean rainingAtEither(Level level, BlockPos pos1, BlockPos pos2) {
-        return level.isRainingAt(pos1) || level.isRainingAt(pos2);
+    
+    public BlockPos aboveBuildHeight(Level level, BlockPos underPos) {
+        return new BlockPos(underPos.getX(), level.getMaxBuildHeight() + 1, underPos.getZ());
+    }
+    
+    public boolean rainingAboveEither(Level level, BlockPos pos1, BlockPos pos2) {
+        return level.isRainingAt(aboveBuildHeight(level, pos1))
+                || level.isRainingAt(aboveBuildHeight(level, pos2));
     }
     
     @Override
