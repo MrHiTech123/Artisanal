@@ -694,6 +694,15 @@ def generate_crafting_recipes():
     for metal in DRUM_METALS:
         rm.crafting_shaped(('crafting', 'metal', 'drum', metal), ('X X', 'X X', 'XXX'), {'X': f'tfc:metal/sheet/{metal}'}, f'artisanal:metal/drum/{metal}')
     
+def generate_glassworking_recipes():
+    print("\tGenerating glassworking recipes")
+    
+    glass_recipe(rm, ('orange_glass_block'), ['sulfur', 'basin_pour'], 'tfc:silica_glass_batch', 'minecraft:orange_stained_glass')
+    glass_recipe(rm, ('orange_glass_pane'), ['sulfur', 'table_pour'], 'tfc:silica_glass_batch', 'tfc:orange_poured_glass')
+    
+    disable_recipe(rm, 'tfc:glassworking/orange_glass_block')
+    disable_recipe(rm, 'tfc:glassworking/orange_glass_pane')
+    
     
 def generate_knapping_recipes():
     print("\tGenerating knapping recipes...")
@@ -908,6 +917,7 @@ def generate_recipes():
     generate_anvil_recipes()
     generate_barrel_recipes()
     generate_crafting_recipes()
+    generate_glassworking_recipes()
     generate_knapping_recipes()
     generate_heat_recipes()
     generate_juicing_recipes()
