@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "artisanal:metal/circle_blade/wrought_iron"
   },
-  "heat_capacity": 0.714,
+  "heat_capacity": 1.429,
   "forging_temperature": 921,
   "welding_temperature": 1228
 }

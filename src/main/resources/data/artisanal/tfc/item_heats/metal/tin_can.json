@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "artisanal:metal/tin_can"
   },
-  "heat_capacity": 5.357,
+  "heat_capacity": 10.714,
   "forging_temperature": 138,
   "welding_temperature": 184
 }

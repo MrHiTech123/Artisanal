@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "artisanal:metal/magnifying_glass_frame/bismuth"
   },
-  "heat_capacity": 1.786,
+  "heat_capacity": 3.571,
   "forging_temperature": 162,
   "welding_temperature": 216
 }

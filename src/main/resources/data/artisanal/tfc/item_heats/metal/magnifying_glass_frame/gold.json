@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "artisanal:metal/magnifying_glass_frame/gold"
   },
-  "heat_capacity": 0.417,
+  "heat_capacity": 0.833,
   "forging_temperature": 636,
   "welding_temperature": 848
 }

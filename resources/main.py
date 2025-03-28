@@ -295,25 +295,25 @@ def generate_item_heats():
     item_heat(rm, ('sand'), '#forge:sand', 0.8, None, None)
     for metal in MAGNIFYING_GLASS_METALS:
         metal_data = METALS[metal]
-        item_heat(rm, ('metal', 'magnifying_glass', metal), f'artisanal:metal/magnifying_glass/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
-        item_heat(rm, ('metal', 'magnifying_glass_frame', metal), f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
+        item_heat(rm, ('metal', 'magnifying_glass', metal), f'artisanal:metal/magnifying_glass/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 50)
+        item_heat(rm, ('metal', 'magnifying_glass_frame', metal), f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 50)
     
     for metal, metal_data in METALS.items():
         if 'tool' in metal_data.types:
-            item_heat(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
+            item_heat(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 50)
     
-    item_heat(rm, ('metal', 'tinplate'), 'artisanal:metal/tinplate', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
-    item_heat(rm, ('metal', 'tin_can'), 'artisanal:metal/tin_can', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
-    item_heat(rm, ('metal', 'sealed_tin_can'), 'artisanal:metal/sealed_tin_can', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
-    item_heat(rm, ('metal', 'dented_tin_can'), 'artisanal:metal/dented_tin_can', METALS['tin'].ingot_heat_capacity() / 2, METALS['tin'].melt_temperature, 150)
+    item_heat(rm, ('metal', 'tinplate'), 'artisanal:metal/tinplate', METALS['tin'].ingot_heat_capacity(), METALS['tin'].melt_temperature, 150)
+    item_heat(rm, ('metal', 'tin_can'), 'artisanal:metal/tin_can', METALS['tin'].ingot_heat_capacity(), METALS['tin'].melt_temperature, 150)
+    item_heat(rm, ('metal', 'sealed_tin_can'), 'artisanal:metal/sealed_tin_can', METALS['tin'].ingot_heat_capacity(), METALS['tin'].melt_temperature, 150)
+    item_heat(rm, ('metal', 'dented_tin_can'), 'artisanal:metal/dented_tin_can', METALS['tin'].ingot_heat_capacity(), METALS['tin'].melt_temperature, 150)
     
     for metal, metal_data in STEELS.items():
-        item_heat(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.ingot_heat_capacity() / 2, metal_data.melt_temperature, 50)
+        item_heat(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 50)
     
-    item_heat(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', POTTERY_HEAT_CAPACITY)    
+    item_heat(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', POTTERY_HEAT_CAPACITY)
     
-    item_heat(rm, ('metal', 'pickled_double_sheet', 'wrought_iron'), 'artisanal:metal/pickled_double_sheet/wrought_iron', METALS['wrought_iron'].melt_temperature, 400)
-    item_heat(rm, ('metal', 'pickled_double_sheet', 'steel'), 'artisanal:metal/pickled_double_sheet/steel', METALS['steel'].melt_temperature, 400)
+    item_heat(rm, ('metal', 'pickled_double_sheet', 'wrought_iron'), 'artisanal:metal/pickled_double_sheet/wrought_iron', METALS['wrought_iron'].ingot_heat_capacity(), METALS['wrought_iron'].melt_temperature, 400)
+    item_heat(rm, ('metal', 'pickled_double_sheet', 'steel'), 'artisanal:metal/pickled_double_sheet/steel', METALS['steel'].ingot_heat_capacity(), METALS['steel'].melt_temperature, 400)
     
     item_heat(rm, ('powder', 'sulfur'), 'tfc:powder/sulfur', 0.8, None, None)
     
@@ -907,10 +907,6 @@ def generate_vat_recipes():
     vat_recipe(rm, 'salt', input_item=None, input_fluid='125 tfc:salt_water', output_item='tfc:powder/salt')
     
     disable_recipe(rm, 'firmalife:vat/sugar_water')
-    
-    
-    
-    
     
 def generate_recipes():
     print('Generating recipes...')

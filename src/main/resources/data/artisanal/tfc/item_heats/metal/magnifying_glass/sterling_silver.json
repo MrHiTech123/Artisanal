@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "artisanal:metal/magnifying_glass/sterling_silver"
   },
-  "heat_capacity": 0.714,
+  "heat_capacity": 1.429,
   "forging_temperature": 570,
   "welding_temperature": 760
 }

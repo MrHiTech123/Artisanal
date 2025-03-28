@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "artisanal:metal/circle_blade/black_steel"
   },
-  "heat_capacity": 0.714,
+  "heat_capacity": 1.429,
   "forging_temperature": 891,
   "welding_temperature": 1188
 }
