@@ -238,8 +238,9 @@ def generate_advancements():
     advancement(rm, ('story', 'quill'), 'artisanal:quill', 'Not Quite Ballpoint', 'Create a Quill', 'tfc:story/barrel', inventory_changed('artisanal:quill'))
     advancement(rm, ('story', 'writable_book'), 'minecraft:writable_book', 'Bookkeeper', 'Create a Book and Quill', 'artisanal:story/quill', inventory_changed('minecraft:writable_book'))
     advancement(rm, ('story', 'soap'), 'artisanal:soap', 'Clean as a Whistle', 'Create Soap', 'tfc:story/barrel', inventory_changed('artisanal:soap'))
-    advancement(rm, ('story', 'drum'), 'artisanal:metal/drum/bronze', '[PLACEHOLDER]', 'Make a drum from metal sheets', 'tfc:story/barrel', inventory_changed('#artisanal:metal/drums'))
-    advancement(rm, ('story', 'play_drum'), 'artisanal:metal/drum/steel', 'This one\'s a banger!', 'Play a drum like a...well...drum.', 'artisanal:story/drum', generic('artisanal:play_drum', None), hidden=True)
+    advancement(rm, ('story', 'drum'), 'artisanal:metal/drum/bronze', 'Drumroll, Please!', 'Make a drum from metal sheets', 'tfc:story/barrel', inventory_changed('#artisanal:metal/drums'))
+    advancement(rm, ('story', 'lava_drum'), 'artisanal:metal/drum/blue_steel', 'Lava Holder', 'Make a drum that can hold lava', 'artisanal:story/drum', inventory_changed('artisanal:metal/drum/blue_steel'))
+    advancement(rm, ('story', 'play_drum'), 'artisanal:metal/drum/steel', 'This One\'s a Banger!', 'Play a drum like a...well...drum.', 'artisanal:story/drum', generic('artisanal:play_drum', None), hidden=True)
         
 
 def generate_drinkables():
