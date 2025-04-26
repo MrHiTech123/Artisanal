@@ -6,6 +6,7 @@ import net.dries007.tfc.common.blocks.devices.BarrelBlock;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.util.Helpers;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
@@ -20,6 +21,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.mrhitech.artisanal.common.ArtisanalTags;
 import net.mrhitech.artisanal.util.IBarrelBlockEntityMixin;
+import net.mrhitech.artisanal.util.advancements.ArtisanalAdvancements;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -69,6 +71,10 @@ public class DrumBlock extends BarrelBlock {
                                 NoteBlock.getPitchFromNote(note),
                                 level.random.nextLong()
                         );
+                        
+                        if (player instanceof ServerPlayer serverPlayer) {
+                            ArtisanalAdvancements.PLAY_DRUM.trigger(serverPlayer);
+                        }
                     }
                 }
             }

@@ -30,6 +30,7 @@ import net.mrhitech.artisanal.common.recipes.ArtisanalRecipeTypes;
 import net.mrhitech.artisanal.common.recipes.outputs.ArtisanalItemStackModifiers;
 import net.mrhitech.artisanal.compat.patchouli.PatchouliIntegration;
 import net.mrhitech.artisanal.config.ArtisanalServerConfig;
+import net.mrhitech.artisanal.util.advancements.ArtisanalAdvancements;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -43,7 +44,8 @@ public class Artisanal
     public Artisanal()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
+        
+        ArtisanalAdvancements.registerTriggers();
         ArtisanalItems.register(modEventBus);
         ArtisanalBlocks.register(modEventBus);
         ArtisanalSetupEvents.init();

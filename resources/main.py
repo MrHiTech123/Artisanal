@@ -87,7 +87,7 @@ canning_modifier = {
     }]
 }
 
-def advancement(rm: ResourceManager, name_parts: tuple, icon: dict[str, Any] | Sequence | str | int | bool | None, title: str, description: str, parent: str, criteria: dict[str, Any] | Sequence | str | int | bool | None, requirements: Sequence[Sequence[str]] | None = None, rewards: dict[str, Any] | Sequence | str | int | bool | None = None):
+def advancement(rm: ResourceManager, name_parts: tuple, icon: dict[str, Any] | Sequence | str | int | bool | None, title: str, description: str, parent: str, criteria: dict[str, Any] | Sequence | str | int | bool | None, requirements: Sequence[Sequence[str]] | None = None, rewards: dict[str, Any] | Sequence | str | int | bool | None = None, hidden: bool=False):
     if (isinstance(name_parts, str)):
         name_parts = (name_parts, )
     
@@ -100,7 +100,7 @@ def advancement(rm: ResourceManager, name_parts: tuple, icon: dict[str, Any] | S
         'frame': 'task',
         'show_toast': True,
         'announce_to_chat': True,
-        'hidden': False,
+        'hidden': hidden,
     }, parent, criteria, requirements)
     
     rm.lang(key + '.title', title)
@@ -238,7 +238,9 @@ def generate_advancements():
     advancement(rm, ('story', 'quill'), 'artisanal:quill', 'Not Quite Ballpoint', 'Create a Quill', 'tfc:story/barrel', inventory_changed('artisanal:quill'))
     advancement(rm, ('story', 'writable_book'), 'minecraft:writable_book', 'Bookkeeper', 'Create a Book and Quill', 'artisanal:story/quill', inventory_changed('minecraft:writable_book'))
     advancement(rm, ('story', 'soap'), 'artisanal:soap', 'Clean as a Whistle', 'Create Soap', 'tfc:story/barrel', inventory_changed('artisanal:soap'))
-    
+    advancement(rm, ('story', 'drum'), 'artisanal:metal/drum/bronze', '[PLACEHOLDER]', 'Make a drum from metal sheets', 'tfc:story/barrel', inventory_changed('#artisanal:metal/drums'))
+    advancement(rm, ('story', 'play_drum'), 'artisanal:metal/drum/steel', 'This one\'s a banger!', 'Play a drum like a...well...drum.', 'artisanal:story/drum', generic('artisanal:play_drum', None), hidden=True)
+        
 
 def generate_drinkables():
     print('\tGenerating drinkables...')

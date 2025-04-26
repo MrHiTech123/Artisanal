@@ -1,0 +1,36 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "tfc:story/barrel",
+  "criteria": {
+    "metal/drums": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "artisanal:metal/drums"
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "artisanal:metal/drum/bronze"
+    },
+    "title": {
+      "translate": "artisanal.advancements.story.drum.title"
+    },
+    "description": {
+      "translate": "artisanal.advancements.story.drum.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "requirements": [
+    [
+      "metal/drums"
+    ]
+  ]
+}

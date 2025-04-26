@@ -1,0 +1,29 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "artisanal:story/drum",
+  "criteria": {
+    "special_condition": {
+      "trigger": "artisanal:play_drum"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "artisanal:metal/drum/steel"
+    },
+    "title": {
+      "translate": "artisanal.advancements.story.play_drum.title"
+    },
+    "description": {
+      "translate": "artisanal.advancements.story.play_drum.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "requirements": [
+    [
+      "special_condition"
+    ]
+  ]
+}
