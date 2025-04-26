@@ -1,0 +1,30 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "tfc:story/quern",
+  "criteria": {
+    "special_condition": {
+      "trigger": "artisanal:juicing"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "tfc:silica_glass_bottle",
+      "nbt": "{\"fluid\":{\"Amount\": 500, \"FluidName\": \"artisanal:orange_juice\"}}"
+    },
+    "title": {
+      "translate": "artisanal.advancements.story.juicing.title"
+    },
+    "description": {
+      "translate": "artisanal.advancements.story.juicing.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "requirements": [
+    [
+      "special_condition"
+    ]
+  ]
+}
