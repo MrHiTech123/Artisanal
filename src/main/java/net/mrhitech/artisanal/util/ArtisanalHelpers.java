@@ -12,12 +12,12 @@ import java.util.List;
 
 public class ArtisanalHelpers {
     
-    public static List<Player> playersNear(Level level, BlockPos pos, int distance) {
+    public static List<Player> playersNear(Level level, BlockPos pos, int maxDistance) {
         List<Player> toReturn = new ArrayList<>();
         
         AABB area = new AABB(
-                new BlockPos(pos.getX() - distance, pos.getY() - distance, pos.getZ() - distance),
-                new BlockPos(pos.getX() + distance, pos.getY() + distance, pos.getZ() + distance)
+                new BlockPos(pos.getX() - maxDistance, pos.getY() - maxDistance, pos.getZ() - maxDistance),
+                new BlockPos(pos.getX() + maxDistance, pos.getY() + maxDistance, pos.getZ() + maxDistance)
         );
         
         for (Player player : level.players()) {
