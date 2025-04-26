@@ -19,6 +19,13 @@
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/metal/drum/steel",
       "text": "Drums can be made from any bronze, as well as from steel."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/lava_drum.png"
+      ],
+      "text": "Blue steel drums can also hold lava."
     }
   ],
   "read_by_default": true,

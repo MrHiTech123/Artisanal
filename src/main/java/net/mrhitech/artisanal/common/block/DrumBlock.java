@@ -34,17 +34,6 @@ public class DrumBlock extends BarrelBlock {
         this.usableFluids = usableFluids;
     }
     
-    @Override
-    public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        BlockEntity entity = super.newBlockEntity(pos, state);
-        if (entity instanceof BarrelBlockEntity barrel) {
-            modifyBlockEntity(barrel);
-            barrel.getBlockState().getBlock();
-        }
-        
-        return entity;
-    }
-    
     private static void modifyBlockEntity(BarrelBlockEntity barrel) {
         ((IBarrelBlockEntityMixin)barrel).enableDrumFluids();
     }
