@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "tfc:block/barrel_sealed",
+  "textures": {
+    "particle": "tfc:block/metal/block/blue_steel",
+    "planks": "tfc:block/metal/block/blue_steel",
+    "sheet": "tfc:block/metal/smooth/blue_steel",
+    "hoop": "tfc:block/metal/block/blue_steel"
+  }
+}

@@ -11,7 +11,7 @@ MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 's
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
 POTTABLE_FOOD_TAGS = ('meats', 'vegetables')
 OPENABLE_CAN_ITEMS = ('sterilized_tin_can', 'sealed_tin_can')
-DRUM_METALS = ['bismuth_bronze', 'black_bronze', 'bronze', 'steel']
+DRUM_METALS = ['bismuth_bronze', 'black_bronze', 'bronze', 'steel', 'red_steel', 'blue_steel']
 BLOOMERY_SHEETS = ['bismuth_bronze', 'black_bronze', 'bronze', 'wrought_iron', 'steel', 'black_steel', 'blue_steel', 'red_steel']
 STEELS = {metal: METALS[metal] for metal in ('steel', 'black_steel', 'blue_steel', 'red_steel')}
 SULFUR_BURN = 175
@@ -940,6 +940,7 @@ def generate_fluid_tags():
     rm.fluid_tag('rendered_fats', 'tfc:tallow', 'artisanal:lard', 'artisanal:schmaltz')
     rm.fluid_tag('acids', 'artisanal:sulfuric_acid', 'artisanal:lemon_juice')
     rm.fluid_tag('usable_in_drum', '#tfc:usable_in_barrel', '#artisanal:acids', 'tfc:metal/gold')
+    rm.fluid_tag('usable_in_lava_drum', '#artisanal:usable_in_drum', 'minecraft:lava')
     rm.fluid_tag('tfc:ingredients', '#artisanal:rendered_fats', 'artisanal:soap', 'artisanal:soapy_water', 'artisanal:sugarcane_juice', 'artisanal:filtered_sugarcane_juice', 'artisanal:alkalized_sugarcane_juice', 'artisanal:clarified_sugarcane_juice', 'artisanal:molasses', 'artisanal:petroleum', 'artisanal:condensed_milk', 'artisanal:condensed_goat_milk', 'artisanal:condensed_yak_milk')
     rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:apple_juice', 'artisanal:carrot_juice', 'artisanal:diluted_lemon_juice', 'artisanal:orange_juice', 'artisanal:peach_juice', 'artisanal:pineapple_juice', 'artisanal:tomato_juice', 'artisanal:screwdriver')
     rm.fluid_tag('tfc:usable_in_jug', '#tfc:ingredients', '#artisanal:acids')

@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "artisanal:block/metal/drum/red_steel",
+  "overrides": [
+    {
+      "predicate": {
+        "tfc:sealed": 1.0
+      },
+      "model": "artisanal:block/metal/drum_sealed/red_steel"
+    }
+  ]
+}

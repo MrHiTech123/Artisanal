@@ -37,7 +37,13 @@ public class ArtisanalBlocks {
     
     public static final Map<DrumMetal, RegistryObject<Block>> DRUMS = Helpers.mapOfKeys(DrumMetal.class, drumMetal -> 
             register("metal/drum/" + drumMetal.getMetal().name().toLowerCase(Locale.ROOT), () -> 
-                    new DrumBlock(ExtendedProperties.of(TFCBlocks.METALS.get(drumMetal.getMetal()).get(Metal.BlockType.BLOCK).get()).blockEntity(TFCBlockEntities.BARREL).serverTicks(BarrelBlockEntity::serverTick))));
+                    new DrumBlock(
+                            ExtendedProperties.of(TFCBlocks.METALS.get(drumMetal.getMetal())
+                                    .get(Metal.BlockType.BLOCK).get())
+                                    .blockEntity(TFCBlockEntities.BARREL)
+                                    .serverTicks(BarrelBlockEntity::serverTick), 
+                            drumMetal.getUsableFluids()
+                    )));
     
     
     public static void register(IEventBus bus) {

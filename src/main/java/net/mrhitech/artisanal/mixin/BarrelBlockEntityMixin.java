@@ -1,5 +1,6 @@
 package net.mrhitech.artisanal.mixin;
 
+import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
 import net.dries007.tfc.common.blockentities.BarrelInventoryCallback;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
@@ -8,9 +9,11 @@ import net.dries007.tfc.util.calendar.ICalendarTickable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
 import net.mrhitech.artisanal.common.ArtisanalTags;
 import net.mrhitech.artisanal.common.block.DrumBlock;
 import net.mrhitech.artisanal.util.IBarrelBlockEntityMixin;
@@ -40,8 +43,16 @@ public abstract class BarrelBlockEntityMixin extends TickableInventoryBlockEntit
     }
     
     public void enableDrumFluids() {
+        final TagKey<Fluid> usableFluids;
+        if (getBlockState().getBlock() instanceof DrumBlock drumBlock) {
+            usableFluids = drumBlock.getUsableFluids();
+        }
+        else {
+            usableFluids = TFCTags.Fluids.USABLE_IN_BARREL;
+        }
+        
         ((BarrelInventoryAccessor)inventory).getTank().setValidator(
-                fluid -> Helpers.isFluid(fluid.getFluid(), ArtisanalTags.FLUIDS.USABLE_IN_DRUM));
+                fluid -> Helpers.isFluid(fluid.getFluid(), usableFluids));
     }
     
     // @Inject(method = "saveAdditional", remap = false, at = @At("RETURN"))

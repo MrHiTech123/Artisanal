@@ -36,6 +36,7 @@ public class ArtisanalTags {
     
     public static class FLUIDS {
         public static final TagKey<Fluid> USABLE_IN_DRUM = create("usable_in_drum");
+        public static final TagKey<Fluid> USABLE_IN_LAVA_DRUM = create("usable_in_lava_drum");
         
         private static TagKey<Fluid> create(String modId, String itemId) {
             return TagKey.create(Registries.FLUID, new ResourceLocation(modId, itemId));
