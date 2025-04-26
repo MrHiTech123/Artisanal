@@ -973,7 +973,7 @@ def generate_item_tags():
     rm.item_tag('tfc:foods/fruits', 'artisanal:food/fruit_mash')
     rm.item_tag('tfc:foods/vegetables', 'artisanal:food/carrot_mash', 'artisanal:food/tomato_mash')
     rm.item_tag('tfc:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
-    rm.item_tag('tfc:usable_on_tool_rack', '#artisanal:magnifying_glasses')    
+    rm.item_tag('tfc:usable_on_tool_rack', '#artisanal:magnifying_glasses')
 
 def generate_tags():
     print('Generating tags...')
