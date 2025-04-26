@@ -12,6 +12,7 @@ import net.mrhitech.artisanal.Artisanal;
 public class ArtisanalTags {
     public static class ITEMS {
         public static final TagKey<Item> CRAFTING_CATALYSTS = create("crafting_catalysts");
+        public static final TagKey<Item> METAL_RODS = create("rods/metal");
         public static final TagKey<Item> TFC_BARRELS = create(TerraFirmaCraft.MOD_ID, "barrels");
         public static final TagKey<Item> FATS = create("fats");
         
