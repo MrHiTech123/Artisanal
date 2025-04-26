@@ -1,14 +1,14 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "artisanal:story/juicing",
+  "parent": "artisanal:story/non_perishable_sugar",
   "criteria": {
-    "perishable_sugar": {
+    "sugar": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "artisanal:perishable_sugar"
+              "minecraft:sugar"
             ]
           }
         ]
@@ -17,13 +17,13 @@
   },
   "display": {
     "icon": {
-      "item": "artisanal:perishable_sugar"
+      "item": "minecraft:sugar"
     },
     "title": {
-      "translate": "artisanal.advancements.story.perishable_sugar.title"
+      "translate": "artisanal.advancements.story.sugar.title"
     },
     "description": {
-      "translate": "artisanal.advancements.story.perishable_sugar.description"
+      "translate": "artisanal.advancements.story.sugar.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -32,7 +32,7 @@
   },
   "requirements": [
     [
-      "perishable_sugar"
+      "sugar"
     ]
   ]
 }

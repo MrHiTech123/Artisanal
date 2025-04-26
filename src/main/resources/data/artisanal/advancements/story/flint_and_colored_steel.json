@@ -1,15 +1,13 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "artisanal:story/juicing",
+  "parent": "tfc:story/flint_and_steel",
   "criteria": {
-    "perishable_sugar": {
+    "metal/flint_and/colored_steel": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [
-              "artisanal:perishable_sugar"
-            ]
+            "tag": "artisanal:metal/flint_and/colored_steel"
           }
         ]
       }
@@ -17,13 +15,13 @@
   },
   "display": {
     "icon": {
-      "item": "artisanal:perishable_sugar"
+      "item": "artisanal:metal/flint_and/red_steel"
     },
     "title": {
-      "translate": "artisanal.advancements.story.perishable_sugar.title"
+      "translate": "artisanal.advancements.story.flint_and_colored_steel.title"
     },
     "description": {
-      "translate": "artisanal.advancements.story.perishable_sugar.description"
+      "translate": "artisanal.advancements.story.flint_and_colored_steel.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -32,7 +30,7 @@
   },
   "requirements": [
     [
-      "perishable_sugar"
+      "metal/flint_and/colored_steel"
     ]
   ]
 }

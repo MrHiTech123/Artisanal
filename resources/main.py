@@ -232,8 +232,9 @@ def specific_no_remainder_shapeless(rm: ResourceManager, name_parts: ResourceIde
 def generate_advancements():
     print('Generating advancements...')
     advancement(rm, ('story', 'magnifying_glass'), 'artisanal:metal/magnifying_glass/brass', 'Inspector Detector', 'Craft a Magnifying Glass', 'tfc:story/lens', inventory_changed('#artisanal:magnifying_glasses'))
-    advancement(rm, ('story', 'perishable_sugar'), 'artisanal:perishable_sugar', 'Sweet Tooth', 'Create Perishable Sugar', 'tfc:story/barrel', inventory_changed('artisanal:perishable_sugar'))
+    advancement(rm, ('story', 'perishable_sugar'), 'artisanal:perishable_sugar', 'Sweet Tooth', 'Create Perishable Sugar', 'artisanal:story/juicing', inventory_changed('artisanal:perishable_sugar'))
     advancement(rm, ('story', 'non_perishable_sugar'), 'artisanal:non_perishable_sugar', 'Everlasting Sweet Tooth', 'Create Non-Perishable Sugar', 'artisanal:story/perishable_sugar', inventory_changed('artisanal:non_perishable_sugar'))
+    advancement(rm, ('story', 'sugar'), 'minecraft:sugar', 'Swhite Tooth', 'Create White Sugar', 'artisanal:story/non_perishable_sugar', inventory_changed('minecraft:sugar'))
     advancement(rm, ('story', 'powdered_milk'), 'artisanal:powdered_milk', 'Just Add Water', 'Create Powdered Milk', 'tfc:story/quern', inventory_changed('#artisanal:powdered_milks'))
     advancement(rm, ('story', 'quill'), 'artisanal:quill', 'Not Quite Ballpoint', 'Create a Quill', 'tfc:story/barrel', inventory_changed('artisanal:quill'))
     advancement(rm, ('story', 'writable_book'), 'minecraft:writable_book', 'Bookkeeper', 'Create a Book and Quill', 'artisanal:story/quill', inventory_changed('minecraft:writable_book'))
@@ -242,7 +243,14 @@ def generate_advancements():
     advancement(rm, ('story', 'lava_drum'), 'artisanal:metal/drum/blue_steel', 'Lava Holder', 'Make a Drum that can hold Lava', 'artisanal:story/drum', inventory_changed('artisanal:metal/drum/blue_steel'))
     advancement(rm, ('story', 'play_drum'), 'artisanal:metal/drum/steel', 'This One\'s a Banger!', 'Play a Drum like a...well...like a Drum.', 'artisanal:story/drum', generic('artisanal:play_drum', None), hidden=True)
     advancement(rm, ('story', 'juicing'), {'item': 'tfc:silica_glass_bottle', 'nbt': "{\"fluid\":{\"Amount\": 500, \"FluidName\": \"artisanal:orange_juice\"}}"}, 'Juicer', 'Collect some Juice in a Barrel placed underneath your Quern', 'tfc:story/quern', generic('artisanal:juicing', None))
-
+    advancement(rm, ('story', 'flint_and_pyrite'), 'artisanal:stone/flint_and/pyrite', 'Pyrestarter', 'Make a Flint and Pyrite', 'tfc:story/firestarter', inventory_changed('artisanal:stone/flint_and/pyrite'))
+    advancement(rm, ('story', 'flint_and_cut_pyrite'), 'artisanal:stone/flint_and/cut_pyrite', 'Pretty Pyrestarter', 'Make a Flint and Cut Pyrite', 'artisanal:story/flint_and_pyrite', inventory_changed('artisanal:stone/flint_and/cut_pyrite'))
+    advancement(rm, ('story', 'flint_and_colored_steel'), 'artisanal:metal/flint_and/red_steel', 'Ocean of Flame', 'Craft a Flint and Steel using Red or Blue Steel', 'tfc:story/flint_and_steel', inventory_changed('#artisanal:metal/flint_and/colored_steel'))
+    advancement(rm, ('story', 'sterilized_tin_can'), 'artisanal:metal/sterilized_tin_can', 'Local Cannery', 'Seal some food in a Tin Can and sterilize it', 'tfc:story/welding', inventory_changed('artisanal:metal/sterilized_tin_can'))
+    
+    
+    
+    
 def generate_drinkables():
     print('\tGenerating drinkables...')
     drinkable(rm, ('molasses'), 'artisanal:molasses', thirst=-1, food={'hunger': 4, 'saturation': 0, 'vegetables': 2, 'fruit': 2})
@@ -967,6 +975,7 @@ def generate_item_tags():
     rm.item_tag('foods/can_be_potted', *[f'#tfc:foods/{tag}' for tag in POTTABLE_FOOD_TAGS])
     rm.item_tag('can_openers', *[f'artisanal:metal/can_opener/{metal}' for metal in METALS if 'tool' in METALS[metal].types])
     rm.item_tag('rods/metal', *[f'tfc:metal/rod/{metal}' for metal in METALS if 'utility' in METALS[metal].types])
+    rm.item_tag('metal/flint_and/colored_steel', 'artisanal:metal/flint_and/blue_steel', 'artisanal:metal/flint_and/red_steel')
     rm.item_tag('tfc:firepit_kindling', 'artisanal:dry_bagasse')
     rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'], 'artisanal:stone/flint_and/pyrite', 'artisanal:stone/flint_and/cut_pyrite')
     rm.item_tag('tfc:compost_browns_high', 'artisanal:dry_bagasse')

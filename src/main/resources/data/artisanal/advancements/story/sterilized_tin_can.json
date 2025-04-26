@@ -1,14 +1,14 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "artisanal:story/juicing",
+  "parent": "tfc:story/welding",
   "criteria": {
-    "perishable_sugar": {
+    "metal/sterilized_tin_can": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "artisanal:perishable_sugar"
+              "artisanal:metal/sterilized_tin_can"
             ]
           }
         ]
@@ -17,13 +17,13 @@
   },
   "display": {
     "icon": {
-      "item": "artisanal:perishable_sugar"
+      "item": "artisanal:metal/sterilized_tin_can"
     },
     "title": {
-      "translate": "artisanal.advancements.story.perishable_sugar.title"
+      "translate": "artisanal.advancements.story.sterilized_tin_can.title"
     },
     "description": {
-      "translate": "artisanal.advancements.story.perishable_sugar.description"
+      "translate": "artisanal.advancements.story.sterilized_tin_can.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -32,7 +32,7 @@
   },
   "requirements": [
     [
-      "perishable_sugar"
+      "metal/sterilized_tin_can"
     ]
   ]
 }
