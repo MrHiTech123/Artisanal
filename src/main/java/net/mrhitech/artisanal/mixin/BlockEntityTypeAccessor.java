@@ -14,6 +14,5 @@ public interface BlockEntityTypeAccessor
     Set<Block> accessor$getValidBlocks();
     
     @Accessor("validBlocks")
-    @Mutable
     void accessor$setValidBlocks(Set<Block> blocks);
 }
