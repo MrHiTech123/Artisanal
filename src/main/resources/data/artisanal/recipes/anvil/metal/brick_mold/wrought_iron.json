@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:anvil",
+  "input": {
+    "item": "tfc:metal/rod/wrought_iron"
+  },
+  "result": {
+    "item": "artisanal:metal/brick_mold/wrought_iron"
+  },
+  "tier": 3,
+  "rules": [
+    "bend_not_last",
+    "draw_not_last",
+    "hit_last"
+  ]
+}

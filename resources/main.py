@@ -312,6 +312,7 @@ def generate_item_heats():
     for metal, metal_data in METALS.items():
         if 'tool' in metal_data.types:
             item_heat(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 50)
+            item_heat(rm, ('metal', 'brick_mold', metal), f'artisanal:metal/brick_mold/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 50)
     
     item_heat(rm, ('metal', 'tinplate'), 'artisanal:metal/tinplate', METALS['tin'].ingot_heat_capacity(), METALS['tin'].melt_temperature, 150)
     item_heat(rm, ('metal', 'tin_can'), 'artisanal:metal/tin_can', METALS['tin'].ingot_heat_capacity(), METALS['tin'].melt_temperature, 150)
@@ -435,6 +436,7 @@ def generate_item_models():
         if 'tool' in metal_data.types:
             rm.item_model(('metal', 'can_opener', metal), f'artisanal:item/metal/can_opener/{metal}').with_lang(lang(f'{metal} can opener'))
             rm.item_model(('metal', 'circle_blade', metal), f'artisanal:item/metal/circle_blade/{metal}').with_lang(lang(f'{metal} circle blade'))
+            rm.item_model(('metal', 'brick_mold', metal), f'artisanal:item/metal/brick_mold/{metal}').with_lang(lang(f'{metal}_brick_mold'))
     
     for metal in STEELS:
         rm.item_model(('metal', 'striker', metal), f'artisanal:item/metal/striker/{metal}').with_lang(lang(f'{metal}_striker'))
@@ -476,6 +478,7 @@ def generate_anvil_recipes():
     for metal, metal_data in METALS.items():
         if 'tool' in metal_data.types:
             anvil_recipe(rm, ('metal', 'circle_blade', metal), f'tfc:metal/ingot/{metal}', (2, f'artisanal:metal/circle_blade/{metal}'), metal_data.tier, Rules.shrink_third_last, Rules.hit_second_last, Rules.hit_last)
+            anvil_recipe(rm, ('metal', 'brick_mold', metal), f'tfc:metal/rod/{metal}', f'artisanal:metal/brick_mold/{metal}', metal_data.tier, Rules.bend_not_last, Rules.draw_not_last, Rules.hit_last)
     
     for metal, metal_data in STEELS.items():
         anvil_recipe(rm, ('metal', 'striker', metal), f'tfc:metal/ingot/high_carbon_{metal}', f'artisanal:metal/striker/{metal}', metal_data.tier, Rules.bend_any, Rules.hit_any, Rules.punch_any, bonus=True)
@@ -705,6 +708,8 @@ def generate_crafting_recipes():
     for metal in DRUM_METALS:
         rm.crafting_shaped(('crafting', 'metal', 'drum', metal), ('X X', 'X X', 'XXX'), {'X': f'tfc:metal/sheet/{metal}'}, f'artisanal:metal/drum/{metal}')
     
+    damage_shapeless(rm, ('crafting', 'unfired_brick'), ('#artisanal:brick_molds', 'minecraft:clay_ball', 'minecraft:clay_ball'), 'tfc:ceramic/unfired_brick')
+    
 def generate_glassworking_recipes():
     print("\tGenerating glassworking recipes")
     
@@ -733,6 +738,7 @@ def generate_heat_recipes():
     for metal, metal_data in METALS.items():
         if 'tool' in metal_data.types:
             heat_recipe(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 50))
+            heat_recipe(rm, ('metal', 'brick_mold', metal), f'artisanal:metal/brick_mold/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 50))
     
     heat_recipe(rm, ('metal', 'striker', "steel"), f'artisanal:metal/striker/steel', METALS['steel'].melt_temperature, result_fluid='100 tfc:metal/pig_iron')
     heat_recipe(rm, ('metal', 'striker', "black_steel"), f'artisanal:metal/striker/black_steel', METALS['black_steel'].melt_temperature, result_fluid='100 tfc:metal/weak_steel')
@@ -973,6 +979,7 @@ def generate_item_tags():
     rm.item_tag('crafting_catalysts', '#artisanal:magnifying_glasses')
     rm.item_tag('foods/can_be_canned', *[f'#tfc:foods/{tag}' for tag in CANNABLE_FOOD_TAGS], '#firmalife:foods/flatbreads', '#firmalife:foods/slices')
     rm.item_tag('foods/can_be_potted', *[f'#tfc:foods/{tag}' for tag in POTTABLE_FOOD_TAGS])
+    rm.item_tag('brick_molds', *[f'artisanal:metal/brick_mold/{metal}' for metal in METALS if 'tool' in METALS[metal].types])
     rm.item_tag('can_openers', *[f'artisanal:metal/can_opener/{metal}' for metal in METALS if 'tool' in METALS[metal].types])
     rm.item_tag('rods/metal', *[f'tfc:metal/rod/{metal}' for metal in METALS if 'utility' in METALS[metal].types])
     rm.item_tag('metal/flint_and/colored_steel', 'artisanal:metal/flint_and/blue_steel', 'artisanal:metal/flint_and/red_steel')

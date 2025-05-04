@@ -100,6 +100,7 @@ public class ArtisanalCreativeTabs {
                 if (Metal.ItemType.AXE.has(metal)) {
                     event.accept(ArtisanalItems.CAN_OPENERS.get(metal));
                     event.accept(ArtisanalItems.CIRCLE_BLADES.get(metal));
+                    event.accept(ArtisanalItems.BRICK_MOLDS.get(metal));
                 }
             }
             

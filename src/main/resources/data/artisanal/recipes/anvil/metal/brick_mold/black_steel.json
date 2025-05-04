@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:anvil",
+  "input": {
+    "item": "tfc:metal/rod/black_steel"
+  },
+  "result": {
+    "item": "artisanal:metal/brick_mold/black_steel"
+  },
+  "tier": 5,
+  "rules": [
+    "bend_not_last",
+    "draw_not_last",
+    "hit_last"
+  ]
+}

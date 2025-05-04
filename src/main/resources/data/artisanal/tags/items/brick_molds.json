@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "artisanal:metal/brick_mold/bismuth_bronze",
+    "artisanal:metal/brick_mold/black_bronze",
+    "artisanal:metal/brick_mold/bronze",
+    "artisanal:metal/brick_mold/copper",
+    "artisanal:metal/brick_mold/wrought_iron",
+    "artisanal:metal/brick_mold/steel",
+    "artisanal:metal/brick_mold/black_steel",
+    "artisanal:metal/brick_mold/blue_steel",
+    "artisanal:metal/brick_mold/red_steel"
+  ]
+}
