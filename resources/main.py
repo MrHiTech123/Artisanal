@@ -659,7 +659,7 @@ def generate_crafting_recipes():
     
     for metal, metal_data in METALS.items():
         if 'tool' in metal_data.types:
-            rm.crafting_shaped(('crafting', 'metal', 'can_opener', metal), ['MBR', 'B  ', 'R  '], {'M': 'tfc:brass_mechanisms', 'B': f'artisanal:metal/circle_blade/{metal}', 'R': '#artisanal:rods/metal'}, f'artisanal:metal/can_opener/{metal}')    
+            rm.crafting_shaped(('crafting', 'metal', 'can_opener', metal), ['MBR', 'B  ', 'R  '], {'M': 'tfc:brass_mechanisms', 'B': f'artisanal:metal/circle_blade/{metal}', 'R': '#artisanal:rods/metal'}, f'artisanal:metal/can_opener/{metal}')
     
     advanced_shapeless(rm, ('crafting', 'metal', 'remove_can_traits'), ('artisanal:metal/sterilized_tin_can'), remove_many_traits(item_stack_provider('artisanal:metal/sterilized_tin_can', other_modifier='artisanal:copy_dynamic_food'), 'tfc:charcoal_grilled', 'tfc:wood_grilled', 'tfc:burnt_to_a_crisp'), primary_ingredient='artisanal:metal/sterilized_tin_can')
     
@@ -920,7 +920,6 @@ def generate_vat_recipes():
     vat_recipe(rm, 'perishable_sugar', 'minecraft:stick', '200 artisanal:sugarcane_juice', 'artisanal:perishable_sugar', '20 artisanal:molasses')
     vat_recipe(rm, 'perishable_sugar_from_filtered', 'minecraft:stick', '200 artisanal:filtered_sugarcane_juice', 'artisanal:perishable_sugar', '20 artisanal:molasses')
     vat_recipe(rm, 'non_perishable_sugar', 'minecraft:stick', '200 artisanal:clarified_sugarcane_juice', 'artisanal:non_perishable_sugar', '20 artisanal:molasses')
-    
     
     vat_recipe(rm, 'tallow', 'artisanal:suet', '100 minecraft:water', output_fluid='100 tfc:tallow')
     vat_recipe(rm, 'lard', 'artisanal:pork_fat', '100 minecraft:water', output_fluid='100 artisanal:lard')

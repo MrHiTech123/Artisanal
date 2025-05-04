@@ -26,6 +26,11 @@
         "artisanal:textures/gui/book/lava_drum.png"
       ],
       "text": "Blue steel drums can also hold lava."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/lava_garbage_disposal",
+      "text": "Lava drums can also be used as garbage disposals."
     }
   ],
   "read_by_default": true,

@@ -3,18 +3,25 @@ package net.mrhitech.artisanal.common.recipes.inputs;
 import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.IIngredientSerializer;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class UniversalIngredient extends Ingredient {
     
-    private static final Ingredient.Value[] emptyIngredientValueArr = new Ingredient.Value[]{};
+    private static final Stream<ItemValue> allItems = ForgeRegistries.ITEMS.getKeys().stream().map(resourceLocation -> 
+                new Ingredient.ItemValue(
+                        new ItemStack(Optional.ofNullable(ForgeRegistries.ITEMS.getValue(resourceLocation)).orElse(Items.AIR))
+                ));
     
     protected UniversalIngredient() {
-        super(Arrays.stream(emptyIngredientValueArr));
+        super(allItems);
     }
     
     @Override
