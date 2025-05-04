@@ -478,7 +478,7 @@ def generate_anvil_recipes():
     for metal, metal_data in METALS.items():
         if 'tool' in metal_data.types:
             anvil_recipe(rm, ('metal', 'circle_blade', metal), f'tfc:metal/ingot/{metal}', (2, f'artisanal:metal/circle_blade/{metal}'), metal_data.tier, Rules.shrink_third_last, Rules.hit_second_last, Rules.hit_last)
-            anvil_recipe(rm, ('metal', 'brick_mold', metal), f'tfc:metal/rod/{metal}', f'artisanal:metal/brick_mold/{metal}', metal_data.tier, Rules.bend_not_last, Rules.draw_not_last, Rules.hit_last)
+            anvil_recipe(rm, ('metal', 'brick_mold', metal), f'tfc:metal/rod/{metal}', f'artisanal:metal/brick_mold/{metal}', metal_data.tier, Rules.bend_not_last, Rules.draw_not_last, Rules.hit_last, bonus=True)
     
     for metal, metal_data in STEELS.items():
         anvil_recipe(rm, ('metal', 'striker', metal), f'tfc:metal/ingot/high_carbon_{metal}', f'artisanal:metal/striker/{metal}', metal_data.tier, Rules.bend_any, Rules.hit_any, Rules.punch_any, bonus=True)
@@ -738,7 +738,7 @@ def generate_heat_recipes():
     for metal, metal_data in METALS.items():
         if 'tool' in metal_data.types:
             heat_recipe(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 50))
-            heat_recipe(rm, ('metal', 'brick_mold', metal), f'artisanal:metal/brick_mold/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 50))
+            heat_recipe(rm, ('metal', 'brick_mold', metal), f'artisanal:metal/brick_mold/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 50), use_durability=True)
     
     heat_recipe(rm, ('metal', 'striker', "steel"), f'artisanal:metal/striker/steel', METALS['steel'].melt_temperature, result_fluid='100 tfc:metal/pig_iron')
     heat_recipe(rm, ('metal', 'striker', "black_steel"), f'artisanal:metal/striker/black_steel', METALS['black_steel'].melt_temperature, result_fluid='100 tfc:metal/weak_steel')
