@@ -27,6 +27,7 @@ import net.mrhitech.artisanal.common.item.ArtisanalItems;
 import net.mrhitech.artisanal.common.loot.ArtisanalLootModifiers;
 import net.mrhitech.artisanal.common.recipes.ArtisanalRecipeSerializers;
 import net.mrhitech.artisanal.common.recipes.ArtisanalRecipeTypes;
+import net.mrhitech.artisanal.common.recipes.inputs.ArtisanalItemIngredients;
 import net.mrhitech.artisanal.common.recipes.outputs.ArtisanalItemStackModifiers;
 import net.mrhitech.artisanal.compat.patchouli.PatchouliIntegration;
 import net.mrhitech.artisanal.config.ArtisanalServerConfig;
@@ -55,6 +56,7 @@ public class Artisanal
         ArtisanalRecipeSerializers.register(modEventBus);
         ArtisanalRecipeTypes.register(modEventBus);
         ArtisanalItemStackModifiers.registerItemStackModifiers();
+        ArtisanalItemIngredients.registerIngredientTypes();
         ArtisanalEvents.init();
         
         if (FMLEnvironment.dist == Dist.CLIENT) {

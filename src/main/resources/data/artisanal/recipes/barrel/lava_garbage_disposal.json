@@ -1,0 +1,13 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_instant",
+  "input_item": {
+    "ingredient": {
+      "type": "artisanal:universal_ingredient"
+    }
+  },
+  "input_fluid": {
+    "ingredient": "minecraft:lava",
+    "amount": 1
+  }
+}

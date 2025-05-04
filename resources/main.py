@@ -229,6 +229,10 @@ def specific_no_remainder_shapeless(rm: ResourceManager, name_parts: ResourceIde
     })
     return RecipeContext(rm, res)
 
+def universal_ingredient() -> Json:
+    return {'type': 'artisanal:universal_ingredient'}
+    
+
 def generate_advancements():
     print('Generating advancements...')
     advancement(rm, ('story', 'magnifying_glass'), 'artisanal:metal/magnifying_glass/brass', 'Inspector Detector', 'Craft a Magnifying Glass', 'tfc:story/lens', inventory_changed('#artisanal:magnifying_glasses'))
@@ -555,6 +559,8 @@ def generate_barrel_recipes():
     barrel_sealed_recipe(rm, ('metal', 'pickled_double_sheet', 'steel'), lang('Pickling Steel Double Sheet'), 1000, 'tfc:metal/double_sheet/steel', '100 #artisanal:acids', 'artisanal:metal/pickled_double_sheet/steel')
     
     barrel_instant_fluid_recipe(rm, ('diluted_lemon_juice'), '1 artisanal:lemon_juice', '1 minecraft:water', '2 artisanal:diluted_lemon_juice')
+    
+    barrel_instant_recipe(rm, 'lava_garbage_disposal', universal_ingredient(), '1 minecraft:lava', None, None)
     
 def generate_crafting_recipes():
     print('\tGenerating crafting recipes...')
