@@ -36,14 +36,17 @@ public class ArtisanalBlocks {
             register("fluid/" + fluid.getId(), () -> new LiquidBlock(ArtisanalFluids.WATERLIKES.get(fluid).source(), BlockBehaviour.Properties.copy(Blocks.WATER))));
     
     public static final Map<DrumMetal, RegistryObject<Block>> DRUMS = Helpers.mapOfKeys(DrumMetal.class, drumMetal -> 
-            register("metal/drum/" + drumMetal.getMetal().name().toLowerCase(Locale.ROOT), () -> 
-                    new DrumBlock(
+            register(
+                    "metal/drum/" + drumMetal.getMetal().name().toLowerCase(Locale.ROOT),
+                    () -> new DrumBlock(
                             ExtendedProperties.of(TFCBlocks.METALS.get(drumMetal.getMetal())
                                     .get(Metal.BlockType.BLOCK).get())
                                     .blockEntity(TFCBlockEntities.BARREL)
                                     .serverTicks(BarrelBlockEntity::serverTick), 
                             drumMetal.getUsableFluids()
-                    )));
+                    ),
+                    new Item.Properties().rarity(drumMetal.getMetal().getRarity())
+            ));
     
     
     public static void register(IEventBus bus) {

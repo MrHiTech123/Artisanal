@@ -64,15 +64,15 @@ public class ArtisanalItems {
     
     public static final Map<Metal.Default, RegistryObject<Item>> CAN_OPENERS = Helpers.mapOfKeys(Metal.Default.class,
             Metal.ItemType.AXE::has,
-            metal -> register("metal/can_opener/" + metal.getSerializedName(), () -> new TieredItem(metal.toolTier(), new Item.Properties().defaultDurability(metal.toolTier().getUses()))));
+            metal -> register("metal/can_opener/" + metal.getSerializedName(), () -> new TieredItem(metal.toolTier(), new Item.Properties().defaultDurability(metal.toolTier().getUses()).rarity(metal.getRarity()))));
     
     public static final Map<Metal.Default, RegistryObject<Item>> CIRCLE_BLADES = Helpers.mapOfKeys(Metal.Default.class,
             Metal.ItemType.AXE::has,
-            metal -> register("metal/circle_blade/" + metal.getSerializedName(), () -> new Item(new Item.Properties())));
+            metal -> register("metal/circle_blade/" + metal.getSerializedName(), () -> new Item(new Item.Properties().rarity(metal.getRarity()))));
     
     public static final Map<Metal.Default, RegistryObject<Item>> BRICK_MOLDS = Helpers.mapOfKeys(Metal.Default.class,
             Metal.ItemType.AXE::has,
-            metal -> register("metal/brick_mold/" + metal.getSerializedName(), () -> new Item(new Item.Properties().defaultDurability(metal.toolTier().getUses()))));
+            metal -> register("metal/brick_mold/" + metal.getSerializedName(), () -> new Item(new Item.Properties().defaultDurability(metal.toolTier().getUses()).rarity(metal.getRarity()))));
     
     public static final Map<SteelMetal, RegistryObject<Item>> STRIKERS = Helpers.mapOfKeys(SteelMetal.class, metal ->
             register("metal/striker/" + metal.getSerializedName(), () -> new Item(new Item.Properties().rarity(metal.getRarity()))));
