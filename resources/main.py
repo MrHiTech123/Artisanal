@@ -336,13 +336,39 @@ def generate_item_heats():
     for metal in DRUM_METALS:
         metal_data = METALS[metal]
         item_heat(rm, ('metal', 'drum', metal), f'artisanal:metal/drum/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 1400)
+
+def generate_item_size_weights():
+    print('\tGenerating item size weights...')
+    item_size(rm, ('metal', 'tin_can'), 'artisanal:metal/tin_can', Size.small, Weight.light)
+    item_size(rm, ('metal', 'sealed_tin_can'), 'artisanal:metal/sealed_tin_can', Size.small, Weight.light)
+    item_size(rm, ('metal', 'sterilized_tin_can'), 'artisanal:metal/sterilized_tin_can', Size.small, Weight.light)
+    item_size(rm, ('metal', 'dirty_tin_can'), 'artisanal:metal/dirty_tin_can', Size.small, Weight.light)
+    item_size(rm, ('metal', 'dented_tin_can'), 'artisanal:metal/dented_tin_can', Size.small, Weight.light)
+    item_size(rm, ('metal', 'dirty_dented_tin_can'), 'artisanal:metal/dirty_dented_tin_can', Size.small, Weight.light)
     
+    item_size(rm, ('ceramic', 'small_pot'), 'artisanal:ceramic/small_pot', Size.small, Weight.light)
+    item_size(rm, ('ceramic', 'dirty_small_pot'), 'artisanal:ceramic/dirty_small_pot', Size.small, Weight.light)
+    item_size(rm, ('ceramic', 'closed_small_pot'), 'artisanal:ceramic/closed_small_pot', Size.small, Weight.light)
+    item_size(rm, ('ceramic', 'unfired_small_pot'), 'artisanal:ceramic/unfired_small_pot', Size.small, Weight.light)
+    
+    
+    for metal, metal_data in METALS.items():
+        item_size(rm, ('metal', 'brick_mold', metal), f'artisanal:metal/brick_mold/{metal}', Size.large, Weight.light)
+    
+    item_size(rm, ('metal', 'pickled_double_sheet', 'wrought_iron'), 'artisanal:metal/pickled_double_sheet/wrought_iron', Size.large, Weight.heavy)
+    item_size(rm, ('metal', 'pickled_double_sheet', 'steel'), 'artisanal:metal/pickled_double_sheet/steel', Size.large, Weight.heavy)
+    
+    item_size(rm, 'dirty_jar', 'artisanal:dirty_jar', Size.tiny, Weight.medium)
+    item_size(rm, 'dirty_bowl', 'artisanal:dirty_bowl', Size.small, Weight.light)
+    
+
 def generate_data():
     print('Generating data...')
     generate_drinkables()
     generate_fuels()
     generate_item_foods()
     generate_item_heats()
+    generate_item_size_weights()
 
 def generate_loot_modifiers():
     print('Creating loot modifiers...')
