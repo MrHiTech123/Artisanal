@@ -43,9 +43,9 @@
     },
     {
       "type": "tfc:artisanal/three_instant_barrel_recipes",
-      "recipe": "artisanal:barrel/clean_empty_jar_soapy_water",
-      "recipe2": "artisanal:barrel/clean_jute_net_soapy_water",
-      "recipe3": "artisanal:barrel/clean_soup_bowl_soapy_water"
+      "recipe": "artisanal:barrel/clean/empty_jar/soapy_water",
+      "recipe2": "artisanal:barrel/clean/jute_net/soapy_water",
+      "recipe3": "artisanal:barrel/clean/soup_bowl/soapy_water"
     }
   ],
   "read_by_default": true,

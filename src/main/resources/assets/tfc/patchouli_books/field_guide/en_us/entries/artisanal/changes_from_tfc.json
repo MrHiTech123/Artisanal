@@ -25,12 +25,12 @@
     },
     {
       "type": "tfc:sealed_barrel_recipe",
-      "recipe": "artisanal:barrel/clean_soup_bowl_water",
+      "recipe": "artisanal:barrel/clean/soup_bowl/water",
       "text": "Cleaning dirty things in a water barrel now takes time and requires them to be sealed in the barrel."
     },
     {
       "type": "tfc:instant_barrel_recipe",
-      "recipe": "artisanal:barrel/clean_jute_net_soapy_water",
+      "recipe": "artisanal:barrel/clean/jute_net/soapy_water",
       "text": "Instantneous cleaning now requires the use of $(thing)Soapy Water$(). See $(l:tfc:artisanal/soap)Soap$()."
     },
     {

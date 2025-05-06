@@ -21,17 +21,17 @@
     },
     {
       "type": "tfc:instant_barrel_recipe",
-      "recipe": "artisanal:barrel/milk",
+      "recipe": "artisanal:barrel/milk/cow",
       "text": "Powdered Milk can then be recombined with water at any subsequent point to create Milk."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/milk_1",
+      "recipe": "artisanal:crafting/milk/cow_1",
       "text": "Powdered milk can also be crafted with a water jug to turn it into a milk jug, if you want to use it on the go."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/milk_8",
+      "recipe": "artisanal:crafting/milk/cow_8",
       "text": "You can also craft any fluid container with up to 8 powdered milks, to make 100 mb of milk per powdered milk used."
     },
     {
@@ -41,7 +41,7 @@
     },
     {
       "type": "tfc:instant_barrel_recipe",
-      "recipe": "artisanal:barrel/yak_milk"
+      "recipe": "artisanal:barrel/milk/yak"
     }
   
   ],

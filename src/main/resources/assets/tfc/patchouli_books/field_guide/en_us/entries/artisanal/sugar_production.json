@@ -9,12 +9,12 @@
     },
     {
       "type": "tfc:sealed_barrel_recipe",
-      "recipe": "artisanal:barrel/clean_sugarcane_water",
+      "recipe": "artisanal:barrel/clean/sugarcane/water",
       "text": "The first step to processing sugarcane is to clean it, which can be done by sealing it in a water barrel for 8 hours."
     },
     {
       "type": "tfc:instant_barrel_recipe",
-      "recipe": "artisanal:barrel/clean_sugarcane_soapy_water",
+      "recipe": "artisanal:barrel/clean/sugarcane/soapy_water",
       "text": "Alternatively, sugarcane can be cleaned instantly using $(l:tfc:artisanal/soap)Soapy Water$()."
     },
     {

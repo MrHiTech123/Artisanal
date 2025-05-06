@@ -29,7 +29,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/amethyst_cut",
+      "recipe": "artisanal:crafting/cut_gem/amethyst",
       "text": "Magnifying Glasses are also needed to cut $(l:tfc:mechanics/gems)Gems$(). This does not consume the Magnifying Glass."
     }
     

@@ -15,7 +15,7 @@
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/metal/pickled_double_sheet/steel",
-      "text": "Sulfuric Acid can be used to pickle metal sheets."
+      "text": "Like other acids, Sulfuric Acid can be used to pickle metal sheets."
     }
   ],
   "read_by_default": true
