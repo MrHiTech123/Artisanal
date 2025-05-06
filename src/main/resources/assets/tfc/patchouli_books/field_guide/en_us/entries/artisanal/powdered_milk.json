@@ -47,7 +47,11 @@
   ],
   "read_by_default": true,
   "extra_recipe_mappings": {
-    "artisanal:milk_flakes": 1,
-    "artisanal:powdered_milk": 2
+    "artisanal:milk_flakes": 2,
+    "artisanal:goat_milk_flakes": 2,
+    "artisanal:yak_milk_flakes": 2,
+    "artisanal:powdered_milk": 3,
+    "artisanal:powdered_yak_milk": 3,
+    "artisanal:powdered_goat_milk": 3
   }
 }
