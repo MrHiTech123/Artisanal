@@ -8,7 +8,7 @@
         "items": [
           {
             "items": [
-              "tfc:food/rye_grain"
+              "tfc:food/maize_grain"
             ]
           }
         ]
@@ -17,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "artisanal:crafting/rye_dough"
+        "recipe": "artisanal:crafting/dough/maize"
       }
     }
   },
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "artisanal:crafting/rye_dough"
+      "artisanal:crafting/dough/maize"
     ]
   }
 }

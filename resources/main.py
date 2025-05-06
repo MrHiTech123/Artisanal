@@ -568,8 +568,8 @@ def generate_barrel_recipes():
     
     
     for cleanable in CLEANABLES:
-        barrel_sealed_recipe(rm, f'clean_{cleanable.item_name}_water', f'Cleaning {lang(cleanable.item_name)}', 8000, cleanable.input_item, '100 minecraft:water', output_item=cleanable.output_item)
-        barrel_instant_recipe(rm, f'clean_{cleanable.item_name}_soapy_water', cleanable.input_item, '100 artisanal:soapy_water', output_item=cleanable.output_item)
+        barrel_sealed_recipe(rm, ('clean', cleanable.item_name, 'water'), f'Cleaning {lang(cleanable.item_name)}', 8000, cleanable.input_item, '100 minecraft:water', output_item=cleanable.output_item)
+        barrel_instant_recipe(rm, ('clean', cleanable.item_name, 'soapy_water'), cleanable.input_item, '100 artisanal:soapy_water', output_item=cleanable.output_item)
     
     
     
@@ -586,9 +586,9 @@ def generate_barrel_recipes():
     
     barrel_sealed_recipe(rm, 'paper', 'Bleaching Paper', 1000, 'tfc:unrefined_paper', '25 tfc:lye', 'minecraft:paper')
     
-    barrel_instant_recipe(rm, 'milk', 'artisanal:powdered_milk', '100 minecraft:water', None, '100 minecraft:milk')
-    barrel_instant_recipe(rm, 'goat_milk', 'artisanal:powdered_goat_milk', '100 minecraft:water', None, '100 firmalife:goat_milk', conditions=[forge_condition.mod_loaded('firmalife')])
-    barrel_instant_recipe(rm, 'yak_milk', 'artisanal:powdered_yak_milk', '100 minecraft:water', None, '100 firmalife:yak_milk', conditions=[forge_condition.mod_loaded('firmalife')])
+    barrel_instant_recipe(rm, ('milk', 'cow'), 'artisanal:powdered_milk', '100 minecraft:water', None, '100 minecraft:milk')
+    barrel_instant_recipe(rm, ('milk', 'goat'), 'artisanal:powdered_goat_milk', '100 minecraft:water', None, '100 firmalife:goat_milk', conditions=[forge_condition.mod_loaded('firmalife')])
+    barrel_instant_recipe(rm, ('milk', 'yak'), 'artisanal:powdered_yak_milk', '100 minecraft:water', None, '100 firmalife:yak_milk', conditions=[forge_condition.mod_loaded('firmalife')])
     
     disable_recipe(rm, 'tfc:barrel/limewater')
     disable_recipe(rm, 'tfc:barrel/rum')
@@ -635,17 +635,17 @@ def generate_crafting_recipes():
         extra_products_shapeless(rm, ('crafting', 'metal', 'magnifying_glass', f'{metal}_uncraft'), (f'artisanal:metal/magnifying_glass/{metal}'), f'artisanal:metal/magnifying_glass_frame/{metal}', 'tfc:lens')
     
     for grain in GRAINS:
-        rm.crafting_shapeless(f'crafting/{grain}_dough', (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), not_rotten('#tfc:sweetener')), (4, 'firmalife:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
+        rm.crafting_shapeless(f'crafting/dough/{grain}', (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), not_rotten('#tfc:sweetener')), (4, 'firmalife:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
         disable_recipe(rm, f'firmalife:crafting/{grain}_dough')
     for gem in GEMS:
-        catalyst_shapeless(rm, ('crafting', gem + '_cut'), ('tfc:ore/%s' % gem, 'tfc:sandpaper', '#artisanal:magnifying_glasses'), 'tfc:gem/%s' % gem).with_advancement('tfc:sandpaper')
+        catalyst_shapeless(rm, ('crafting', 'cut_gem', gem), ('tfc:ore/%s' % gem, 'tfc:sandpaper', '#artisanal:magnifying_glasses'), 'tfc:gem/%s' % gem).with_advancement('tfc:sandpaper')
         disable_recipe(rm, f'tfc:{gem}_cut')
     for i in range(1, 6 + 1):
         for metal in CAN_METALS:
             damage_shapeless(rm, ('crafting', 'metal', 'can', f'{metal}_{i}'), (heatable_ingredient(f'artisanal:metal/can/{metal}', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider(f'artisanal:metal/can/{metal}_sealed', meal=canning_modifier, inherit_decay=1, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_canned')
         
-        advanced_shapeless(rm, ('crafting', f'pot', f'{i}_rendered_fat'), ('artisanal:ceramic/small_pot', fluid_item_ingredient('100 #artisanal:rendered_fats'), 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, inherit_decay=0.33, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
-        advanced_shapeless(rm, ('crafting', f'pot', f'{i}_butter'), ('artisanal:ceramic/small_pot', 'firmalife:food/butter', 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, remove_butter=True, inherit_decay=0.33, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
+        advanced_shapeless(rm, ('crafting', 'pot', f'{i}_rendered_fat'), ('artisanal:ceramic/small_pot', fluid_item_ingredient('100 #artisanal:rendered_fats'), 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, inherit_decay=0.33, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
+        advanced_shapeless(rm, ('crafting', 'pot', f'{i}_butter'), ('artisanal:ceramic/small_pot', 'firmalife:food/butter', 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, remove_butter=True, inherit_decay=0.33, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
         
     for metal in CAN_METALS:
         for can_status in CAN_STATUSES:
@@ -731,9 +731,9 @@ def generate_crafting_recipes():
     for i in range(1, 8 + 1):
         max_amount = 100 * i
         min_amount = (100 * (i - 1)) + 1
-        no_remainder_shapeless(rm, ('crafting', f'milk_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} minecraft:milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'))
-        no_remainder_shapeless(rm, ('crafting', f'goat_milk_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_goat_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} firmalife:goat_milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'), conditions=[forge_condition.mod_loaded('firmalife')])
-        no_remainder_shapeless(rm, ('crafting', f'yak_milk_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_yak_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} firmalife:yak_milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'), conditions=[forge_condition.mod_loaded('firmalife')])
+        no_remainder_shapeless(rm, ('crafting', 'milk', f'cow_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} minecraft:milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'))
+        no_remainder_shapeless(rm, ('crafting', 'milk', f'goat_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_goat_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} firmalife:goat_milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'), conditions=[forge_condition.mod_loaded('firmalife')])
+        no_remainder_shapeless(rm, ('crafting', 'milk', f'yak_{i}'), (fluid_item_ingredient(f'{min_amount} minecraft:water'), *['artisanal:powdered_yak_milk'] * i), item_stack_provider('tfc:ceramic/jug', modify_fluid=f'{max_amount} firmalife:yak_milk'), primary_ingredient=fluid_item_ingredient(f'{min_amount} minecraft:water'), conditions=[forge_condition.mod_loaded('firmalife')])
     
     disable_recipe(rm, 'tfc:crafting/bloomery')
     rm.crafting_shaped(('crafting', 'bloomery'), ('XXX', 'X X', 'XXX'), {'X': '#artisanal:bloomery_sheets'}, 'tfc:bloomery')
@@ -848,18 +848,18 @@ def generate_pot_recipes():
     print('\tGenerating pot recipes...')
     
     for i in range(1, 5 + 1):
-        simple_pot_recipe(rm, f'tallow_{i}', [utils.ingredient('artisanal:suet')] * i, f'{100 * i} minecraft:water', f'{100 * i} tfc:tallow', None, 2000, 600)
-        simple_pot_recipe(rm, f'lard_{i}', [utils.ingredient('artisanal:pork_fat')] * i, f'{100 * i} minecraft:water', f'{100 * i} artisanal:lard', None, 2000, 600)
-        simple_pot_recipe(rm, f'lard_{i}_from_bear', [utils.ingredient('artisanal:bear_fat')] * i, f'{100 * i} minecraft:water', f'{100 * i} artisanal:lard', None, 2000, 600)
-        simple_pot_recipe(rm, f'schmaltz_{i}', [utils.ingredient('artisanal:poultry_fat')] * i, f'{100 * i} minecraft:water', f'{100 * i} artisanal:schmaltz', None, 2000, 600)
-        simple_pot_recipe(rm, f'tallow_{i}_from_animal', [utils.ingredient('artisanal:animal_fat')] * i, f'{100 * i} minecraft:water', f'{100 * i} tfc:tallow', None, 2000, 600)
+        simple_pot_recipe(rm, ('render', 'tallow', f'{i}_suet'), [utils.ingredient('artisanal:suet')] * i, f'{100 * i} minecraft:water', f'{100 * i} tfc:tallow', None, 2000, 600)
+        simple_pot_recipe(rm, ('render', 'lard', f'{i}_pork'), [utils.ingredient('artisanal:pork_fat')] * i, f'{100 * i} minecraft:water', f'{100 * i} artisanal:lard', None, 2000, 600)
+        simple_pot_recipe(rm, ('render', 'lard', f'{i}_bear'), [utils.ingredient('artisanal:bear_fat')] * i, f'{100 * i} minecraft:water', f'{100 * i} artisanal:lard', None, 2000, 600)
+        simple_pot_recipe(rm, ('render', 'schmaltz', f'{i}_poultry'), [utils.ingredient('artisanal:poultry_fat')] * i, f'{100 * i} minecraft:water', f'{100 * i} artisanal:schmaltz', None, 2000, 600)
+        simple_pot_recipe(rm, ('render', 'tallow', f'{i}_animal'), [utils.ingredient('artisanal:animal_fat')] * i, f'{100 * i} minecraft:water', f'{100 * i} tfc:tallow', None, 2000, 600)
     
-    scalable_pot_recipe(rm, ('condensed_milk'), '2 minecraft:milk', '1 artisanal:condensed_milk', None, 3000, 100)
-    scalable_pot_recipe(rm, ('condensed_goat_milk'), '2 firmalife:goat_milk', '1 artisanal:condensed_goat_milk', None, 3000, 100, conditions=[forge_condition.mod_loaded('firmalife')])
-    scalable_pot_recipe(rm, ('condensed_yak_milk'), '2 firmalife:yak_milk', '1 artisanal:condensed_yak_milk', None, 3000, 100, conditions=[forge_condition.mod_loaded('firmalife')])
-    scalable_pot_recipe(rm, ('milk_flakes'), '100 artisanal:condensed_milk', None, [{'item': 'artisanal:milk_flakes'}], 3000, 100)
-    scalable_pot_recipe(rm, ('goat_milk_flakes'), '100 artisanal:condensed_goat_milk', None, [{'item': 'artisanal:goat_milk_flakes'}], 3000, 100)
-    scalable_pot_recipe(rm, ('yak_milk_flakes'), '100 artisanal:condensed_yak_milk', None, [{'item': 'artisanal:yak_milk_flakes'}], 3000, 100)
+    scalable_pot_recipe(rm, ('milk', 'condensed', 'cow'), '2 minecraft:milk', '1 artisanal:condensed_milk', None, 3000, 100)
+    scalable_pot_recipe(rm, ('milk', 'condensed', 'goat'), '2 firmalife:goat_milk', '1 artisanal:condensed_goat_milk', None, 3000, 100, conditions=[forge_condition.mod_loaded('firmalife')])
+    scalable_pot_recipe(rm, ('milk', 'condensed', 'yak'), '2 firmalife:yak_milk', '1 artisanal:condensed_yak_milk', None, 3000, 100, conditions=[forge_condition.mod_loaded('firmalife')])
+    scalable_pot_recipe(rm, ('milk', 'flakes', 'cow'), '100 artisanal:condensed_milk', None, [{'item': 'artisanal:milk_flakes'}], 3000, 100)
+    scalable_pot_recipe(rm, ('milk', 'flakes', 'goat'), '100 artisanal:condensed_goat_milk', None, [{'item': 'artisanal:goat_milk_flakes'}], 3000, 100)
+    scalable_pot_recipe(rm, ('milk', 'flakes', 'yak'), '100 artisanal:condensed_yak_milk', None, [{'item': 'artisanal:yak_milk_flakes'}], 3000, 100)
     
     scalable_pot_recipe(rm, ('salt'), '125 tfc:salt_water', None, [{'item': 'tfc:powder/salt'}], 2000, 300)
     scalable_pot_recipe(rm, ('perishable_sugar'), '200 artisanal:sugarcane_juice', '20 artisanal:molasses', [item_stack_provider('artisanal:perishable_sugar')], 2000, 107)

@@ -17,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "artisanal:crafting/sapphire_cut"
+        "recipe": "artisanal:crafting/cut_gem/topaz"
       }
     }
   },
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "artisanal:crafting/sapphire_cut"
+      "artisanal:crafting/cut_gem/topaz"
     ]
   }
 }

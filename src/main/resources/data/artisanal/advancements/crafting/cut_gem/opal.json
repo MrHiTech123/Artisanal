@@ -8,7 +8,7 @@
         "items": [
           {
             "items": [
-              "tfc:food/barley_grain"
+              "tfc:sandpaper"
             ]
           }
         ]
@@ -17,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "artisanal:crafting/barley_dough"
+        "recipe": "artisanal:crafting/cut_gem/opal"
       }
     }
   },
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "artisanal:crafting/barley_dough"
+      "artisanal:crafting/cut_gem/opal"
     ]
   }
 }

@@ -8,7 +8,7 @@
         "items": [
           {
             "items": [
-              "tfc:food/maize_grain"
+              "tfc:sandpaper"
             ]
           }
         ]
@@ -17,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "artisanal:crafting/maize_dough"
+        "recipe": "artisanal:crafting/cut_gem/diamond"
       }
     }
   },
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "artisanal:crafting/maize_dough"
+      "artisanal:crafting/cut_gem/diamond"
     ]
   }
 }

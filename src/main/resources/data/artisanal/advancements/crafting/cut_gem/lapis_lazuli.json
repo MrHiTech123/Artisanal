@@ -17,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "artisanal:crafting/lapis_lazuli_cut"
+        "recipe": "artisanal:crafting/cut_gem/lapis_lazuli"
       }
     }
   },
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "artisanal:crafting/lapis_lazuli_cut"
+      "artisanal:crafting/cut_gem/lapis_lazuli"
     ]
   }
 }

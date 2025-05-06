@@ -8,7 +8,7 @@
         "items": [
           {
             "items": [
-              "tfc:sandpaper"
+              "tfc:food/rice_grain"
             ]
           }
         ]
@@ -17,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "artisanal:crafting/pyrite_cut"
+        "recipe": "artisanal:crafting/dough/rice"
       }
     }
   },
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "artisanal:crafting/pyrite_cut"
+      "artisanal:crafting/dough/rice"
     ]
   }
 }

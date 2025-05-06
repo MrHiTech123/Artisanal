@@ -8,7 +8,7 @@
         "items": [
           {
             "items": [
-              "tfc:sandpaper"
+              "tfc:food/oat_grain"
             ]
           }
         ]
@@ -17,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "artisanal:crafting/ruby_cut"
+        "recipe": "artisanal:crafting/dough/oat"
       }
     }
   },
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "artisanal:crafting/ruby_cut"
+      "artisanal:crafting/dough/oat"
     ]
   }
 }

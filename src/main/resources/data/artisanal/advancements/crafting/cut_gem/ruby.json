@@ -17,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "artisanal:crafting/emerald_cut"
+        "recipe": "artisanal:crafting/cut_gem/ruby"
       }
     }
   },
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "artisanal:crafting/emerald_cut"
+      "artisanal:crafting/cut_gem/ruby"
     ]
   }
 }
