@@ -256,7 +256,7 @@ def generate_advancements():
     advancement(rm, ('story', 'flint_and_pyrite'), 'artisanal:stone/flint_and/pyrite', 'Pyrestarter', 'Make a Flint and Pyrite', 'tfc:story/firestarter', inventory_changed('artisanal:stone/flint_and/pyrite'))
     advancement(rm, ('story', 'flint_and_cut_pyrite'), 'artisanal:stone/flint_and/cut_pyrite', 'Pretty Pyrestarter', 'Make a Flint and Cut Pyrite', 'artisanal:story/flint_and_pyrite', inventory_changed('artisanal:stone/flint_and/cut_pyrite'))
     advancement(rm, ('story', 'flint_and_colored_steel'), 'artisanal:metal/flint_and/red_steel', 'Ocean of Flame', 'Craft a Flint and Steel using Red or Blue Steel', 'tfc:story/flint_and_steel', inventory_changed('#artisanal:metal/flint_and/colored_steel'))
-    advancement(rm, ('story', 'sterilized_tin_can'), 'artisanal:metal/can/tin_sterilized', 'Local Cannery', 'Seal some food in a Can and sterilize it', 'tfc:story/welding', inventory_changed('#artisanal:metal/sterilized_cans'))
+    advancement(rm, ('story', 'sterilized_tin_can'), 'artisanal:metal/can/tin_sterilized', 'Local Cannery', 'Seal some food in a Can and sterilize it', 'tfc:story/sheet', inventory_changed('#artisanal:metal/sterilized_cans'))
     
     
     

@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "tfc:story/welding",
+  "parent": "tfc:story/sheet",
   "criteria": {
     "metal/sterilized_cans": {
       "trigger": "minecraft:inventory_changed",
