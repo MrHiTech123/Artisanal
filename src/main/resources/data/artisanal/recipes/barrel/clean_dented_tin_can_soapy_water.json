@@ -3,7 +3,7 @@
   "type": "tfc:barrel_instant",
   "input_item": {
     "ingredient": {
-      "item": "artisanal:metal/dirty_dented_tin_can"
+      "item": "artisanal:metal/can/tin_dirty_dented"
     }
   },
   "input_fluid": {
@@ -11,6 +11,6 @@
     "amount": 100
   },
   "output_item": {
-    "item": "artisanal:metal/dented_tin_can"
+    "item": "artisanal:metal/can/tin_dented"
   }
 }

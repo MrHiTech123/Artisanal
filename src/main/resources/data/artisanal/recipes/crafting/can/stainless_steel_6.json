@@ -1,0 +1,90 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:damage_inputs_shapeless_crafting",
+  "recipe": {
+    "type": "tfc:advanced_shapeless_crafting",
+    "ingredients": [
+      {
+        "type": "tfc:heatable",
+        "min_temp": 120,
+        "ingredient": {
+          "item": "artisanal:metal/can/stainless_steel"
+        }
+      },
+      {
+        "item": "tfc:powder/flux"
+      },
+      {
+        "tag": "tfc:hammers"
+      },
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "tag": "artisanal:foods/can_be_canned"
+        }
+      },
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "tag": "artisanal:foods/can_be_canned"
+        }
+      },
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "tag": "artisanal:foods/can_be_canned"
+        }
+      },
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "tag": "artisanal:foods/can_be_canned"
+        }
+      },
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "tag": "artisanal:foods/can_be_canned"
+        }
+      },
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "tag": "artisanal:foods/can_be_canned"
+        }
+      }
+    ],
+    "result": {
+      "stack": {
+        "item": "artisanal:metal/can/stainless_steel_sealed"
+      },
+      "modifiers": [
+        {
+          "type": "tfc:meal",
+          "food": {
+            "decay_modifier": 4.5
+          },
+          "portions": [
+            {
+              "ingredient": {
+                "tag": "artisanal:foods/can_be_canned"
+              },
+              "nutrient_modifier": 0,
+              "water_modifier": 0,
+              "saturation_modifier": 0
+            }
+          ]
+        },
+        {
+          "type": "artisanal:inherit_decay",
+          "decay_multiplier": 1
+        },
+        "artisanal:homogenous_ingredients",
+        "tfc:copy_oldest_food"
+      ]
+    },
+    "primary_ingredient": {
+      "tag": "artisanal:foods/can_be_canned"
+    }
+  }
+}

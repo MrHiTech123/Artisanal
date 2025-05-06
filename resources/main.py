@@ -10,8 +10,9 @@ AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cy
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
 POTTABLE_FOOD_TAGS = ('meats', 'vegetables')
-OPENABLE_CAN_ITEMS = ('sterilized_tin_can', 'sealed_tin_can')
+CAN_STATUSES = ('sterilized', 'sealed')
 DRUM_METALS = ['bismuth_bronze', 'black_bronze', 'bronze', 'steel', 'red_steel', 'blue_steel']
+CAN_METALS = {'tin', 'stainless_steel'}
 BLOOMERY_SHEETS = ['bismuth_bronze', 'black_bronze', 'bronze', 'wrought_iron', 'steel', 'black_steel', 'blue_steel', 'red_steel']
 STEELS = {metal: METALS[metal] for metal in ('steel', 'black_steel', 'blue_steel', 'red_steel')}
 SULFUR_BURN = 175
@@ -33,8 +34,13 @@ CLEANABLES = (
     CleaningRecipe('olivine_wine_bottle', 'firmalife:olivine_wine_bottle', 'firmalife:empty_olivine_wine_bottle'),
     CleaningRecipe('volcanic_wine_bottle', 'firmalife:volcanic_wine_bottle', 'firmalife:empty_volcanic_wine_bottle'),
     CleaningRecipe('any_bowl', '#firmalife:foods/washable', item_stack_provider(other_modifier='firmalife:empty_pan')),
-    CleaningRecipe('tin_can', 'artisanal:metal/dirty_tin_can', 'artisanal:metal/tin_can'),
-    CleaningRecipe('dented_tin_can', 'artisanal:metal/dirty_dented_tin_can', 'artisanal:metal/dented_tin_can'),
+    *[
+        x for metal in CAN_METALS for x in
+        (
+            CleaningRecipe(f'{metal}_can', f'artisanal:metal/can/{metal}_dirty', f'artisanal:metal/can/{metal}'),
+            CleaningRecipe(f'dented_{metal}_can', f'artisanal:metal/can/{metal}_dirty_dented', f'artisanal:metal/can/{metal}_dented')
+        )
+    ],
     CleaningRecipe('small_pot', 'artisanal:ceramic/dirty_small_pot', 'artisanal:ceramic/small_pot')
 )
 
@@ -57,7 +63,7 @@ def melt_metal(name: str, mb: int):
     metal = METALS[name]
     if metal.melt_metal is not None:
         name = metal.melt_metal
-    return f'{mb} tfc:metal/{name}'
+    return f'{mb} {metal.namespace}:metal/{name}'
 
 
 
@@ -250,7 +256,7 @@ def generate_advancements():
     advancement(rm, ('story', 'flint_and_pyrite'), 'artisanal:stone/flint_and/pyrite', 'Pyrestarter', 'Make a Flint and Pyrite', 'tfc:story/firestarter', inventory_changed('artisanal:stone/flint_and/pyrite'))
     advancement(rm, ('story', 'flint_and_cut_pyrite'), 'artisanal:stone/flint_and/cut_pyrite', 'Pretty Pyrestarter', 'Make a Flint and Cut Pyrite', 'artisanal:story/flint_and_pyrite', inventory_changed('artisanal:stone/flint_and/cut_pyrite'))
     advancement(rm, ('story', 'flint_and_colored_steel'), 'artisanal:metal/flint_and/red_steel', 'Ocean of Flame', 'Craft a Flint and Steel using Red or Blue Steel', 'tfc:story/flint_and_steel', inventory_changed('#artisanal:metal/flint_and/colored_steel'))
-    advancement(rm, ('story', 'sterilized_tin_can'), 'artisanal:metal/sterilized_tin_can', 'Local Cannery', 'Seal some food in a Tin Can and sterilize it', 'tfc:story/welding', inventory_changed('artisanal:metal/sterilized_tin_can'))
+    advancement(rm, ('story', 'sterilized_tin_can'), 'artisanal:metal/can/tin_sterilized', 'Local Cannery', 'Seal some food in a Can and sterilize it', 'tfc:story/welding', inventory_changed('#artisanal:metal/sterilized_cans'))
     
     
     
@@ -300,8 +306,10 @@ def generate_item_foods():
     food_item(rm, ('maple_sugar'), 'afc:maple_sugar', Category.other, 0, 0, 0, 0, tag_as_food=False)
     food_item(rm, ('birch_sugar'), 'afc:birch_sugar', Category.other, 0, 0, 0, 0, tag_as_food=False)
     food_item(rm, ('honey'), 'firmalife:raw_honey', Category.other, 0, 0, 0, 0, tag_as_food=False)
-    dynamic_food_item(rm, ('sealed_tin_can'), 'artisanal:metal/sealed_tin_can', 'dynamic')
-    dynamic_food_item(rm, ('sterilized_tin_can'), 'artisanal:metal/sterilized_tin_can', 'dynamic')
+    
+    for metal in CAN_METALS:
+        dynamic_food_item(rm, ('metal', 'can', f'{metal}_sealed'), f'artisanal:metal/can/{metal}_sealed', 'dynamic')
+        dynamic_food_item(rm, ('metal', 'can', f'{metal}_sterilized'), f'artisanal:metal/can/{metal}_sterilized', 'dynamic')
     dynamic_food_item(rm, ('closed_small_pot'), 'artisanal:ceramic/closed_small_pot', 'dynamic')
     dynamic_food_item(rm, ('dirty_bowl'), 'artisanal:dirty_bowl', 'dynamic_bowl')
     
@@ -319,9 +327,11 @@ def generate_item_heats():
             item_heat(rm, ('metal', 'brick_mold', metal), f'artisanal:metal/brick_mold/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 50)
     
     item_heat(rm, ('metal', 'tinplate'), 'artisanal:metal/tinplate', METALS['tin'].ingot_heat_capacity(), METALS['tin'].melt_temperature, 150)
-    item_heat(rm, ('metal', 'tin_can'), 'artisanal:metal/tin_can', METALS['tin'].ingot_heat_capacity(), METALS['tin'].melt_temperature, 150)
-    item_heat(rm, ('metal', 'sealed_tin_can'), 'artisanal:metal/sealed_tin_can', METALS['tin'].ingot_heat_capacity(), METALS['tin'].melt_temperature, 150)
-    item_heat(rm, ('metal', 'dented_tin_can'), 'artisanal:metal/dented_tin_can', METALS['tin'].ingot_heat_capacity(), METALS['tin'].melt_temperature, 150)
+    
+    for metal in CAN_METALS:
+        item_heat(rm, ('metal', 'can', f'{metal}'), f'artisanal:metal/can/{metal}', METALS[metal].ingot_heat_capacity(), METALS[metal].melt_temperature, 150)
+        item_heat(rm, ('metal', 'can', f'{metal}_sealed'), f'artisanal:metal/can/{metal}_sealed', METALS[metal].ingot_heat_capacity(), METALS[metal].melt_temperature, 150)
+        item_heat(rm, ('metal', 'can', f'{metal}_dented'), f'artisanal:metal/can/{metal}_dented', METALS[metal].ingot_heat_capacity(), METALS[metal].melt_temperature, 150)
     
     for metal, metal_data in STEELS.items():
         item_heat(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 50)
@@ -339,12 +349,14 @@ def generate_item_heats():
 
 def generate_item_size_weights():
     print('\tGenerating item size weights...')
-    item_size(rm, ('metal', 'tin_can'), 'artisanal:metal/tin_can', Size.small, Weight.light)
-    item_size(rm, ('metal', 'sealed_tin_can'), 'artisanal:metal/sealed_tin_can', Size.small, Weight.light)
-    item_size(rm, ('metal', 'sterilized_tin_can'), 'artisanal:metal/sterilized_tin_can', Size.small, Weight.light)
-    item_size(rm, ('metal', 'dirty_tin_can'), 'artisanal:metal/dirty_tin_can', Size.small, Weight.light)
-    item_size(rm, ('metal', 'dented_tin_can'), 'artisanal:metal/dented_tin_can', Size.small, Weight.light)
-    item_size(rm, ('metal', 'dirty_dented_tin_can'), 'artisanal:metal/dirty_dented_tin_can', Size.small, Weight.light)
+    
+    for metal in CAN_METALS:
+        item_size(rm, ('metal', 'can', f'{metal}'), f'artisanal:metal/can/{metal}', Size.small, Weight.light)
+        item_size(rm, ('metal', 'can', f'{metal}_sealed'), f'artisanal:metal/can/{metal}_sealed', Size.small, Weight.light)
+        item_size(rm, ('metal', 'can', f'{metal}_sterilized'), f'artisanal:metal/can/{metal}_sterilized', Size.small, Weight.light)
+        item_size(rm, ('metal', 'can', f'{metal}_dirty'), f'artisanal:metal/can/{metal}_dirty', Size.small, Weight.light)
+        item_size(rm, ('metal', 'can', f'{metal}_dented'), f'artisanal:metal/can/{metal}_dented', Size.small, Weight.light)
+        item_size(rm, ('metal', 'can', f'{metal}_dirty_dented'), f'artisanal:metal/can/{metal}_dirty_dented', Size.small, Weight.light)
     
     item_size(rm, ('ceramic', 'small_pot'), 'artisanal:ceramic/small_pot', Size.small, Weight.light)
     item_size(rm, ('ceramic', 'dirty_small_pot'), 'artisanal:ceramic/dirty_small_pot', Size.small, Weight.light)
@@ -455,12 +467,14 @@ def generate_item_models():
         rm.item_model(('metal', 'magnifying_glass_frame', f'{metal}'), f'artisanal:item/metal/magnifying_glass_frame/{metal}').with_lang(lang(f'{metal}_magnifying_glass_frame'))
     
     rm.item_model(('metal', 'tinplate'), 'artisanal:item/metal/tinplate').with_lang(lang('tinplate'))
-    rm.item_model(('metal', 'tin_can'), 'artisanal:item/metal/tin_can').with_lang(lang('tin_can'))
-    rm.item_model(('metal', 'sealed_tin_can'), 'artisanal:item/metal/sealed_tin_can').with_lang(lang('sealed_tin_can'))
-    rm.item_model(('metal', 'sterilized_tin_can'), 'artisanal:item/metal/sterilized_tin_can').with_lang(lang('sterilized_tin_can'))
-    rm.item_model(('metal', 'dirty_tin_can'), 'artisanal:item/metal/dirty_tin_can').with_lang(lang('dirty_tin_can'))
-    rm.item_model(('metal', 'dented_tin_can'), 'artisanal:item/metal/dented_tin_can').with_lang(lang('dented_tin_can'))
-    rm.item_model(('metal', 'dirty_dented_tin_can'), 'artisanal:item/metal/dirty_dented_tin_can').with_lang(lang('dirty_dented_tin_can'))
+    
+    for metal in CAN_METALS:
+        rm.item_model(('metal', 'can', f'{metal}'), f'artisanal:item/metal/can/{metal}').with_lang(lang(f'{metal}_can'))
+        rm.item_model(('metal', 'can', f'{metal}_sealed'), f'artisanal:item/metal/can/{metal}_sealed').with_lang(lang(f'sealed_{metal}_can'))
+        rm.item_model(('metal', 'can', f'{metal}_sterilized'), f'artisanal:item/metal/can/{metal}_sterilized').with_lang(lang(f'sterilized_{metal}_can'))
+        rm.item_model(('metal', 'can', f'{metal}_dirty'), f'artisanal:item/metal/can/{metal}_dirty').with_lang(lang(f'dirty_{metal}_can'))
+        rm.item_model(('metal', 'can', f'{metal}_dented'), f'artisanal:item/metal/can/{metal}_dented').with_lang(lang(f'dented_{metal}_can'))
+        rm.item_model(('metal', 'can', f'{metal}_dirty_dented'), f'artisanal:item/metal/can/{metal}_dirty_dented').with_lang(lang(f'dirty_dented_{metal}_can'))
     
     for metal, metal_data in METALS.items():
         if 'tool' in metal_data.types:
@@ -513,13 +527,15 @@ def generate_anvil_recipes():
     for metal, metal_data in STEELS.items():
         anvil_recipe(rm, ('metal', 'striker', metal), f'tfc:metal/ingot/high_carbon_{metal}', f'artisanal:metal/striker/{metal}', metal_data.tier, Rules.bend_any, Rules.hit_any, Rules.punch_any, bonus=True)
     
+    anvil_recipe(rm, ('metal', 'can', 'tin'), 'artisanal:metal/tinplate', 'artisanal:metal/can/tin', 1, Rules.bend_not_last, Rules.hit_not_last, Rules.hit_last)
     
-    anvil_recipe(rm, ('metal', 'tin_can'), 'artisanal:metal/tinplate', 'artisanal:metal/tin_can', 1, Rules.bend_not_last, Rules.hit_not_last, Rules.hit_last)
+    for metal in CAN_METALS:
+        anvil_recipe(rm, ('metal', 'can', f'{metal}_repair'), f'artisanal:metal/can/{metal}_dented', f'artisanal:metal/can/{metal}', 1, Rules.hit_third_last, Rules.hit_second_last, Rules.hit_last)
+    
     welding_recipe(rm, ('metal', 'tinplate_from_iron'), 'tfc:metal/double_sheet/wrought_iron', 'tfc:metal/sheet/tin', item_stack_provider((4, 'artisanal:metal/tinplate'), cap_heat=METALS['tin'].melt_temperature - 1), 0)
     welding_recipe(rm, ('metal', 'tinplate_from_pickled_iron'), 'artisanal:metal/pickled_double_sheet/wrought_iron', 'tfc:metal/sheet/tin', item_stack_provider((6, 'artisanal:metal/tinplate'), cap_heat=METALS['tin'].melt_temperature - 1), 0)
     welding_recipe(rm, ('metal', 'tinplate_from_steel'), 'tfc:metal/double_sheet/steel', 'tfc:metal/sheet/tin', item_stack_provider((8, 'artisanal:metal/tinplate'), cap_heat=METALS['tin'].melt_temperature - 1), 0)
     welding_recipe(rm, ('metal', 'tinplate_from_pickled_steel'), 'artisanal:metal/pickled_double_sheet/steel', 'tfc:metal/sheet/tin', item_stack_provider((12, 'artisanal:metal/tinplate'), cap_heat=METALS['tin'].melt_temperature - 1), 0)
-    anvil_recipe(rm, ('metal', 'repair_tin_can'), 'artisanal:metal/dented_tin_can', 'artisanal:metal/tin_can', 1, Rules.hit_third_last, Rules.hit_second_last, Rules.hit_last)
     
     disable_recipe(rm, 'firmalife:anvil/stainless_steel_jar_lid')
     anvil_recipe(rm, 'stainless_steel_jar_lid', 'firmalife:metal/ingot/stainless_steel', (16, 'tfc:jar_lid'), 4, Rules.hit_last, Rules.hit_second_last, Rules.punch_third_last, conditions=[
@@ -625,45 +641,48 @@ def generate_crafting_recipes():
         catalyst_shapeless(rm, ('crafting', gem + '_cut'), ('tfc:ore/%s' % gem, 'tfc:sandpaper', '#artisanal:magnifying_glasses'), 'tfc:gem/%s' % gem).with_advancement('tfc:sandpaper')
         disable_recipe(rm, f'tfc:{gem}_cut')
     for i in range(1, 6 + 1):
-        damage_shapeless(rm, ('crafting', f'can_{i}'), (heatable_ingredient('artisanal:metal/tin_can', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider('artisanal:metal/sealed_tin_can', meal=canning_modifier, inherit_decay=1, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_canned')
-        advanced_shapeless(rm, ('crafting', f'pot_{i}'), ('artisanal:ceramic/small_pot', fluid_item_ingredient('100 #artisanal:rendered_fats'), 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, inherit_decay=0.33, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
-        advanced_shapeless(rm, ('crafting', f'pot_{i}_butter'), ('artisanal:ceramic/small_pot', 'firmalife:food/butter', 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, remove_butter=True, inherit_decay=0.33, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
+        for metal in CAN_METALS:
+            damage_shapeless(rm, ('crafting', 'can', f'{metal}_{i}'), (heatable_ingredient(f'artisanal:metal/can/{metal}', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider(f'artisanal:metal/can/{metal}_sealed', meal=canning_modifier, inherit_decay=1, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_canned')
         
-    for openable_can_item in OPENABLE_CAN_ITEMS:
-        rm.recipe(('crafting', f'open_{openable_can_item}_hammer'), 'tfc:extra_products_shapeless_crafting',
-            {
-                "__comment__": "This file was automatically created by mcresources",
-                "recipe": {
-                    "type": "tfc:damage_inputs_shapeless_crafting",
+        advanced_shapeless(rm, ('crafting', f'pot', f'{i}_rendered_fat'), ('artisanal:ceramic/small_pot', fluid_item_ingredient('100 #artisanal:rendered_fats'), 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, inherit_decay=0.33, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
+        advanced_shapeless(rm, ('crafting', f'pot', f'{i}_butter'), ('artisanal:ceramic/small_pot', 'firmalife:food/butter', 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, remove_butter=True, inherit_decay=0.33, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
+        
+    for metal in CAN_METALS:
+        for can_status in CAN_STATUSES:
+            rm.recipe(('crafting', f'open_can', f'{metal}_{can_status}_hammer'), 'tfc:extra_products_shapeless_crafting',
+                {
+                    "__comment__": "This file was automatically created by mcresources",
                     "recipe": {
-                        "type": "tfc:advanced_shapeless_crafting",
-                        "ingredients": [utils.ingredient(f'artisanal:metal/{openable_can_item}'), utils.ingredient("#tfc:hammers")],
-                        "result": item_stack_provider(other_modifier="artisanal:extract_canned_food", copy_food=(openable_can_item == 'sealed_tin_can')),
-                        "primary_ingredient": utils.ingredient(f"artisanal:metal/{openable_can_item}")
-                    }
-                },
-                "extra_products": [
-                    item_stack_provider("artisanal:metal/dirty_dented_tin_can")
-                ]
-            }
-        )
-        rm.recipe(('crafting', f'open_{openable_can_item}_can_opener'), 'tfc:extra_products_shapeless_crafting',
-            {
-                "__comment__": "This file was automatically created by mcresources",
-                "recipe": {
-                    "type": "tfc:damage_inputs_shapeless_crafting",
+                        "type": "tfc:damage_inputs_shapeless_crafting",
+                        "recipe": {
+                            "type": "tfc:advanced_shapeless_crafting",
+                            "ingredients": [utils.ingredient(f'artisanal:metal/can/{metal}_{can_status}'), utils.ingredient("#tfc:hammers")],
+                            "result": item_stack_provider(other_modifier="artisanal:extract_canned_food", copy_food=(can_status == 'sealed')),
+                            "primary_ingredient": utils.ingredient(f"artisanal:metal/can/{metal}_{can_status}")
+                        }
+                    },
+                    "extra_products": [
+                        item_stack_provider(f"artisanal:metal/can/{metal}_dirty_dented")
+                    ]
+                }
+            )
+            rm.recipe(('crafting', 'open_can', f'{metal}_{can_status}_can_opener'), 'tfc:extra_products_shapeless_crafting',
+                {
+                    "__comment__": "This file was automatically created by mcresources",
                     "recipe": {
-                        "type": "tfc:advanced_shapeless_crafting",
-                        "ingredients": [utils.ingredient(f'artisanal:metal/{openable_can_item}'), utils.ingredient("#artisanal:can_openers")],
-                        "result": item_stack_provider(other_modifier="artisanal:extract_canned_food", copy_food=(openable_can_item == 'sealed_tin_can')),
-                        "primary_ingredient": utils.ingredient(f"artisanal:metal/{openable_can_item}")
-                    }
-                },
-                "extra_products": [
-                    item_stack_provider("artisanal:metal/dirty_tin_can")
-                ]
-            }
-        )
+                        "type": "tfc:damage_inputs_shapeless_crafting",
+                        "recipe": {
+                            "type": "tfc:advanced_shapeless_crafting",
+                            "ingredients": [utils.ingredient(f'artisanal:metal/can/{metal}_{can_status}'), utils.ingredient("#artisanal:can_openers")],
+                            "result": item_stack_provider(other_modifier="artisanal:extract_canned_food", copy_food=(can_status == 'sealed')),
+                            "primary_ingredient": utils.ingredient(f"artisanal:metal/can/{metal}_{can_status}")
+                        }
+                    },
+                    "extra_products": [
+                        item_stack_provider(f"artisanal:metal/can/{metal}_dirty")
+                    ]
+                }
+            )
         
     rm.recipe(('crafting', 'open_pot'), 'tfc:extra_products_shapeless_crafting',
         {
@@ -687,7 +706,8 @@ def generate_crafting_recipes():
         if 'tool' in metal_data.types:
             rm.crafting_shaped(('crafting', 'metal', 'can_opener', metal), ['MBR', 'B  ', 'R  '], {'M': 'tfc:brass_mechanisms', 'B': f'artisanal:metal/circle_blade/{metal}', 'R': '#artisanal:rods/metal'}, f'artisanal:metal/can_opener/{metal}')
     
-    advanced_shapeless(rm, ('crafting', 'metal', 'remove_can_traits'), ('artisanal:metal/sterilized_tin_can'), remove_many_traits(item_stack_provider('artisanal:metal/sterilized_tin_can', other_modifier='artisanal:copy_dynamic_food'), 'tfc:charcoal_grilled', 'tfc:wood_grilled', 'tfc:burnt_to_a_crisp'), primary_ingredient='artisanal:metal/sterilized_tin_can')
+    for metal in CAN_METALS:
+        advanced_shapeless(rm, ('crafting', 'metal', f'remove_{metal}_can_traits'), f'artisanal:metal/can/{metal}_sterilized', remove_many_traits(item_stack_provider(f'artisanal:metal/can/{metal}_sterilized', other_modifier='artisanal:copy_dynamic_food'), 'tfc:charcoal_grilled', 'tfc:wood_grilled', 'tfc:burnt_to_a_crisp'), primary_ingredient=f'artisanal:metal/can/{metal}_sterilized')
     
     
     for metal, metal_data in STEELS.items():
@@ -765,7 +785,8 @@ def generate_heat_recipes():
         heat_recipe(rm, ('metal', 'magnifying_glass', metal), f'artisanal:metal/magnifying_glass/{metal}', metal_data.melt_temperature, 'tfc:lens', melt_metal(metal, 50))
         heat_recipe(rm, ('metal', 'magnifying_glass_frame', metal), f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.melt_temperature, None, melt_metal(metal, 50))
     
-    heat_recipe(rm, ('metal', 'sterilized_tin_can'), not_rotten('artisanal:metal/sealed_tin_can'), 150, remove_many_traits(item_stack_provider('artisanal:metal/sterilized_tin_can', other_modifier='artisanal:copy_dynamic_food_never_expires'), 'tfc:charcoal_grilled', 'tfc:wood_grilled', 'tfc:burnt_to_a_crisp'))
+    for metal in CAN_METALS:
+        heat_recipe(rm, ('metal', 'can', f'{metal}_sterilized'), not_rotten(f'artisanal:metal/can/{metal}_sealed'), 150, remove_many_traits(item_stack_provider(f'artisanal:metal/can/{metal}_sterilized', other_modifier='artisanal:copy_dynamic_food_never_expires'), 'tfc:charcoal_grilled', 'tfc:wood_grilled', 'tfc:burnt_to_a_crisp'))
     
     for metal, metal_data in METALS.items():
         if 'tool' in metal_data.types:
@@ -1014,6 +1035,9 @@ def generate_item_tags():
     rm.item_tag('can_openers', *[f'artisanal:metal/can_opener/{metal}' for metal in METALS if 'tool' in METALS[metal].types])
     rm.item_tag('rods/metal', *[f'tfc:metal/rod/{metal}' for metal in METALS if 'utility' in METALS[metal].types])
     rm.item_tag('metal/flint_and/colored_steel', 'artisanal:metal/flint_and/blue_steel', 'artisanal:metal/flint_and/red_steel')
+    rm.item_tag('metal/sterilized_cans', *[f'artisanal:metal/can/{metal}_sterilized' for metal in CAN_METALS])
+    
+    
     rm.item_tag('tfc:firepit_kindling', 'artisanal:dry_bagasse')
     rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'], 'artisanal:stone/flint_and/pyrite', 'artisanal:stone/flint_and/cut_pyrite')
     rm.item_tag('tfc:compost_browns_high', 'artisanal:dry_bagasse')

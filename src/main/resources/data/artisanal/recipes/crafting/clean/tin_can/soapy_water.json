@@ -10,13 +10,13 @@
       }
     },
     {
-      "item": "artisanal:metal/dirty_tin_can"
+      "item": "artisanal:metal/can/tin_dirty"
     }
   ],
   "result": {
-    "item": "artisanal:metal/tin_can"
+    "item": "artisanal:metal/can/tin"
   },
   "primary_ingredient": {
-    "item": "artisanal:metal/dirty_tin_can"
+    "item": "artisanal:metal/can/tin_dirty"
   }
 }

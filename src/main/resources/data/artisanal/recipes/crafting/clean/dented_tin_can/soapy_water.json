@@ -10,13 +10,13 @@
       }
     },
     {
-      "item": "artisanal:metal/dirty_dented_tin_can"
+      "item": "artisanal:metal/can/tin_dirty_dented"
     }
   ],
   "result": {
-    "item": "artisanal:metal/dented_tin_can"
+    "item": "artisanal:metal/can/tin_dented"
   },
   "primary_ingredient": {
-    "item": "artisanal:metal/dirty_dented_tin_can"
+    "item": "artisanal:metal/can/tin_dirty_dented"
   }
 }

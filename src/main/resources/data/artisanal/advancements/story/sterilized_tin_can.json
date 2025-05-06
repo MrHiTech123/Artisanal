@@ -2,14 +2,12 @@
   "__comment__": "This file was automatically created by mcresources",
   "parent": "tfc:story/welding",
   "criteria": {
-    "metal/sterilized_tin_can": {
+    "metal/sterilized_cans": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [
-              "artisanal:metal/sterilized_tin_can"
-            ]
+            "tag": "artisanal:metal/sterilized_cans"
           }
         ]
       }
@@ -17,7 +15,7 @@
   },
   "display": {
     "icon": {
-      "item": "artisanal:metal/sterilized_tin_can"
+      "item": "artisanal:metal/can/tin_sterilized"
     },
     "title": {
       "translate": "artisanal.advancements.story.sterilized_tin_can.title"
@@ -32,7 +30,7 @@
   },
   "requirements": [
     [
-      "metal/sterilized_tin_can"
+      "metal/sterilized_cans"
     ]
   ]
 }

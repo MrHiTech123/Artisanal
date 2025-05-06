@@ -1,0 +1,31 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:heating",
+  "ingredient": {
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "item": "artisanal:metal/can/stainless_steel_sealed"
+    }
+  },
+  "result_item": {
+    "stack": {
+      "item": "artisanal:metal/can/stainless_steel_sterilized"
+    },
+    "modifiers": [
+      "artisanal:copy_dynamic_food_never_expires",
+      {
+        "type": "tfc:remove_trait",
+        "trait": "tfc:charcoal_grilled"
+      },
+      {
+        "type": "tfc:remove_trait",
+        "trait": "tfc:wood_grilled"
+      },
+      {
+        "type": "tfc:remove_trait",
+        "trait": "tfc:burnt_to_a_crisp"
+      }
+    ]
+  },
+  "temperature": 150
+}

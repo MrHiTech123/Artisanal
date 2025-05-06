@@ -1,0 +1,22 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:specific_no_remainder_shapeless",
+  "ingredients": [
+    {
+      "type": "tfc:fluid_item",
+      "fluid_ingredient": {
+        "ingredient": "minecraft:water",
+        "amount": 100
+      }
+    },
+    {
+      "item": "artisanal:metal/can/stainless_steel_dirty"
+    }
+  ],
+  "result": {
+    "item": "artisanal:metal/can/stainless_steel"
+  },
+  "primary_ingredient": {
+    "item": "artisanal:metal/can/stainless_steel_dirty"
+  }
+}

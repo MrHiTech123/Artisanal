@@ -1,0 +1,31 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:extra_products_shapeless_crafting",
+  "recipe": {
+    "type": "tfc:damage_inputs_shapeless_crafting",
+    "recipe": {
+      "type": "tfc:advanced_shapeless_crafting",
+      "ingredients": [
+        {
+          "item": "artisanal:metal/can/stainless_steel_sterilized"
+        },
+        {
+          "tag": "artisanal:can_openers"
+        }
+      ],
+      "result": {
+        "modifiers": [
+          "artisanal:extract_canned_food"
+        ]
+      },
+      "primary_ingredient": {
+        "item": "artisanal:metal/can/stainless_steel_sterilized"
+      }
+    }
+  },
+  "extra_products": [
+    {
+      "item": "artisanal:metal/can/stainless_steel_dirty"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_sealed",
+  "input_item": {
+    "ingredient": {
+      "item": "artisanal:metal/can/stainless_steel_dirty"
+    }
+  },
+  "input_fluid": {
+    "ingredient": "minecraft:water",
+    "amount": 100
+  },
+  "output_item": {
+    "item": "artisanal:metal/can/stainless_steel"
+  },
+  "duration": 8000
+}

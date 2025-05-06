@@ -1,0 +1,32 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:extra_products_shapeless_crafting",
+  "recipe": {
+    "type": "tfc:damage_inputs_shapeless_crafting",
+    "recipe": {
+      "type": "tfc:advanced_shapeless_crafting",
+      "ingredients": [
+        {
+          "item": "artisanal:metal/can/tin_sealed"
+        },
+        {
+          "tag": "artisanal:can_openers"
+        }
+      ],
+      "result": {
+        "modifiers": [
+          "artisanal:extract_canned_food",
+          "tfc:copy_food"
+        ]
+      },
+      "primary_ingredient": {
+        "item": "artisanal:metal/can/tin_sealed"
+      }
+    }
+  },
+  "extra_products": [
+    {
+      "item": "artisanal:metal/can/tin_dirty"
+    }
+  ]
+}

@@ -2,8 +2,10 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "artisanal:metal/sealed_tin_can",
-    "artisanal:metal/sterilized_tin_can",
+    "artisanal:metal/can/tin_sealed",
+    "artisanal:metal/can/tin_sterilized",
+    "artisanal:metal/can/stainless_steel_sealed",
+    "artisanal:metal/can/stainless_steel_sterilized",
     "artisanal:ceramic/closed_small_pot",
     "artisanal:dirty_bowl"
   ]

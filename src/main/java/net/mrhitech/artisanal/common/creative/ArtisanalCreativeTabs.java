@@ -7,10 +7,7 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.mrhitech.artisanal.common.fluids.Waterlikes;
 import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
 import net.mrhitech.artisanal.common.block.DrumMetal;
-import net.mrhitech.artisanal.common.item.ArtisanalItems;
-import net.mrhitech.artisanal.common.item.MagnifyingGlassMetal;
-import net.mrhitech.artisanal.common.item.PicklableMetal;
-import net.mrhitech.artisanal.common.item.SteelMetal;
+import net.mrhitech.artisanal.common.item.*;
 
 public class ArtisanalCreativeTabs {
     public static void AddCreative(BuildCreativeModeTabContentsEvent event) {
@@ -88,13 +85,16 @@ public class ArtisanalCreativeTabs {
                 event.accept(ArtisanalItems.MAGNIFYING_GLASSES.get(metal));
                 event.accept(ArtisanalItems.MAGNIFYING_GLASS_FRAMES.get(metal));
             }
+            
             event.accept(ArtisanalItems.TINPLATE);
-            event.accept(ArtisanalItems.TIN_CAN);
-            event.accept(ArtisanalItems.SEALED_TIN_CAN);
-            event.accept(ArtisanalItems.STERILIZED_TIN_CAN);
-            event.accept(ArtisanalItems.DIRTY_TIN_CAN);
-            event.accept(ArtisanalItems.DENTED_TIN_CAN);
-            event.accept(ArtisanalItems.DIRTY_DENTED_TIN_CAN);
+            for (CanMetal metal : CanMetal.values()) {
+                event.accept(ArtisanalItems.TIN_CANS.get(metal));
+                event.accept(ArtisanalItems.SEALED_TIN_CANS.get(metal));
+                event.accept(ArtisanalItems.STERILIZED_TIN_CANS.get(metal));
+                event.accept(ArtisanalItems.DIRTY_TIN_CANS.get(metal));
+                event.accept(ArtisanalItems.DENTED_TIN_CANS.get(metal));
+                event.accept(ArtisanalItems.DIRTY_DENTED_TIN_CANS.get(metal));
+            }
             
             for (Metal.Default metal : Metal.Default.values()) {
                 if (Metal.ItemType.AXE.has(metal)) {

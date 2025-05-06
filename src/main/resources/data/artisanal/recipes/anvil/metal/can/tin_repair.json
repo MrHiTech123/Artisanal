@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:anvil",
+  "input": {
+    "item": "artisanal:metal/can/tin_dented"
+  },
+  "result": {
+    "item": "artisanal:metal/can/tin"
+  },
+  "tier": 1,
+  "rules": [
+    "hit_third_last",
+    "hit_second_last",
+    "hit_last"
+  ]
+}
