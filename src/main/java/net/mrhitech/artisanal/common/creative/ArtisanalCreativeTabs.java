@@ -87,6 +87,7 @@ public class ArtisanalCreativeTabs {
             }
             
             event.accept(ArtisanalItems.TINPLATE);
+            event.accept(ArtisanalItems.STAINLESS_STEELPLATE);
             for (CanMetal metal : CanMetal.values()) {
                 event.accept(ArtisanalItems.TIN_CANS.get(metal));
                 event.accept(ArtisanalItems.SEALED_TIN_CANS.get(metal));

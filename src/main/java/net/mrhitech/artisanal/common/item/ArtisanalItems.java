@@ -55,7 +55,7 @@ public class ArtisanalItems {
             register("metal/magnifying_glass_frame/" + metal.getSerializedName(), () -> new Item(new Item.Properties())));
     
     public static final RegistryObject<Item> TINPLATE = register("metal/tinplate", () -> new Item(new Item.Properties()));
-    
+    public static final RegistryObject<Item> STAINLESS_STEELPLATE = register("metal/stainless_steelplate", () -> new Item(new Item.Properties()));
     
     public static final Map<CanMetal, RegistryObject<Item>> TIN_CANS = Helpers.mapOfKeys(CanMetal.class, metal -> 
             register("metal/can/" + metal.getSerializedName(), () -> new Item(new Item.Properties())));

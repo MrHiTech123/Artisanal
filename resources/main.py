@@ -13,6 +13,11 @@ POTTABLE_FOOD_TAGS = ('meats', 'vegetables')
 CAN_STATUSES = ('sterilized', 'sealed')
 DRUM_METALS = ['bismuth_bronze', 'black_bronze', 'bronze', 'steel', 'red_steel', 'blue_steel']
 CAN_METALS = {'tin', 'stainless_steel'}
+CANS_MB_AMOUNTS = {
+    'tin': 150,
+    'stainless_steel': 50
+}
+
 BLOOMERY_SHEETS = ['bismuth_bronze', 'black_bronze', 'bronze', 'wrought_iron', 'steel', 'black_steel', 'blue_steel', 'red_steel']
 STEELS = {metal: METALS[metal] for metal in ('steel', 'black_steel', 'blue_steel', 'red_steel')}
 SULFUR_BURN = 175
@@ -326,12 +331,13 @@ def generate_item_heats():
             item_heat(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 50)
             item_heat(rm, ('metal', 'brick_mold', metal), f'artisanal:metal/brick_mold/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 50)
     
-    item_heat(rm, ('metal', 'tinplate'), 'artisanal:metal/tinplate', METALS['tin'].ingot_heat_capacity(), METALS['tin'].melt_temperature, 150)
+    item_heat(rm, ('metal', 'tinplate'), 'artisanal:metal/tinplate', METALS['tin'].ingot_heat_capacity(), METALS['tin'].melt_temperature, CANS_MB_AMOUNTS['tin'])
+    item_heat(rm, ('metal', 'stainless_steelplate'), 'artisanal:metal/stainless_steelplate', METALS['stainless_steel'].ingot_heat_capacity(), METALS['stainless_steel'].melt_temperature, CANS_MB_AMOUNTS['stainless_steel'])
     
     for metal in CAN_METALS:
-        item_heat(rm, ('metal', 'can', f'{metal}'), f'artisanal:metal/can/{metal}', METALS[metal].ingot_heat_capacity(), METALS[metal].melt_temperature, 150)
-        item_heat(rm, ('metal', 'can', f'{metal}_sealed'), f'artisanal:metal/can/{metal}_sealed', METALS[metal].ingot_heat_capacity(), METALS[metal].melt_temperature, 150)
-        item_heat(rm, ('metal', 'can', f'{metal}_dented'), f'artisanal:metal/can/{metal}_dented', METALS[metal].ingot_heat_capacity(), METALS[metal].melt_temperature, 150)
+        item_heat(rm, ('metal', 'can', f'{metal}'), f'artisanal:metal/can/{metal}', METALS[metal].ingot_heat_capacity(), METALS[metal].melt_temperature, CANS_MB_AMOUNTS[metal] + 100)
+        item_heat(rm, ('metal', 'can', f'{metal}_sealed'), f'artisanal:metal/can/{metal}_sealed', METALS[metal].ingot_heat_capacity(), METALS[metal].melt_temperature, CANS_MB_AMOUNTS[metal] + 100)
+        item_heat(rm, ('metal', 'can', f'{metal}_dented'), f'artisanal:metal/can/{metal}_dented', METALS[metal].ingot_heat_capacity(), METALS[metal].melt_temperature, CANS_MB_AMOUNTS[metal] + 100)
     
     for metal, metal_data in STEELS.items():
         item_heat(rm, ('metal', 'striker', metal), f'artisanal:metal/striker/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 50)
@@ -467,6 +473,7 @@ def generate_item_models():
         rm.item_model(('metal', 'magnifying_glass_frame', f'{metal}'), f'artisanal:item/metal/magnifying_glass_frame/{metal}').with_lang(lang(f'{metal}_magnifying_glass_frame'))
     
     rm.item_model(('metal', 'tinplate'), 'artisanal:item/metal/tinplate').with_lang(lang('tinplate'))
+    rm.item_model(('metal', 'stainless_steelplate'), 'artisanal:item/metal/stainless_steelplate').with_lang(lang('stainless_steelplate'))
     
     for metal in CAN_METALS:
         rm.item_model(('metal', 'can', f'{metal}'), f'artisanal:item/metal/can/{metal}').with_lang(lang(f'{metal}_can'))
@@ -528,6 +535,9 @@ def generate_anvil_recipes():
         anvil_recipe(rm, ('metal', 'striker', metal), f'tfc:metal/ingot/high_carbon_{metal}', f'artisanal:metal/striker/{metal}', metal_data.tier, Rules.bend_any, Rules.hit_any, Rules.punch_any, bonus=True)
     
     anvil_recipe(rm, ('metal', 'can', 'tin'), 'artisanal:metal/tinplate', 'artisanal:metal/can/tin', 1, Rules.bend_not_last, Rules.hit_not_last, Rules.hit_last)
+    
+    anvil_recipe(rm, ('metal', 'stainless_steelplate'), 'firmalife:metal/sheet/stainless_steel', (4, 'artisanal:metal/stainless_steelplate'), 1, Rules.hit_third_last, Rules.hit_second_last, Rules.hit_last)
+    anvil_recipe(rm, ('metal', 'can', 'stainless_steel'), 'artisanal:metal/stainless_steelplate', 'artisanal:metal/can/stainless_steel', 1, Rules.bend_not_last, Rules.hit_not_last, Rules.hit_last)
     
     for metal in CAN_METALS:
         anvil_recipe(rm, ('metal', 'can', f'{metal}_repair'), f'artisanal:metal/can/{metal}_dented', f'artisanal:metal/can/{metal}', 1, Rules.hit_third_last, Rules.hit_second_last, Rules.hit_last)
@@ -814,6 +824,9 @@ def generate_heat_recipes():
     for metal in DRUM_METALS:
         metal_data = METALS[metal]
         heat_recipe(rm, ('metal', 'drum', metal), f'artisanal:metal/drum/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 1400))
+    
+    heat_recipe(rm, ('metal', 'stainless_steelplate'), 'artisanal:metal/stainless_steelplate', METALS['stainless_steel'].melt_temperature, result_fluid=melt_metal('stainless_steel', CANS_MB_AMOUNTS['stainless_steel']))
+    heat_recipe(rm, ('metal', 'can', 'stainless_steel'), 'artisanal:metal/can/stainless_steel', METALS['stainless_steel'].melt_temperature, result_fluid=melt_metal('stainless_steel', CANS_MB_AMOUNTS['stainless_steel']))
     
 def generate_juicing_recipes():
     print('\tGenerating juicing recipes...')
