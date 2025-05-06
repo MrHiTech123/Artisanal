@@ -1,7 +1,7 @@
 {
   "name": "Preservation",
   "category": "tfc:artisanal",
-  "icon": "artisanal:metal/sealed_tin_can",
+  "icon": "artisanal:metal/can/tin_sealed",
   "pages": [
     {
       "type": "patchouli:text",
@@ -20,17 +20,17 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/pot_1",
+      "recipe": "artisanal:crafting/pot/1_rendered_fat",
       "text": "Then, craft the fired small pot with $(l:tfc:artisanal/soap#rendered_fats)Rendered Fat$(), $(l:tfc:the_world/ores_and_minerals#saltpeter)Saltpeter$(), and up to six $(thing)meats$() or $(thing)vegetables$() that you wish to pot. Pots can hold only one type of food at a time."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/pot_2",
-      "recipe2": "artisanal:crafting/pot_6"
+      "recipe": "artisanal:crafting/pot/2_rendered_fat",
+      "recipe2": "artisanal:crafting/pot/6_rendered_fat"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/pot_4_butter",
+      "recipe": "artisanal:crafting/pot/4_butter",
       "text": "If you have the Firmalife addon installed, you can also use $(thing)Butter$() in place of the Rendered Fat."
     },
     {
@@ -55,33 +55,37 @@
     },
     {
       "type": "tfc:anvil_recipe",
-      "recipe": "artisanal:anvil/metal/tin_can",
+      "recipe": "artisanal:anvil/metal/can/tin",
       "text": "Once welded, Tinplate can then be forged into an empty Tin Can."
     },
     {
-      "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/can_1",
-      "recipe2": "artisanal:crafting/can_2"
+      "type": "patchouli:text",
+      "text": "Placeholder; talk about stainless steelplate"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/can_6",
-      "text": "A heated tin can can be crafted with a $(thing)Hammer$(), $(thing)Flux$(), and up to 6 $(thing)Cannable Foods$() to create a Sealed Tin Can. Only one type of food may be kept in a given can."
+      "recipe": "artisanal:crafting/metal/can/tin_1",
+      "recipe2": "artisanal:crafting/metal/can/tin_2"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/can/tin_6",
+      "text": "A heated can can be crafted with a $(thing)Hammer$(), $(thing)Flux$(), and up to 6 $(thing)Cannable Foods$() to create a Sealed Can. Only one type of food may be kept in a given can."
     },
     {
       "type": "tfc:heat_recipe",
-      "recipe": "artisanal:heating/metal/sterilized_tin_can",
-      "text": "The can is then heated to kill the microbes inside, resulting in a $(thing)Sterilized Tin Can$(). The food inside the can will last forever, until the can is opened, at which point its expiration date will start anew."
+      "recipe": "artisanal:heating/metal/can/tin_sterilized",
+      "text": "The can is then heated to kill the microbes inside, resulting in a $(thing)Sterilized Can$(). The food inside the can will last forever, until the can is opened, at which point its expiration date will start anew."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/open_sterilized_tin_can_can_opener",
+      "recipe": "artisanal:crafting/metal/open_can/tin_sterilized_can_opener",
       "text": "To open a can, craft it with a $(thing)Can Opener$(). This recipe will output the food that was in the can."
     },
     {
       "type": "tfc:instant_barrel_recipe",
       "recipe": "artisanal:barrel/clean_tin_can_soapy_water",
-      "text": "Opening a can will also result in a $(thing)Dirty Tin Can$(). The dirty can can then be cleaned using soapy or normal water. See $(l:tfc:artisanal/soap)Soap$(). After being cleaned, the can can be reused."
+      "text": "Opening a can will also result in a $(thing)Dirty Can$(). The dirty can can then be cleaned using $(l:tfc:artisanal/soap)soapy$() or normal water. After being cleaned, the can can be reused."
     },
     {
       "type": "patchouli:crafting",
@@ -95,46 +99,48 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/open_sterilized_tin_can_hammer",
-      "text": "If you don't have a Can Opener on you, you can also open a can with a Hammer. This results in a $(thing)Dirty Dented Tin Can$()."
+      "recipe": "artisanal:crafting/metal/open_can/tin_sterilized_hammer",
+      "text": "If you don't have a Can Opener on you, you can also open a can with a Hammer. This results in a $(thing)Dirty Dented Can$()."
     },
     {
       "type": "tfc:anvil_recipe",
-      "recipe": "artisanal:anvil/metal/repair_tin_can",
-      "text": "This can must be cleaned first, like normal Dirty Tin Can. Then it can be repaired on an $(thing)Anvil$()."
+      "recipe": "artisanal:anvil/metal/can/tin_repair",
+      "text": "This can must be cleaned first, like normal Dirty Can. Then it can be repaired on an $(thing)Anvil$()."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/metal/remove_can_traits",
+      "recipe": "artisanal:crafting/metal/remove_tin_can_traits",
       "text": "Since cans are sterilized by heating, they can sometimes gain food traits, such as $(thing)Charcoal Grilled$() or $(thing)Wood Grilled$(). These traits have no effect, since sterilized cans don't expire, but can be removed for cosmetic or stacking purposes by placing the can in your crafting grid."
     }
   ],
   "read_by_default": true,
   "extra_recipe_mappings": {
-    "artisanal:metal/tinplate": 1,
-    "artisanal:metal/tin_can": 3,
-    "artisanal:metal/sealed_tin_can": 4,
-    "artisanal:metal/sterilized_tin_can": 6,
-    "artisanal:metal/dirty_tin_can": 8,
-    "artisanal:metal/dirty_dented_tin_can": 8,
-    "artisanal:metal/can_opener/bismuth_bronze": 10,
-    "artisanal:metal/can_opener/black_bronze": 10,
-    "artisanal:metal/can_opener/bronze": 10,
-    "artisanal:metal/can_opener/copper": 10,
-    "artisanal:metal/can_opener/wrought_iron": 10,
-    "artisanal:metal/can_opener/steel": 10,
-    "artisanal:metal/can_opener/black_steel": 10,
-    "artisanal:metal/can_opener/blue_steel": 10,
-    "artisanal:metal/can_opener/red_steel": 10,
-    "artisanal:metal/circle_blade/bismuth_bronze": 11,
-    "artisanal:metal/circle_blade/black_bronze": 11,
-    "artisanal:metal/circle_blade/bronze": 11,
-    "artisanal:metal/circle_blade/copper": 11,
-    "artisanal:metal/circle_blade/wrought_iron": 11,
-    "artisanal:metal/circle_blade/steel": 11,
-    "artisanal:metal/circle_blade/black_steel": 11,
-    "artisanal:metal/circle_blade/blue_steel": 11,
-    "artisanal:metal/circle_blade/red_steel": 11,
-    "artisanal:metal/dented_tin_can": 13
+    "artisanal:metal/tinplate": 7,
+    "artisanal:metal/pickled_double_sheet/wrought_iron": 9,
+    "artisanal:metal/pickled_double_sheet/steel": 9,
+    "artisanal:metal/can/tin": 10,
+    "artisanal:metal/can/tin_sealed": 12,
+    "artisanal:metal/can/tin_sterilized": 14,
+    "artisanal:metal/can/tin_dirty": 16,
+    "artisanal:metal/can/tin_dirty_dented": 16,
+    "artisanal:metal/can_opener/bismuth_bronze": 17,
+    "artisanal:metal/can_opener/black_bronze": 17,
+    "artisanal:metal/can_opener/bronze": 17,
+    "artisanal:metal/can_opener/copper": 17,
+    "artisanal:metal/can_opener/wrought_iron": 17,
+    "artisanal:metal/can_opener/steel": 17,
+    "artisanal:metal/can_opener/black_steel": 17,
+    "artisanal:metal/can_opener/blue_steel": 17,
+    "artisanal:metal/can_opener/red_steel": 17,
+    "artisanal:metal/circle_blade/bismuth_bronze": 18,
+    "artisanal:metal/circle_blade/black_bronze": 18,
+    "artisanal:metal/circle_blade/bronze": 18,
+    "artisanal:metal/circle_blade/copper": 18,
+    "artisanal:metal/circle_blade/wrought_iron": 18,
+    "artisanal:metal/circle_blade/steel": 18,
+    "artisanal:metal/circle_blade/black_steel": 18,
+    "artisanal:metal/circle_blade/blue_steel": 18,
+    "artisanal:metal/circle_blade/red_steel": 18,
+    "artisanal:metal/can/tin_dented": 20
   }
 }

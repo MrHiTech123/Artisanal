@@ -642,14 +642,14 @@ def generate_crafting_recipes():
         disable_recipe(rm, f'tfc:{gem}_cut')
     for i in range(1, 6 + 1):
         for metal in CAN_METALS:
-            damage_shapeless(rm, ('crafting', 'can', f'{metal}_{i}'), (heatable_ingredient(f'artisanal:metal/can/{metal}', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider(f'artisanal:metal/can/{metal}_sealed', meal=canning_modifier, inherit_decay=1, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_canned')
+            damage_shapeless(rm, ('crafting', 'metal', 'can', f'{metal}_{i}'), (heatable_ingredient(f'artisanal:metal/can/{metal}', 120), 'tfc:powder/flux', '#tfc:hammers', *([not_rotten('#artisanal:foods/can_be_canned')] * i)), item_stack_provider(f'artisanal:metal/can/{metal}_sealed', meal=canning_modifier, inherit_decay=1, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_canned')
         
         advanced_shapeless(rm, ('crafting', f'pot', f'{i}_rendered_fat'), ('artisanal:ceramic/small_pot', fluid_item_ingredient('100 #artisanal:rendered_fats'), 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, inherit_decay=0.33, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
         advanced_shapeless(rm, ('crafting', f'pot', f'{i}_butter'), ('artisanal:ceramic/small_pot', 'firmalife:food/butter', 'tfc:powder/saltpeter', *([not_rotten('#artisanal:foods/can_be_potted')] * i)), item_stack_provider('artisanal:ceramic/closed_small_pot', meal=canning_modifier, remove_butter=True, inherit_decay=0.33, copy_oldest_food=True, other_modifier='artisanal:homogenous_ingredients'), primary_ingredient='#artisanal:foods/can_be_potted')
         
     for metal in CAN_METALS:
         for can_status in CAN_STATUSES:
-            rm.recipe(('crafting', f'open_can', f'{metal}_{can_status}_hammer'), 'tfc:extra_products_shapeless_crafting',
+            rm.recipe(('crafting', 'metal', 'open_can', f'{metal}_{can_status}_hammer'), 'tfc:extra_products_shapeless_crafting',
                 {
                     "__comment__": "This file was automatically created by mcresources",
                     "recipe": {
@@ -666,7 +666,7 @@ def generate_crafting_recipes():
                     ]
                 }
             )
-            rm.recipe(('crafting', 'open_can', f'{metal}_{can_status}_can_opener'), 'tfc:extra_products_shapeless_crafting',
+            rm.recipe(('crafting', 'metal', 'open_can', f'{metal}_{can_status}_can_opener'), 'tfc:extra_products_shapeless_crafting',
                 {
                     "__comment__": "This file was automatically created by mcresources",
                     "recipe": {
