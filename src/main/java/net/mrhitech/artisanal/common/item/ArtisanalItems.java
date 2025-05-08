@@ -34,8 +34,7 @@ public class ArtisanalItems {
     public static final RegistryObject<Item> QUILL = register("quill", () -> new Item(new Item.Properties()));
     
     public static final RegistryObject<Item> CLEANED_SUGARCANE = register("food/cleaned_sugarcane", () -> new Item(new Item.Properties().food(ArtisanalFoods.BLANK_FOOD)));
-    public static final RegistryObject<Item> WET_BAGASSE = register("wet_bagasse", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> DRY_BAGASSE = register("dry_bagasse", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BAGASSE = register("bagasse", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> PERISHABLE_SUGAR = register("perishable_sugar", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> NON_PERISHABLE_SUGAR = register("non_perishable_sugar", () -> new Item(new Item.Properties()));
     

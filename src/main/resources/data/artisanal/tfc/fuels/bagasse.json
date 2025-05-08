@@ -1,7 +1,7 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "ingredient": {
-    "item": "artisanal:dry_bagasse"
+    "item": "artisanal:bagasse"
   },
   "duration": 750,
   "temperature": 350

@@ -24,8 +24,7 @@ public class ArtisanalCreativeTabs {
             event.accept(ArtisanalItems.TEMPERED_FEATHER);
             event.accept(ArtisanalItems.QUILL);
             
-            event.accept(ArtisanalItems.WET_BAGASSE);
-            event.accept(ArtisanalItems.DRY_BAGASSE);
+            event.accept(ArtisanalItems.BAGASSE);
             
             event.accept(ArtisanalItems.MILK_FLAKES);
             event.accept(ArtisanalItems.POWDERED_MILK);
@@ -53,8 +52,7 @@ public class ArtisanalCreativeTabs {
         }
         
         if (event.getTabKey() == TFCCreativeTabs.FLORA.tab().getKey()) {
-            event.accept(ArtisanalItems.WET_BAGASSE);
-            event.accept(ArtisanalItems.DRY_BAGASSE);
+            event.accept(ArtisanalItems.BAGASSE);
         }
         
         if (event.getTabKey() == TFCCreativeTabs.FOOD.tab().getKey()) {

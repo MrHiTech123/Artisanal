@@ -295,7 +295,7 @@ def generate_lamp_fuels():
 def generate_fuels():
     print('\tGenerating fuels...')
     generate_lamp_fuels()
-    fuel_item(rm, ('dry_bagasse'), 'artisanal:dry_bagasse', 750, 350)
+    fuel_item(rm, ('bagasse'), 'artisanal:bagasse', 750, 350)
     
     
     
@@ -455,8 +455,7 @@ def generate_item_models():
     rm.item_model('quill', 'artisanal:item/quill').with_lang(lang('quill'))
     
     rm.item_model(('food', 'cleaned_sugarcane'), 'artisanal:item/food/cleaned_sugarcane').with_lang(lang('cleaned_sugarcane'))
-    rm.item_model('wet_bagasse', 'artisanal:item/wet_bagasse').with_lang(lang('wet_bagasse'))
-    rm.item_model('dry_bagasse', 'artisanal:item/dry_bagasse').with_lang(lang('dry_bagasse'))
+    rm.item_model('bagasse', 'artisanal:item/bagasse').with_lang(lang('bagasse'))
     rm.item_model('perishable_sugar', 'artisanal:item/perishable_sugar').with_lang(lang('perishable_sugar'))
     rm.item_model('non_perishable_sugar', 'artisanal:item/non_perishable_sugar').with_lang('Non-Perishable Sugar')
     
@@ -589,7 +588,6 @@ def generate_barrel_recipes():
     disable_recipe(rm, 'firmaciv:barrel/large_waterproof_hide_tallow')
     barrel_sealed_recipe(rm, 'large_waterproof_hide_rendered_fat', 'Large Waterproof Hide', 8000, 'tfc:large_prepared_hide', '100 #artisanal:rendered_fats', 'firmaciv:large_waterproof_hide')
     
-    barrel_instant_recipe(rm, 'dry_bagasse', 'artisanal:wet_bagasse', None, 'artisanal:dry_bagasse', '200 artisanal:sugarcane_juice')
     barrel_sealed_recipe(rm, 'filtered_sugarcane_juice', 'Filtering Sugarcane Juice', 8000, 'tfc:jute_net', '250 artisanal:sugarcane_juice', 'tfc:dirty_jute_net', '250 artisanal:filtered_sugarcane_juice')
     barrel_sealed_recipe(rm, 'alkalized_sugarcane_juice', 'Alkalizing Sugarcane Juice', 8000, 'tfc:powder/lime', '500 artisanal:filtered_sugarcane_juice', None, '500 artisanal:alkalized_sugarcane_juice')
     barrel_sealed_recipe(rm, 'clarified_sugarcane_juice', 'Clarifying Sugarcane Juice', 8000, 'tfc:jute_net', '250 artisanal:alkalized_sugarcane_juice', 'tfc:dirty_jute_net', '250 artisanal:clarified_sugarcane_juice')
@@ -954,7 +952,7 @@ def generate_pot_recipes():
     
 def generate_quern_recipes():
     print('\tGenerating quern recipes...')
-    quern_recipe(rm, ('food', 'cleaned_sugarcane'), not_rotten('artisanal:food/cleaned_sugarcane'), 'artisanal:dry_bagasse')
+    quern_recipe(rm, ('food', 'cleaned_sugarcane'), not_rotten('artisanal:food/cleaned_sugarcane'), 'artisanal:bagasse')
     quern_recipe(rm, ('food', 'red_apple'), not_rotten('tfc:food/red_apple'), 'artisanal:food/fruit_mash')
     quern_recipe(rm, ('food', 'green_apple'), not_rotten('tfc:food/green_apple'), 'artisanal:food/fruit_mash')
     quern_recipe(rm, ('food', 'lemon'), not_rotten('tfc:food/lemon'), 'artisanal:food/fruit_mash')
@@ -1051,11 +1049,11 @@ def generate_item_tags():
     rm.item_tag('metal/sterilized_cans', *[f'artisanal:metal/can/{metal}_sterilized' for metal in CAN_METALS])
     
     
-    rm.item_tag('tfc:firepit_kindling', 'artisanal:dry_bagasse')
+    rm.item_tag('tfc:firepit_kindling', 'artisanal:bagasse')
     rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'], 'artisanal:stone/flint_and/pyrite', 'artisanal:stone/flint_and/cut_pyrite')
-    rm.item_tag('tfc:compost_browns_high', 'artisanal:dry_bagasse')
+    rm.item_tag('tfc:compost_browns_high', 'artisanal:bagasse')
     rm.item_tag('tfc:dynamic_bowl_items', 'artisanal:dirty_bowl')
-    rm.item_tag('tfc:firepit_fuel', 'artisanal:dry_bagasse')
+    rm.item_tag('tfc:firepit_fuel', 'artisanal:bagasse')
     rm.item_tag('tfc:foods', '#tfc:sweetener')
     rm.item_tag('tfc:foods/fruits', 'artisanal:food/fruit_mash')
     rm.item_tag('tfc:foods/vegetables', 'artisanal:food/carrot_mash', 'artisanal:food/tomato_mash')
