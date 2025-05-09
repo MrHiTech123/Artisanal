@@ -123,5 +123,11 @@ public class ArtisanalCreativeTabs {
             event.accept(ArtisanalItems.FLINT_AND_PYRITE.get());
             event.accept(ArtisanalItems.FLINT_AND_CUT_PYRITE.get());
         }
+        
+        if (event.getTabKey() == TFCCreativeTabs.EARTH.tab().getKey()) {
+            event.accept(ArtisanalItems.DIRTY_BURLAP_CLOTH.get());
+            event.accept(ArtisanalItems.DIRTY_SILK_CLOTH.get());
+            event.accept(ArtisanalItems.DIRTY_WOOL_CLOTH.get());
+        }
     }
 }

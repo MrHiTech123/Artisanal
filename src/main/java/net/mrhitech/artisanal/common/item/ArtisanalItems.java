@@ -110,6 +110,11 @@ public class ArtisanalItems {
             register("metal/pickled_double_sheet/" + metal.getMetal().getSerializedName().toLowerCase(Locale.ROOT),
                     () -> new Item(new Item.Properties().rarity(metal.getMetal().getRarity()))));
     
+    public static final RegistryObject<Item> DIRTY_BURLAP_CLOTH = register("dirty_burlap_cloth", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DIRTY_SILK_CLOTH = register("dirty_silk_cloth", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DIRTY_WOOL_CLOTH = register("dirty_wool_cloth", () -> new Item(new Item.Properties()));
+    
+    
     public static <T extends Item> RegistryObject<T> register(String name, Supplier<T> supplier) {
         return ITEMS.register(name, supplier);
     }

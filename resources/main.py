@@ -27,7 +27,7 @@ class CleaningRecipe(NamedTuple):
     item_name: str
     input_item: str
     output_item: str
-    
+
 CLEANABLES = (
     CleaningRecipe('jute_net', 'tfc:dirty_jute_net', 'tfc:jute_net'),
     CleaningRecipe('soup_bowl', '#tfc:dynamic_bowl_items', item_stack_provider(empty_bowl=True)),
@@ -46,7 +46,10 @@ CLEANABLES = (
             CleaningRecipe(f'dented_{metal}_can', f'artisanal:metal/can/{metal}_dirty_dented', f'artisanal:metal/can/{metal}_dented')
         )
     ],
-    CleaningRecipe('small_pot', 'artisanal:ceramic/dirty_small_pot', 'artisanal:ceramic/small_pot')
+    CleaningRecipe('small_pot', 'artisanal:ceramic/dirty_small_pot', 'artisanal:ceramic/small_pot'),
+    CleaningRecipe('burlap_cloth', 'artisanal:dirty_burlap_cloth', 'tfc:burlap_cloth'),
+    CleaningRecipe('silk_cloth', 'artisanal:dirty_silk_cloth', 'tfc:silk_cloth'),
+    CleaningRecipe('wool_cloth', 'artisanal:dirty_wool_cloth', 'tfc:wool_cloth')
 )
 
 def disable_data(rm: ResourceManager, name_parts: ResourceIdentifier):
@@ -512,6 +515,9 @@ def generate_item_models():
     rm.item_model(('metal', 'pickled_double_sheet', 'wrought_iron'), 'artisanal:item/metal/pickled_double_sheet/wrought_iron').with_lang(lang('pickled_wrought_iron_double_sheet'))
     rm.item_model(('metal', 'pickled_double_sheet', 'steel'), 'artisanal:item/metal/pickled_double_sheet/steel').with_lang(lang('pickled_steel_double_sheet'))
     
+    rm.item_model('dirty_burlap_cloth', 'artisanal:item/dirty_burlap_cloth').with_lang(lang('dirty_burlap_cloth'))
+    rm.item_model('dirty_silk_cloth', 'artisanal:item/dirty_silk_cloth').with_lang(lang('dirty_silk_cloth'))
+    rm.item_model('dirty_wool_cloth', 'artisanal:item/dirty_wool_cloth').with_lang(lang('dirty_wool_cloth'))
     
     
 def generate_models():
@@ -580,17 +586,27 @@ def generate_barrel_recipes():
         barrel_sealed_recipe(rm, ('clean', cleanable.item_name, 'water'), f'Cleaning {lang(cleanable.item_name)}', 8000, cleanable.input_item, '100 minecraft:water', output_item=cleanable.output_item)
         barrel_instant_recipe(rm, ('clean', cleanable.item_name, 'soapy_water'), cleanable.input_item, '100 artisanal:soapy_water', output_item=cleanable.output_item)
     
-    
-    
     disable_recipe(rm, 'tfc:barrel/candle')
     barrel_sealed_recipe(rm, 'candle', 'Candle', 4000, '#forge:string', '40 #artisanal:rendered_fats', 'tfc:candle')
     
     disable_recipe(rm, 'firmaciv:barrel/large_waterproof_hide_tallow')
     barrel_sealed_recipe(rm, 'large_waterproof_hide_rendered_fat', 'Large Waterproof Hide', 8000, 'tfc:large_prepared_hide', '100 #artisanal:rendered_fats', 'firmaciv:large_waterproof_hide')
     
-    barrel_sealed_recipe(rm, 'filtered_sugarcane_juice', 'Filtering Sugarcane Juice', 8000, 'tfc:jute_net', '250 artisanal:sugarcane_juice', 'tfc:dirty_jute_net', '250 artisanal:filtered_sugarcane_juice')
+    barrel_instant_recipe(rm, ('olive_oil_water', 'burlap_cloth'), 'tfc:burlap_cloth', '500 tfc:olive_oil_water', 'artisanal:dirty_burlap_cloth', '100 tfc:olive_oil')
+    barrel_instant_recipe(rm, ('olive_oil_water', 'silk_cloth'), 'tfc:silk_cloth', '500 tfc:olive_oil_water', 'artisanal:dirty_silk_cloth', '100 tfc:olive_oil')
+    barrel_instant_recipe(rm, ('olive_oil_water', 'wool_cloth'), 'tfc:wool_cloth', '500 tfc:olive_oil_water', 'artisanal:dirty_wool_cloth', '100 tfc:olive_oil')
+    
+    barrel_instant_recipe(rm, ('sugarcane_juice', 'filtered', 'jute_net'), 'tfc:jute_net', '250 artisanal:sugarcane_juice', 'tfc:dirty_jute_net', '250 artisanal:filtered_sugarcane_juice')
+    barrel_instant_recipe(rm, ('sugarcane_juice', 'filtered', 'burlap_cloth'), 'tfc:burlap_cloth', '500 artisanal:sugarcane_juice', 'artisanal:dirty_burlap_cloth', '500 artisanal:filtered_sugarcane_juice')
+    barrel_instant_recipe(rm, ('sugarcane_juice', 'filtered', 'silk_cloth'), 'tfc:silk_cloth', '500 artisanal:sugarcane_juice', 'artisanal:dirty_silk_cloth', '500 artisanal:filtered_sugarcane_juice')
+    barrel_instant_recipe(rm, ('sugarcane_juice', 'filtered', 'wool_cloth'), 'tfc:wool_cloth', '500 artisanal:sugarcane_juice', 'artisanal:dirty_wool_cloth', '500 artisanal:filtered_sugarcane_juice')
+    
+    barrel_instant_recipe(rm, ('sugarcane_juice', 'clarified', 'jute_net'), 'tfc:jute_net', '250 artisanal:alkalized_sugarcane_juice', 'tfc:dirty_jute_net', '250 artisanal:clarified_sugarcane_juice')
+    barrel_instant_recipe(rm, ('sugarcane_juice', 'clarified', 'burlap_cloth'), 'tfc:burlap_cloth', '500 artisanal:alkalized_sugarcane_juice', 'artisanal:dirty_burlap_cloth', '500 artisanal:clarified_sugarcane_juice')
+    barrel_instant_recipe(rm, ('sugarcane_juice', 'clarified', 'silk_cloth'), 'tfc:silk_cloth', '500 artisanal:alkalized_sugarcane_juice', 'artisanal:dirty_silk_cloth', '500 artisanal:clarified_sugarcane_juice')
+    barrel_instant_recipe(rm, ('sugarcane_juice', 'clarified', 'wool_cloth'), 'tfc:wool_cloth', '500 artisanal:alkalized_sugarcane_juice', 'artisanal:dirty_wool_cloth', '500 artisanal:clarified_sugarcane_juice')
+    
     barrel_sealed_recipe(rm, 'alkalized_sugarcane_juice', 'Alkalizing Sugarcane Juice', 8000, 'tfc:powder/lime', '500 artisanal:filtered_sugarcane_juice', None, '500 artisanal:alkalized_sugarcane_juice')
-    barrel_sealed_recipe(rm, 'clarified_sugarcane_juice', 'Clarifying Sugarcane Juice', 8000, 'tfc:jute_net', '250 artisanal:alkalized_sugarcane_juice', 'tfc:dirty_jute_net', '250 artisanal:clarified_sugarcane_juice')
     
     barrel_sealed_recipe(rm, 'paper', 'Bleaching Paper', 1000, 'tfc:unrefined_paper', '25 tfc:lye', 'minecraft:paper')
     

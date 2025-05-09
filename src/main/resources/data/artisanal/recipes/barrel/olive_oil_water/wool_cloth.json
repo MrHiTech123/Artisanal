@@ -1,0 +1,20 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_instant",
+  "input_item": {
+    "ingredient": {
+      "item": "tfc:wool_cloth"
+    }
+  },
+  "input_fluid": {
+    "ingredient": "tfc:olive_oil_water",
+    "amount": 500
+  },
+  "output_item": {
+    "item": "artisanal:dirty_wool_cloth"
+  },
+  "output_fluid": {
+    "fluid": "tfc:olive_oil",
+    "amount": 100
+  }
+}
