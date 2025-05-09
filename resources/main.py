@@ -382,6 +382,11 @@ def generate_item_size_weights():
     item_size(rm, 'dirty_jar', 'artisanal:dirty_jar', Size.tiny, Weight.medium)
     item_size(rm, 'dirty_bowl', 'artisanal:dirty_bowl', Size.small, Weight.light)
     
+    item_size(rm, 'dirty_burlap_cloth', 'artisanal:dirty_burlap_cloth', Size.small, Weight.very_light)
+    item_size(rm, 'dirty_silk_cloth', 'artisanal:dirty_silk_cloth', Size.small, Weight.light)
+    item_size(rm, 'dirty_wool_cloth', 'artisanal:dirty_wool_cloth', Size.small, Weight.light)
+    
+    
 
 def generate_data():
     print('Generating data...')
