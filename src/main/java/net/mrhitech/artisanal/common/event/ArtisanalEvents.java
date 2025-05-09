@@ -1,17 +1,22 @@
 package net.mrhitech.artisanal.common.event;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.forgespi.locating.IModFile;
+import net.minecraftforge.registries.MissingMappingsEvent;
 import net.minecraftforge.resource.PathPackResources;
 import net.mrhitech.artisanal.Artisanal;
+import net.mrhitech.artisanal.common.item.ArtisanalItems;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -23,7 +28,6 @@ public class ArtisanalEvents {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         
         bus.addListener(ArtisanalEvents::onPackFinder);
-        
     }
     
     public static void onPackFinder(AddPackFindersEvent event)
