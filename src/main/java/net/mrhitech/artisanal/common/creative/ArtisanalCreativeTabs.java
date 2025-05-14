@@ -87,12 +87,12 @@ public class ArtisanalCreativeTabs {
             event.accept(ArtisanalItems.TINPLATE);
             event.accept(ArtisanalItems.STAINLESS_STEELPLATE);
             for (CanMetal metal : CanMetal.values()) {
-                event.accept(ArtisanalItems.TIN_CANS.get(metal));
-                event.accept(ArtisanalItems.SEALED_TIN_CANS.get(metal));
-                event.accept(ArtisanalItems.STERILIZED_TIN_CANS.get(metal));
-                event.accept(ArtisanalItems.DIRTY_TIN_CANS.get(metal));
-                event.accept(ArtisanalItems.DENTED_TIN_CANS.get(metal));
-                event.accept(ArtisanalItems.DIRTY_DENTED_TIN_CANS.get(metal));
+                event.accept(ArtisanalItems.CANS.get(metal));
+                event.accept(ArtisanalItems.SEALED_CANS.get(metal));
+                event.accept(ArtisanalItems.STERILIZED_CANS.get(metal));
+                event.accept(ArtisanalItems.DIRTY_CANS.get(metal));
+                event.accept(ArtisanalItems.DENTED_CANS.get(metal));
+                event.accept(ArtisanalItems.DIRTY_DENTED_CANS.get(metal));
             }
             
             for (Metal.Default metal : Metal.Default.values()) {

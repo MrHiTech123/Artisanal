@@ -56,17 +56,17 @@ public class ArtisanalItems {
     public static final RegistryObject<Item> TINPLATE = register("metal/tinplate", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> STAINLESS_STEELPLATE = register("metal/stainless_steelplate", () -> new Item(new Item.Properties()));
     
-    public static final Map<CanMetal, RegistryObject<Item>> TIN_CANS = Helpers.mapOfKeys(CanMetal.class, metal -> 
+    public static final Map<CanMetal, RegistryObject<Item>> CANS = Helpers.mapOfKeys(CanMetal.class, metal -> 
             register("metal/can/" + metal.getSerializedName(), () -> new Item(new Item.Properties())));
-    public static final Map<CanMetal, RegistryObject<Item>> SEALED_TIN_CANS = Helpers.mapOfKeys(CanMetal.class, metal -> 
+    public static final Map<CanMetal, RegistryObject<Item>> SEALED_CANS = Helpers.mapOfKeys(CanMetal.class, metal -> 
             register("metal/can/" + metal.getSerializedName() + "_sealed", () -> new Item(new Item.Properties())));
-    public static final Map<CanMetal, RegistryObject<Item>> STERILIZED_TIN_CANS = Helpers.mapOfKeys(CanMetal.class, metal -> 
+    public static final Map<CanMetal, RegistryObject<Item>> STERILIZED_CANS = Helpers.mapOfKeys(CanMetal.class, metal -> 
             register("metal/can/" + metal.getSerializedName() + "_sterilized", () -> new Item(new Item.Properties())));
-    public static final Map<CanMetal, RegistryObject<Item>> DIRTY_TIN_CANS = Helpers.mapOfKeys(CanMetal.class, metal -> 
+    public static final Map<CanMetal, RegistryObject<Item>> DIRTY_CANS = Helpers.mapOfKeys(CanMetal.class, metal -> 
             register("metal/can/" + metal.getSerializedName() + "_dirty", () -> new Item(new Item.Properties())));
-    public static final Map<CanMetal, RegistryObject<Item>> DENTED_TIN_CANS = Helpers.mapOfKeys(CanMetal.class, metal -> 
+    public static final Map<CanMetal, RegistryObject<Item>> DENTED_CANS = Helpers.mapOfKeys(CanMetal.class, metal -> 
             register("metal/can/" + metal.getSerializedName() + "_dented", () -> new Item(new Item.Properties())));
-    public static final Map<CanMetal, RegistryObject<Item>> DIRTY_DENTED_TIN_CANS = Helpers.mapOfKeys(CanMetal.class, metal -> 
+    public static final Map<CanMetal, RegistryObject<Item>> DIRTY_DENTED_CANS = Helpers.mapOfKeys(CanMetal.class, metal -> 
             register("metal/can/" + metal.getSerializedName() + "_dirty_dented", () -> new Item(new Item.Properties())));
     
     public static final Map<Metal.Default, RegistryObject<Item>> CAN_OPENERS = Helpers.mapOfKeys(Metal.Default.class,
