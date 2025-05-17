@@ -1,11 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "type": "firmalife:vat",
-  "input_item": {
-    "ingredient": {
-      "item": "minecraft:stick"
-    }
-  },
   "input_fluid": {
     "ingredient": "artisanal:clarified_sugarcane_juice",
     "amount": 200

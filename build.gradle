@@ -201,7 +201,7 @@ dependencies {
     // AFC
     implementation fg.deobf("curse.maven:arborfirmacraft-877545:5525258")
     // Firmalife
-    implementation fg.deobf("curse.maven:firmalife-453394:6249092")
+    implementation fg.deobf("curse.maven:firmalife-453394:6539645")
     // Jade
     implementation fg.deobf("curse.maven:jade-324717:5493390")
     // Lithic Addon
