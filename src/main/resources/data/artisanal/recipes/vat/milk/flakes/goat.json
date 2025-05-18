@@ -1,0 +1,13 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "ingredient": "artisanal:condensed_goat_milk",
+    "amount": 100
+  },
+  "output_item": {
+    "item": "artisanal:goat_milk_flakes"
+  },
+  "length": 3000,
+  "temperature": 100
+}

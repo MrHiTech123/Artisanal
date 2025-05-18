@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "firmalife:vat",
+  "input_fluid": {
+    "ingredient": "firmalife:yak_milk",
+    "amount": 2
+  },
+  "output_fluid": {
+    "fluid": "artisanal:condensed_yak_milk",
+    "amount": 1
+  },
+  "length": 3000,
+  "temperature": 100
+}

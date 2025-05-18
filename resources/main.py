@@ -993,15 +993,23 @@ def generate_quern_recipes():
 def generate_vat_recipes():
     print('\tGenerating vat recipes...')
     vat_recipe(rm, 'sugar_water', not_rotten('#tfc:sweetener'), '1000 minecraft:water', output_fluid='500 firmalife:sugar_water')
-    vat_recipe(rm, 'perishable_sugar', None, '200 artisanal:sugarcane_juice', 'artisanal:perishable_sugar', '20 artisanal:molasses')
-    vat_recipe(rm, 'perishable_sugar_from_filtered', None, '200 artisanal:filtered_sugarcane_juice', 'artisanal:perishable_sugar', '20 artisanal:molasses')
-    vat_recipe(rm, 'non_perishable_sugar', None, '200 artisanal:clarified_sugarcane_juice', 'artisanal:non_perishable_sugar', '20 artisanal:molasses')
+    vat_recipe(rm, 'perishable_sugar', None, '200 artisanal:sugarcane_juice', 'artisanal:perishable_sugar', '20 artisanal:molasses', temp=107)
+    vat_recipe(rm, 'perishable_sugar_from_filtered', None, '200 artisanal:filtered_sugarcane_juice', 'artisanal:perishable_sugar', '20 artisanal:molasses', temp=107)
+    vat_recipe(rm, 'non_perishable_sugar', None, '200 artisanal:clarified_sugarcane_juice', 'artisanal:non_perishable_sugar', '20 artisanal:molasses', temp=107)
     
-    vat_recipe(rm, 'tallow', 'artisanal:suet', '100 minecraft:water', output_fluid='100 tfc:tallow')
-    vat_recipe(rm, 'lard', 'artisanal:pork_fat', '100 minecraft:water', output_fluid='100 artisanal:lard')
-    vat_recipe(rm, 'lard_from_bear', 'artisanal:bear_fat', '100 minecraft:water', output_fluid='100 artisanal:lard')
-    vat_recipe(rm, 'schmaltz', 'artisanal:poultry_fat', '100 minecraft:water', output_fluid='100 artisanal:schmaltz')
-    vat_recipe(rm, 'tallow_from_animal', 'artisanal:animal_fat', '100 minecraft:water', output_fluid='100 tfc:tallow')
+    vat_recipe(rm, ('render', 'tallow'), 'artisanal:suet', '100 minecraft:water', output_fluid='100 tfc:tallow')
+    vat_recipe(rm, ('render', 'lard'), 'artisanal:pork_fat', '100 minecraft:water', output_fluid='100 artisanal:lard')
+    vat_recipe(rm, ('render', 'lard_from_bear'), 'artisanal:bear_fat', '100 minecraft:water', output_fluid='100 artisanal:lard')
+    vat_recipe(rm, ('render', 'schmaltz'), 'artisanal:poultry_fat', '100 minecraft:water', output_fluid='100 artisanal:schmaltz')
+    vat_recipe(rm, ('render', 'tallow_from_animal'), 'artisanal:animal_fat', '100 minecraft:water', output_fluid='100 tfc:tallow')
+    
+    vat_recipe(rm, ('milk', 'condensed', 'cow'), None, '2 minecraft:milk', None, '1 artisanal:condensed_milk', length=3000, temp=100)
+    vat_recipe(rm, ('milk', 'condensed', 'goat'), None, '2 firmalife:goat_milk', None, '1 artisanal:condensed_goat_milk', length=3000, temp=100)
+    vat_recipe(rm, ('milk', 'condensed', 'yak'), None, '2 firmalife:yak_milk', None, '1 artisanal:condensed_yak_milk', length=3000, temp=100)
+    vat_recipe(rm, ('milk', 'flakes', 'cow'), None, '100 artisanal:condensed_milk', 'artisanal:milk_flakes', length=3000, temp=100)
+    vat_recipe(rm, ('milk', 'flakes', 'goat'), None, '100 artisanal:condensed_goat_milk', 'artisanal:goat_milk_flakes', length=3000, temp=100)
+    vat_recipe(rm, ('milk', 'flakes', 'yak'), None, '100 artisanal:condensed_yak_milk', 'artisanal:yak_milk_flakes', length=3000, temp=100)
+    
     vat_recipe(rm, 'salt', input_item=None, input_fluid='125 tfc:salt_water', output_item='tfc:powder/salt')
     
     disable_recipe(rm, 'firmalife:vat/sugar_water')
