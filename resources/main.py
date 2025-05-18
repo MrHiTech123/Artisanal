@@ -790,6 +790,7 @@ def generate_crafting_recipes():
         rm.crafting_shaped(('crafting', 'metal', 'drum', metal), ('X X', 'X X', 'XXX'), {'X': f'tfc:metal/sheet/{metal}'}, f'artisanal:metal/drum/{metal}')
     
     damage_shapeless(rm, ('crafting', 'ceramic', 'unfired_brick'), ('#artisanal:brick_molds', 'minecraft:clay_ball', 'minecraft:clay_ball'), 'tfc:ceramic/unfired_brick')
+    rm.crafting_shapeless(('crafting', 'powder', 'sulfur'), ('tfc:powder/pyrite'), 'tfc:powder/sulfur')
     
 def generate_glassworking_recipes():
     print("\tGenerating glassworking recipes")
@@ -986,11 +987,7 @@ def generate_quern_recipes():
     quern_recipe(rm, ('powdered_goat_milk'), 'artisanal:goat_milk_flakes', 'artisanal:powdered_goat_milk', 2)
     quern_recipe(rm, ('powdered_yak_milk'), 'artisanal:yak_milk_flakes', 'artisanal:powdered_yak_milk', 2)
     
-    disable_recipe(rm, 'tfc:quern/pyrite')
-    disable_recipe(rm, 'tfc:quern/pyrite_cut')
     disable_recipe(rm, 'firmaciv:quern/pyrite')
-    quern_recipe(rm, 'pyrite', 'tfc:ore/pyrite', 'tfc:powder/sulfur', 4)
-    quern_recipe(rm, 'pyrite_cut', 'tfc:gem/pyrite', 'tfc:powder/sulfur', 4)
     
 
 def generate_vat_recipes():
