@@ -28,6 +28,11 @@ public class UniversalIngredient extends Ingredient {
     public boolean test(@Nullable ItemStack stack) {
         return true;
     }
+
+    @Override
+    public IIngredientSerializer<?> getSerializer() {
+        return Serializer.INSTANCE;
+    }
     
     public enum Serializer implements IIngredientSerializer<UniversalIngredient> {
         INSTANCE;
