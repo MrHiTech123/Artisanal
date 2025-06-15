@@ -11,17 +11,18 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 public class UniversalIngredient extends Ingredient {
     
-    private static final Stream<ItemValue> allItems = ForgeRegistries.ITEMS.getKeys().stream().map(resourceLocation -> 
+    private static final Supplier<Stream<ItemValue>> allItems = () -> ForgeRegistries.ITEMS.getKeys().stream().map(resourceLocation -> 
                 new Ingredient.ItemValue(
                         new ItemStack(Optional.ofNullable(ForgeRegistries.ITEMS.getValue(resourceLocation)).orElse(Items.AIR))
                 ));
     
     protected UniversalIngredient() {
-        super(allItems);
+        super(allItems.get());
     }
     
     @Override
