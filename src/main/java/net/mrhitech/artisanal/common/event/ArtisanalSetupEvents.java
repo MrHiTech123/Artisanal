@@ -22,9 +22,7 @@ public class ArtisanalSetupEvents {
     }
     
     private static void setup(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            modifyBlockEntityTypes();
-        });
+        event.enqueueWork(ArtisanalSetupEvents::modifyBlockEntityTypes);
     }
     private static void modifyBlockEntityTypes() {
         modifyBlockEntityType(TFCBlockEntities.BARREL.get(), ArtisanalBlocks.DRUMS.values().stream().map(RegistryObject::get));
