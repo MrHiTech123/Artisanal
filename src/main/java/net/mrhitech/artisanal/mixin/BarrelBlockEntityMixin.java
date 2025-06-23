@@ -55,11 +55,13 @@ public abstract class BarrelBlockEntityMixin extends TickableInventoryBlockEntit
                 fluid -> Helpers.isFluid(fluid.getFluid(), usableFluids));
     }
     
-    // @Inject(method = "saveAdditional", remap = false, at = @At("RETURN"))
-    // public void saveAdditional$Inject(CompoundTag nbt, CallbackInfo info) {
-    //     nbt.putBoolean("isDrum", isDrum);
-    // }
-
+    @Inject(method = "<init>", remap = false, at = @At("RETURN"))
+    public void constructor$Inject(BlockPos pos, BlockState state, CallbackInfo info) {
+        if (getBlockState().getBlock() instanceof DrumBlock) {
+            enableDrumFluids();
+        }
+    }
+    
     @Inject(method = "loadAdditional", remap = false, at = @At("RETURN"))
     public void loadAdditional$Inject(CompoundTag nbt, CallbackInfo info) {
         if (getBlockState().getBlock() instanceof DrumBlock) {
