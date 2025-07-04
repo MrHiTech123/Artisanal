@@ -5,7 +5,8 @@
   "intoxication": 2000,
   "food": {
     "fruit": 0.5,
-    "vegetables": 0.5
+    "vegetables": 0.5,
+    "hunger": 0
   },
   "may_drink_when_full": true
 }

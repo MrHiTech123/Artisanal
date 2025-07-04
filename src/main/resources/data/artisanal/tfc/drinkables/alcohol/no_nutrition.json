@@ -5,5 +5,8 @@
   },
   "thirst": 10,
   "intoxication": 4000,
+  "food": {
+    "hunger": 0
+  },
   "may_drink_when_full": true
 }

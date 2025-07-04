@@ -284,15 +284,15 @@ def generate_drinkables():
     drinkable(rm, ('peach_juice'), 'artisanal:peach_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.7})
     drinkable(rm, ('pineapple_juice'), 'artisanal:pineapple_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'fruit': 0.7})
     drinkable(rm, ('tomato_juice'), 'artisanal:tomato_juice', thirst=10, food={'hunger': 0, 'saturation': 0, 'vegetables': 0.7})
-    drinkable(rm, ('screwdriver'), 'artisanal:screwdriver', thirst=10, food={'fruit': 0.5, 'vegetables': 0.5}, intoxication=2000, allow_full=True)
+    drinkable(rm, ('screwdriver'), 'artisanal:screwdriver', thirst=10, food={'fruit': 0.5, 'vegetables': 0.5, 'hunger': 0}, intoxication=2000, allow_full=True)
     
     
     disable_data(rm, 'tfc:tfc/drinkables/alcohol')
-    drinkable(rm, ('alcohol/fruit'), '#artisanal:alcohols/fruit', thirst=10, intoxication=4000, allow_full=True, food={'fruit': 0.7})
-    drinkable(rm, ('alcohol/grain'), '#artisanal:alcohols/grain', thirst=10, intoxication=4000, allow_full=True, food={'grain': 0.7})
-    drinkable(rm, ('alcohol/vegetable'), '#artisanal:alcohols/vegetable', thirst=10, intoxication=4000, allow_full=True, food={'vegetables': 0.7})
-    drinkable(rm, ('alcohol/fruit_and_veg'), '#artisanal:alcohols/fruit_and_veg', thirst=10, intoxication=4000, allow_full=True, food={'fruit': 0.7, 'vegetables': 0.7})
-    drinkable(rm, ('alcohol/no_nutrition'), '#artisanal:alcohols/no_nutrition', thirst=10, intoxication=4000, allow_full=True)
+    drinkable(rm, ('alcohol/fruit'), '#artisanal:alcohols/fruit', thirst=10, intoxication=4000, allow_full=True, food={'fruit': 0.7, 'hunger': 0})
+    drinkable(rm, ('alcohol/grain'), '#artisanal:alcohols/grain', thirst=10, intoxication=4000, allow_full=True, food={'grain': 0.7, 'hunger': 0})
+    drinkable(rm, ('alcohol/vegetable'), '#artisanal:alcohols/vegetable', thirst=10, intoxication=4000, allow_full=True, food={'vegetables': 0.7, 'hunger': 0})
+    drinkable(rm, ('alcohol/fruit_and_veg'), '#artisanal:alcohols/fruit_and_veg', thirst=10, intoxication=4000, allow_full=True, food={'fruit': 0.7, 'vegetables': 0.7, 'hunger': 0})
+    drinkable(rm, ('alcohol/no_nutrition'), '#artisanal:alcohols/no_nutrition', thirst=10, intoxication=4000, allow_full=True, food={'hunger': 0})
     
     
 def generate_lamp_fuels():

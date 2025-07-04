@@ -6,7 +6,8 @@
   "thirst": 10,
   "intoxication": 4000,
   "food": {
-    "vegetables": 0.7
+    "vegetables": 0.7,
+    "hunger": 0
   },
   "may_drink_when_full": true
 }
