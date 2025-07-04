@@ -2,6 +2,10 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "tfc:cider"
+    "tfc:cider",
+    {
+      "id": "#firmalife:wine",
+      "required": false
+    }
   ]
 }

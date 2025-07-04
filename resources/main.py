@@ -74,6 +74,11 @@ def melt_metal(name: str, mb: int):
     return f'{mb} {metal.namespace}:metal/{name}'
 
 
+def optional_tag(id: str) -> dict[str, Any]:
+    return {
+        "id": id,
+        "required": False
+    }
 
 def only_if_flux_makes_limewater_instant_barrel_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, sound: Optional[str] = None, conditions=None):
     rm.recipe(('barrel', name_parts), 'artisanal:only_if_flux_makes_limewater_instant_barrel', {
@@ -1051,7 +1056,7 @@ def generate_fluid_tags():
     rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:apple_juice', 'artisanal:carrot_juice', 'artisanal:diluted_lemon_juice', 'artisanal:orange_juice', 'artisanal:peach_juice', 'artisanal:pineapple_juice', 'artisanal:tomato_juice', 'artisanal:screwdriver')
     rm.fluid_tag('tfc:usable_in_jug', '#tfc:ingredients', '#artisanal:acids')
     
-    rm.fluid_tag('alcohols/fruit', 'tfc:cider')
+    rm.fluid_tag('alcohols/fruit', 'tfc:cider', optional_tag('#firmalife:wine'))
     rm.fluid_tag('alcohols/grain', 'tfc:beer', 'tfc:corn_whiskey', 'tfc:rye_whiskey', 'tfc:sake', 'tfc:whiskey')
     rm.fluid_tag('alcohols/vegetable', 'tfc:vodka')
     rm.fluid_tag('alcohols/fruit_and_veg', 'tfc:rum')
