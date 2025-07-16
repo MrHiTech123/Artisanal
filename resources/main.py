@@ -59,6 +59,29 @@ def disable_data(rm: ResourceManager, name_parts: ResourceIdentifier):
             **{},
             'conditions': utils.recipe_condition('forge:false')})
 
+def distillery_recipe(
+        rm: ResourceManager,
+        name: ResourceIdentifier,
+        input_item: str=None,
+        input_fluid: str=None,
+        result_item: str=None,
+        result_fluid: str=None,
+        leftover_item: str=None,
+        leftover_fluid: str=None,
+        min_temp: int=None,
+        duration: int=None
+) -> RecipeContext:
+    return rm.recipe(('distillery', name), 'artisanal:distillery', {
+        "input_item": utils.item_stack(input_item) if input_item is not None else None,
+        "input_fluid": fluid_stack(input_fluid) if input_fluid is not None else None,
+        "result_item": utils.item_stack(result_item) if result_item is not None else None,
+        "result_fluid": fluid_stack(result_fluid) if result_fluid is not None else None,
+        "leftover_item": utils.item_stack(leftover_item) if leftover_item is not None else None,
+        "leftover_fluid": fluid_stack(leftover_fluid) if leftover_fluid is not None else None,
+        "min_temp": min_temp,
+        "duration": duration
+    })
+
 def juicing_recipe(rm: ResourceManager, name: ResourceIdentifier, item: str, result: str) -> RecipeContext:
     result = result if not isinstance(result, str) else fluid_stack(result)
     return rm.recipe(('juicing', name), 'artisanal:juicing', {
@@ -797,6 +820,11 @@ def generate_crafting_recipes():
     damage_shapeless(rm, ('crafting', 'ceramic', 'unfired_brick'), ('#artisanal:brick_molds', 'minecraft:clay_ball', 'minecraft:clay_ball'), 'tfc:ceramic/unfired_brick')
     rm.crafting_shapeless(('crafting', 'powder', 'sulfur'), ('tfc:powder/pyrite'), 'tfc:powder/sulfur')
     
+def generate_distillery_recipes():
+    print('\tGenerating distillery recipes')
+    
+    distillery_recipe(rm, "mercury", input_item='tfc:ore/cinnabar', result_fluid="100 artisanal:cinnabar", leftover_item="tfc:powder/sulfur")
+    
 def generate_glassworking_recipes():
     print("\tGenerating glassworking recipes")
     
@@ -1024,6 +1052,7 @@ def generate_recipes():
     generate_anvil_recipes()
     generate_barrel_recipes()
     generate_crafting_recipes()
+    generate_distillery_recipes()
     generate_glassworking_recipes()
     generate_knapping_recipes()
     generate_heat_recipes()

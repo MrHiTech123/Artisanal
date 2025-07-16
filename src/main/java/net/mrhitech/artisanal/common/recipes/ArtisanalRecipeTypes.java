@@ -11,6 +11,7 @@ import net.mrhitech.artisanal.Artisanal;
 public class ArtisanalRecipeTypes {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, Artisanal.MOD_ID);
     
+    public static final RegistryObject<RecipeType<DistilleryRecipe>> DISTILLERY = register("distillery");
     public static final RegistryObject<RecipeType<JuicingRecipe>> JUICING = register("juicing");
     
     public static void register(IEventBus bus) {

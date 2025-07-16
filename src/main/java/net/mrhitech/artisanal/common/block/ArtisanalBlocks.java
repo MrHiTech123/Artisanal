@@ -5,6 +5,7 @@ import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
+import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
@@ -19,6 +20,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.mrhitech.artisanal.Artisanal;
+import net.mrhitech.artisanal.common.blockentities.ArtisanalBlockEntities;
 import net.mrhitech.artisanal.common.fluids.Waterlikes;
 import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
@@ -47,6 +49,16 @@ public class ArtisanalBlocks {
                     ),
                     new Item.Properties().rarity(drumMetal.getMetal().getRarity())
             ));
+    
+    public static final Map<Wood, RegistryObject<Block>> DISTILLERIES = Helpers.mapOfKeys(Wood.class, woodType ->
+            register(
+                    "wood/barrel/" + woodType.name().toLowerCase(Locale.ROOT),
+                    () -> new DistilleryBlock(
+                            ExtendedProperties.of(TFCBlocks.FIREPIT.get()).blockEntity(ArtisanalBlockEntities.DISTILLERY)
+                    ),
+                    new Item.Properties()
+            )
+    );
     
     
     public static void register(IEventBus bus) {
