@@ -62,7 +62,8 @@ public class DistilleryBlock extends FirepitBlock {
             final ItemStack playerHeldStack = player.getItemInHand(hand);
             
             if (player.isShiftKeyDown() && playerHeldStack.isEmpty()) {
-                System.out.println("Give player the item");
+                System.out.println("Give player the distillery item");
+                
             }
             
             
