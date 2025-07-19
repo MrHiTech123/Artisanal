@@ -21,17 +21,22 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.CraftingTableBlock;
 import net.minecraftforge.fluids.FluidStack;
 import net.mrhitech.artisanal.common.blockentities.DistilleryBlockEntity;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
+@ParametersAreNonnullByDefault
 public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.DistilleryInventory> {
     
     private final ResourceLocation id;
@@ -46,13 +51,13 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     
     
     public DistilleryRecipe(
-            @Nullable ResourceLocation id, 
-            @Nullable Ingredient itemStackIngredient, 
-            @Nullable FluidStackIngredient fluidStackIngredient, 
-            @Nullable ItemStackProvider outputItemStack, 
-            @Nullable FluidStack outputFluidStack,
-            @Nullable ItemStackProvider leftoverItemStack,
-            @Nullable FluidStack leftoverFluidStack,
+            ResourceLocation id, 
+            Ingredient itemStackIngredient, 
+            FluidStackIngredient fluidStackIngredient, 
+            ItemStackProvider outputItemStack, 
+            FluidStack outputFluidStack,
+            ItemStackProvider leftoverItemStack,
+            FluidStack leftoverFluidStack,
             int minTemp,
             int duration
     ) {
@@ -67,10 +72,6 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
         this.duration = duration;
     }
     
-    
-    public static final IndirectHashCollection<Item, DistilleryRecipe> CACHE = IndirectHashCollection.createForRecipe(DistilleryRecipe::getValidItems, ArtisanalRecipeTypes.DISTILLERY);
-    
-    
     @Override
     public boolean matches(DistilleryBlockEntity.DistilleryInventory distilleryInventory, Level level) {
         return itemStackIngredient.test(distilleryInventory.getStackInSlot(0)) &&
@@ -78,58 +79,39 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     }
     
     public static Optional<DistilleryRecipe> fromInventory(Level level, DistilleryBlockEntity.DistilleryInventory inventory) {
-        for (DistilleryRecipe recipe : CACHE.getAll(inventory.extractItem(0, 1, true).getItem())) {
-            if (recipe.matches(inventory, level)) {
-                return Optional.of(recipe);
-            }
-        }
-        return Optional.empty();
+        return level.getRecipeManager().getRecipeFor(ArtisanalRecipeTypes.DISTILLERY.get(), inventory, level);
     }
     
-    
-    
-    
-    public Collection<Item> getValidItems() {
-        return Arrays.stream(this.getIngredientItem().getItems()).map(ItemStack::getItem).collect(Collectors.toSet());
-    }
     
     public Ingredient getIngredientItem() {
-        return this.itemStackIngredient;
+        return itemStackIngredient;
+    }
+    
+    public FluidStackIngredient getIngredientFluid() {
+        return fluidStackIngredient;
     }
     
     @Override
     public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
         throw new RuntimeException("This version of getResultItem should not be running; why would we need registry access!?");
         // return getResultItem(ItemStack.EMPTY);
+        CraftingTableBlock
     }
     
     public Optional<ItemStack> getResultItem(ItemStack input) {
-        if (resultItemStack == null) {
-            return Optional.empty();
-        }
-        
         return Optional.of(resultItemStack.getStack(input));
     }
     
     
     public Optional<FluidStack> getResultFluid() {
-        if (resultFluidStack == null) {
-            return Optional.empty();
-        }
         return Optional.of(resultFluidStack.copy());
     }
     
     public Optional<ItemStack> getLeftoverItem(ItemStack input) {
-        if (leftoverItemStack == null) {
-            return Optional.empty();
-        }
         return Optional.of(leftoverItemStack.getStack(input));
     }
     
     public Optional<FluidStack> getLeftoverFluid() {
-        if (leftoverFluidStack == null) {
-            return Optional.empty();
-        }
         return Optional.of(leftoverFluidStack.copy());
     }
     
@@ -163,13 +145,13 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     
     public static class Serializer extends RecipeSerializerImpl<DistilleryRecipe> {
         @Override
-        public DistilleryRecipe fromJson(ResourceLocation id, JsonObject json) {
-            Ingredient itemStackIngredient = Ingredient.fromJson(JsonHelpers.get(json, "input_item"));
-            FluidStackIngredient fluidStackIngredient = FluidStackIngredient.fromJson(GsonHelper.getAsJsonObject(json, "input_fluid", null));
-            ItemStackProvider resultItemStack = ItemStackProvider.fromJson(GsonHelper.getAsJsonObject(json, "result_item"));
-            FluidStack resultFluidStack = JsonHelpers.getFluidStack(GsonHelper.getAsJsonObject(json, "result_fluid"));
-            ItemStackProvider leftoverItemStack = ItemStackProvider.fromJson(GsonHelper.getAsJsonObject(json, "leftover_item"));
-            FluidStack leftoverFluidStack = JsonHelpers.getFluidStack(GsonHelper.getAsJsonObject(json, "leftover_fluid"));
+        public @NotNull DistilleryRecipe fromJson(ResourceLocation id, JsonObject json) {
+            Ingredient itemStackIngredient = json.has("input_item")? Ingredient.fromJson(JsonHelpers.get(json, "input_item")) : Ingredient.EMPTY;
+            FluidStackIngredient fluidStackIngredient = json.has("input_fluid")? FluidStackIngredient.fromJson(GsonHelper.getAsJsonObject(json, "input_fluid", null)) : FluidStackIngredient.EMPTY;
+            ItemStackProvider resultItemStack = json.has("result_item")? ItemStackProvider.fromJson(GsonHelper.getAsJsonObject(json, "result_item")) : ItemStackProvider.empty();
+            FluidStack resultFluidStack = json.has("result_fluid")? JsonHelpers.getFluidStack(GsonHelper.getAsJsonObject(json, "result_fluid")) : FluidStack.EMPTY;
+            ItemStackProvider leftoverItemStack = json.has("leftover_item")? ItemStackProvider.fromJson(GsonHelper.getAsJsonObject(json, "leftover_item")) : ItemStackProvider.empty();
+            FluidStack leftoverFluidStack = json.has("leftover_fluid")? JsonHelpers.getFluidStack(GsonHelper.getAsJsonObject(json, "leftover_fluid")) : FluidStack.EMPTY;
             int minTemp = json.get("min_temp").getAsInt();
             int durationTicks = json.get("duration").getAsInt();
             
@@ -213,12 +195,8 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
         
         @Override
         public void toNetwork(FriendlyByteBuf buffer, DistilleryRecipe recipe) {
-            if (recipe.itemStackIngredient != null) recipe.itemStackIngredient.toNetwork(buffer);
-            if (recipe.fluidStackIngredient != null) recipe.fluidStackIngredient.toNetwork(buffer);
-            if (recipe.resultItemStack != null) recipe.resultItemStack.toNetwork(buffer);
-            if (recipe.resultFluidStack != null) recipe.resultFluidStack.writeToPacket(buffer);
-            if (recipe.leftoverItemStack != null) recipe.leftoverItemStack.toNetwork(buffer);
-            if (recipe.leftoverFluidStack != null) recipe.leftoverFluidStack.writeToPacket(buffer);
+            recipe.itemStackIngredient.toNetwork(buffer);
+            recipe.fluidStackIngredient.toNetwork(buffer);
             buffer.writeVarInt(recipe.minTemp);
             buffer.writeVarInt(recipe.duration);
             
