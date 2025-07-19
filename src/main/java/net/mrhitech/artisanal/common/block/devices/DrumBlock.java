@@ -1,4 +1,4 @@
-package net.mrhitech.artisanal.common.block;
+package net.mrhitech.artisanal.common.block.devices;
 
 import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
@@ -22,7 +22,6 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.mrhitech.artisanal.common.ArtisanalTags;
 import net.mrhitech.artisanal.util.IBarrelBlockEntityMixin;
 import net.mrhitech.artisanal.util.advancements.ArtisanalAdvancements;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

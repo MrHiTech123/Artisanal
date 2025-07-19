@@ -1,4 +1,4 @@
-package net.mrhitech.artisanal.common.block;
+package net.mrhitech.artisanal.common.block.devices;
 
 import net.dries007.tfc.util.Metal;
 import net.minecraft.tags.TagKey;

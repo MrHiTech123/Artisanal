@@ -1,11 +1,8 @@
-package net.mrhitech.artisanal.common.block;
+package net.mrhitech.artisanal.common.block.devices;
 
 import net.dries007.tfc.client.particle.TFCParticles;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
-import net.dries007.tfc.common.fluids.FluidHelpers;
-import net.dries007.tfc.common.items.FluidContainerItem;
-import net.dries007.tfc.common.items.JugItem;
 import net.dries007.tfc.util.Helpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;

@@ -6,7 +6,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.mrhitech.artisanal.common.fluids.Waterlikes;
 import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
-import net.mrhitech.artisanal.common.block.DrumMetal;
+import net.mrhitech.artisanal.common.block.devices.DrumMetal;
 import net.mrhitech.artisanal.common.item.*;
 
 public class ArtisanalCreativeTabs {
