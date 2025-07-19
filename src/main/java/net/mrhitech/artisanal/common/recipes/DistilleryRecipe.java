@@ -95,7 +95,6 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
         throw new RuntimeException("This version of getResultItem should not be running; why would we need registry access!?");
         // return getResultItem(ItemStack.EMPTY);
-        CraftingTableBlock
     }
     
     public Optional<ItemStack> getResultItem(ItemStack input) {
