@@ -1,10 +1,19 @@
 package net.mrhitech.artisanal.common.block.devices;
 
+import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.client.particle.TFCParticles;
+import net.dries007.tfc.common.TFCDamageSources;
+import net.dries007.tfc.common.blockentities.AbstractFirepitBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
+import net.dries007.tfc.common.capabilities.Capabilities;
+import net.dries007.tfc.common.fluids.FluidHelpers;
+import net.dries007.tfc.common.items.Powder;
+import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -15,7 +24,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.mrhitech.artisanal.common.blockentities.ArtisanalBlockEntities;
+import net.mrhitech.artisanal.common.blockentities.DistilleryBlockEntity;
+import net.mrhitech.artisanal.common.item.ArtisanalItems;
 
 public class DistilleryBlock extends FirepitBlock {
     
@@ -50,7 +62,16 @@ public class DistilleryBlock extends FirepitBlock {
     }
     
     
+    private void giveAshToPlayer(DistilleryBlockEntity distillery, Player player, Level level, BlockPos pos) {
+        ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(TFCItems.POWDERS.get(Powder.WOOD_ASH).get(), distillery.getAsh()));
+        distillery.setAsh(0);
+        Helpers.playSound(level, pos, SoundEvents.SAND_BREAK);
+    }
     
+    private void givePotToPlayer(Player player, Level level, BlockPos pos, BlockState state, DistilleryBlockEntity distillery) {
+        ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ArtisanalItems.DISTILLERY.get()));
+        AbstractFirepitBlockEntity.convertTo(level, pos, state, distillery, TFCBlocks.FIREPIT.get());
+    }
     
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
@@ -58,17 +79,38 @@ public class DistilleryBlock extends FirepitBlock {
         return level.getBlockEntity(pos, ArtisanalBlockEntities.DISTILLERY.get()).map(distillery -> {
             final ItemStack playerHeldStack = player.getItemInHand(hand);
             
+            
             if (player.isShiftKeyDown() && playerHeldStack.isEmpty()) {
-                System.out.println("Give player the distillery item");
+                if (distillery.getAsh() >= 0) {
+                    if (!distillery.isBoiling()) {
+                        giveAshToPlayer(distillery, player, level, pos);
+                    }
+                }
+                else {
+                    givePotToPlayer(player, level, pos, state, distillery);
+                }
                 
+                if (distillery.isBoiling()) {
+                    TFCDamageSources.pot(player, 1f);
+                    Helpers.playSound(level, pos, TFCSounds.ITEM_COOL.get());
+                }
+                
+                return InteractionResult.sidedSuccess(level.isClientSide);
             }
-            
-            
-            // if (FluidHelpers.transferBetweenBlockEntityAndItem(playerHeldStack, distillery, player, hand)) {
-            //    
-            // }
-            
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            else if (!distillery.isBoiling() && FluidHelpers.transferBetweenBlockEntityAndItem(playerHeldStack, distillery, player, hand)) {
+                distillery.setAndUpdateSlots(-1);
+                distillery.markForSync();
+                return InteractionResult.sidedSuccess(level.isClientSide);
+            }
+            else {
+                if (tryInsertLog(player, playerHeldStack, distillery, result.getLocation().y - pos.getY() < 0.6)) {
+                    return InteractionResult.sidedSuccess(level.isClientSide);
+                }
+                if (player instanceof ServerPlayer serverPlayer) {
+                    Helpers.openScreen(serverPlayer, distillery, pos);
+                }
+                return InteractionResult.sidedSuccess(level.isClientSide);
+            }
         }).orElse(InteractionResult.PASS);
         
         

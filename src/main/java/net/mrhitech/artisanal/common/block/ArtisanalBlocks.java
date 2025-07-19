@@ -53,9 +53,9 @@ public class ArtisanalBlocks {
                     new Item.Properties().rarity(drumMetal.getMetal().getRarity())
             ));
     
-    public static final Map<Wood, RegistryObject<Block>> DISTILLERIES = Helpers.mapOfKeys(Wood.class, woodType ->
+    public static final Map<Metal.Default, RegistryObject<Block>> DISTILLERIES = Helpers.mapOfKeys(Metal.Default.class, metalType ->
             register(
-                    "wood/barrel/" + woodType.name().toLowerCase(Locale.ROOT),
+                    "distillery/" + metalType.name().toLowerCase(Locale.ROOT),
                     () -> new DistilleryBlock(
                             ExtendedProperties.of(TFCBlocks.FIREPIT.get()).blockEntity(ArtisanalBlockEntities.DISTILLERY)
                     ),

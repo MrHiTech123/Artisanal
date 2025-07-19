@@ -1,6 +1,7 @@
 package net.mrhitech.artisanal.common.blockentities;
 
 import net.dries007.tfc.common.blocks.wood.Wood;
+import net.dries007.tfc.util.Metal;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
@@ -22,7 +23,7 @@ public class ArtisanalBlockEntities {
     public static final RegistryObject<BlockEntityType<DistilleryBlockEntity>> DISTILLERY = register(
             "distillery",
             DistilleryBlockEntity::new,
-            woodBlocks(ArtisanalBlocks.DISTILLERIES)
+            metalBlocks(ArtisanalBlocks.DISTILLERIES)
     );
     
     
@@ -36,9 +37,9 @@ public class ArtisanalBlockEntities {
         return RegistrationHelpers.register(BLOCK_ENTITIES, name, factory, blocks);
     }
     
-    private static Stream<? extends Supplier<? extends Block>> woodBlocks(Map<Wood, RegistryObject<Block>> type)
+    private static Stream<? extends Supplier<? extends Block>> metalBlocks(Map<Metal.Default, RegistryObject<Block>> type)
     {
-        return Arrays.stream(Wood.values()).map(type::get);
+        return Arrays.stream(Metal.Default.values()).map(type::get);
     }
     
 }
