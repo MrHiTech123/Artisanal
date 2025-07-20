@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "artisanal:block/firepit_distillery",
+  "textures": {
+    "metal": "tfc:block/metal/smooth/black_steel"
+  }
+}

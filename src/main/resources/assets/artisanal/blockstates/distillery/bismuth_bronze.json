@@ -6,7 +6,7 @@
         "axis": "x"
       },
       "apply": {
-        "model": "artisanal:block/firepit_distillery"
+        "model": "artisanal:block/distillery/bismuth_bronze"
       }
     },
     {
@@ -14,7 +14,7 @@
         "axis": "z"
       },
       "apply": {
-        "model": "artisanal:block/firepit_distillery",
+        "model": "artisanal:block/distillery/bismuth_bronze",
         "y": 90
       }
     },

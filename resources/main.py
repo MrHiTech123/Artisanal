@@ -473,18 +473,19 @@ def generate_block_models():
             'conditions': [loot_tables.block_state_property(f'artisanal:metal/drum/{metal}[sealed=true]')]
         }, f'artisanal:metal/drum/{metal}'))
         
-        for metal, metal_data in METALS.items():
-            if 'tool' not in metal_data.types:
-                continue
-            rm.blockstate_multipart(('distillery', metal),
-                ({'axis': 'x'}, {'model': 'artisanal:block/firepit_distillery'}),
-                ({'axis': 'z'}, {'model': 'artisanal:block/firepit_distillery', 'y': 90}),
-                ({'lit': True, 'axis': 'x'}, {'model': 'tfc:block/firepit_lit_low'}),
-                ({'lit': True, 'axis': 'z'}, {'model': 'tfc:block/firepit_lit_low', 'y': 90}),
-                ({'lit': False, 'axis': 'x'}, {'model': 'tfc:block/firepit_unlit'}),
-                ({'lit': False, 'axis': 'z'}, {'model': 'tfc:block/firepit_unlit', 'y': 90})
-            ).with_lang(lang(f'{metal}_Distillery')).with_block_loot('tfc:powder/wood_ash', f'artisanal:distillery')
-            rm.item_model('distillery', 'tfc:item/firepit_pot')
+    for metal, metal_data in METALS.items():
+        if 'tool' not in metal_data.types:
+            continue
+        rm.block_model(('distillery', metal), {'metal': f'tfc:block/metal/smooth/{metal}'}, 'artisanal:block/firepit_distillery')
+        rm.blockstate_multipart(('distillery', metal),
+            ({'axis': 'x'}, {'model': f'artisanal:block/distillery/{metal}'}),
+            ({'axis': 'z'}, {'model': f'artisanal:block/distillery/{metal}', 'y': 90}),
+            ({'lit': True, 'axis': 'x'}, {'model': 'tfc:block/firepit_lit_low'}),
+            ({'lit': True, 'axis': 'z'}, {'model': 'tfc:block/firepit_lit_low', 'y': 90}),
+            ({'lit': False, 'axis': 'x'}, {'model': 'tfc:block/firepit_unlit'}),
+            ({'lit': False, 'axis': 'z'}, {'model': 'tfc:block/firepit_unlit', 'y': 90})
+        ).with_lang(lang(f'{metal}_Distillery')).with_block_loot('tfc:powder/wood_ash', f'artisanal:distillery')
+        rm.item_model('distillery', 'tfc:item/firepit_pot')
         
 
 def generate_item_models():
