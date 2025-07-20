@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "artisanal:metal/can/tin_sterilized",
-    "artisanal:metal/can/stainless_steel_sterilized"
+    "artisanal:mercury",
+    "artisanal:flowing_mercury"
   ]
 }

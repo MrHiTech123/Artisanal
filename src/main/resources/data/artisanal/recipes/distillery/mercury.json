@@ -10,5 +10,7 @@
   },
   "leftover_item": {
     "item": "tfc:powder/sulfur"
-  }
+  },
+  "min_temp": 300,
+  "duration": 2000
 }

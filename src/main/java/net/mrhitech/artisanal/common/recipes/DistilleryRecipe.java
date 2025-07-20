@@ -17,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -93,7 +94,8 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     
     @Override
     public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
-        throw new RuntimeException("This version of getResultItem should not be running; why would we need registry access!?");
+        return resultItemStack.getStack(ItemStack.EMPTY);
+        // throw new RuntimeException("This version of getResultItem should not be running; why would we need registry access!?");
         // return getResultItem(ItemStack.EMPTY);
     }
     

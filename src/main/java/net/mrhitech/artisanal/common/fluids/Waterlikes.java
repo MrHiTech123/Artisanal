@@ -26,7 +26,8 @@ public enum Waterlikes {
     TOMATO_JUICE(-1035741),
     SCREWDRIVER(-1198481),
     PETROLEUM(-16777216),
-    SULFURIC_ACID(-2240864);
+    SULFURIC_ACID(-2240864),
+    MERCURY(-8421504);
     
     private final int color;
     private final String id;

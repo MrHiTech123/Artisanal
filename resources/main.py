@@ -5,7 +5,7 @@ from alcs_n_russians_funcs import *
 from mcresources import ResourceManager
 
 
-SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'petroleum', 'apple_juice', 'carrot_juice', 'lemon_juice', 'diluted_lemon_juice', 'orange_juice', 'peach_juice', 'pineapple_juice', 'tomato_juice', 'screwdriver', 'sulfuric_acid')
+SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'petroleum', 'apple_juice', 'carrot_juice', 'lemon_juice', 'diluted_lemon_juice', 'orange_juice', 'peach_juice', 'pineapple_juice', 'tomato_juice', 'screwdriver', 'sulfuric_acid', 'mercury')
 AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cypress', 'fig', 'ironwood', 'ipe')
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
@@ -68,8 +68,8 @@ def distillery_recipe(
         result_fluid: str=None,
         leftover_item: str=None,
         leftover_fluid: str=None,
-        min_temp: int=None,
-        duration: int=None
+        duration: int=2000,
+        min_temp: int=300
 ) -> RecipeContext:
     return rm.recipe(('distillery', name), 'artisanal:distillery', {
         "input_item": utils.item_stack(input_item) if input_item is not None else None,
@@ -466,6 +466,7 @@ def generate_block_models():
         rm.block_model(('metal', 'drum_sealed', metal + '_side_rack'), textures, 'tfc:block/barrel_side_sealed_rack')
         rm.block_model(('metal', 'drum_sealed', metal), textures, 'tfc:block/barrel_sealed')
         rm.block_model(('metal', 'drum_sealed', metal + '_side'), textures, 'tfc:block/barrel_side_sealed')
+        
         block.with_lang(lang(f'{metal} drum'))
         block.with_block_loot(({
             'name': f'artisanal:metal/drum/{metal}',
