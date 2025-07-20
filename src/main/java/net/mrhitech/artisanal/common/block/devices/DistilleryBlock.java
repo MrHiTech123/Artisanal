@@ -106,7 +106,7 @@ public class DistilleryBlock extends FirepitBlock {
                 
                 return InteractionResult.sidedSuccess(level.isClientSide);
             }
-            else if (!distillery.isBoiling()) {
+            else if (!distillery.isBoiling() && playerHeldStack.getCapability(Capabilities.FLUID_ITEM).isPresent()) {
                 if (player.isShiftKeyDown()) {
                     System.out.println("Transfer output bowl contents to jug");
                     playerHeldStack.getCapability(Capabilities.FLUID_ITEM).ifPresent(cap -> {
