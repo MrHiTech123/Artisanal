@@ -472,6 +472,20 @@ def generate_block_models():
             'functions': [loot_tables.copy_block_entity_name(), loot_tables.copy_block_entity_nbt()],
             'conditions': [loot_tables.block_state_property(f'artisanal:metal/drum/{metal}[sealed=true]')]
         }, f'artisanal:metal/drum/{metal}'))
+        
+        # for metal, metal_data in METALS.items():
+        #     if 'tool' not in metal_data.types:
+        #         continue
+        rm.blockstate_multipart('distillery',
+            ({'axis': 'x'}, {'model': 'artisanal:block/firepit_distillery'}),
+            ({'axis': 'z'}, {'model': 'artisanal:block/firepit_distillery', 'y': 90}),
+            ({'lit': True, 'axis': 'x'}, {'model': 'tfc:block/firepit_lit_low'}),
+            ({'lit': True, 'axis': 'z'}, {'model': 'tfc:block/firepit_lit_low', 'y': 90}),
+            ({'lit': False, 'axis': 'x'}, {'model': 'tfc:block/firepit_unlit'}),
+            ({'lit': False, 'axis': 'z'}, {'model': 'tfc:block/firepit_unlit', 'y': 90})
+        ).with_lang(lang(f'{metal}_Distillery')).with_block_loot('tfc:powder/wood_ash', f'artisanal:distillery')
+        rm.item_model('distillery', 'tfc:item/firepit_pot')
+        
 
 def generate_item_models():
     print('\tGenerating item models...')
@@ -823,7 +837,7 @@ def generate_crafting_recipes():
 def generate_distillery_recipes():
     print('\tGenerating distillery recipes')
     
-    distillery_recipe(rm, "mercury", input_item='tfc:ore/cinnabar', result_fluid="100 artisanal:cinnabar", leftover_item="tfc:powder/sulfur")
+    distillery_recipe(rm, "mercury", input_item='tfc:ore/cinnabar', result_fluid="100 artisanal:mercury", leftover_item="tfc:powder/sulfur")
     
 def generate_glassworking_recipes():
     print("\tGenerating glassworking recipes")
