@@ -357,7 +357,6 @@
 			"from": [7, 12, 5],
 			"to": [9, 16, 7],
 			"rotation": {"angle": 0, "axis": "y", "origin": [6.5, 12, 5]},
-			"color": 1,
 			"faces": {
 				"north": {"uv": [0, 0, 3, 4], "texture": "#metal"},
 				"east": {"uv": [0, 0, 2, 4], "texture": "#metal"},
@@ -383,10 +382,9 @@
 		},
 		{
 			"name": "DistilleryDownStraw",
-			"from": [7.5, 13, 6],
-			"to": [8.5, 14, 10],
-			"rotation": {"angle": 30, "axis": "x", "origin": [6.5, 13, 10]},
-			"color": 2,
+			"from": [7.5, 13, 5],
+			"to": [8.5, 14, 9],
+			"rotation": {"angle": 45, "axis": "x", "origin": [6.5, 13, 9]},
 			"faces": {
 				"north": {"uv": [0, 0, 1, 1], "texture": "#metal"},
 				"east": {"uv": [0, 0, 4, 1], "texture": "#metal"},
@@ -401,7 +399,6 @@
 			"from": [6.5, 12, 9],
 			"to": [9.5, 13, 12],
 			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 12, 9]},
-			"color": 6,
 			"faces": {
 				"north": {"uv": [0, 0, 3, 1], "texture": "#bowl"},
 				"east": {"uv": [0, 0, 3, 1], "texture": "#bowl"},
@@ -416,7 +413,6 @@
 			"from": [6.5, 13, 12],
 			"to": [9.5, 14, 13],
 			"rotation": {"angle": 0, "axis": "y", "origin": [6.5, 13, 12]},
-			"color": 2,
 			"faces": {
 				"north": {"uv": [0, 0, 3, 1], "texture": "#bowl"},
 				"east": {"uv": [0, 0, 1, 1], "texture": "#bowl"},
@@ -431,7 +427,6 @@
 			"from": [5.5, 13, 9],
 			"to": [6.5, 14, 12],
 			"rotation": {"angle": 0, "axis": "y", "origin": [5.5, 13, 11]},
-			"color": 2,
 			"faces": {
 				"north": {"uv": [0, 0, 1, 1], "texture": "#bowl"},
 				"east": {"uv": [0, 0, 3, 1], "texture": "#bowl"},
@@ -446,7 +441,6 @@
 			"from": [9.5, 13, 9],
 			"to": [10.5, 14, 12],
 			"rotation": {"angle": 0, "axis": "y", "origin": [9.5, 13, 11]},
-			"color": 2,
 			"faces": {
 				"north": {"uv": [0, 0, 1, 1], "texture": "#bowl"},
 				"east": {"uv": [0, 0, 3, 1], "texture": "#bowl"},
@@ -461,7 +455,6 @@
 			"from": [6.5, 13, 8],
 			"to": [9.5, 14, 9],
 			"rotation": {"angle": 0, "axis": "y", "origin": [6.5, 13, 8]},
-			"color": 2,
 			"faces": {
 				"north": {"uv": [0, 0, 3, 1], "texture": "#bowl"},
 				"east": {"uv": [0, 0, 1, 1], "texture": "#bowl"},

@@ -7,6 +7,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.mrhitech.artisanal.Artisanal;
@@ -26,6 +27,10 @@ public class ArtisanalBlockEntities {
             metalBlocks(ArtisanalBlocks.DISTILLERIES)
     );
     
+    public static void register(IEventBus eventBus) {
+        BLOCK_ENTITIES.register(eventBus);
+    }
+    
     
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> factory, Supplier<? extends Block> block)
     {
@@ -39,7 +44,7 @@ public class ArtisanalBlockEntities {
     
     private static Stream<? extends Supplier<? extends Block>> metalBlocks(Map<Metal.Default, RegistryObject<Block>> type)
     {
-        return Arrays.stream(Metal.Default.values()).map(type::get);
+        return Arrays.stream(Metal.Default.values()).filter(Metal.Default::hasTools).map(type::get);
     }
     
 }

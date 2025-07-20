@@ -1,6 +1,7 @@
 package net.mrhitech.artisanal.common.block;
 
 
+import net.dries007.tfc.common.blockentities.AbstractFirepitBlockEntity;
 import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
@@ -15,7 +16,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -33,6 +36,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
+
+import static net.dries007.tfc.common.blocks.TFCBlocks.litBlockEmission;
 
 public class ArtisanalBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, Artisanal.MOD_ID);
@@ -53,11 +58,11 @@ public class ArtisanalBlocks {
                     new Item.Properties().rarity(drumMetal.getMetal().getRarity())
             ));
     
-    public static final Map<Metal.Default, RegistryObject<Block>> DISTILLERIES = Helpers.mapOfKeys(Metal.Default.class, metalType ->
+    public static final Map<Metal.Default, RegistryObject<Block>> DISTILLERIES = Helpers.mapOfKeys(Metal.Default.class, Metal.Default::hasTools, metalType ->
             register(
                     "distillery/" + metalType.name().toLowerCase(Locale.ROOT),
                     () -> new DistilleryBlock(
-                            ExtendedProperties.of(TFCBlocks.FIREPIT.get()).blockEntity(ArtisanalBlockEntities.DISTILLERY)
+                            ExtendedProperties.of(TFCBlocks.FIREPIT.get()).blockEntity(ArtisanalBlockEntities.DISTILLERY).strength(0.4F, 0.4F).sound(SoundType.NETHER_WART).randomTicks().noOcclusion().lightLevel(litBlockEmission(15)).blockEntity(TFCBlockEntities.POT).pathType(BlockPathTypes.DAMAGE_FIRE).<AbstractFirepitBlockEntity<?>>ticks(AbstractFirepitBlockEntity::serverTick, AbstractFirepitBlockEntity::clientTick)
                     ),
                     new Item.Properties()
             )
