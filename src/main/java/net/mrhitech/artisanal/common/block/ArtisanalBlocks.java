@@ -62,7 +62,10 @@ public class ArtisanalBlocks {
             register(
                     "distillery/" + metalType.name().toLowerCase(Locale.ROOT),
                     () -> new DistilleryBlock(
-                            ExtendedProperties.of(TFCBlocks.FIREPIT.get()).blockEntity(ArtisanalBlockEntities.DISTILLERY).strength(0.4F, 0.4F).sound(SoundType.NETHER_WART).randomTicks().noOcclusion().lightLevel(litBlockEmission(15)).blockEntity(TFCBlockEntities.POT).pathType(BlockPathTypes.DAMAGE_FIRE).<AbstractFirepitBlockEntity<?>>ticks(AbstractFirepitBlockEntity::serverTick, AbstractFirepitBlockEntity::clientTick)
+                            ExtendedProperties.of(TFCBlocks.FIREPIT.get()).blockEntity(ArtisanalBlockEntities.DISTILLERY)
+                                    .strength(0.4F, 0.4F).sound(SoundType.NETHER_WART)
+                                    .randomTicks().noOcclusion().lightLevel(litBlockEmission(15))
+                                    .pathType(BlockPathTypes.DAMAGE_FIRE).<AbstractFirepitBlockEntity<?>>ticks(AbstractFirepitBlockEntity::serverTick, AbstractFirepitBlockEntity::clientTick)
                     ),
                     new Item.Properties()
             )

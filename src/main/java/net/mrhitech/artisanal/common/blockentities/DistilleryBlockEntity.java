@@ -258,7 +258,7 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
         private static final int amountOfInventorySlots = 6;
         
         public DistilleryInventory(InventoryBlockEntity<DistilleryInventory> distillery) {
-            this.distillery = Objects.requireNonNull(distillery.getLevel()).getBlockEntity(distillery.getBlockPos(), ArtisanalBlockEntities.DISTILLERY.get()).orElse(null);
+            this.distillery = (DistilleryBlockEntity) distillery;
             this.inventory = new InventoryItemHandler(distillery, amountOfInventorySlots);
             this.inputBowlFluidTank = new FluidTank(FluidHelpers.BUCKET_VOLUME, fluid -> Helpers.isFluid(fluid.getFluid(), TFCTags.Fluids.USABLE_IN_POT));
             this.outputBowlFluidTank = new FluidTank(FluidHelpers.BUCKET_VOLUME, fluid -> Helpers.isFluid(fluid.getFluid(), TFCTags.Fluids.USABLE_IN_POT));
