@@ -1,11 +1,20 @@
 package net.mrhitech.artisanal.common.event;
 
+import net.dries007.tfc.common.blockentities.AbstractFirepitBlockEntity;
+import net.dries007.tfc.util.events.StartFireEvent;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.MissingMappingsEvent;
+import net.minecraftforge.registries.RegistryObject;
 import net.mrhitech.artisanal.Artisanal;
+import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 import net.mrhitech.artisanal.common.item.CanMetal;
 
@@ -41,6 +50,22 @@ public class ForgeEventHandler {
             }
             
             
+        }
+    }
+    
+    @SubscribeEvent
+    public static void onFireStart(StartFireEvent event) {
+        Level level = event.getLevel();
+        BlockPos pos = event.getPos();
+        BlockState state = event.getState();
+        Block block = state.getBlock();
+        
+        if (ArtisanalBlocks.DISTILLERIES.values().stream().map(RegistryObject::get).toList().contains(block)) {
+            final BlockEntity entity = level.getBlockEntity(pos);
+            
+            if (entity instanceof AbstractFirepitBlockEntity<?> firepit && firepit.light(state)) {
+                event.setCanceled(true);
+            }
         }
     }
     

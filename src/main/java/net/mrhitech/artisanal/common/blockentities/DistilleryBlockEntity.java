@@ -218,6 +218,10 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
         markForSync();
     }
     
+    public FluidTank getOutputTank() {
+        return inventory.outputBowlFluidTank;
+    }
+    
     @Override
     protected void updateCachedRecipe() {
         assert level != null;

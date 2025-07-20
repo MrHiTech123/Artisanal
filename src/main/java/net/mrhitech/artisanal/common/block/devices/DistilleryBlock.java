@@ -7,6 +7,7 @@ import net.dries007.tfc.common.blockentities.AbstractFirepitBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
+import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.common.items.Powder;
 import net.dries007.tfc.common.items.TFCItems;
@@ -24,6 +25,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.mrhitech.artisanal.common.blockentities.ArtisanalBlockEntities;
 import net.mrhitech.artisanal.common.blockentities.DistilleryBlockEntity;
@@ -31,10 +36,12 @@ import net.mrhitech.artisanal.common.item.ArtisanalItems;
 
 public class DistilleryBlock extends FirepitBlock {
     
+    private static final VoxelShape DISTILLERY_SHAPE = Shapes.or(BASE_SHAPE, box(2, 0, 2, 14, 16, 14));
+    
     protected Metal.Default metal;
     
     public DistilleryBlock(ExtendedProperties properties, Metal.Default metal) {
-        super(properties);
+        super(properties, DISTILLERY_SHAPE);
         this.metal = metal;
     }
     
@@ -99,9 +106,20 @@ public class DistilleryBlock extends FirepitBlock {
                 
                 return InteractionResult.sidedSuccess(level.isClientSide);
             }
-            else if (!distillery.isBoiling() && FluidHelpers.transferBetweenBlockEntityAndItem(playerHeldStack, distillery, player, hand)) {
-                distillery.setAndUpdateSlots(-1);
-                distillery.markForSync();
+            else if (!distillery.isBoiling()) {
+                if (player.isShiftKeyDown()) {
+                    System.out.println("Transfer output bowl contents to jug");
+                    playerHeldStack.getCapability(Capabilities.FLUID_ITEM).ifPresent(cap -> {
+                        FluidTank outputTank = distillery.getOutputTank();
+                        
+                        cap.fill(outputTank.getFluid(), IFluidHandler.FluidAction.EXECUTE);
+                        outputTank.drain(outputTank.getCapacity(), IFluidHandler.FluidAction.EXECUTE);
+                    });
+                }
+                else if (FluidHelpers.transferBetweenBlockEntityAndItem(playerHeldStack, distillery, player, hand)) {
+                    distillery.setAndUpdateSlots(-1);
+                    distillery.markForSync();
+                }
                 return InteractionResult.sidedSuccess(level.isClientSide);
             }
             else {
