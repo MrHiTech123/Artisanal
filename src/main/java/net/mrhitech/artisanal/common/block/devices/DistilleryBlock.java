@@ -81,7 +81,7 @@ public class DistilleryBlock extends FirepitBlock {
             
             
             if (player.isShiftKeyDown() && playerHeldStack.isEmpty()) {
-                if (distillery.getAsh() >= 0) {
+                if (distillery.getAsh() > 0) {
                     if (!distillery.isBoiling()) {
                         giveAshToPlayer(distillery, player, level, pos);
                     }

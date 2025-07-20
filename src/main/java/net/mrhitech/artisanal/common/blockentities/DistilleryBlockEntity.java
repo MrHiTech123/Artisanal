@@ -246,7 +246,7 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
             return sidedFluidInventory.getSidedHandler(side).cast();
         }
         
-        return super.getCapability(cap);
+        return super.getCapability(cap, side);
     }
     
     public static class DistilleryInventory implements EmptyInventory, DelegateItemHandler, DelegateFluidHandler, INBTSerializable<CompoundTag> {
