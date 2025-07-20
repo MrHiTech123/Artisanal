@@ -65,7 +65,8 @@ public class ArtisanalBlocks {
                             ExtendedProperties.of(TFCBlocks.FIREPIT.get()).blockEntity(ArtisanalBlockEntities.DISTILLERY)
                                     .strength(0.4F, 0.4F).sound(SoundType.NETHER_WART)
                                     .randomTicks().noOcclusion().lightLevel(litBlockEmission(15))
-                                    .pathType(BlockPathTypes.DAMAGE_FIRE).<AbstractFirepitBlockEntity<?>>ticks(AbstractFirepitBlockEntity::serverTick, AbstractFirepitBlockEntity::clientTick)
+                                    .pathType(BlockPathTypes.DAMAGE_FIRE).<AbstractFirepitBlockEntity<?>>ticks(AbstractFirepitBlockEntity::serverTick, AbstractFirepitBlockEntity::clientTick),
+                            metalType
                     ),
                     new Item.Properties()
             )

@@ -114,8 +114,8 @@ public class ArtisanalItems {
     public static final RegistryObject<Item> DIRTY_SILK_CLOTH = register("dirty_silk_cloth", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DIRTY_WOOL_CLOTH = register("dirty_wool_cloth", () -> new Item(new Item.Properties()));
     
-    public static final RegistryObject<Item> DISTILLERY = register("distillery", () -> new Item(new Item.Properties()));
-    
+    public static final Map<Metal.Default, RegistryObject<Item>> DISTILLERIES = Helpers.mapOfKeys(Metal.Default.class, Metal.Default::hasTools, metal ->
+            register("metal/distillery/" + metal.getSerializedName(), () -> new DistilleryItem(new Item.Properties(), metal)));
     
     public static <T extends Item> RegistryObject<T> register(String name, Supplier<T> supplier) {
         return ITEMS.register(name, supplier);

@@ -7,11 +7,11 @@ import net.dries007.tfc.common.blockentities.AbstractFirepitBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
-import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.common.items.Powder;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.Metal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -31,9 +31,11 @@ import net.mrhitech.artisanal.common.item.ArtisanalItems;
 
 public class DistilleryBlock extends FirepitBlock {
     
+    protected Metal.Default metal;
     
-    public DistilleryBlock(ExtendedProperties properties) {
+    public DistilleryBlock(ExtendedProperties properties, Metal.Default metal) {
         super(properties);
+        this.metal = metal;
     }
     
     private boolean shouldRenderBoiling() {
@@ -68,8 +70,8 @@ public class DistilleryBlock extends FirepitBlock {
         Helpers.playSound(level, pos, SoundEvents.SAND_BREAK);
     }
     
-    private void givePotToPlayer(Player player, Level level, BlockPos pos, BlockState state, DistilleryBlockEntity distillery) {
-        ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ArtisanalItems.DISTILLERY.get()));
+    private void giveDistilleryToPlayer(Player player, Level level, BlockPos pos, BlockState state, DistilleryBlockEntity distillery) {
+        ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ArtisanalItems.DISTILLERIES.get(metal).get()));
         AbstractFirepitBlockEntity.convertTo(level, pos, state, distillery, TFCBlocks.FIREPIT.get());
     }
     
@@ -87,7 +89,7 @@ public class DistilleryBlock extends FirepitBlock {
                     }
                 }
                 else {
-                    givePotToPlayer(player, level, pos, state, distillery);
+                    giveDistilleryToPlayer(player, level, pos, state, distillery);
                 }
                 
                 if (distillery.isBoiling()) {
