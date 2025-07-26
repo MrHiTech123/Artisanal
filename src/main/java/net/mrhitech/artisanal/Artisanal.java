@@ -20,6 +20,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.mrhitech.artisanal.client.ClientEventHandler;
 import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
 import net.mrhitech.artisanal.common.blockentities.ArtisanalBlockEntities;
+import net.mrhitech.artisanal.common.container.ArtisanalContainerTypes;
 import net.mrhitech.artisanal.common.creative.ArtisanalCreativeTabs;
 import net.mrhitech.artisanal.common.event.ArtisanalEvents;
 import net.mrhitech.artisanal.common.event.ArtisanalSetupEvents;
@@ -55,6 +56,8 @@ public class Artisanal
         ArtisanalFluids.register(modEventBus);
         ArtisanalLootModifiers.register(modEventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ArtisanalServerConfig.SPEC);
+        ArtisanalContainerTypes.register(modEventBus);
+        
         ArtisanalRecipeSerializers.register(modEventBus);
         ArtisanalRecipeTypes.register(modEventBus);
         ArtisanalItemStackModifiers.registerItemStackModifiers();
