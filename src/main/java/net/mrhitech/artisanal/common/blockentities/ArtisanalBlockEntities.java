@@ -31,7 +31,6 @@ public class ArtisanalBlockEntities {
         BLOCK_ENTITIES.register(eventBus);
     }
     
-    
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> factory, Supplier<? extends Block> block)
     {
         return RegistrationHelpers.register(BLOCK_ENTITIES, name, factory, block);

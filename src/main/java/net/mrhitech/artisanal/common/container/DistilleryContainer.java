@@ -3,6 +3,8 @@ package net.mrhitech.artisanal.common.container;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.container.BlockEntityContainer;
+import net.dries007.tfc.common.container.CallbackSlot;
+import net.dries007.tfc.common.container.PotContainer;
 import net.dries007.tfc.util.Helpers;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
@@ -36,8 +38,17 @@ public class DistilleryContainer extends BlockEntityContainer<DistilleryBlockEnt
     
     @Override
     protected void addContainerSlots() {
-        blockEntity.getCapability(Capabilities.ITEM).ifPresent(cap -> {
+        
+        blockEntity.getCapability(Capabilities.ITEM).ifPresent(handler -> {
+            // Fuel 
+            for (int i = 0; i < 4; i++) {
+                addSlot(new CallbackSlot(blockEntity, handler, i, 8, 70 - 18 * i));
+            }
             
+            addSlot(new CallbackSlot(blockEntity, handler, DistilleryBlockEntity.SLOT_INPUT_ITEM, 101, 63));
+            addSlot(new CallbackSlot(blockEntity, handler, DistilleryBlockEntity.SLOT_OUTPUT_ITEM, 101, 37));
         });
+        
+        
     }
 }

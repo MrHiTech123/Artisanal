@@ -57,7 +57,6 @@ public class Artisanal
         ArtisanalLootModifiers.register(modEventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ArtisanalServerConfig.SPEC);
         ArtisanalContainerTypes.register(modEventBus);
-        
         ArtisanalRecipeSerializers.register(modEventBus);
         ArtisanalRecipeTypes.register(modEventBus);
         ArtisanalItemStackModifiers.registerItemStackModifiers();

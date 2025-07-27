@@ -75,8 +75,8 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     
     @Override
     public boolean matches(DistilleryBlockEntity.DistilleryInventory distilleryInventory, Level level) {
-        return itemStackIngredient.test(distilleryInventory.getStackInSlot(0)) &&
-                fluidStackIngredient.test(distilleryInventory.getFluidInTank(0));
+        return itemStackIngredient.test(distilleryInventory.getStackInSlot(DistilleryBlockEntity.SLOT_INPUT_ITEM)) &&
+                fluidStackIngredient.test(distilleryInventory.getFluidInTank(DistilleryBlockEntity.TANK_INPUT_FLUID));
     }
     
     public static Optional<DistilleryRecipe> fromInventory(Level level, DistilleryBlockEntity.DistilleryInventory inventory) {

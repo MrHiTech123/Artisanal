@@ -19,6 +19,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -30,6 +33,7 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import net.mrhitech.artisanal.Artisanal;
+import net.mrhitech.artisanal.common.container.DistilleryContainer;
 import net.mrhitech.artisanal.common.recipes.DistilleryRecipe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -110,8 +114,6 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
         
         inventory.inputBowlFluidTank.setFluid(FluidStack.EMPTY);
         inventory.outputBowlFluidTank.setFluid(FluidStack.EMPTY);
-        
-        inventory.setStackInSlot(SLOT_INPUT_ITEM, inventory.getStackInSlot(SLOT_INPUT_ITEM).getCraftingRemainingItem());
         
     }
     
@@ -245,12 +247,21 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
     }
     
     @Override
+    public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player) {
+        return DistilleryContainer.create(this, inventory, containerId);
+    }
+    
+    @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == Capabilities.FLUID) {
             return sidedFluidInventory.getSidedHandler(side).cast();
         }
         
         return super.getCapability(cap, side);
+    }
+    
+    public FluidStack getFluidInTank(int tank) {
+        return inventory.getFluidInTank(tank).copy();
     }
     
     public static class DistilleryInventory implements EmptyInventory, DelegateItemHandler, DelegateFluidHandler, INBTSerializable<CompoundTag> {
@@ -328,6 +339,11 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
             inventory.deserializeNBT(nbt.getCompound("inventory"));
             inputBowlFluidTank.readFromNBT(nbt.getCompound("inputTank"));
             outputBowlFluidTank.readFromNBT(nbt.getCompound("outputTank"));
+        }
+        
+        @Override
+        public void setStackInSlot(int slot, ItemStack stack) {
+            DelegateItemHandler.super.setStackInSlot(slot, stack);
         }
     }
     
