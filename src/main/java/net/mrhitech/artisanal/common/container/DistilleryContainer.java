@@ -46,7 +46,7 @@ public class DistilleryContainer extends BlockEntityContainer<DistilleryBlockEnt
             }
             
             addSlot(new CallbackSlot(blockEntity, handler, DistilleryBlockEntity.SLOT_INPUT_ITEM, 101, 63));
-            addSlot(new CallbackSlot(blockEntity, handler, DistilleryBlockEntity.SLOT_OUTPUT_ITEM, 101, 37));
+            addSlot(new CallbackSlot(blockEntity, handler, DistilleryBlockEntity.SLOT_OUTPUT_ITEM, 101, 27));
         });
         
         

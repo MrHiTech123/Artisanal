@@ -23,7 +23,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "artisanal:distillery"
+          "name": "artisanal:metal/distillery/red_steel"
         }
       ],
       "conditions": [

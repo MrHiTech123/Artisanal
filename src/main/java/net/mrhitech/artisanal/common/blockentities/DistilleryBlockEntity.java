@@ -23,6 +23,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -104,7 +105,11 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
     
     @Override
     public int getSlotStackLimit(int slot) {
-        return super.getSlotStackLimit(slot);
+        return switch (slot) {
+            case SLOT_FUEL_CONSUME, SLOT_FUEL_2, SLOT_FUEL_3, SLOT_FUEL_INPUT -> 1;
+            case SLOT_INPUT_ITEM, SLOT_OUTPUT_ITEM -> 64;
+            default -> 64;
+        };
     }
     
     private void removeIngredients() {
@@ -114,6 +119,12 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
         
         inventory.inputBowlFluidTank.setFluid(FluidStack.EMPTY);
         inventory.outputBowlFluidTank.setFluid(FluidStack.EMPTY);
+        
+        DistilleryRecipe cachedCachedRecipe = cachedRecipe;
+        // This resets cachedRecipe to null for some reason, so we
+        inventory.setStackInSlot(DistilleryBlockEntity.SLOT_INPUT_ITEM, ItemStack.EMPTY);
+        cachedRecipe = cachedCachedRecipe;
+        
         
     }
     
@@ -134,7 +145,7 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
         });
         
         recipe.getResultFluid().ifPresent(resultFluid -> {
-            inventory.setFluidInTank(TANK_OUTPUT_FLUID, resultFluid);
+            inventory.outputBowlFluidTank.fill(resultFluid, IFluidHandler.FluidAction.EXECUTE);
         });
     }
     
@@ -264,6 +275,10 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
         return inventory.getFluidInTank(tank).copy();
     }
     
+    
+    
+    
+    
     public static class DistilleryInventory implements EmptyInventory, DelegateItemHandler, DelegateFluidHandler, INBTSerializable<CompoundTag> {
         private final DistilleryBlockEntity distillery;
         private final ItemStackHandler inventory;
@@ -282,12 +297,13 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
         @NotNull
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return inventory.extractItem(slot, amount, simulate);
+            return distillery.hasRecipeStarted() && slot == SLOT_INPUT_ITEM? ItemStack.EMPTY : inventory.extractItem(slot, amount, simulate);
         }
         
         public boolean matchItemIngredient(ItemStackIngredient required, int slot) {
             return required.test(inventory.getStackInSlot(slot));
         }
+        
         
         
         
@@ -322,6 +338,9 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
             return inventory;
         }
         
+        
+        
+        
         @Override
         public CompoundTag serializeNBT() {
             CompoundTag toReturn = new CompoundTag();
@@ -341,10 +360,6 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
             outputBowlFluidTank.readFromNBT(nbt.getCompound("outputTank"));
         }
         
-        @Override
-        public void setStackInSlot(int slot, ItemStack stack) {
-            DelegateItemHandler.super.setStackInSlot(slot, stack);
-        }
     }
     
 }

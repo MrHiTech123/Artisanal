@@ -100,10 +100,13 @@ public class DistilleryScreen extends BlockEntityScreen<DistilleryBlockEntity, D
         
         if (blockEntity.shouldRenderAsBoiling())
         {
-            final int ticks = blockEntity.getBoilingTicks() % 35;
-            final int vHeight = Mth.ceil(ticks / 35f * 20f);
-            graphics.blit(BACKGROUND, leftPos + 131, topPos + 10 + 20 - vHeight, 193, 16 + 21 - vHeight, 11, vHeight);
-            graphics.blit(BACKGROUND, leftPos + 144, topPos + 10 + 20 - vHeight, 193, 16 + 21 - vHeight, 11, vHeight);
+            final int ticks = (blockEntity.getBoilingTicks() % 35);
+            final int vHeight = Mth.ceil(ticks / 35f * 7);
+            
+            graphics.blit(BACKGROUND, leftPos + 79, topPos + 38, 178, 7, 2, vHeight);
+            
+            // graphics.blit(BACKGROUND, leftPos + 131, topPos + 10 + 20 - vHeight, 193, 16 + 21 - vHeight, 11, vHeight);
+            // graphics.blit(BACKGROUND, leftPos + 144, topPos + 10 + 20 - vHeight, 193, 16 + 21 - vHeight, 11, vHeight);
         }
         
         
@@ -115,7 +118,7 @@ public class DistilleryScreen extends BlockEntityScreen<DistilleryBlockEntity, D
         
         if (fluidColor != -1) {
             RenderHelpers.setShaderColor(fluidColor);
-            graphics.blit(BACKGROUND, leftPos + 77, topPos + 48, 208, 0, 10, 3);
+            graphics.blit(BACKGROUND, leftPos + 76, topPos + 47, 208, 0, 10, 3);
             resetToBackgroundSprite();
         }
     }

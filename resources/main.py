@@ -485,8 +485,8 @@ def generate_block_models():
             ({'lit': True, 'axis': 'z'}, {'model': 'tfc:block/firepit_lit_low', 'y': 90}),
             ({'lit': False, 'axis': 'x'}, {'model': 'tfc:block/firepit_unlit'}),
             ({'lit': False, 'axis': 'z'}, {'model': 'tfc:block/firepit_unlit', 'y': 90})
-        ).with_lang(lang(f'{metal}_Distillery')).with_block_loot('tfc:powder/wood_ash', f'artisanal:distillery')
-        rm.item_model('distillery', 'tfc:item/firepit_pot')
+        ).with_lang(lang(f'{metal}_Distillery')).with_block_loot('tfc:powder/wood_ash', f'artisanal:metal/distillery/{metal}')
+        rm.item_model(('distillery', metal), 'tfc:item/firepit_pot')
         
 
 def generate_item_models():
@@ -1097,7 +1097,7 @@ def generate_fluid_tags():
     rm.fluid_tag('acids', 'artisanal:sulfuric_acid', 'artisanal:lemon_juice')
     rm.fluid_tag('usable_in_drum', '#tfc:usable_in_barrel', '#artisanal:acids', 'tfc:metal/gold')
     rm.fluid_tag('usable_in_lava_drum', '#artisanal:usable_in_drum', 'minecraft:lava')
-    rm.fluid_tag('tfc:ingredients', '#artisanal:rendered_fats', 'artisanal:soap', 'artisanal:soapy_water', 'artisanal:sugarcane_juice', 'artisanal:filtered_sugarcane_juice', 'artisanal:alkalized_sugarcane_juice', 'artisanal:clarified_sugarcane_juice', 'artisanal:molasses', 'artisanal:petroleum', 'artisanal:condensed_milk', 'artisanal:condensed_goat_milk', 'artisanal:condensed_yak_milk')
+    rm.fluid_tag('tfc:ingredients', '#artisanal:rendered_fats', 'artisanal:soap', 'artisanal:soapy_water', 'artisanal:sugarcane_juice', 'artisanal:filtered_sugarcane_juice', 'artisanal:alkalized_sugarcane_juice', 'artisanal:clarified_sugarcane_juice', 'artisanal:molasses', 'artisanal:petroleum', 'artisanal:condensed_milk', 'artisanal:condensed_goat_milk', 'artisanal:condensed_yak_milk', 'artisanal:mercury')
     rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:apple_juice', 'artisanal:carrot_juice', 'artisanal:diluted_lemon_juice', 'artisanal:orange_juice', 'artisanal:peach_juice', 'artisanal:pineapple_juice', 'artisanal:tomato_juice', 'artisanal:screwdriver')
     rm.fluid_tag('tfc:usable_in_jug', '#tfc:ingredients', '#artisanal:acids')
     

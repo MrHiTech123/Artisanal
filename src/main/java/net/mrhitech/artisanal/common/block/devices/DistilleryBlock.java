@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -107,19 +108,26 @@ public class DistilleryBlock extends FirepitBlock {
                 return InteractionResult.sidedSuccess(level.isClientSide);
             }
             else if (!distillery.isBoiling() && playerHeldStack.getCapability(Capabilities.FLUID_ITEM).isPresent()) {
-                if (player.isShiftKeyDown()) {
-                    System.out.println("Transfer output bowl contents to jug");
-                    playerHeldStack.getCapability(Capabilities.FLUID_ITEM).ifPresent(cap -> {
-                        FluidTank outputTank = distillery.getOutputTank();
+                
+                playerHeldStack.getCapability(Capabilities.FLUID_ITEM).ifPresent(cap -> {
+                    FluidTank outputTank = distillery.getOutputTank();
+                    if (!outputTank.getFluid().isEmpty()) {
+                        FluidStack transferStack = outputTank.drain(outputTank.getCapacity(), IFluidHandler.FluidAction.EXECUTE);
+                        int amountFilled = cap.fill(transferStack, IFluidHandler.FluidAction.EXECUTE);
                         
-                        cap.fill(outputTank.getFluid(), IFluidHandler.FluidAction.EXECUTE);
-                        outputTank.drain(outputTank.getCapacity(), IFluidHandler.FluidAction.EXECUTE);
-                    });
-                }
-                else if (FluidHelpers.transferBetweenBlockEntityAndItem(playerHeldStack, distillery, player, hand)) {
-                    distillery.setAndUpdateSlots(-1);
-                    distillery.markForSync();
-                }
+                        if (amountFilled != 0) {
+                            FluidHelpers.playTransferSound(level, pos, transferStack, FluidHelpers.Transfer.FILL);
+                        }
+                        else {
+                            outputTank.fill(transferStack, IFluidHandler.FluidAction.EXECUTE);
+                        }
+                    }
+                    else if (FluidHelpers.transferBetweenBlockEntityAndItem(playerHeldStack, distillery, player, hand)) {
+                        distillery.setAndUpdateSlots(-1);
+                        distillery.markForSync();
+                    }
+                });
+                
                 return InteractionResult.sidedSuccess(level.isClientSide);
             }
             else {
