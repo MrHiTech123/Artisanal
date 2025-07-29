@@ -128,23 +128,23 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
         
     }
     
-    private void putOutputInInventory(ItemStack itemStackProviderInput) {
+    private void putOutputInInventory(ItemStack inputItem, FluidStack inputFluid) {
         DistilleryRecipe recipe = cachedRecipe;
         if (recipe == null) return;
         
-        recipe.getLeftoverItem(itemStackProviderInput).ifPresent(leftoverItem -> {
+        recipe.getLeftoverItem(inputItem, inputFluid).ifPresent(leftoverItem -> {
             inventory.setStackInSlot(SLOT_INPUT_ITEM, leftoverItem);
         });
         
-        recipe.getResultItem(itemStackProviderInput).ifPresent(resultItem -> {
+        recipe.getResultItem(inputItem, inputFluid).ifPresent(resultItem -> {
             inventory.setStackInSlot(SLOT_OUTPUT_ITEM, resultItem);
         });
         
-        recipe.getLeftoverFluid().ifPresent(leftoverFluid -> {
+        recipe.getLeftoverFluid(inputItem, inputFluid).ifPresent(leftoverFluid -> {
             inventory.setFluidInTank(TANK_INPUT_FLUID, leftoverFluid);
         });
         
-        recipe.getResultFluid().ifPresent(resultFluid -> {
+        recipe.getResultFluid(inputItem, inputFluid).ifPresent(resultFluid -> {
             inventory.outputBowlFluidTank.fill(resultFluid, IFluidHandler.FluidAction.EXECUTE);
         });
     }
@@ -158,9 +158,10 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
     }
     
     private void finishCooking() {
-        ItemStack input = inventory.getStackInSlot(SLOT_INPUT_ITEM);
+        ItemStack inputItem = inventory.getStackInSlot(SLOT_INPUT_ITEM);
+        FluidStack inputFluid = inventory.getFluidInTank(TANK_INPUT_FLUID);
         removeIngredients();
-        putOutputInInventory(input);
+        putOutputInInventory(inputItem, inputFluid);
         resetRecipeProgress();
     }
     

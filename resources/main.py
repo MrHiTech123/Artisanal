@@ -72,7 +72,7 @@ def distillery_recipe(
         min_temp: int=300
 ) -> RecipeContext:
     return rm.recipe(('distillery', name), 'artisanal:distillery', {
-        "input_item": utils.item_stack(input_item) if input_item is not None else None,
+        "input_item": item_stack_ingredient(input_item) if input_item is not None else None,
         "input_fluid": fluid_stack(input_fluid) if input_fluid is not None else None,
         "result_item": utils.item_stack(result_item) if result_item is not None else None,
         "result_fluid": fluid_stack(result_fluid) if result_fluid is not None else None,

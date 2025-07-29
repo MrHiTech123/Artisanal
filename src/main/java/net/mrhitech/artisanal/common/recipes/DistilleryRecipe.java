@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
 public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.DistilleryInventory> {
     
     private final ResourceLocation id;
-    private final Ingredient itemStackIngredient;
+    private final ItemStackIngredient itemStackIngredient;
     private final FluidStackIngredient fluidStackIngredient;
     private final ItemStackProvider resultItemStack;
     private final FluidStack resultFluidStack;
@@ -53,7 +53,7 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     
     public DistilleryRecipe(
             ResourceLocation id, 
-            Ingredient itemStackIngredient, 
+            ItemStackIngredient itemStackIngredient, 
             FluidStackIngredient fluidStackIngredient, 
             ItemStackProvider outputItemStack, 
             FluidStack outputFluidStack,
@@ -84,7 +84,7 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     }
     
     
-    public Ingredient getIngredientItem() {
+    public ItemStackIngredient getIngredientItem() {
         return itemStackIngredient;
     }
     
@@ -99,21 +99,72 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
         // return getResultItem(ItemStack.EMPTY);
     }
     
-    public Optional<ItemStack> getResultItem(ItemStack input) {
-        return Optional.of(resultItemStack.getStack(input));
+    private int scaleOfInputItem(ItemStack inputItem) {
+        if (itemStackIngredient.ingredient().isEmpty()) {
+            return Integer.MAX_VALUE;
+        }
+        else {
+            return inputItem.getCount() / itemStackIngredient.count();
+        }
+    }
+    
+    private int scaleOfInputFluid(FluidStack inputFluid) {
+        if (fluidStackIngredient.amount() == 0) {
+            return Integer.MAX_VALUE;
+        }
+        else {
+            return inputFluid.getAmount() / fluidStackIngredient.amount();
+        }
+    }
+    
+    private int scaleOfInput(ItemStack inputItem, FluidStack inputFluid) {
+        return Math.min(scaleOfInputItem(inputItem), scaleOfInputFluid(inputFluid));
+    }
+    
+    private ItemStack scaleResult(ItemStack unscaledResult, int scale) {
+        return new ItemStack(unscaledResult.getItem(), unscaledResult.getCount() * scale);
+    }
+    
+    private FluidStack scaleResult(FluidStack unscaledResult, int scale) {
+        return new FluidStack(unscaledResult.getFluid(), unscaledResult.getAmount() * scale);
     }
     
     
-    public Optional<FluidStack> getResultFluid() {
-        return Optional.of(resultFluidStack.copy());
+    public Optional<ItemStack> getResultItem(ItemStack inputItem, FluidStack inputFluid) {
+        ItemStack unscaledResult = resultItemStack.getStack(inputItem);
+        
+        int scale = scaleOfInput(inputItem, inputFluid);
+        ItemStack scaledResult = scaleResult(unscaledResult, scale);
+        
+        return Optional.of(scaledResult);
     }
     
-    public Optional<ItemStack> getLeftoverItem(ItemStack input) {
-        return Optional.of(leftoverItemStack.getStack(input));
+    
+    public Optional<FluidStack> getResultFluid(ItemStack inputItem, FluidStack inputFluid) {
+        FluidStack unscaledResult = resultFluidStack.copy();
+        
+        int scale = scaleOfInput(inputItem, inputFluid);
+        FluidStack scaledResult = scaleResult(unscaledResult, scale);
+        
+        return Optional.of(scaledResult);
     }
     
-    public Optional<FluidStack> getLeftoverFluid() {
-        return Optional.of(leftoverFluidStack.copy());
+    public Optional<ItemStack> getLeftoverItem(ItemStack inputItem, FluidStack inputFluid) {
+        ItemStack unscaledResult = leftoverItemStack.getStack(inputItem);
+        
+        int scale = scaleOfInput(inputItem, inputFluid);
+        ItemStack scaledResult = scaleResult(unscaledResult, scale);
+        
+        return Optional.of(scaledResult);
+    }
+    
+    public Optional<FluidStack> getLeftoverFluid(ItemStack inputItem, FluidStack inputFluid) {
+        FluidStack unscaledResult = leftoverFluidStack.copy();
+        
+        int scale = scaleOfInput(inputItem, inputFluid);
+        FluidStack scaledResult = scaleResult(unscaledResult, scale);
+        
+        return Optional.of(scaledResult);
     }
     
     public boolean isHotEnough(float distilleryTemp) {
@@ -147,7 +198,7 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     public static class Serializer extends RecipeSerializerImpl<DistilleryRecipe> {
         @Override
         public @NotNull DistilleryRecipe fromJson(ResourceLocation id, JsonObject json) {
-            Ingredient itemStackIngredient = json.has("input_item")? Ingredient.fromJson(JsonHelpers.get(json, "input_item")) : Ingredient.EMPTY;
+            ItemStackIngredient itemStackIngredient = json.has("input_item")? ItemStackIngredient.fromJson(json.getAsJsonObject("input_item")) : ItemStackIngredient.EMPTY;
             FluidStackIngredient fluidStackIngredient = json.has("input_fluid")? FluidStackIngredient.fromJson(GsonHelper.getAsJsonObject(json, "input_fluid", null)) : FluidStackIngredient.EMPTY;
             ItemStackProvider resultItemStack = json.has("result_item")? ItemStackProvider.fromJson(GsonHelper.getAsJsonObject(json, "result_item")) : ItemStackProvider.empty();
             FluidStack resultFluidStack = json.has("result_fluid")? JsonHelpers.getFluidStack(GsonHelper.getAsJsonObject(json, "result_fluid")) : FluidStack.EMPTY;
@@ -172,7 +223,7 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
         
         @Override
         public @Nullable DistilleryRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
-            Ingredient itemStackIngredient = Ingredient.fromNetwork(buffer);
+            ItemStackIngredient itemStackIngredient = ItemStackIngredient.fromNetwork(buffer);
             FluidStackIngredient fluidStackIngredient = FluidStackIngredient.fromNetwork(buffer);
             ItemStackProvider resultItemStack = ItemStackProvider.fromNetwork(buffer);
             FluidStack resultFluidStack = FluidStack.readFromPacket(buffer);

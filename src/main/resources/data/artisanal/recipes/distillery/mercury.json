@@ -2,7 +2,9 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "artisanal:distillery",
   "input_item": {
-    "item": "tfc:ore/cinnabar"
+    "ingredient": {
+      "item": "tfc:ore/cinnabar"
+    }
   },
   "result_fluid": {
     "fluid": "artisanal:mercury",
