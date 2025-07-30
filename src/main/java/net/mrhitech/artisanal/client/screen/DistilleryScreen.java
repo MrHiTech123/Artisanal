@@ -23,6 +23,8 @@ import net.mrhitech.artisanal.common.container.DistilleryContainer;
 
 public class DistilleryScreen extends BlockEntityScreen<DistilleryBlockEntity, DistilleryContainer> {
     private static final ResourceLocation BACKGROUND = new ResourceLocation(Artisanal.MOD_ID, "textures/gui/fire_pit_distillery.png");
+    private static final int TICKS_PER_DRIP_ANIMATION_CYCLE = DistilleryBlockEntity.TICKS_PER_DRIP_SOUND * 4;
+    
     
     public DistilleryScreen(DistilleryContainer container, Inventory playerInventory, Component name) {
         super(container, playerInventory, name, BACKGROUND);
@@ -40,7 +42,7 @@ public class DistilleryScreen extends BlockEntityScreen<DistilleryBlockEntity, D
         
         final MutableComponent text = Component.empty();
         if (blockEntity.shouldRenderAsBoiling()) {
-            text.append(Component.translatable("artisanal.tooltip.distillery_boiling"));
+            text.append(Component.translatable("tfc.tooltip.pot_boiling"));
         }
         
         final int x = 118 - font.width(text) / 2;
@@ -100,8 +102,8 @@ public class DistilleryScreen extends BlockEntityScreen<DistilleryBlockEntity, D
         
         if (blockEntity.shouldRenderAsBoiling())
         {
-            final int ticks = (blockEntity.getBoilingTicks() % 35);
-            final int vHeight = Mth.ceil(ticks / 35f * 7);
+            final int ticks = (blockEntity.getBoilingTicks() % TICKS_PER_DRIP_ANIMATION_CYCLE);
+            final int vHeight = Mth.ceil((float)ticks / TICKS_PER_DRIP_ANIMATION_CYCLE * 8);
             
             graphics.blit(BACKGROUND, leftPos + 79, topPos + 38, 178, 7, 2, vHeight);
             

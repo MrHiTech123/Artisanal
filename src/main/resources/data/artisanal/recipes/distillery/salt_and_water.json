@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:distillery",
+  "input_fluid": {
+    "ingredient": "tfc:salt_water",
+    "amount": 125
+  },
+  "result_fluid": {
+    "fluid": "minecraft:water",
+    "amount": 125
+  },
+  "leftover_item": {
+    "item": "tfc:powder/salt"
+  },
+  "min_temp": 300,
+  "duration": 2000
+}

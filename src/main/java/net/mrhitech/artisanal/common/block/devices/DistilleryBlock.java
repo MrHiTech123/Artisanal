@@ -46,27 +46,27 @@ public class DistilleryBlock extends FirepitBlock {
         this.metal = metal;
     }
     
-    private boolean shouldRenderBoiling() {
-        return false;
-    }
-    
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         super.animateTick(state, level, pos, random);
         
         level.getBlockEntity(pos, ArtisanalBlockEntities.DISTILLERY.get()).ifPresent(distillery -> {
-            if (!shouldRenderBoiling()) return;
+            if (!distillery.shouldRenderAsBoiling()) return;
             
             // TODO: Figure out position of bubbles
             double x = pos.getX();
             double y = pos.getY();
             double z = pos.getZ();
             
-            for (int i = 0; i < random.nextInt(4, 9); ++i) {
-                level.addParticle(TFCParticles.BUBBLE.get(), false, x + random.nextFloat() * 0.375 - 0.1875, y + 0.625, z + random.nextFloat() * 0.375 - 0.1875, 0, 0.05D, 0);
-            }
+            // for (int i = 0; i < random.nextInt(4, 9); ++i) {
+            //     level.addParticle(TFCParticles.BUBBLE.get(), false, x + random.nextFloat() * 0.375 - 0.1875, y + 0.625, z + random.nextFloat() * 0.375 - 0.1875, 0, 0.05D, 0);
+            // }
+            //
             
-            level.addParticle(TFCParticles.STEAM.get(), false, x, y + 0.8, z, Helpers.triangle(random), 0.5, Helpers.triangle(random));
-            level.playLocalSound(x, y, z, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, 1.0F, random.nextFloat() * 0.7F + 0.4F, false);
+            
+            // level.addParticle(TFCParticles.STEAM.get(), false, x, y + 0.8, z, Helpers.triangle(random), 0.5, Helpers.triangle(random));
+            if (!distillery.getFluidInTank(DistilleryBlockEntity.TANK_INPUT_FLUID).isEmpty()) {
+                level.playLocalSound(x, y, z, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, 1.0F, random.nextFloat() * 0.7F + 0.4F, false);
+            }
             
         });
     }
@@ -107,7 +107,10 @@ public class DistilleryBlock extends FirepitBlock {
                 
                 return InteractionResult.sidedSuccess(level.isClientSide);
             }
-            else if (!distillery.isBoiling() && playerHeldStack.getCapability(Capabilities.FLUID_ITEM).isPresent()) {
+            else if (
+                    !distillery.isBoiling() && 
+                    playerHeldStack.getCapability(Capabilities.FLUID_ITEM).isPresent()
+            ) {
                 
                 playerHeldStack.getCapability(Capabilities.FLUID_ITEM).ifPresent(cap -> {
                     FluidTank outputTank = distillery.getOutputTank();
@@ -118,9 +121,9 @@ public class DistilleryBlock extends FirepitBlock {
                         if (amountFilled != 0) {
                             FluidHelpers.playTransferSound(level, pos, transferStack, FluidHelpers.Transfer.FILL);
                         }
-                        else {
-                            outputTank.fill(transferStack, IFluidHandler.FluidAction.EXECUTE);
-                        }
+                        
+                        FluidStack toAddBackToOutputTank = new FluidStack(transferStack.getFluid(), transferStack.getAmount() - amountFilled);
+                        outputTank.fill(toAddBackToOutputTank, IFluidHandler.FluidAction.EXECUTE);
                     }
                     else if (FluidHelpers.transferBetweenBlockEntityAndItem(playerHeldStack, distillery, player, hand)) {
                         distillery.setAndUpdateSlots(-1);

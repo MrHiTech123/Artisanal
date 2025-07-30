@@ -1,5 +1,6 @@
 package net.mrhitech.artisanal.common.blockentities;
 
+import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.AbstractFirepitBlockEntity;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
@@ -19,6 +20,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -55,6 +57,8 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
     private final SidedHandler.Builder<IFluidHandler> sidedFluidInventory;
     @Nullable private DistilleryRecipe cachedRecipe;
     private int boilingTicks, preBoilingTicks;
+    
+    public static final int TICKS_PER_DRIP_SOUND = 36;
     
     public DistilleryBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ArtisanalBlockEntities.DISTILLERY.get(), pPos, pBlockState, DistilleryInventory::new, NAME);
@@ -172,6 +176,12 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
                 ++preBoilingTicks;
                 return;
             }
+            
+            if (boilingTicks % TICKS_PER_DRIP_SOUND == 0) {
+                assert level != null;
+                Helpers.playSound(level, getBlockPos(), TFCSounds.BARREL_DRIP.get());
+            }
+            
             assert cachedRecipe != null;
             if (boilingTicks < cachedRecipe.getDuration()) {
                 ++boilingTicks;
@@ -275,7 +285,6 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
     public FluidStack getFluidInTank(int tank) {
         return inventory.getFluidInTank(tank).copy();
     }
-    
     
     
     

@@ -73,7 +73,7 @@ def distillery_recipe(
 ) -> RecipeContext:
     return rm.recipe(('distillery', name), 'artisanal:distillery', {
         "input_item": item_stack_ingredient(input_item) if input_item is not None else None,
-        "input_fluid": fluid_stack(input_fluid) if input_fluid is not None else None,
+        "input_fluid": fluid_stack_ingredient(input_fluid) if input_fluid is not None else None,
         "result_item": utils.item_stack(result_item) if result_item is not None else None,
         "result_fluid": fluid_stack(result_fluid) if result_fluid is not None else None,
         "leftover_item": utils.item_stack(leftover_item) if leftover_item is not None else None,
@@ -445,6 +445,7 @@ def generate_misc_lang():
     rm.lang("item.minecraft.cooked_beef", "Whatever Food Was Inside the Can")
     rm.lang('tfc.jei.juicing', 'Juicing Recipe')
     rm.lang('item.minecraft.sugar', 'White Sugar')
+    rm.lang('artisanal.block_entity.distillery', 'Distillery')
 
 def generate_block_models():
     print('\tGenerating block models...')
@@ -840,6 +841,8 @@ def generate_distillery_recipes():
     print('\tGenerating distillery recipes')
     
     distillery_recipe(rm, "mercury", input_item='tfc:ore/cinnabar', result_fluid="100 artisanal:mercury", leftover_item="tfc:powder/sulfur")
+    distillery_recipe(rm, 'salt_and_water', input_fluid='125 tfc:salt_water', result_fluid='125 minecraft:water', leftover_item="tfc:powder/salt")
+    
     
 def generate_glassworking_recipes():
     print("\tGenerating glassworking recipes")

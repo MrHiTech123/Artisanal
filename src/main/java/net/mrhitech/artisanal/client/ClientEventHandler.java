@@ -5,7 +5,11 @@ import net.dries007.tfc.client.screen.PotScreen;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.Metal;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -17,6 +21,8 @@ import net.mrhitech.artisanal.common.container.ArtisanalContainerTypes;
 import net.mrhitech.artisanal.common.container.DistilleryContainer;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 
+import java.util.function.Predicate;
+
 public class ClientEventHandler {
     public static void init() {
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -24,6 +30,7 @@ public class ClientEventHandler {
         bus.addListener(ClientEventHandler::registerColorHandlerItems);
     }
     
+    @SuppressWarnings("deprecation")
     public static void clientSetup(FMLClientSetupEvent event) {
         
         event.enqueueWork(() -> {
@@ -31,6 +38,18 @@ public class ClientEventHandler {
             
             MenuScreens.register(ArtisanalContainerTypes.DISTILLERY.get(), DistilleryScreen::new);
         });
+        
+        
+        final RenderType cutoutMipped = RenderType.cutoutMipped();
+        final Predicate<RenderType> ghostBlock = rt -> rt == cutoutMipped || rt == Sheets.translucentCullBlockSheet();
+        
+        for (Metal.Default metal : Metal.Default.values()) {
+            if (!metal.hasTools()) continue;
+            ItemBlockRenderTypes.setRenderLayer(
+                    ArtisanalBlocks.DISTILLERIES.get(metal).get(), 
+                    ghostBlock
+            );
+        }
         
     }
     
