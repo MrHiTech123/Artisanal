@@ -476,7 +476,7 @@ def generate_block_models():
         }, f'artisanal:metal/drum/{metal}'))
         
     for metal, metal_data in METALS.items():
-        if 'tool' not in metal_data.types:
+        if not ('tool' in metal_data.types or metal == "cast_iron"):
             continue
         rm.block_model(('distillery', metal), {'metal': f'tfc:block/metal/smooth/{metal}'}, 'artisanal:block/firepit_distillery')
         rm.blockstate_multipart(('distillery', metal),
@@ -488,6 +488,7 @@ def generate_block_models():
             ({'lit': False, 'axis': 'z'}, {'model': 'tfc:block/firepit_unlit', 'y': 90})
         ).with_lang(lang(f'{metal}_Distillery')).with_block_loot('tfc:powder/wood_ash', f'artisanal:metal/distillery/{metal}')
         rm.item_model(('distillery', metal), 'tfc:item/firepit_pot')
+        rm.item_model(('metal', 'distillery', metal), f'artisanal:item/metal/distillery/{metal}').with_lang(lang(f'{metal}_distillery'))
         
 
 def generate_item_models():

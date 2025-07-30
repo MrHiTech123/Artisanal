@@ -11,12 +11,15 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.mrhitech.artisanal.client.render.blockentity.DistilleryBlockEntityRenderer;
 import net.mrhitech.artisanal.client.screen.DistilleryScreen;
 import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
+import net.mrhitech.artisanal.common.blockentities.ArtisanalBlockEntities;
 import net.mrhitech.artisanal.common.container.ArtisanalContainerTypes;
 import net.mrhitech.artisanal.common.container.DistilleryContainer;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
@@ -26,6 +29,8 @@ import java.util.function.Predicate;
 public class ClientEventHandler {
     public static void init() {
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        
+        bus.addListener(ClientEventHandler::registerEntityRenderers);
         bus.addListener(ClientEventHandler::clientSetup);
         bus.addListener(ClientEventHandler::registerColorHandlerItems);
     }
@@ -55,6 +60,9 @@ public class ClientEventHandler {
     
     public static void registerColorHandlerItems(RegisterColorHandlersEvent.Item event) {
         ArtisanalItems.FLUID_BUCKETS.values().forEach(reg -> event.register(new ContainedFluidModel.Colors(), reg.get()));
-        
+    }
+    
+    public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(ArtisanalBlockEntities.DISTILLERY.get(), ctx -> new DistilleryBlockEntityRenderer());
     }
 }
