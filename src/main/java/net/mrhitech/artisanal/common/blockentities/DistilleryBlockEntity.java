@@ -4,13 +4,10 @@ import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.AbstractFirepitBlockEntity;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
-import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
 import net.dries007.tfc.common.capabilities.*;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.common.fluids.FluidHelpers;
-import net.dries007.tfc.common.items.TFCItems;
-import net.dries007.tfc.common.recipes.PotRecipe;
 import net.dries007.tfc.common.recipes.RecipeHelpers;
 import net.dries007.tfc.common.recipes.ingredients.ItemStackIngredient;
 import net.dries007.tfc.common.recipes.inventory.EmptyInventory;
@@ -20,12 +17,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -40,9 +35,6 @@ import net.mrhitech.artisanal.common.container.DistilleryContainer;
 import net.mrhitech.artisanal.common.recipes.DistilleryRecipe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Objects;
-import java.util.Optional;
 
 public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<DistilleryBlockEntity.DistilleryInventory> {
     
@@ -116,13 +108,18 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
         };
     }
     
-    private void removeIngredients() {
+    private void removeIngredientsExceptSameOutputIngredients(ItemStack inputItem, FluidStack inputFluid) {
         RecipeHelpers.setCraftingInput(inventory, SLOT_INPUT_ITEM, SLOT_OUTPUT_ITEM);
         
         RecipeHelpers.clearCraftingInput();
         
+        assert cachedRecipe != null;
+        
         inventory.inputBowlFluidTank.setFluid(FluidStack.EMPTY);
-        inventory.outputBowlFluidTank.setFluid(FluidStack.EMPTY);
+        if (!inventory.outputBowlFluidTank.getFluid().getFluid().equals(cachedRecipe.getResultFluid().orElse(FluidStack.EMPTY).getFluid())) {
+            inventory.outputBowlFluidTank.setFluid(FluidStack.EMPTY);
+        }
+        
         
         DistilleryRecipe cachedCachedRecipe = cachedRecipe;
         // This resets cachedRecipe to null for some reason, so we
@@ -164,7 +161,7 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
     private void finishCooking() {
         ItemStack inputItem = inventory.getStackInSlot(SLOT_INPUT_ITEM);
         FluidStack inputFluid = inventory.getFluidInTank(TANK_INPUT_FLUID);
-        removeIngredients();
+        removeIngredientsExceptSameOutputIngredients(inputItem, inputFluid);
         putOutputInInventory(inputItem, inputFluid);
         resetRecipeProgress();
     }
