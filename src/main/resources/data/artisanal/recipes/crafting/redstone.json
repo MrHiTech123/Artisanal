@@ -1,0 +1,28 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CSC",
+    "SFS",
+    "CSC"
+  ],
+  "key": {
+    "C": {
+      "tag": "artisanal:powders/copper"
+    },
+    "S": {
+      "item": "tfc:powder/sulfur"
+    },
+    "F": {
+      "type": "tfc:fluid_item",
+      "fluid_ingredient": {
+        "ingredient": "artisanal:mercury",
+        "amount": 100
+      }
+    }
+  },
+  "result": {
+    "item": "minecraft:redstone",
+    "count": 4
+  }
+}

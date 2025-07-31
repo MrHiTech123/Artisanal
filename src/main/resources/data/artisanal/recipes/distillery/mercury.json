@@ -3,12 +3,12 @@
   "type": "artisanal:distillery",
   "input_item": {
     "ingredient": {
-      "item": "tfc:ore/cinnabar"
+      "item": "artisanal:powder/cinnabar"
     }
   },
   "result_fluid": {
     "fluid": "artisanal:mercury",
-    "amount": 100
+    "amount": 25
   },
   "leftover_item": {
     "item": "tfc:powder/sulfur"

@@ -30,9 +30,10 @@ public class ClientEventHandler {
     public static void init() {
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         
-        bus.addListener(ClientEventHandler::registerEntityRenderers);
         bus.addListener(ClientEventHandler::clientSetup);
         bus.addListener(ClientEventHandler::registerColorHandlerItems);
+        bus.addListener(ClientEventHandler::registerEntityRenderers);
+        
     }
     
     @SuppressWarnings("deprecation")

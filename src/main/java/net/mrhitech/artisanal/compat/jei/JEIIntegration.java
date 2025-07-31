@@ -24,10 +24,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.mrhitech.artisanal.Artisanal;
 import net.mrhitech.artisanal.common.ArtisanalTags;
-import net.mrhitech.artisanal.common.recipes.ArtisanalRecipeSerializers;
-import net.mrhitech.artisanal.common.recipes.ArtisanalRecipeTypes;
-import net.mrhitech.artisanal.common.recipes.JuicingRecipe;
-import net.mrhitech.artisanal.common.recipes.OnlyIfFluxMakesLimewaterBarrelRecipe;
+import net.mrhitech.artisanal.common.recipes.*;
+import net.mrhitech.artisanal.compat.jei.category.DistilleryRecipeCategory;
 import net.mrhitech.artisanal.compat.jei.category.JuicingRecipeCategory;
 import net.mrhitech.artisanal.compat.jei.category.ScalablePotRecipeCategory;
 
@@ -49,6 +47,8 @@ public class JEIIntegration implements IModPlugin {
     }
     
     public static final RecipeType<PotRecipe> SCALABLE_POT = RecipeType.create(Artisanal.MOD_ID, "scalable_pot", PotRecipe.class);
+    
+    public static final RecipeType<DistilleryRecipe> DISTILLERY = RecipeType.create(Artisanal.MOD_ID, "distillery", DistilleryRecipe.class);
     public static final RecipeType<JuicingRecipe> JUICING = RecipeType.create(Artisanal.MOD_ID, "juicing", JuicingRecipe.class);
     
     
@@ -63,6 +63,7 @@ public class JEIIntegration implements IModPlugin {
         
         registry.addRecipeCategories(
                 new ScalablePotRecipeCategory(SCALABLE_POT, gui),
+                new DistilleryRecipeCategory(DISTILLERY, gui),
                 new JuicingRecipeCategory(JUICING, gui)
         );
     }
@@ -71,6 +72,7 @@ public class JEIIntegration implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registry) {
         registry.addRecipes(JUICING, recipes(ArtisanalRecipeTypes.JUICING.get(), recipe -> (recipe.getSerializer() == ArtisanalRecipeSerializers.JUICING_RECIPE.get())));
         registry.addRecipes(SCALABLE_POT, recipes(TFCRecipeTypes.POT.get(), recipe -> (recipe.getSerializer() == ArtisanalRecipeSerializers.SCALABLE_POT.get())));
+        registry.addRecipes(DISTILLERY, recipes(ArtisanalRecipeTypes.DISTILLERY.get(), recipe -> (recipe.getSerializer() == ArtisanalRecipeSerializers.DISTILLERY.get())));
     }
     
     @Override
@@ -81,8 +83,11 @@ public class JEIIntegration implements IModPlugin {
         for (Item item : Helpers.allItems(ArtisanalTags.ITEMS.TFC_BARRELS).toList()) {
             registry.addRecipeCatalyst(new ItemStack(item), JUICING);
         }
+        
+        for (Item item : Helpers.allItems(ArtisanalTags.ITEMS.DISTILLERIES).toList()) {
+            registry.addRecipeCatalyst(new ItemStack(item), DISTILLERY);
+        }
+        
     }
-    
-    
     
 }

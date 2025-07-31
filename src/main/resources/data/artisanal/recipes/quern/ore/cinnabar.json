@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:quern",
+  "ingredient": {
+    "item": "tfc:ore/cinnabar"
+  },
+  "result": {
+    "item": "artisanal:powder/cinnabar",
+    "count": 2
+  }
+}

@@ -157,6 +157,10 @@ def catalyst_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingr
         'conditions': utils.recipe_condition(conditions)
     })
 
+def has_distilleries(metal: str) -> bool:
+    metal_data = METALS[metal]
+    return 'tool' in metal_data.types or metal == "cast_iron"
+
 def heatable_ingredient(ingredient: str, min_temp: int):
     return {'type': 'tfc:heatable', 'min_temp': min_temp, 'ingredient': utils.ingredient(ingredient)}
 
@@ -438,12 +442,15 @@ def generate_loot_modifiers():
 def generate_misc_lang():
     print('Generating misc lang...')
     rm.lang('tfc.jei.scalable_pot', 'Scalable Pot Recipe')
+    rm.lang('tfc.jei.juicing', 'Juicing Recipe')
+    rm.lang('tfc.jei.distillery', 'Distillery Recipe')
+    
+    
     rm.lang("block.tfc.fluid.limewater", "Slaked Lime")
     rm.lang("item.tfc.bucket.limewater", "Slaked Lime Bucket")
     rm.lang("fluid.tfc.limewater", "Slaked Lime")
     rm.lang("block.tfc.cauldron.limewater", "Slaked Lime Cauldron")
     rm.lang("item.minecraft.cooked_beef", "Whatever Food Was Inside the Can")
-    rm.lang('tfc.jei.juicing', 'Juicing Recipe')
     rm.lang('item.minecraft.sugar', 'White Sugar')
     rm.lang('artisanal.block_entity.distillery', 'Distillery')
 
@@ -476,7 +483,7 @@ def generate_block_models():
         }, f'artisanal:metal/drum/{metal}'))
         
     for metal, metal_data in METALS.items():
-        if not ('tool' in metal_data.types or metal == "cast_iron"):
+        if not has_distilleries(metal):
             continue
         rm.block_model(('distillery', metal), {'metal': f'tfc:block/metal/smooth/{metal}'}, 'artisanal:block/firepit_distillery')
         rm.blockstate_multipart(('distillery', metal),
@@ -569,6 +576,10 @@ def generate_item_models():
     rm.item_model('dirty_burlap_cloth', 'artisanal:item/dirty_burlap_cloth').with_lang(lang('dirty_burlap_cloth'))
     rm.item_model('dirty_silk_cloth', 'artisanal:item/dirty_silk_cloth').with_lang(lang('dirty_silk_cloth'))
     rm.item_model('dirty_wool_cloth', 'artisanal:item/dirty_wool_cloth').with_lang(lang('dirty_wool_cloth'))
+    
+    rm.item_model(('powder', 'cinnabar'), 'artisanal:item/powder/cinnabar').with_lang(lang('cinnabar_powder'))
+    
+    
     
     
 def generate_models():
@@ -838,10 +849,12 @@ def generate_crafting_recipes():
     damage_shapeless(rm, ('crafting', 'ceramic', 'unfired_brick'), ('#artisanal:brick_molds', 'minecraft:clay_ball', 'minecraft:clay_ball'), 'tfc:ceramic/unfired_brick')
     rm.crafting_shapeless(('crafting', 'powder', 'sulfur'), ('tfc:powder/pyrite'), 'tfc:powder/sulfur')
     
+    rm.crafting_shaped(('crafting', 'redstone'), ['CSC', 'SFS', 'CSC'], {'C': '#artisanal:powders/copper', 'S': 'tfc:powder/sulfur', 'F': fluid_item_ingredient('100 artisanal:mercury')}, (4, 'minecraft:redstone'))
+    
 def generate_distillery_recipes():
     print('\tGenerating distillery recipes')
     
-    distillery_recipe(rm, "mercury", input_item='tfc:ore/cinnabar', result_fluid="100 artisanal:mercury", leftover_item="tfc:powder/sulfur")
+    distillery_recipe(rm, "mercury", input_item='artisanal:powder/cinnabar', result_fluid="25 artisanal:mercury", leftover_item="tfc:powder/sulfur")
     distillery_recipe(rm, 'salt_and_water', input_fluid='125 tfc:salt_water', result_fluid='125 minecraft:water', leftover_item="tfc:powder/salt")
     
     
@@ -1039,9 +1052,11 @@ def generate_quern_recipes():
     quern_recipe(rm, ('powdered_milk'), 'artisanal:milk_flakes', 'artisanal:powdered_milk', 2)
     quern_recipe(rm, ('powdered_goat_milk'), 'artisanal:goat_milk_flakes', 'artisanal:powdered_goat_milk', 2)
     quern_recipe(rm, ('powdered_yak_milk'), 'artisanal:yak_milk_flakes', 'artisanal:powdered_yak_milk', 2)
+    quern_recipe(rm, ('ore', 'cinnabar'), 'tfc:ore/cinnabar', 'artisanal:powder/cinnabar', 2)
+    
     
     disable_recipe(rm, 'firmaciv:quern/pyrite')
-    
+    disable_recipe(rm, 'tfc:quern/cinnabar')
 
 def generate_vat_recipes():
     print('\tGenerating vat recipes...')
@@ -1127,7 +1142,8 @@ def generate_item_tags():
     rm.item_tag('rods/metal', *[f'tfc:metal/rod/{metal}' for metal in METALS if 'utility' in METALS[metal].types])
     rm.item_tag('metal/flint_and/colored_steel', 'artisanal:metal/flint_and/blue_steel', 'artisanal:metal/flint_and/red_steel')
     rm.item_tag('metal/sterilized_cans', *[f'artisanal:metal/can/{metal}_sterilized' for metal in CAN_METALS])
-    
+    rm.item_tag('metal/distilleries', *[f'artisanal:metal/distillery/{metal}' for metal in METALS if has_distilleries(metal)])
+    rm.item_tag('powders/copper', *[f'tfc:powder/{ore}' for ore in ['malachite', 'tetrahedrite', 'native_copper']])
     
     rm.item_tag('tfc:firepit_kindling', 'artisanal:bagasse')
     rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'], 'artisanal:stone/flint_and/pyrite', 'artisanal:stone/flint_and/cut_pyrite')

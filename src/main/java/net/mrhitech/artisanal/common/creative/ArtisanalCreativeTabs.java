@@ -101,6 +101,9 @@ public class ArtisanalCreativeTabs {
                     event.accept(ArtisanalItems.CIRCLE_BLADES.get(metal));
                     event.accept(ArtisanalItems.BRICK_MOLDS.get(metal));
                 }
+                if (ArtisanalItems.hasDistilleries(metal)) {
+                    event.accept(ArtisanalItems.DISTILLERIES.get(metal));
+                }
             }
             
             for (SteelMetal metal : SteelMetal.values()) {
@@ -122,6 +125,7 @@ public class ArtisanalCreativeTabs {
         if (event.getTabKey() == TFCCreativeTabs.ROCKS.tab().getKey()) {
             event.accept(ArtisanalItems.FLINT_AND_PYRITE.get());
             event.accept(ArtisanalItems.FLINT_AND_CUT_PYRITE.get());
+            event.accept(ArtisanalItems.CINNABAR_POWDER.get());
         }
         
         if (event.getTabKey() == TFCCreativeTabs.EARTH.tab().getKey()) {

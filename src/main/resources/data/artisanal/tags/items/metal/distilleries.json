@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "artisanal:metal/distillery/bismuth_bronze",
+    "artisanal:metal/distillery/black_bronze",
+    "artisanal:metal/distillery/bronze",
+    "artisanal:metal/distillery/copper",
+    "artisanal:metal/distillery/wrought_iron",
+    "artisanal:metal/distillery/cast_iron",
+    "artisanal:metal/distillery/steel",
+    "artisanal:metal/distillery/black_steel",
+    "artisanal:metal/distillery/blue_steel",
+    "artisanal:metal/distillery/red_steel"
+  ]
+}

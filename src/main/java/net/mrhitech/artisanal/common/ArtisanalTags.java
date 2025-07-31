@@ -14,6 +14,7 @@ public class ArtisanalTags {
         public static final TagKey<Item> CRAFTING_CATALYSTS = create("crafting_catalysts");
         public static final TagKey<Item> METAL_RODS = create("rods/metal");
         public static final TagKey<Item> TFC_BARRELS = create(TerraFirmaCraft.MOD_ID, "barrels");
+        public static final TagKey<Item> DISTILLERIES = create("metal/distilleries");
         public static final TagKey<Item> FATS = create("fats");
         
         private static TagKey<Item> create(String modId, String itemId) {

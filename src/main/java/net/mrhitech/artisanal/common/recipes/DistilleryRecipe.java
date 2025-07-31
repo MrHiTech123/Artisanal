@@ -83,7 +83,6 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
         return level.getRecipeManager().getRecipeFor(ArtisanalRecipeTypes.DISTILLERY.get(), inventory, level);
     }
     
-    
     public ItemStackIngredient getIngredientItem() {
         return itemStackIngredient;
     }
@@ -94,13 +93,13 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     
     @Override
     public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
-        return resultItemStack.getStack(ItemStack.EMPTY);
+        return getResultItem().orElseGet(() -> ItemStack.EMPTY);
         // throw new RuntimeException("This version of getResultItem should not be running; why would we need registry access!?");
         // return getResultItem(ItemStack.EMPTY);
     }
     
     private int scaleOfInputItem(ItemStack inputItem) {
-        if (itemStackIngredient.ingredient().isEmpty()) {
+        if (itemStackIngredient.ingredient().isEmpty() || inputItem.isEmpty()) {
             return Integer.MAX_VALUE;
         }
         else {
@@ -109,7 +108,7 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     }
     
     private int scaleOfInputFluid(FluidStack inputFluid) {
-        if (fluidStackIngredient.amount() == 0) {
+        if (fluidStackIngredient.amount() == 0 || inputFluid.isEmpty()) {
             return Integer.MAX_VALUE;
         }
         else {
@@ -118,7 +117,11 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     }
     
     private int scaleOfInput(ItemStack inputItem, FluidStack inputFluid) {
-        return Math.min(scaleOfInputItem(inputItem), scaleOfInputFluid(inputFluid));
+        int toReturn = Math.min(scaleOfInputItem(inputItem), scaleOfInputFluid(inputFluid));
+        if (toReturn == Integer.MAX_VALUE) {
+            toReturn = 1;
+        }
+        return toReturn;
     }
     
     private ItemStack scaleResult(ItemStack unscaledResult, int scale) {
@@ -128,6 +131,24 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     private FluidStack scaleResult(FluidStack unscaledResult, int scale) {
         return new FluidStack(unscaledResult.getFluid(), unscaledResult.getAmount() * scale);
     }
+    
+    public Optional<ItemStack> getResultItem() {
+        return getResultItem(ItemStack.EMPTY, FluidStack.EMPTY);
+    }
+    
+    public Optional<FluidStack> getResultFluid() {
+        return getResultFluid(ItemStack.EMPTY, FluidStack.EMPTY);
+    }
+    
+    public Optional<ItemStack> getLeftoverItem() {
+        return getLeftoverItem(ItemStack.EMPTY, FluidStack.EMPTY);
+    }
+    
+    public Optional<FluidStack> getLeftoverFluid() {
+        return getLeftoverFluid(ItemStack.EMPTY, FluidStack.EMPTY);
+    }
+    
+    
     
     
     public Optional<ItemStack> getResultItem(ItemStack inputItem, FluidStack inputFluid) {
