@@ -7,6 +7,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.IIngredientSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.mrhitech.artisanal.common.item.ArtisanalItems;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
@@ -16,13 +17,15 @@ import java.util.stream.Stream;
 
 public class UniversalIngredient extends Ingredient {
     
-    private static final Supplier<Stream<ItemValue>> allItems = () -> ForgeRegistries.ITEMS.getKeys().stream().map(resourceLocation -> 
-                new Ingredient.ItemValue(
-                        new ItemStack(Optional.ofNullable(ForgeRegistries.ITEMS.getValue(resourceLocation)).orElse(Items.AIR))
-                ));
+    // private static final Supplier<Stream<ItemValue>> allItems = () -> ForgeRegistries.ITEMS.getKeys().stream().map(resourceLocation -> 
+    //             new Ingredient.ItemValue(
+    //                     new ItemStack(Optional.ofNullable(ForgeRegistries.ITEMS.getValue(resourceLocation)).orElse(Items.AIR))
+    //             ));
+    
+    private static final Supplier<Stream<ItemValue>> noItems = () -> Stream.of(new Ingredient.ItemValue(new ItemStack(ArtisanalItems.DEBUG_ANY_ITEM.get())));
     
     protected UniversalIngredient() {
-        super(allItems.get());
+        super(noItems.get());
     }
     
     @Override

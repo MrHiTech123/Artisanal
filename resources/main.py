@@ -450,7 +450,6 @@ def generate_misc_lang():
     rm.lang("item.tfc.bucket.limewater", "Slaked Lime Bucket")
     rm.lang("fluid.tfc.limewater", "Slaked Lime")
     rm.lang("block.tfc.cauldron.limewater", "Slaked Lime Cauldron")
-    rm.lang("item.minecraft.cooked_beef", "Whatever Food Was Inside the Can")
     rm.lang('item.minecraft.sugar', 'White Sugar')
     rm.lang('artisanal.block_entity.distillery', 'Distillery')
 
@@ -579,7 +578,8 @@ def generate_item_models():
     
     rm.item_model(('powder', 'cinnabar'), 'artisanal:item/powder/cinnabar').with_lang(lang('cinnabar_powder'))
     
-    
+    rm.item_model(('debug', 'any_item'), 'minecraft:item/nether_star').with_lang(lang('any_item'))
+    rm.item_model(('debug', 'whatever_food_was_inside_the_can'), 'minecraft:item/cooked_beef').with_lang(lang('whatever_food_was_inside_the_can'))
     
     
 def generate_models():

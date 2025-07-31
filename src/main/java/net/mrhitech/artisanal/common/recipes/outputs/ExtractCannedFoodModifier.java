@@ -5,6 +5,7 @@ import net.dries007.tfc.common.capabilities.food.FoodHandler;
 import net.dries007.tfc.common.recipes.outputs.ItemStackModifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.mrhitech.artisanal.common.item.ArtisanalItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public enum ExtractCannedFoodModifier implements ItemStackModifier.SingleInstanc
         });
         
         if (ingredients.get().isEmpty()) {
-            return new ItemStack(Items.COOKED_BEEF);
+            return new ItemStack(ArtisanalItems.DEBUG_WHATEVER_FOOD_WAS_INSIDE_THE_CAN.get());
         }
         
         ItemStack output = ingredients.get().get(0);

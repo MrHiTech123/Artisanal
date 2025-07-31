@@ -119,6 +119,12 @@ public class ArtisanalItems {
     
     public static final RegistryObject<Item> CINNABAR_POWDER = register("powder/cinnabar", () -> new Item(new Item.Properties()));
     
+    
+    
+    public static final RegistryObject<Item> DEBUG_ANY_ITEM = register("debug/any_item", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DEBUG_WHATEVER_FOOD_WAS_INSIDE_THE_CAN = register("debug/whatever_food_was_inside_the_can", () -> new Item(new Item.Properties()));
+    
+    
     public static <T extends Item> RegistryObject<T> register(String name, Supplier<T> supplier) {
         return ITEMS.register(name, supplier);
     }
