@@ -1,5 +1,10 @@
 package net.mrhitech.artisanal.common.fluids;
 
+import net.dries007.tfc.common.fluids.TFCFluids;
+import net.dries007.tfc.util.Helpers;
+import net.minecraft.resources.ResourceLocation;
+import net.mrhitech.artisanal.Artisanal;
+
 import java.util.Locale;
 
 public enum Waterlikes {
@@ -25,17 +30,24 @@ public enum Waterlikes {
     PINEAPPLE_JUICE(-4213136),
     TOMATO_JUICE(-1035741),
     SCREWDRIVER(-1198481),
-    PETROLEUM(-16777216),
+    SOUR_CRUDE_OIL(-14671871, new ResourceLocation(Artisanal.MOD_ID, "textures/misc/under/sour_crude_oil.png")),
+    SWEET_CRUDE_OIL(-2237024, new ResourceLocation(Artisanal.MOD_ID, "textures/misc/under/sweet_crude_oil.png")),
+    KEROSENE(-71),
     SULFURIC_ACID(-2240864),
     MERCURY(-8421504);
     
     private final int color;
     private final String id;
-    
+    private final ResourceLocation underneathTexture;
     
     Waterlikes(int color) {
+        this(color, null);
+    }
+    
+    Waterlikes(int color, ResourceLocation underneathTexture) {
         this.id = this.name().toLowerCase(Locale.ROOT);
         this.color = color;
+        this.underneathTexture = underneathTexture;
     }
     
     public String getId() {
@@ -44,6 +56,10 @@ public enum Waterlikes {
     
     public int getColor() {
         return color;
+    }
+    
+    public ResourceLocation getUnderneathTexture() {
+        return underneathTexture;
     }
     
 }

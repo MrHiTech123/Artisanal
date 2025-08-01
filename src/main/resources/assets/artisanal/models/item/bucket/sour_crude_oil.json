@@ -2,5 +2,5 @@
   "__comment__": "This file was automatically created by mcresources",
   "loader": "forge:fluid_container",
   "parent": "forge:item/bucket",
-  "fluid": "artisanal:petroleum"
+  "fluid": "artisanal:sour_crude_oil"
 }

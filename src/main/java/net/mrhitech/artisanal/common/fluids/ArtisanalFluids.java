@@ -36,7 +36,7 @@ public class ArtisanalFluids {
             waterLike()
                     .descriptionId("fluid.artisanal." + fluid.getId())
                     .canConvertToSource(false),
-            new FluidTypeClientProperties(fluid.getColor(), TFCFluids.WATER_STILL, TFCFluids.WATER_FLOW, TFCFluids.WATER_OVERLAY, null),
+            new FluidTypeClientProperties(fluid.getColor(), TFCFluids.WATER_STILL, TFCFluids.WATER_FLOW, TFCFluids.WATER_OVERLAY, fluid.getUnderneathTexture()),
             MixingFluid.Source::new,
             MixingFluid.Flowing::new
     ));

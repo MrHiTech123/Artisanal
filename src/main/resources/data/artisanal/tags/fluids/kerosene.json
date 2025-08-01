@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "artisanal:petroleum",
-    "artisanal:flowing_petroleum"
+    "artisanal:kerosene",
+    "artisanal:flowing_kerosene"
   ]
 }

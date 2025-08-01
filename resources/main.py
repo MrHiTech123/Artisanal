@@ -5,7 +5,7 @@ from alcs_n_russians_funcs import *
 from mcresources import ResourceManager
 
 
-SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'petroleum', 'apple_juice', 'carrot_juice', 'lemon_juice', 'diluted_lemon_juice', 'orange_juice', 'peach_juice', 'pineapple_juice', 'tomato_juice', 'screwdriver', 'sulfuric_acid', 'mercury')
+SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'apple_juice', 'carrot_juice', 'lemon_juice', 'diluted_lemon_juice', 'orange_juice', 'peach_juice', 'pineapple_juice', 'tomato_juice', 'screwdriver', 'sulfuric_acid', 'mercury', 'sweet_crude_oil', 'sour_crude_oil', 'kerosene')
 AFC_WOODS = ('eucalyptus', 'mahogany', 'baobab', 'hevea', 'tualang', 'teak', 'cypress', 'fig', 'ironwood', 'ipe')
 MAGNIFYING_GLASS_METALS = ('bismuth', 'brass', 'gold', 'rose_gold', 'silver', 'sterling_silver', 'tin')
 CANNABLE_FOOD_TAGS = ('breads', 'dairy', 'flour', 'fruits', 'grains', 'meats', 'vegetables')
@@ -1116,7 +1116,7 @@ def generate_fluid_tags():
     rm.fluid_tag('acids', 'artisanal:sulfuric_acid', 'artisanal:lemon_juice')
     rm.fluid_tag('usable_in_drum', '#tfc:usable_in_barrel', '#artisanal:acids', 'tfc:metal/gold')
     rm.fluid_tag('usable_in_lava_drum', '#artisanal:usable_in_drum', 'minecraft:lava')
-    rm.fluid_tag('tfc:ingredients', '#artisanal:rendered_fats', 'artisanal:soap', 'artisanal:soapy_water', 'artisanal:sugarcane_juice', 'artisanal:filtered_sugarcane_juice', 'artisanal:alkalized_sugarcane_juice', 'artisanal:clarified_sugarcane_juice', 'artisanal:molasses', 'artisanal:petroleum', 'artisanal:condensed_milk', 'artisanal:condensed_goat_milk', 'artisanal:condensed_yak_milk', 'artisanal:mercury')
+    rm.fluid_tag('tfc:ingredients', '#artisanal:rendered_fats', 'artisanal:soap', 'artisanal:soapy_water', 'artisanal:sugarcane_juice', 'artisanal:filtered_sugarcane_juice', 'artisanal:alkalized_sugarcane_juice', 'artisanal:clarified_sugarcane_juice', 'artisanal:molasses', 'artisanal:sweet_crude_oil','artisanal:sour_crude_oil', 'artisanal:kerosene', 'artisanal:condensed_milk', 'artisanal:condensed_goat_milk', 'artisanal:condensed_yak_milk', 'artisanal:mercury')
     rm.fluid_tag('tfc:drinkables', 'artisanal:sugarcane_juice', 'artisanal:molasses', 'artisanal:apple_juice', 'artisanal:carrot_juice', 'artisanal:diluted_lemon_juice', 'artisanal:orange_juice', 'artisanal:peach_juice', 'artisanal:pineapple_juice', 'artisanal:tomato_juice', 'artisanal:screwdriver')
     rm.fluid_tag('tfc:usable_in_jug', '#tfc:ingredients', '#artisanal:acids')
     
