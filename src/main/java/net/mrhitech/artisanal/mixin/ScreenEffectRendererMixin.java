@@ -6,10 +6,13 @@ import net.minecraft.client.renderer.ScreenEffectRenderer;
 import net.mrhitech.artisanal.util.RenderingHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.injection.Inject;
 
 @Mixin(ScreenEffectRenderer.class)
 public class ScreenEffectRendererMixin {
+    /**
+     * @author MrHiTech
+     * @reason Make the water texture be based on current block type to render more than water
+     */
     @Overwrite
     public static void renderWater(Minecraft minecraft, PoseStack poseStack) {
         RenderingHelper.renderWaterlike(minecraft, poseStack);
