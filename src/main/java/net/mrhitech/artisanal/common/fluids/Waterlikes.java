@@ -3,6 +3,7 @@ package net.mrhitech.artisanal.common.fluids;
 import net.dries007.tfc.common.fluids.TFCFluids;
 import net.dries007.tfc.util.Helpers;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.material.Fluids;
 import net.mrhitech.artisanal.Artisanal;
 
 import java.util.Locale;

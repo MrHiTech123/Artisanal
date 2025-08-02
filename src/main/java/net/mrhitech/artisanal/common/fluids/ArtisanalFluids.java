@@ -28,7 +28,7 @@ public class ArtisanalFluids {
     public static final int ALPHA_MASK = 0xFF000000;
     
     public static final Map<Waterlikes, FluidRegistryObject<FlowingFluid>> WATERLIKES = Helpers.mapOfKeys(Waterlikes.class, fluid ->
-            register(
+        register(
             fluid.getId(),
             properties -> properties
                     .block(ArtisanalBlocks.WATERLIKES.get(fluid))
@@ -39,7 +39,8 @@ public class ArtisanalFluids {
             new FluidTypeClientProperties(fluid.getColor(), TFCFluids.WATER_STILL, TFCFluids.WATER_FLOW, TFCFluids.WATER_OVERLAY, fluid.getUnderneathTexture()),
             MixingFluid.Source::new,
             MixingFluid.Flowing::new
-    ));
+        )
+    );
     
     
     
