@@ -8,8 +8,10 @@
     "BarrelInventoryAccessor",
     "BlockEntityTypeAccessor",
     "DynamicBowlHandlerMixin",
+    "FluidHelpersMixin",
     "JarItemMixin",
-    "QuernBlockEntityMixin"
+    "QuernBlockEntityMixin",
+    "ScreenEffectRendererMixin"
   ],
   "client": [],
   "injectors": {

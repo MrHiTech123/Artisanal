@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.event.level.BlockEvent;
@@ -23,6 +24,8 @@ import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
 import net.mrhitech.artisanal.common.blockentities.ArtisanalBlockEntities;
 import net.mrhitech.artisanal.common.container.ArtisanalContainerTypes;
 import net.mrhitech.artisanal.common.container.DistilleryContainer;
+import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
+import net.mrhitech.artisanal.common.fluids.Waterlikes;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 
 import java.util.function.Predicate;
@@ -47,7 +50,7 @@ public class ClientEventHandler {
             MenuScreens.register(ArtisanalContainerTypes.DISTILLERY.get(), DistilleryScreen::new);
         });
         
-        
+        final RenderType translucent = RenderType.translucent();
         final RenderType cutoutMipped = RenderType.cutoutMipped();
         final Predicate<RenderType> ghostBlock = rt -> rt == cutoutMipped || rt == Sheets.translucentCullBlockSheet();
         
@@ -58,6 +61,12 @@ public class ClientEventHandler {
                     ghostBlock
             );
         }
+        
+        for (Waterlikes waterlike : Waterlikes.values()) {
+            ItemBlockRenderTypes.setRenderLayer(ArtisanalFluids.WATERLIKES.get(waterlike).getSource(), translucent);
+            ItemBlockRenderTypes.setRenderLayer(ArtisanalFluids.WATERLIKES.get(waterlike).getFlowing(), translucent);
+        }
+        
         
     }
     
