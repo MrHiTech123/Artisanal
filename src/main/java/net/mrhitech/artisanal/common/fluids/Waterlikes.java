@@ -1,15 +1,11 @@
 package net.mrhitech.artisanal.common.fluids;
 
-import net.dries007.tfc.common.TFCTags;
-import net.dries007.tfc.common.fluids.TFCFluids;
-import net.dries007.tfc.mixin.EntityMixin;
-import net.dries007.tfc.util.Helpers;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.material.Fluids;
 import net.mrhitech.artisanal.Artisanal;
+import org.joml.Vector3f;
 
 import java.util.Locale;
+import java.awt.Color;
 
 public enum Waterlikes {
     
@@ -34,36 +30,64 @@ public enum Waterlikes {
     PINEAPPLE_JUICE(-4213136),
     TOMATO_JUICE(-1035741),
     SCREWDRIVER(-1198481),
-    SOUR_CRUDE_OIL(-14671871, new ResourceLocation(Artisanal.MOD_ID, "textures/misc/under/sour_crude_oil.png")),
-    SWEET_CRUDE_OIL(-2237024, new ResourceLocation(Artisanal.MOD_ID, "textures/misc/under/sweet_crude_oil.png")),
+    SOUR_CRUDE_OIL(-14671871, new ResourceLocation(Artisanal.MOD_ID, "textures/misc/under/sour_crude_oil.png"), 1, 3, false),
+    SWEET_CRUDE_OIL(-5395071, new ResourceLocation(Artisanal.MOD_ID, "textures/misc/under/sweet_crude_oil.png"), 1, 12, true),
     KEROSENE(-71),
     SULFURIC_ACID(-2240864),
     MERCURY(-8421504);
     
-    private final int color;
+    private final int colorNum;
     private final String id;
     private final ResourceLocation underneathTexture;
+    private final float shaderFogStart;
+    private final float shaderFogEnd;
+    private final boolean transparent;
     
-    Waterlikes(int color) {
-        this(color, null);
+    Waterlikes(int colorNum) {
+        this(colorNum, null, 1, 6, true);
     }
     
-    Waterlikes(int color, ResourceLocation underneathTexture) {
+    Waterlikes(int colorNum, ResourceLocation underneathTexture, float shaderFogStart, float shaderFogEnd, boolean transparent) {
         this.id = this.name().toLowerCase(Locale.ROOT);
-        this.color = color;
+        this.colorNum = colorNum;
         this.underneathTexture = underneathTexture;
+        this.shaderFogStart = shaderFogStart;
+        this.shaderFogEnd = shaderFogEnd;
+        this.transparent = transparent;
     }
     
     public String getId() {
         return id;
     }
     
-    public int getColor() {
-        return color;
+    public int getColorNum() {
+        return colorNum;
+    }
+    
+    public Vector3f getColor() {
+        int positiveColor = 0xFFFFFF + colorNum;
+        
+        float red = (float)((positiveColor & 0xFF0000) >> 16);
+        float green = (float)((positiveColor & 0x00FF00) >> 8);
+        float blue = (float)(positiveColor & 0x0000FF);
+        
+        return new Vector3f(red / 255, green / 255, blue / 255);
     }
     
     public ResourceLocation getUnderneathTexture() {
         return underneathTexture;
+    }
+    
+    public float getShaderFogStart() {
+        return shaderFogStart;
+    }
+    
+    public float getShaderFogEnd() {
+        return shaderFogEnd;
+    }
+    
+    public boolean isTransparent() {
+        return transparent;
     }
     
 }

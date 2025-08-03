@@ -15,10 +15,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.mrhitech.artisanal.Artisanal;
 import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
+import org.joml.Vector3f;
 
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.awt.Color;
 
 @SuppressWarnings("unchecked")
 public class ArtisanalFluids {
@@ -36,9 +38,12 @@ public class ArtisanalFluids {
             waterLike()
                     .descriptionId("fluid.artisanal." + fluid.getId())
                     .canConvertToSource(false),
-            new FluidTypeClientProperties(fluid.getColor(), TFCFluids.WATER_STILL, TFCFluids.WATER_FLOW, TFCFluids.WATER_OVERLAY, fluid.getUnderneathTexture()),
+            new FluidTypeClientProperties(fluid.getColorNum(), TFCFluids.WATER_STILL, TFCFluids.WATER_FLOW, TFCFluids.WATER_OVERLAY, fluid.getUnderneathTexture()),
             MixingFluid.Source::new,
-            MixingFluid.Flowing::new
+            MixingFluid.Flowing::new,
+            fluid.getColor(), 
+            fluid.getShaderFogStart(),
+            fluid.getShaderFogEnd()
         )
     );
     
@@ -59,13 +64,13 @@ public class ArtisanalFluids {
                 .supportsBoating(true);
     }
     
-    private static <F extends FlowingFluid> FluidRegistryObject<F> register(String name, Consumer<ForgeFlowingFluid.Properties> builder, FluidType.Properties typeProperties, FluidTypeClientProperties clientProperties, Function<ForgeFlowingFluid.Properties, F> sourceFactory, Function<ForgeFlowingFluid.Properties, F> flowingFactory)
+    private static <F extends FlowingFluid> FluidRegistryObject<F> register(String name, Consumer<ForgeFlowingFluid.Properties> builder, FluidType.Properties typeProperties, FluidTypeClientProperties clientProperties, Function<ForgeFlowingFluid.Properties, F> sourceFactory, Function<ForgeFlowingFluid.Properties, F> flowingFactory, Vector3f color, float shaderFogStart, float shaderFogEnd)
     {
         // Names `metal/foo` to `metal/flowing_foo`
         final int index = name.lastIndexOf('/');
         final String flowingName = index == -1 ? "flowing_" + name : name.substring(0, index) + "/flowing_" + name.substring(index + 1);
         
-        return RegistrationHelpers.registerFluid(FLUID_TYPES, FLUIDS, name, name, flowingName, builder, () -> new ExtendedFluidType(typeProperties, clientProperties), sourceFactory, flowingFactory);
+        return RegistrationHelpers.registerFluid(FLUID_TYPES, FLUIDS, name, name, flowingName, builder, () -> new ArtisanalFluidType(typeProperties, clientProperties, color, shaderFogStart, shaderFogEnd), sourceFactory, flowingFactory);
     }
     
     public static void register(IEventBus bus) {
