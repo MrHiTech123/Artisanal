@@ -8,7 +8,7 @@
   },
   "result_fluid": {
     "fluid": "artisanal:mercury",
-    "amount": 25
+    "amount": 100
   },
   "leftover_item": {
     "item": "tfc:powder/sulfur"

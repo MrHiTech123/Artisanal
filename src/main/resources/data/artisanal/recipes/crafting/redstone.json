@@ -2,13 +2,16 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CSC",
+    "CIC",
     "SFS",
-    "CSC"
+    "CIC"
   ],
   "key": {
     "C": {
       "tag": "artisanal:powders/copper"
+    },
+    "I": {
+      "tag": "artisanal:powders/iron"
     },
     "S": {
       "item": "tfc:powder/sulfur"
@@ -23,6 +26,6 @@
   },
   "result": {
     "item": "minecraft:redstone",
-    "count": 4
+    "count": 8
   }
 }

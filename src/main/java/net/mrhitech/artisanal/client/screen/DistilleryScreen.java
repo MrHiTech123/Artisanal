@@ -37,7 +37,7 @@ public class DistilleryScreen extends BlockEntityScreen<DistilleryBlockEntity, D
         super.renderLabels(graphics, mouseX, mouseY);
         
         if (blockEntity.shouldRenderAsBoiling()) {
-            drawDisabled(graphics, DistilleryBlockEntity.SLOT_INPUT_ITEM, DistilleryBlockEntity.SLOT_OUTPUT_ITEM);
+            drawDisabled(graphics, DistilleryBlockEntity.SLOT_INPUT_ITEM, DistilleryBlockEntity.SLOT_INPUT_ITEM);
         }
         
         final MutableComponent text = Component.empty();

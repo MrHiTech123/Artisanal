@@ -4,6 +4,7 @@ import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.AbstractFirepitBlockEntity;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
+import net.dries007.tfc.common.blockentities.PotBlockEntity;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
 import net.dries007.tfc.common.capabilities.*;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
@@ -54,7 +55,7 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
     
     public DistilleryBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ArtisanalBlockEntities.DISTILLERY.get(), pPos, pBlockState, DistilleryInventory::new, NAME);
-        
+        PotBlockEntity
         cachedRecipe = null;
         boilingTicks = 0;
         preBoilingTicks = 0;

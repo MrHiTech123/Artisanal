@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:anvil",
+  "input": {
+    "item": "tfc:metal/double_sheet/steel"
+  },
+  "result": {
+    "item": "artisanal:metal/distillery_spout/steel"
+  },
+  "tier": 4,
+  "rules": [
+    "punch_third_last",
+    "draw_second_last",
+    "bend_last"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:distillery",
+  "input_fluid": {
+    "ingredient": "artisanal:sweet_crude_oil",
+    "amount": 200
+  },
+  "result_fluid": {
+    "fluid": "artisanal:kerosene",
+    "amount": 100
+  },
+  "leftover_item": {
+    "item": "artisanal:bitumen"
+  },
+  "min_temp": 300,
+  "duration": 2000
+}

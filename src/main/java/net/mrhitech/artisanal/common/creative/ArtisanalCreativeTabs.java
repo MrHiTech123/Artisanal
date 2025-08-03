@@ -102,6 +102,7 @@ public class ArtisanalCreativeTabs {
                     event.accept(ArtisanalItems.BRICK_MOLDS.get(metal));
                 }
                 if (ArtisanalItems.hasDistilleries(metal)) {
+                    event.accept(ArtisanalItems.DISTILLERY_SPOUTS.get(metal));
                     event.accept(ArtisanalItems.DISTILLERIES.get(metal));
                 }
             }
@@ -132,6 +133,7 @@ public class ArtisanalCreativeTabs {
             event.accept(ArtisanalItems.DIRTY_BURLAP_CLOTH.get());
             event.accept(ArtisanalItems.DIRTY_SILK_CLOTH.get());
             event.accept(ArtisanalItems.DIRTY_WOOL_CLOTH.get());
+            event.accept(ArtisanalItems.BITUMEN.get());
         }
     }
 }

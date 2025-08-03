@@ -1,0 +1,22 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SB",
+    "P "
+  ],
+  "key": {
+    "S": {
+      "item": "artisanal:metal/distillery_spout/blue_steel"
+    },
+    "B": {
+      "tag": "tfc:bowls"
+    },
+    "P": {
+      "item": "tfc:ceramic/pot"
+    }
+  },
+  "result": {
+    "item": "artisanal:metal/distillery/blue_steel"
+  }
+}

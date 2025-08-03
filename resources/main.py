@@ -68,23 +68,6 @@ ARTISANAL_ORES = {
 }
 
 
-    
-
-
-
-
-
-
-def only_if_flux_makes_limewater_instant_barrel_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, sound: Optional[str] = None, conditions=None):
-    rm.recipe(('barrel', name_parts), 'artisanal:only_if_flux_makes_limewater_instant_barrel', {
-        'input_item': item_stack_ingredient(input_item) if input_item is not None else None,
-        'input_fluid': fluid_stack_ingredient(input_fluid) if input_fluid is not None else None,
-        'output_item': item_stack_provider(output_item) if output_item is not None else None,
-        'output_fluid': fluid_stack(output_fluid) if output_fluid is not None else None,
-        'sound': sound
-    }, conditions=conditions)
-
-
 rm = ResourceManager('artisanal')
 
 forge_rm = ResourceManager('forge')
@@ -228,6 +211,14 @@ def melt_metal(name: str, mb: int):
         name = metal.melt_metal
     return f'{mb} {metal.namespace}:metal/{name}'
 
+def only_if_flux_makes_limewater_instant_barrel_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, sound: Optional[str] = None, conditions=None):
+    rm.recipe(('barrel', name_parts), 'artisanal:only_if_flux_makes_limewater_instant_barrel', {
+        'input_item': item_stack_ingredient(input_item) if input_item is not None else None,
+        'input_fluid': fluid_stack_ingredient(input_fluid) if input_fluid is not None else None,
+        'output_item': item_stack_provider(output_item) if output_item is not None else None,
+        'output_fluid': fluid_stack(output_fluid) if output_fluid is not None else None,
+        'sound': sound
+    }, conditions=conditions)
 
 def optional_tag(id: str) -> dict[str, Any]:
     return {
@@ -349,11 +340,13 @@ def generate_lamp_fuels():
     print('\tGenerating lamp fuels...')
     lamp_fuel(rm, 'lard', 'artisanal:lard', 1800)
     lamp_fuel(rm, 'schmaltz', 'artisanal:schmaltz', 1800)
+    lamp_fuel(rm, 'kerosene', 'artisanal:kerosene', 8000)
 
 def generate_fuels():
     print('\tGenerating fuels...')
     generate_lamp_fuels()
     fuel_item(rm, ('bagasse'), 'artisanal:bagasse', 750, 350)
+    fuel_item(rm, ('bitumen'), 'artisanal:bitumen', 260, 1200)
     
     
     
@@ -388,6 +381,9 @@ def generate_item_heats():
         if 'tool' in metal_data.types:
             item_heat(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 50)
             item_heat(rm, ('metal', 'brick_mold', metal), f'artisanal:metal/brick_mold/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 50)
+        
+        if has_distilleries(metal):
+            item_heat(rm, ('metal', 'distillery_spout', metal), f'artisanal:metal/distillery_spout/{metal}', metal_data.ingot_heat_capacity(), metal_data.melt_temperature, 400)
     
     item_heat(rm, ('metal', 'tinplate'), 'artisanal:metal/tinplate', METALS['tin'].ingot_heat_capacity(), METALS['tin'].melt_temperature, CANS_MB_AMOUNTS['tin'])
     item_heat(rm, ('metal', 'stainless_steelplate'), 'artisanal:metal/stainless_steelplate', METALS['stainless_steel'].ingot_heat_capacity(), METALS['stainless_steel'].melt_temperature, CANS_MB_AMOUNTS['stainless_steel'])
@@ -570,7 +566,11 @@ def generate_item_models():
             rm.item_model(('metal', 'can_opener', metal), f'artisanal:item/metal/can_opener/{metal}').with_lang(lang(f'{metal} can opener'))
             rm.item_model(('metal', 'circle_blade', metal), f'artisanal:item/metal/circle_blade/{metal}').with_lang(lang(f'{metal} circle blade'))
             rm.item_model(('metal', 'brick_mold', metal), f'artisanal:item/metal/brick_mold/{metal}').with_lang(lang(f'{metal}_brick_mold'))
-    
+        
+        if has_distilleries(metal):
+            rm.item_model(('metal', 'distillery_spout', metal), f'artisanal:item/metal/distillery_spout/{metal}').with_lang(lang(f'{metal}_distillery_spout'))
+        
+        
     for metal in STEELS:
         rm.item_model(('metal', 'striker', metal), f'artisanal:item/metal/striker/{metal}').with_lang(lang(f'{metal}_striker'))
         if metal != 'steel':
@@ -600,6 +600,7 @@ def generate_item_models():
     rm.item_model('dirty_wool_cloth', 'artisanal:item/dirty_wool_cloth').with_lang(lang('dirty_wool_cloth'))
     
     rm.item_model(('powder', 'cinnabar'), 'artisanal:item/powder/cinnabar').with_lang(lang('cinnabar_powder'))
+    rm.item_model(('bitumen'), 'artisanal:item/bitumen').with_lang(lang('bitumen'))
     
     rm.item_model(('debug', 'any_item'), 'minecraft:item/nether_star').with_lang(lang('any_item'))
     rm.item_model(('debug', 'whatever_food_was_inside_the_can'), 'minecraft:item/cooked_beef').with_lang(lang('whatever_food_was_inside_the_can'))
@@ -615,12 +616,15 @@ def generate_anvil_recipes():
     for metal in MAGNIFYING_GLASS_METALS:
         metal_data = METALS[metal]
         anvil_recipe(rm, ('metal', 'magnifying_glass_frame', metal), f'tfc:metal/rod/{metal}', f'artisanal:metal/magnifying_glass_frame/{metal}', metal_data.tier, Rules.bend_last, Rules.hit_any, Rules.bend_not_last)
-    
+        
     for metal, metal_data in METALS.items():
         if 'tool' in metal_data.types:
             anvil_recipe(rm, ('metal', 'circle_blade', metal), f'tfc:metal/ingot/{metal}', (2, f'artisanal:metal/circle_blade/{metal}'), metal_data.tier, Rules.shrink_third_last, Rules.hit_second_last, Rules.hit_last)
             anvil_recipe(rm, ('metal', 'brick_mold', metal), f'tfc:metal/rod/{metal}', f'artisanal:metal/brick_mold/{metal}', metal_data.tier, Rules.bend_not_last, Rules.draw_not_last, Rules.hit_last, bonus=True)
-    
+        
+        if has_distilleries(metal):
+            anvil_recipe(rm, ('metal', 'distillery_spout', metal), f'tfc:metal/double_sheet/{metal}', f'artisanal:metal/distillery_spout/{metal}', metal_data.tier, Rules.punch_third_last, Rules.draw_second_last, Rules.bend_last)
+        
     for metal, metal_data in STEELS.items():
         anvil_recipe(rm, ('metal', 'striker', metal), f'tfc:metal/ingot/high_carbon_{metal}', f'artisanal:metal/striker/{metal}', metal_data.tier, Rules.bend_any, Rules.hit_any, Rules.punch_any, bonus=True)
     
@@ -742,7 +746,7 @@ def generate_crafting_recipes():
         metal_data = METALS[metal]
         rm.crafting_shapeless(('crafting', 'metal', 'magnifying_glass', metal), (f'artisanal:metal/magnifying_glass_frame/{metal}', 'tfc:lens'), f'artisanal:metal/magnifying_glass/{metal}')
         extra_products_shapeless(rm, ('crafting', 'metal', 'magnifying_glass', f'{metal}_uncraft'), (f'artisanal:metal/magnifying_glass/{metal}'), f'artisanal:metal/magnifying_glass_frame/{metal}', 'tfc:lens')
-    
+        
     for grain in GRAINS:
         rm.crafting_shapeless(f'crafting/dough/{grain}', (not_rotten('tfc:food/%s_flour' % grain), fluid_item_ingredient('100 firmalife:yeast_starter'), not_rotten('#tfc:sweetener')), (4, 'firmalife:food/%s_dough' % grain)).with_advancement('tfc:food/%s_grain' % grain)
         disable_recipe(rm, f'firmalife:crafting/{grain}_dough')
@@ -814,7 +818,11 @@ def generate_crafting_recipes():
     for metal, metal_data in METALS.items():
         if 'tool' in metal_data.types:
             rm.crafting_shaped(('crafting', 'metal', 'can_opener', metal), ['MBR', 'B  ', 'R  '], {'M': 'tfc:brass_mechanisms', 'B': f'artisanal:metal/circle_blade/{metal}', 'R': '#artisanal:rods/metal'}, f'artisanal:metal/can_opener/{metal}')
-    
+        
+        if has_distilleries(metal):
+            rm.crafting_shaped(('crafting', 'metal', 'distillery', metal), ['SB', 'P '], {'S': f'artisanal:metal/distillery_spout/{metal}', 'B': '#tfc:bowls', 'P': 'tfc:ceramic/pot'}, f'artisanal:metal/distillery/{metal}')
+        
+        
     for metal in CAN_METALS:
         advanced_shapeless(rm, ('crafting', 'metal', f'remove_{metal}_can_traits'), f'artisanal:metal/can/{metal}_sterilized', remove_many_traits(item_stack_provider(f'artisanal:metal/can/{metal}_sterilized', other_modifier='artisanal:copy_dynamic_food'), 'tfc:charcoal_grilled', 'tfc:wood_grilled', 'tfc:burnt_to_a_crisp'), primary_ingredient=f'artisanal:metal/can/{metal}_sterilized')
     
@@ -872,13 +880,17 @@ def generate_crafting_recipes():
     damage_shapeless(rm, ('crafting', 'ceramic', 'unfired_brick'), ('#artisanal:brick_molds', 'minecraft:clay_ball', 'minecraft:clay_ball'), 'tfc:ceramic/unfired_brick')
     rm.crafting_shapeless(('crafting', 'powder', 'sulfur'), ('tfc:powder/pyrite'), 'tfc:powder/sulfur')
     
-    rm.crafting_shaped(('crafting', 'redstone'), ['CSC', 'SFS', 'CSC'], {'C': '#artisanal:powders/copper', 'S': 'tfc:powder/sulfur', 'F': fluid_item_ingredient('100 artisanal:mercury')}, (4, 'minecraft:redstone'))
+    rm.crafting_shaped(('crafting', 'redstone'), ['CIC', 'SFS', 'CIC'], {'C': '#artisanal:powders/copper', 'I': '#artisanal:powders/iron', 'S': 'tfc:powder/sulfur', 'F': fluid_item_ingredient('100 artisanal:mercury')}, (8, 'minecraft:redstone'))
     
 def generate_distillery_recipes():
     print('\tGenerating distillery recipes')
     
-    distillery_recipe(rm, "mercury", input_item='artisanal:powder/cinnabar', result_fluid="25 artisanal:mercury", leftover_item="tfc:powder/sulfur")
+    distillery_recipe(rm, "mercury", input_item='artisanal:powder/cinnabar', result_fluid="100 artisanal:mercury", leftover_item="tfc:powder/sulfur")
     distillery_recipe(rm, 'salt_and_water', input_fluid='125 tfc:salt_water', result_fluid='125 minecraft:water', leftover_item="tfc:powder/salt")
+    distillery_recipe(rm, 'sweet_crude_oil', input_fluid='1000 artisanal:sour_crude_oil', result_fluid='900 artisanal:sweet_crude_oil', leftover_item='tfc:powder/sulfur')
+    distillery_recipe(rm, 'kerosene', input_fluid='200 artisanal:sweet_crude_oil', result_fluid='100 artisanal:kerosene', leftover_item='artisanal:bitumen')
+    distillery_recipe(rm, 'olive_oil', input_fluid='5 tfc:olive_oil_water', leftover_fluid='1 tfc:olive_oil', result_fluid='4 minecraft:water')
+    
     
     
 def generate_glassworking_recipes():
@@ -911,7 +923,11 @@ def generate_heat_recipes():
         if 'tool' in metal_data.types:
             heat_recipe(rm, ('metal', 'circle_blade', metal), f'artisanal:metal/circle_blade/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 50))
             heat_recipe(rm, ('metal', 'brick_mold', metal), f'artisanal:metal/brick_mold/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 50), use_durability=True)
-    
+        
+        if has_distilleries(metal):
+            heat_recipe(rm, ('metal', 'distillery_spout', metal), f'artisanal:metal/distillery_spout/{metal}', metal_data.melt_temperature, result_fluid=melt_metal(metal, 400))
+        
+        
     heat_recipe(rm, ('metal', 'striker', "steel"), f'artisanal:metal/striker/steel', METALS['steel'].melt_temperature, result_fluid='100 tfc:metal/pig_iron')
     heat_recipe(rm, ('metal', 'striker', "black_steel"), f'artisanal:metal/striker/black_steel', METALS['black_steel'].melt_temperature, result_fluid='100 tfc:metal/weak_steel')
     heat_recipe(rm, ('metal', 'striker', "blue_steel"), f'artisanal:metal/striker/blue_steel', METALS['blue_steel'].melt_temperature, result_fluid='100 tfc:metal/weak_blue_steel')
@@ -1168,6 +1184,8 @@ def generate_item_tags():
     rm.item_tag('metal/sterilized_cans', *[f'artisanal:metal/can/{metal}_sterilized' for metal in CAN_METALS])
     rm.item_tag('metal/distilleries', *[f'artisanal:metal/distillery/{metal}' for metal in METALS if has_distilleries(metal)])
     rm.item_tag('powders/copper', *[f'tfc:powder/{ore}' for ore in ['malachite', 'tetrahedrite', 'native_copper']])
+    rm.item_tag('powders/iron', *[f'tfc:powder/{ore}' for ore in ['hematite', 'limonite', 'magnetite']])
+    
     
     rm.item_tag('tfc:firepit_kindling', 'artisanal:bagasse')
     rm.item_tag('tfc:starts_fires_with_durability', *[f'artisanal:metal/flint_and/{metal}' for metal in STEELS if metal != 'steel'], 'artisanal:stone/flint_and/pyrite', 'artisanal:stone/flint_and/cut_pyrite')
@@ -1179,6 +1197,8 @@ def generate_item_tags():
     rm.item_tag('tfc:foods/vegetables', 'artisanal:food/carrot_mash', 'artisanal:food/tomato_mash')
     rm.item_tag('tfc:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
     rm.item_tag('tfc:usable_on_tool_rack', '#artisanal:magnifying_glasses')
+    
+    rm.item_tag('minecraft:coals', 'artisanal:bitumen')
 
 def generate_worldgen_tags():
     print("\tGenerating worldgen tags...")

@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:distillery",
+  "input_fluid": {
+    "ingredient": "tfc:olive_oil_water",
+    "amount": 5
+  },
+  "result_fluid": {
+    "fluid": "minecraft:water",
+    "amount": 4
+  },
+  "leftover_fluid": {
+    "fluid": "tfc:olive_oil",
+    "amount": 1
+  },
+  "min_temp": 300,
+  "duration": 2000
+}

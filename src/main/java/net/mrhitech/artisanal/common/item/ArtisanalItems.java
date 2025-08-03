@@ -114,11 +114,14 @@ public class ArtisanalItems {
     public static final RegistryObject<Item> DIRTY_SILK_CLOTH = register("dirty_silk_cloth", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DIRTY_WOOL_CLOTH = register("dirty_wool_cloth", () -> new Item(new Item.Properties()));
     
+    
+    public static final Map<Metal.Default, RegistryObject<Item>> DISTILLERY_SPOUTS = Helpers.mapOfKeys(Metal.Default.class, ArtisanalItems::hasDistilleries, metal -> 
+            register("metal/distillery_spout/" + metal.getSerializedName(), () -> new Item(new Item.Properties())));
     public static final Map<Metal.Default, RegistryObject<Item>> DISTILLERIES = Helpers.mapOfKeys(Metal.Default.class, ArtisanalItems::hasDistilleries, metal ->
             register("metal/distillery/" + metal.getSerializedName(), () -> new DistilleryItem(new Item.Properties(), metal)));
     
     public static final RegistryObject<Item> CINNABAR_POWDER = register("powder/cinnabar", () -> new Item(new Item.Properties()));
-    
+    public static final RegistryObject<Item> BITUMEN = register("bitumen", () -> new Item(new Item.Properties()));
     
     
     public static final RegistryObject<Item> DEBUG_ANY_ITEM = register("debug/any_item", () -> new Item(new Item.Properties()));
