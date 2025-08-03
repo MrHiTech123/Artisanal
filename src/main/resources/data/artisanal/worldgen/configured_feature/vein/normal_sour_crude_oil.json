@@ -1,0 +1,64 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:cluster_vein",
+  "config": {
+    "rarity": 40,
+    "density": 1,
+    "min_y": -30,
+    "max_y": 70,
+    "size": 45,
+    "random_name": "normal_sour_crude_oil",
+    "blocks": [
+      {
+        "replace": [
+          "minecraft:air"
+        ],
+        "with": [
+          {
+            "block": "artisanal:fluid/sour_crude_oil"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/marble"
+        ],
+        "with": [
+          {
+            "block": "artisanal:fluid/sour_crude_oil"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/limestone"
+        ],
+        "with": [
+          {
+            "block": "artisanal:fluid/sour_crude_oil"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/chalk"
+        ],
+        "with": [
+          {
+            "block": "artisanal:fluid/sour_crude_oil"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/dolomite"
+        ],
+        "with": [
+          {
+            "block": "artisanal:fluid/sour_crude_oil"
+          }
+        ]
+      }
+    ]
+  }
+}

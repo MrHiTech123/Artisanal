@@ -3,6 +3,7 @@ import json
 import forge_condition
 from alcs_n_russians_funcs import *
 from mcresources import ResourceManager
+from typing import Sequence
 
 
 SIMPLE_FLUIDS = ('lard', 'schmaltz', 'soapy_water', 'soap', 'sugarcane_juice', 'filtered_sugarcane_juice', 'alkalized_sugarcane_juice', 'clarified_sugarcane_juice', 'molasses', 'condensed_milk', 'condensed_goat_milk', 'condensed_yak_milk', 'apple_juice', 'carrot_juice', 'lemon_juice', 'diluted_lemon_juice', 'orange_juice', 'peach_juice', 'pineapple_juice', 'tomato_juice', 'screwdriver', 'sulfuric_acid', 'mercury', 'sweet_crude_oil', 'sour_crude_oil', 'kerosene')
@@ -13,6 +14,8 @@ POTTABLE_FOOD_TAGS = ('meats', 'vegetables')
 CAN_STATUSES = ('sterilized', 'sealed')
 DRUM_METALS = ['bismuth_bronze', 'black_bronze', 'bronze', 'steel', 'red_steel', 'blue_steel']
 CAN_METALS = {'tin', 'stainless_steel'}
+SEDIMENTARY_ROCKS = ('marble', 'limestone', 'chalk', 'dolomite')
+
 CANS_MB_AMOUNTS = {
     'tin': 150,
     'stainless_steel': 50
@@ -52,56 +55,25 @@ CLEANABLES = (
     CleaningRecipe('wool_cloth', 'artisanal:dirty_wool_cloth', 'tfc:wool_cloth')
 )
 
-def disable_data(rm: ResourceManager, name_parts: ResourceIdentifier):
-    # noinspection PyTypeChecker
-    rm.data(name_parts, {
-            'group': None,
-            **{},
-            'conditions': utils.recipe_condition('forge:false')})
+ARTISANAL_ORE_VEINS = {
+    'surface_sweet_crude_oil': Vein.new('sweet_crude_oil', 150, 15, 40, 130, 1, SEDIMENTARY_ROCKS),
+    'surface_sour_crude_oil': Vein.new('sour_crude_oil', 70, 20, 40, 130, 1, SEDIMENTARY_ROCKS),
+    'normal_sweet_crude_oil': Vein.new('sweet_crude_oil', 100, 45, -30, 70, 1, SEDIMENTARY_ROCKS),
+    'normal_sour_crude_oil': Vein.new('sour_crude_oil', 40, 45, -30, 70, 1, SEDIMENTARY_ROCKS)
+}
 
-def distillery_recipe(
-        rm: ResourceManager,
-        name: ResourceIdentifier,
-        input_item: str=None,
-        input_fluid: str=None,
-        result_item: str=None,
-        result_fluid: str=None,
-        leftover_item: str=None,
-        leftover_fluid: str=None,
-        duration: int=2000,
-        min_temp: int=300
-) -> RecipeContext:
-    return rm.recipe(('distillery', name), 'artisanal:distillery', {
-        "input_item": item_stack_ingredient(input_item) if input_item is not None else None,
-        "input_fluid": fluid_stack_ingredient(input_fluid) if input_fluid is not None else None,
-        "result_item": utils.item_stack(result_item) if result_item is not None else None,
-        "result_fluid": fluid_stack(result_fluid) if result_fluid is not None else None,
-        "leftover_item": utils.item_stack(leftover_item) if leftover_item is not None else None,
-        "leftover_fluid": fluid_stack(leftover_fluid) if leftover_fluid is not None else None,
-        "min_temp": min_temp,
-        "duration": duration
-    })
+ARTISANAL_ORES = {
+    'sweet_crude_oil': Ore(None, False, 'copper', 'oil'),
+    'sour_crude_oil': Ore(None, False, 'copper', 'oil')
+}
 
-def juicing_recipe(rm: ResourceManager, name: ResourceIdentifier, item: str, result: str) -> RecipeContext:
-    result = result if not isinstance(result, str) else fluid_stack(result)
-    return rm.recipe(('juicing', name), 'artisanal:juicing', {
-        'ingredient': utils.ingredient(item),
-        'result': result
-    })
+
     
 
-def melt_metal(name: str, mb: int):
-    metal = METALS[name]
-    if metal.melt_metal is not None:
-        name = metal.melt_metal
-    return f'{mb} {metal.namespace}:metal/{name}'
 
 
-def optional_tag(id: str) -> dict[str, Any]:
-    return {
-        "id": id,
-        "required": False
-    }
+
+
 
 def only_if_flux_makes_limewater_instant_barrel_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, sound: Optional[str] = None, conditions=None):
     rm.recipe(('barrel', name_parts), 'artisanal:only_if_flux_makes_limewater_instant_barrel', {
@@ -157,12 +129,50 @@ def catalyst_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingr
         'conditions': utils.recipe_condition(conditions)
     })
 
+def disable_data(rm: ResourceManager, name_parts: ResourceIdentifier):
+    # noinspection PyTypeChecker
+    rm.data(name_parts, {
+            'group': None,
+            **{},
+            'conditions': utils.recipe_condition('forge:false')})
+
+def distillery_recipe(
+        rm: ResourceManager,
+        name: ResourceIdentifier,
+        input_item: str=None,
+        input_fluid: str=None,
+        result_item: str=None,
+        result_fluid: str=None,
+        leftover_item: str=None,
+        leftover_fluid: str=None,
+        duration: int=2000,
+        min_temp: int=300
+) -> RecipeContext:
+    return rm.recipe(('distillery', name), 'artisanal:distillery', {
+        "input_item": item_stack_ingredient(input_item) if input_item is not None else None,
+        "input_fluid": fluid_stack_ingredient(input_fluid) if input_fluid is not None else None,
+        "result_item": utils.item_stack(result_item) if result_item is not None else None,
+        "result_fluid": fluid_stack(result_fluid) if result_fluid is not None else None,
+        "leftover_item": utils.item_stack(leftover_item) if leftover_item is not None else None,
+        "leftover_fluid": fluid_stack(leftover_fluid) if leftover_fluid is not None else None,
+        "min_temp": min_temp,
+        "duration": duration
+    })
+
+
 def has_distilleries(metal: str) -> bool:
     metal_data = METALS[metal]
     return 'tool' in metal_data.types or metal == "cast_iron"
 
 def heatable_ingredient(ingredient: str, min_temp: int):
     return {'type': 'tfc:heatable', 'min_temp': min_temp, 'ingredient': utils.ingredient(ingredient)}
+
+def juicing_recipe(rm: ResourceManager, name: ResourceIdentifier, item: str, result: str) -> RecipeContext:
+    result = result if not isinstance(result, str) else fluid_stack(result)
+    return rm.recipe(('juicing', name), 'artisanal:juicing', {
+        'ingredient': utils.ingredient(item),
+        'result': result
+    })
 
 def loot_modifier_add_itemstack_min_max(rm: ResourceManager, loot_modifiers: list, name_parts, entity_tag, item, little, big):
     data = {
@@ -210,6 +220,20 @@ def loot_modifier(rm: ResourceManager, loot_modifiers: list, name_parts, data):
     rm.data(['loot_modifiers'] + name_parts, data)
     
     loot_modifiers.append(f'artisanal:{"/".join(name_parts)}')
+
+
+def melt_metal(name: str, mb: int):
+    metal = METALS[name]
+    if metal.melt_metal is not None:
+        name = metal.melt_metal
+    return f'{mb} {metal.namespace}:metal/{name}'
+
+
+def optional_tag(id: str) -> dict[str, Any]:
+    return {
+        "id": id,
+        "required": False
+    }
 
 def remove_many_traits(stack: dict, *traits: str):
     if 'modifiers' not in stack:
@@ -277,7 +301,6 @@ def specific_no_remainder_shapeless(rm: ResourceManager, name_parts: ResourceIde
 
 def universal_ingredient() -> Json:
     return {'type': 'artisanal:universal_ingredient'}
-    
 
 def generate_advancements():
     print('Generating advancements...')
@@ -1157,12 +1180,55 @@ def generate_item_tags():
     rm.item_tag('tfc:sweetener', 'artisanal:perishable_sugar', 'artisanal:non_perishable_sugar')
     rm.item_tag('tfc:usable_on_tool_rack', '#artisanal:magnifying_glasses')
 
+def generate_worldgen_tags():
+    print("\tGenerating worldgen tags...")
+    rm.placed_feature_tag('tfc:in_biome/veins', 'artisanal:vein/surface_sweet_crude_oil', 'artisanal:vein/surface_sour_crude_oil', 'artisanal:vein/normal_sweet_crude_oil', 'artisanal:vein/normal_sour_crude_oil')
+
 def generate_tags():
     print('Generating tags...')
     generate_block_tags()
     generate_entity_tags()
     generate_fluid_tags()
     generate_item_tags()
+    generate_worldgen_tags()
+
+def generate_worldgen():
+    print("Generating worldgen...")
+    for vein_name, vein in ARTISANAL_ORE_VEINS.items():
+        rocks = expand_rocks(vein.rocks)
+        ore = ARTISANAL_ORES[vein.ore]  # standard ore
+        if ore.graded:  # graded ore vein
+            configured_placed_feature(rm, ('vein', vein_name), vein.vein_type, {
+                **vein.config(),
+                'random_name': vein_name,
+                'blocks': [{
+                    'replace': ['tfc:rock/raw/%s' % rock],
+                    'with': vein_ore_blocks(vein, rock)
+                } for rock in rocks],
+                'indicator': {
+                    'rarity': vein.indicator_rarity,
+                    'depth': 35,
+                    'underground_rarity': vein.underground_rarity,
+                    'underground_count': vein.underground_count,
+                    'blocks': [{
+                        'block': 'tfc:ore/small_%s' % vein.ore
+                    }]
+                },
+            })
+        else:  # non-graded ore vein (mineral)
+            # VEINS ARE CURRENTLY FLUID
+            fluid_block_to_replace_with = [{'block': 'artisanal:fluid/' + vein.ore}]
+            configured_placed_feature(rm, ('vein', vein_name), vein.vein_type, {
+                **vein.config(),
+                'random_name': vein_name,
+                'blocks': [{
+                    'replace': ['minecraft:air'],
+                    'with': fluid_block_to_replace_with
+                }] + [{
+                    'replace': ['tfc:rock/raw/%s' % rock],
+                    'with': fluid_block_to_replace_with
+                } for rock in rocks],
+            })
 
 def main():
     generate_advancements()
@@ -1172,6 +1238,7 @@ def main():
     generate_models()
     generate_recipes()
     generate_tags()
+    generate_worldgen()
     
     rm.flush()
     

@@ -140,7 +140,7 @@ class Vein(NamedTuple):
         project: str | bool = None,  # Projects to surface. Either True or 'offset'
         near_lava: bool | None = None,
     ):
-        assert 0 < density < 1
+        assert 0 <= density <= 1
         assert isinstance(rocks, tuple), 'Forgot the trailing comma in a single element tuple: %s' % repr(rocks)
         assert vein_type in ('cluster', 'disc', 'pipe')
         assert project is None or project is True or project == 'offset'
@@ -3036,17 +3036,17 @@ def simple_state_provider(name: str) -> Dict[str, Any]:
 
 # Vein Helper Functions
 
-def vein_ore_blocks(vein: Vein, rock: str) -> List[Dict[str, Any]]:
+def vein_ore_blocks(rm: ResourceManager, vein: Vein, rock: str) -> List[Dict[str, Any]]:
     poor, normal, rich = vein.grade
     ore_blocks = [{
         'weight': poor,
-        'block': 'tfc:ore/poor_%s/%s' % (vein.ore, rock)
+        'block': f'{rm.domain}:ore/poor_%s/%s' % (vein.ore, rock)
     }, {
         'weight': normal,
-        'block': 'tfc:ore/normal_%s/%s' % (vein.ore, rock)
+        'block': f'{rm.domain}:ore/normal_%s/%s' % (vein.ore, rock)
     }, {
         'weight': rich,
-        'block': 'tfc:ore/rich_%s/%s' % (vein.ore, rock)
+        'block': f'{rm.domain}:ore/rich_%s/%s' % (vein.ore, rock)
     }]
     if False:  # todo: spoiler stuff?
         if vein.spoiler_ore is not None and rock in vein.spoiler_rocks:
@@ -3063,7 +3063,7 @@ def vein_ore_blocks(vein: Vein, rock: str) -> List[Dict[str, Any]]:
     return ore_blocks
 
 
-def mineral_ore_blocks(vein: Vein, rock: str) -> List[Dict[str, Any]]:
+def mineral_ore_blocks(vein: Vein, rock: str=None) -> List[Dict[str, Any]]:
     if False:
         if vein.spoiler_ore is not None and rock in vein.spoiler_rocks:
             ore_blocks = [{'weight': 100, 'block': 'tfc:ore/%s/%s' % (vein.ore, rock)}]
@@ -3072,6 +3072,7 @@ def mineral_ore_blocks(vein: Vein, rock: str) -> List[Dict[str, Any]]:
                 'weight': int(100 * p / (1 - p)),
                 'block': 'tfc:ore/%s/%s' % (vein.spoiler_ore, rock)
             })
+    
     ore_blocks = [{'block': 'tfc:ore/%s/%s' % (vein.ore, rock)}]
     return ore_blocks
 
