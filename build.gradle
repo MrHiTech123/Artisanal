@@ -193,19 +193,20 @@ dependencies {
     // JEI
     implementation fg.deobf("curse.maven:jei-238222:5101366")
     // TFC
-    implementation fg.deobf("curse.maven:terrafirmacraft-302973:5478226")
+    implementation fg.deobf("curse.maven:terrafirmacraft-302973:6739107")
     // Patchouli
     implementation fg.deobf("curse.maven:patchouli-306770:4966125")
-    // FirmaCiv
-    implementation fg.deobf("curse.maven:firmacivilization-714158:5316956")
-    // AFC
-    implementation fg.deobf("curse.maven:arborfirmacraft-877545:5525258")
-    // Firmalife
-    implementation fg.deobf("curse.maven:firmalife-453394:6539645")
-    // Jade
-    implementation fg.deobf("curse.maven:jade-324717:5493390")
-    // Lithic Addon
-    implementation fg.deobf("curse.maven:lithic-addon-mod-1006182:5864422")
+    
+//    // FirmaCiv
+//    implementation fg.deobf("curse.maven:firmacivilization-714158:5316956")
+//    // AFC
+//    implementation fg.deobf("curse.maven:arborfirmacraft-877545:5525258")
+//    // Firmalife
+//    implementation fg.deobf("curse.maven:firmalife-453394:6539645")
+//    // Jade
+//    implementation fg.deobf("curse.maven:jade-324717:5493390")
+//    // Lithic Addon
+//    implementation fg.deobf("curse.maven:lithic-addon-mod-1006182:5864422")
 //    // Thermal deposits
 //    implementation fg.deobf("curse.maven:tfc-thermal-deposits-962578:5317918")
 }
