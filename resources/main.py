@@ -147,8 +147,12 @@ def has_distilleries(metal: str) -> bool:
     metal_data = METALS[metal]
     return 'tool' in metal_data.types or metal == "cast_iron"
 
-def heatable_ingredient(ingredient: str, min_temp: int):
-    return {'type': 'tfc:heatable', 'min_temp': min_temp, 'ingredient': utils.ingredient(ingredient)}
+def heatable_ingredient(ingredient: str=None, min_temp: int=1):
+    data = {'type': 'tfc:heatable', 'min_temp': min_temp}
+    if ingredient is not None:
+        data['ingredient'] = utils.ingredient(ingredient)
+    
+    return data
 
 def juicing_recipe(rm: ResourceManager, name: ResourceIdentifier, item: str, result: str) -> RecipeContext:
     result = result if not isinstance(result, str) else fluid_stack(result)
@@ -716,6 +720,9 @@ def generate_barrel_recipes():
     barrel_instant_fluid_recipe(rm, ('diluted_lemon_juice'), '1 artisanal:lemon_juice', '1 minecraft:water', '2 artisanal:diluted_lemon_juice')
     
     barrel_instant_recipe(rm, 'lava_garbage_disposal', universal_ingredient(), '1 minecraft:lava', None, None)
+    
+    barrel_instant_recipe(rm, 'cooling_sweet_crude_oil', heatable_ingredient(), '1 artisanal:sweet_crude_oil', output_item=item_stack_provider(copy_input=True, add_heat=-40), sound='minecraft:block.fire.extinguish')
+    barrel_instant_recipe(rm, 'cooling_sour_crude_oil', heatable_ingredient(), '1 artisanal:sour_crude_oil', output_item=item_stack_provider(copy_input=True, add_heat=-20), sound='minecraft:block.fire.extinguish')
     
 def generate_crafting_recipes():
     print('\tGenerating crafting recipes...')

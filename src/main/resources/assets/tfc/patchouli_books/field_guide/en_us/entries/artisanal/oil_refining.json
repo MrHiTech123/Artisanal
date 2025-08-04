@@ -3,7 +3,48 @@
   "category": "tfc:artisanal",
   "icon": "artisanal:bucket/sour_crude_oil",
   "pages": [
-    
+    {
+      "type": "patchouli:text",
+      "text": "Oil is a very valuable resource that can be used for several purposes. It can be found underground, both in small surface pockets from y=40 to y=130, and larger pockets from y=-30 to y=70."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Crude oil is either $(thing)sweet$() or $(thing)sour$(). Sweet oil is pure and easy to refine further, but sour oil needs to be processed a bit before it can be refined."
+    },
+    {
+      "type": "tfc:artisanal/distillery_recipe",
+      "recipe": "artisanal:distillery/sweet_crude_oil",
+      "text": "The first type of oil that can be found is $(thing)Sour Crude Oil$(). This oil must be $(l:tfc:artisanal/distillation)distilled$() into sweet crude oil before being processed further. This also produces sulfur as a by-product."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "0": "artisanal:fluid/sour_crude_oil"
+        }
+      }
+    },
+    {
+      "type": "tfc:artisanal/distillery_recipe",
+      "recipe": "artisanal:distillery/kerosene",
+      "text": "Sweet crude oil can then be further distilled into $(thing)kerosene$() and $(thing)bitumen$(). Kerosene can be used as a $(l:tfc:mechanics/lamps)lamp fuel$(), while bitumen can be used as a $(l:tfc:mechanics/charcoal_forge)forge$() fuel in a pinch."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          ["0"]
+        ],
+        "mapping": {
+          "0": "artisanal:fluid/sweet_crude_oil"
+        }
+      }
+    }
   ],
   "read_by_default": true,
   "additional_recipe_mappings": {

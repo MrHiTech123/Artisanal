@@ -4,14 +4,14 @@
   "icon": "artisanal:metal/distillery/red_steel",
   "pages": [
     {
+      "type": "patchouli:text", 
+      "text": "If you have a mixture of two substances, it can be very hard to separate them without $(thing)Distillation$(). Distillation is a process in which the mixture put in a pot and then heated until it reaches the boiling point of one of the substances."
+    },
+    {
       "type": "patchouli:spotlight",
       "item": {
         "tag": "artisanal:metal/distilleries"
       },
-      "text": "If you have a mixture of two substances, it can be very hard to separate them without $(thing)Distillation$(). Distillation is a process in which the mixture put in a pot and then heated until it reaches the boiling point of one of the substances."
-    },
-    {
-      "type": "patchouli:text",
       "text": "That substance then evaporates, leaving the other, pure, one in the pot. The substance that evaporated then goes into a long tube where it cools, and comes out as liquid into a collection bowl."
     },
     {
@@ -57,6 +57,11 @@
     {
       "type": "tfc:artisanal/distillery_recipe",
       "recipe": "artisanal:distillery/mercury"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/redstone",
+      "text": "Mercury is used in the crafting of $(thing)Redstone$()"
     }
   ],
   "read_by_default": true,
