@@ -475,6 +475,12 @@ def generate_misc_lang():
     rm.lang("block.tfc.cauldron.limewater", "Slaked Lime Cauldron")
     rm.lang('item.minecraft.sugar', 'White Sugar')
     rm.lang('artisanal.block_entity.distillery', 'Distillery')
+    
+    
+    rm.lang('block.artisanal.fluid.sweet_crude_oil.prospected', 'Crude Oil')
+    rm.lang('block.artisanal.fluid.sour_crude_oil.prospected', 'Crude Oil')
+    
+    
 
 def generate_block_models():
     print('\tGenerating block models...')
@@ -1148,7 +1154,9 @@ def generate_block_tags():
     block_and_item_tag(rm, 'metal/drums', *[f'artisanal:metal/drum/{metal}' for metal in DRUM_METALS])
     block_and_item_tag(rm, 'tfc:barrels', '#artisanal:metal/drums')
     block_and_item_tag(rm, 'minecraft:mineable/pickaxe', "#artisanal:metal/drums")
-
+    
+    rm.block_tag('tfc:prospectable', 'artisanal:fluid/sour_crude_oil', 'artisanal:fluid/sweet_crude_oil')
+    
 def generate_entity_tags():
     print('\tGenerating entity tags...')
     rm.entity_tag('drops_suet', 'tfc:cow', 'tfc:goat', 'tfc:yak', 'tfc:alpaca', 'tfc:sheep', 'tfc:musk_ox', 'tfc:deer', 'tfc:caribou', 'tfc:bongo', 'tfc:gazelle', 'tfc:moose', 'tfc:wildebeest')
