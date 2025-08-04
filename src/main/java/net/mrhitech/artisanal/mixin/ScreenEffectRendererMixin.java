@@ -14,7 +14,7 @@ public class ScreenEffectRendererMixin {
      * @reason Make the water texture be based on current block type to render more than water
      */
     @Overwrite
-    public static void renderWater(Minecraft minecraft, PoseStack poseStack) {
+    private static void renderWater(Minecraft minecraft, PoseStack poseStack) {
         RenderingHelper.renderWaterlike(minecraft, poseStack);
     }
 }

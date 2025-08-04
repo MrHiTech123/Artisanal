@@ -27,7 +27,7 @@ public abstract class InputFluidOutputComponent<T extends SimpleFluidRecipe> ext
         renderSetup(graphics);
 
         graphics.blit(PatchouliIntegration.TEXTURE, 9, 0, 0, 90, 98, 26, 256, 256);
-
+        
         context.renderIngredient(graphics, 14, 5, mouseX, mouseY, recipe.getIngredient());
         renderFluidStack(context, graphics, 86, 5, mouseX, mouseY, recipe.getResultFluid());
         graphics.pose().popPose();

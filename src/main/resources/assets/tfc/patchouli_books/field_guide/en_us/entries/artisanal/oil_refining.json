@@ -1,0 +1,12 @@
+{
+  "name": "Oil Refining",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:bucket/sour_crude_oil",
+  "pages": [
+    
+  ],
+  "read_by_default": true,
+  "additional_recipe_mappings": {
+    
+  }
+}
