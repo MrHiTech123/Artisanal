@@ -17,7 +17,7 @@
     {
       "type": "tfc:anvil_recipe",
       "recipe": "artisanal:anvil/metal/distillery_spout/cast_iron",
-      "text": "To make a distillery, first make a distillery spout from any tool metal or cast iron."
+      "text": "To make a distillery, first make a distillery spout from any tool metal, brass, or cast iron."
     },
     {
       "type": "patchouli:crafting",
@@ -71,6 +71,7 @@
     "artisanal:metal/distillery_spout/black_bronze": 2,
     "artisanal:metal/distillery_spout/bronze": 2,
     "artisanal:metal/distillery_spout/cast_iron": 2,
+    "artisanal:metal/distillery_spout/brass": 2,
     "artisanal:metal/distillery_spout/wrought_iron": 2,
     "artisanal:metal/distillery_spout/steel": 2,
     "artisanal:metal/distillery_spout/black_steel": 2,
@@ -81,6 +82,7 @@
     "artisanal:metal/distillery/black_bronze": 3,
     "artisanal:metal/distillery/bronze": 3,
     "artisanal:metal/distillery/cast_iron": 3,
+    "artisanal:metal/distillery/brass": 3,
     "artisanal:metal/distillery/wrought_iron": 3,
     "artisanal:metal/distillery/steel": 3,
     "artisanal:metal/distillery/black_steel": 3,
