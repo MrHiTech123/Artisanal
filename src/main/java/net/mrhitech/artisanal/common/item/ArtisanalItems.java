@@ -137,7 +137,7 @@ public class ArtisanalItems {
     }
     
     public static boolean hasDistilleries(Metal.Default metal) {
-        return metal.hasTools() || metal == Metal.Default.CAST_IRON;
+        return metal.hasTools() || metal == Metal.Default.CAST_IRON || metal == Metal.Default.BRASS;
     }
 
 }

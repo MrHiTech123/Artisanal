@@ -145,7 +145,7 @@ def distillery_recipe(
 
 def has_distilleries(metal: str) -> bool:
     metal_data = METALS[metal]
-    return 'tool' in metal_data.types or metal == "cast_iron"
+    return 'tool' in metal_data.types or metal == "cast_iron" or metal == "brass"
 
 def heatable_ingredient(ingredient: str=None, min_temp: int=1):
     data = {'type': 'tfc:heatable', 'min_temp': min_temp}
