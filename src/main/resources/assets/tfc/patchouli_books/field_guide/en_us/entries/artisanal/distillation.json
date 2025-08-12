@@ -65,7 +65,7 @@
     }
   ],
   "read_by_default": true,
-  "additional_recipe_mappings": {
+  "extra_recipe_mappings": {
     "artisanal:metal/distillery_spout/copper": 2,
     "artisanal:metal/distillery_spout/bismuth_bronze": 2,
     "artisanal:metal/distillery_spout/black_bronze": 2,

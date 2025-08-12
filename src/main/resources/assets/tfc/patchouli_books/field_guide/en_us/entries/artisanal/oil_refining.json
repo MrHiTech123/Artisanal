@@ -47,7 +47,7 @@
     }
   ],
   "read_by_default": true,
-  "additional_recipe_mappings": {
-    
+  "extra_recipe_mappings": {
+    "artisanal:bitumen": 4
   }
 }
