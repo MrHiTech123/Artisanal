@@ -315,7 +315,8 @@ def generate_advancements():
     advancement(rm, ('story', 'flint_and_cut_pyrite'), 'artisanal:stone/flint_and/cut_pyrite', 'Pretty Pyrestarter', 'Make a Flint and Cut Pyrite', 'artisanal:story/flint_and_pyrite', inventory_changed('artisanal:stone/flint_and/cut_pyrite'))
     advancement(rm, ('story', 'flint_and_colored_steel'), 'artisanal:metal/flint_and/red_steel', 'Ocean of Flame', 'Craft a Flint and Steel using Red or Blue Steel', 'tfc:story/flint_and_steel', inventory_changed('#artisanal:metal/flint_and/colored_steel'))
     advancement(rm, ('story', 'sterilized_tin_can'), 'artisanal:metal/can/tin_sterilized', 'Local Cannery', 'Seal some food in a Can and sterilize it', 'tfc:story/sheet', inventory_changed('#artisanal:metal/sterilized_cans'))
-    
+    advancement(rm, ('story', 'distillery'), 'artisanal:metal/distillery/copper', 'Local Distillery', 'Create a distillery', 'tfc:story/sheet', inventory_changed('#artisanal:metal/distilleries'))
+    advancement(rm, ('story', 'redstone'), 'minecraft:redstone', "Philosopher's Stone", 'Distill ingredients to make a magical red stone', 'artisanal:story/distillery', inventory_changed('minecraft:redstone'))
     
     
     
@@ -901,7 +902,7 @@ def generate_distillery_recipes():
     distillery_recipe(rm, "mercury", input_item='artisanal:powder/cinnabar', result_fluid="100 artisanal:mercury", leftover_item="tfc:powder/sulfur")
     distillery_recipe(rm, 'salt_and_water', input_fluid='125 tfc:salt_water', result_fluid='125 minecraft:water', leftover_item="tfc:powder/salt")
     distillery_recipe(rm, 'sweet_crude_oil', input_fluid='1000 artisanal:sour_crude_oil', result_fluid='900 artisanal:sweet_crude_oil', leftover_item='tfc:powder/sulfur')
-    distillery_recipe(rm, 'kerosene', input_fluid='200 artisanal:sweet_crude_oil', result_fluid='100 artisanal:kerosene', leftover_item='artisanal:bitumen')
+    distillery_recipe(rm, 'kerosene', input_fluid='200 artisanal:sweet_crude_oil', result_fluid='50 artisanal:kerosene', leftover_item='artisanal:bitumen')
     distillery_recipe(rm, 'olive_oil', input_fluid='5 tfc:olive_oil_water', leftover_fluid='1 tfc:olive_oil', result_fluid='4 minecraft:water')
     
     

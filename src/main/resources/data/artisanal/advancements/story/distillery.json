@@ -1,0 +1,36 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "tfc:story/sheet",
+  "criteria": {
+    "metal/distilleries": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "artisanal:metal/distilleries"
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "artisanal:metal/distillery/copper"
+    },
+    "title": {
+      "translate": "artisanal.advancements.story.distillery.title"
+    },
+    "description": {
+      "translate": "artisanal.advancements.story.distillery.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "requirements": [
+    [
+      "metal/distilleries"
+    ]
+  ]
+}
