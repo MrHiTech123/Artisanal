@@ -21,7 +21,17 @@
       },
       {
         "replace": [
-          "tfc:rock/raw/marble"
+          "tfc:rock/raw/shale"
+        ],
+        "with": [
+          {
+            "block": "artisanal:fluid/sour_crude_oil"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/claystone"
         ],
         "with": [
           {
@@ -41,7 +51,7 @@
       },
       {
         "replace": [
-          "tfc:rock/raw/chalk"
+          "tfc:rock/raw/conglomerate"
         ],
         "with": [
           {
@@ -52,6 +62,26 @@
       {
         "replace": [
           "tfc:rock/raw/dolomite"
+        ],
+        "with": [
+          {
+            "block": "artisanal:fluid/sour_crude_oil"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/chert"
+        ],
+        "with": [
+          {
+            "block": "artisanal:fluid/sour_crude_oil"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/chalk"
         ],
         "with": [
           {

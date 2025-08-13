@@ -14,7 +14,7 @@ POTTABLE_FOOD_TAGS = ('meats', 'vegetables')
 CAN_STATUSES = ('sterilized', 'sealed')
 DRUM_METALS = ['bismuth_bronze', 'black_bronze', 'bronze', 'steel', 'red_steel', 'blue_steel']
 CAN_METALS = {'tin', 'stainless_steel'}
-SEDIMENTARY_ROCKS = ('marble', 'limestone', 'chalk', 'dolomite')
+SEDIMENTARY_ROCKS = ('shale', 'claystone', 'limestone', 'conglomerate', 'dolomite', 'chert', 'chalk')
 
 CANS_MB_AMOUNTS = {
     'tin': 150,
