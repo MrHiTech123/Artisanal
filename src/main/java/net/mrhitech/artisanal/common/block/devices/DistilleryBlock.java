@@ -83,6 +83,13 @@ public class DistilleryBlock extends FirepitBlock {
         AbstractFirepitBlockEntity.convertTo(level, pos, state, distillery, TFCBlocks.FIREPIT.get());
     }
     
+    private InteractionResult openGui(Player player, DistilleryBlockEntity distillery, Level level, BlockPos pos) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            Helpers.openScreen(serverPlayer, distillery, pos);
+        }
+        return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+    
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
         
@@ -129,6 +136,9 @@ public class DistilleryBlock extends FirepitBlock {
                         distillery.setAndUpdateSlots(-1);
                         distillery.markForSync();
                     }
+                    else {
+                        openGui(player, distillery, level, pos);
+                    }
                 });
                 
                 return InteractionResult.sidedSuccess(level.isClientSide);
@@ -137,10 +147,7 @@ public class DistilleryBlock extends FirepitBlock {
                 if (tryInsertLog(player, playerHeldStack, distillery, result.getLocation().y - pos.getY() < 0.6)) {
                     return InteractionResult.sidedSuccess(level.isClientSide);
                 }
-                if (player instanceof ServerPlayer serverPlayer) {
-                    Helpers.openScreen(serverPlayer, distillery, pos);
-                }
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return openGui(player, distillery, level, pos);
             }
         }).orElse(InteractionResult.PASS);
         
