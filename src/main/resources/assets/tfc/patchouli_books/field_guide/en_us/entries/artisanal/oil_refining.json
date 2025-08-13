@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Oil is a very valuable resource that can be used for several purposes. It can be found underground, both in small surface pockets from y=40 to y=130, and larger pockets from y=-30 to y=70."
+      "text": "Oil is a very valuable resource that can be used for several purposes. It can be found underground, both in small surface pockets from y=40 to y=130, and larger pockets from y=-30 to y=70. Both types of pocket can only be found in $(l:the_world/geology#sedimentary)Sedimentary$() rock."
     },
     {
       "type": "patchouli:text",
