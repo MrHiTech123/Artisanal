@@ -58,8 +58,8 @@ CLEANABLES = (
 ARTISANAL_ORE_VEINS = {
     'surface_sweet_crude_oil': Vein.new('sweet_crude_oil', 150, 15, 40, 130, 1, SEDIMENTARY_ROCKS),
     'surface_sour_crude_oil': Vein.new('sour_crude_oil', 70, 20, 40, 130, 1, SEDIMENTARY_ROCKS),
-    'normal_sweet_crude_oil': Vein.new('sweet_crude_oil', 100, 45, -30, 70, 1, SEDIMENTARY_ROCKS),
-    'normal_sour_crude_oil': Vein.new('sour_crude_oil', 40, 45, -30, 70, 1, SEDIMENTARY_ROCKS)
+    'normal_sweet_crude_oil': Vein.new('sweet_crude_oil', 200, 45, -30, 70, 1, SEDIMENTARY_ROCKS),
+    'normal_sour_crude_oil': Vein.new('sour_crude_oil', 100, 45, -30, 70, 1, SEDIMENTARY_ROCKS)
 }
 
 ARTISANAL_ORES = {
