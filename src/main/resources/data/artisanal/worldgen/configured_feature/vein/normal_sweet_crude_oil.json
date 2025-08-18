@@ -11,16 +11,6 @@
     "blocks": [
       {
         "replace": [
-          "minecraft:air"
-        ],
-        "with": [
-          {
-            "block": "artisanal:fluid/sweet_crude_oil"
-          }
-        ]
-      },
-      {
-        "replace": [
           "tfc:rock/raw/shale"
         ],
         "with": [

@@ -1258,9 +1258,6 @@ def generate_worldgen():
                 **vein.config(),
                 'random_name': vein_name,
                 'blocks': [{
-                    'replace': ['minecraft:air'],
-                    'with': fluid_block_to_replace_with
-                }] + [{
                     'replace': ['tfc:rock/raw/%s' % rock],
                     'with': fluid_block_to_replace_with
                 } for rock in rocks],
