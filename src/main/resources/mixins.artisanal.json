@@ -10,10 +10,11 @@
     "DynamicBowlHandlerMixin",
     "FluidHelpersMixin",
     "JarItemMixin",
-    "QuernBlockEntityMixin",
+    "QuernBlockEntityMixin"
+  ],
+  "client": [
     "ScreenEffectRendererMixin"
   ],
-  "client": [],
   "injectors": {
     "defaultRequire": 1
   },
