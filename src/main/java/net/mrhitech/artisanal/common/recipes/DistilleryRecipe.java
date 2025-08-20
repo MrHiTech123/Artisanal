@@ -220,7 +220,7 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
         @Override
         public @NotNull DistilleryRecipe fromJson(ResourceLocation id, JsonObject json) {
             ItemStackIngredient itemStackIngredient = json.has("input_item")? ItemStackIngredient.fromJson(json.getAsJsonObject("input_item")) : ItemStackIngredient.EMPTY;
-            FluidStackIngredient fluidStackIngredient = json.has("input_fluid")? FluidStackIngredient.fromJson(GsonHelper.getAsJsonObject(json, "input_fluid", null)) : FluidStackIngredient.EMPTY;
+            FluidStackIngredient fluidStackIngredient = json.has("input_fluid")? FluidStackIngredient.fromJson(json.getAsJsonObject("input_fluid")) : FluidStackIngredient.EMPTY;
             ItemStackProvider resultItemStack = json.has("result_item")? ItemStackProvider.fromJson(GsonHelper.getAsJsonObject(json, "result_item")) : ItemStackProvider.empty();
             FluidStack resultFluidStack = json.has("result_fluid")? JsonHelpers.getFluidStack(GsonHelper.getAsJsonObject(json, "result_fluid")) : FluidStack.EMPTY;
             ItemStackProvider leftoverItemStack = json.has("leftover_item")? ItemStackProvider.fromJson(GsonHelper.getAsJsonObject(json, "leftover_item")) : ItemStackProvider.empty();
