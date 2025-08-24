@@ -60,7 +60,7 @@ public class ClientEventHandler {
         final Predicate<RenderType> ghostBlock = rt -> rt == cutoutMipped || rt == Sheets.translucentCullBlockSheet();
         
         for (Metal.Default metal : Metal.Default.values()) {
-            if (!metal.hasTools()) continue;
+            if (!ArtisanalItems.hasDistilleries(metal)) continue;
             ItemBlockRenderTypes.setRenderLayer(
                     ArtisanalBlocks.DISTILLERIES.get(metal).get(), 
                     ghostBlock

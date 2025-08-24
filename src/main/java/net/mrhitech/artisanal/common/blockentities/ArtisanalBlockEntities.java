@@ -12,9 +12,11 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.mrhitech.artisanal.Artisanal;
 import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
+import net.mrhitech.artisanal.common.item.ArtisanalItems;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -24,7 +26,7 @@ public class ArtisanalBlockEntities {
     public static final RegistryObject<BlockEntityType<DistilleryBlockEntity>> DISTILLERY = register(
             "distillery",
             DistilleryBlockEntity::new,
-            metalBlocks(ArtisanalBlocks.DISTILLERIES)
+            metalBlocks(ArtisanalBlocks.DISTILLERIES, ArtisanalItems::hasDistilleries)
     );
     
     public static void register(IEventBus eventBus) {
@@ -41,9 +43,13 @@ public class ArtisanalBlockEntities {
         return RegistrationHelpers.register(BLOCK_ENTITIES, name, factory, blocks);
     }
     
-    private static Stream<? extends Supplier<? extends Block>> metalBlocks(Map<Metal.Default, RegistryObject<Block>> type)
+    private static Stream<? extends Supplier<? extends Block>> metalBlocks(Map<Metal.Default, RegistryObject<Block>> type) {
+        return metalBlocks(type, Metal.Default::hasTools);
+    }
+    
+    private static Stream<? extends Supplier<? extends Block>> metalBlocks(Map<Metal.Default, RegistryObject<Block>> type, Predicate<Metal.Default> requiredTrue)
     {
-        return Arrays.stream(Metal.Default.values()).filter(Metal.Default::hasTools).map(type::get);
+        return Arrays.stream(Metal.Default.values()).filter(requiredTrue).map(type::get);
     }
     
 }

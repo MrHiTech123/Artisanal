@@ -58,7 +58,7 @@ public class ArtisanalBlocks {
                     new Item.Properties().rarity(drumMetal.getMetal().getRarity())
             ));
     
-    public static final Map<Metal.Default, RegistryObject<Block>> DISTILLERIES = Helpers.mapOfKeys(Metal.Default.class, Metal.Default::hasTools, metalType ->
+    public static final Map<Metal.Default, RegistryObject<Block>> DISTILLERIES = Helpers.mapOfKeys(Metal.Default.class, ArtisanalItems::hasDistilleries, metalType ->
             register(
                     "distillery/" + metalType.name().toLowerCase(Locale.ROOT),
                     () -> new DistilleryBlock(
