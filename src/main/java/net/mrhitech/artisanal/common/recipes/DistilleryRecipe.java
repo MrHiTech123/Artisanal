@@ -270,6 +270,10 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
         public void toNetwork(FriendlyByteBuf buffer, DistilleryRecipe recipe) {
             recipe.itemStackIngredient.toNetwork(buffer);
             recipe.fluidStackIngredient.toNetwork(buffer);
+            recipe.resultItemStack.toNetwork(buffer);
+            recipe.resultFluidStack.writeToPacket(buffer);
+            recipe.leftoverItemStack.toNetwork(buffer);
+            recipe.leftoverFluidStack.writeToPacket(buffer);
             buffer.writeVarInt(recipe.minTemp);
             buffer.writeVarInt(recipe.duration);
             
