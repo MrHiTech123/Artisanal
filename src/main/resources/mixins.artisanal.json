@@ -6,6 +6,7 @@
   "mixins": [
     "BarrelBlockEntityMixin",
     "BarrelInventoryAccessor",
+    "BarrelInventoryMixin",
     "BlockEntityTypeAccessor",
     "DynamicBowlHandlerMixin",
     "FluidHelpersMixin",

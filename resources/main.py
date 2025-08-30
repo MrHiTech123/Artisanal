@@ -102,7 +102,16 @@ def advancement(rm: ResourceManager, name_parts: tuple, icon: dict[str, Any] | S
     
     rm.lang(key + '.title', title)
     rm.lang(key + '.description', description)
-    
+
+def barrel_sprays_acid_in_eyes_instant_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, input_item: Optional[Json] = None, input_fluid: Optional[Json] = None, output_item: Optional[Json] = None, output_fluid: Optional[Json] = None, sound: Optional[str] = None, conditions=None):
+    rm.recipe(('barrel', name_parts), 'artisanal:sprays_acid_in_eyes_instant_barrel', {
+        'input_item': item_stack_ingredient(input_item) if input_item is not None else None,
+        'input_fluid': fluid_stack_ingredient(input_fluid) if input_fluid is not None else None,
+        'output_item': item_stack_provider(output_item) if output_item is not None else None,
+        'output_fluid': fluid_stack(output_fluid) if output_fluid is not None else None,
+        'sound': sound
+    }, conditions=conditions)
+
 def catalyst_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, group: str = None, conditions: utils.Json = None) -> RecipeContext:
     return delegate_recipe(rm, name_parts, 'artisanal:damage_and_catalyst_shapeless_crafting', {
         'type': 'minecraft:crafting_shapeless',
@@ -731,6 +740,8 @@ def generate_barrel_recipes():
     barrel_instant_recipe(rm, 'cooling_sweet_crude_oil', heatable_ingredient(), '1 artisanal:sweet_crude_oil', output_item=item_stack_provider(copy_input=True, add_heat=-40), sound='minecraft:block.fire.extinguish')
     barrel_instant_recipe(rm, 'cooling_sour_crude_oil', heatable_ingredient(), '1 artisanal:sour_crude_oil', output_item=item_stack_provider(copy_input=True, add_heat=-20), sound='minecraft:block.fire.extinguish')
     
+    barrel_sprays_acid_in_eyes_instant_recipe(rm, 'cooling_sulfuric_acid', heatable_ingredient(), '1 artisanal:sulfuric_acid', output_item=item_stack_provider(copy_input=True, add_heat=-5), sound='minecraft:block.fire.extinguish')
+    
 def generate_crafting_recipes():
     print('\tGenerating crafting recipes...')
     damage_shapeless(rm, ('crafting', 'trimmed_feather'), ('#tfc:knives', 'minecraft:feather'), 'artisanal:trimmed_feather')
@@ -1201,6 +1212,7 @@ def generate_item_tags():
     rm.item_tag('metal/distilleries', *[f'artisanal:metal/distillery/{metal}' for metal in METALS if has_distilleries(metal)])
     rm.item_tag('powders/copper', *[f'tfc:powder/{ore}' for ore in ['malachite', 'tetrahedrite', 'native_copper']])
     rm.item_tag('powders/iron', *[f'tfc:powder/{ore}' for ore in ['hematite', 'limonite', 'magnetite']])
+    # rm.item_tag('safety_goggles', 'tfc:metal/helmet/blue_steel')
     
     
     rm.item_tag('tfc:firepit_kindling', 'artisanal:bagasse')

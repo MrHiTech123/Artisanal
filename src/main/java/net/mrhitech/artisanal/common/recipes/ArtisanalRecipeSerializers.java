@@ -21,6 +21,7 @@ public class ArtisanalRecipeSerializers {
     public static final RegistryObject<RecipeSerializer<?>> SPECIFIC_NO_REMAINDER_DAMAGE_SHAPED = register("specific_no_remainder_damage_shaped", SpecificNoRemainderDamageShapedRecipe.Serializer::new);
     public static final RegistryObject<RecipeSerializer<?>> SPECIFIC_NO_REMAINDER_SHAPED = register("specific_no_remainder_shaped", SpecificNoRemainderShapedRecipe.Serializer::new);
     public static final RegistryObject<RecipeSerializer<?>> SPECIFIC_NO_REMAINDER_SHAPELESS = register("specific_no_remainder_shapeless", SpecificNoRemainderShapelessRecipe.Serializer::new);
+    public static final RegistryObject<RecipeSerializer<?>> SPRAYS_ACID_IN_EYES_INSTANT_BARREL_RECIPE = register("sprays_acid_in_eyes_instant_barrel", SpraysAcidInEyesInstantBarrelRecipe.Serializer::new);
     
     public static <I extends RecipeSerializer<?>> RegistryObject<RecipeSerializer<?>> register(String name, Supplier<? extends I> sup) {
         return RECIPE_SERIALIZERS.register(name, sup);

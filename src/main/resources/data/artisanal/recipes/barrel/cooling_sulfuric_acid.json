@@ -1,0 +1,24 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "artisanal:sprays_acid_in_eyes_instant_barrel",
+  "input_item": {
+    "ingredient": {
+      "type": "tfc:heatable",
+      "min_temp": 1
+    }
+  },
+  "input_fluid": {
+    "ingredient": "artisanal:sulfuric_acid",
+    "amount": 1
+  },
+  "output_item": {
+    "modifiers": [
+      "tfc:copy_input",
+      {
+        "type": "tfc:add_heat",
+        "temperature": -5
+      }
+    ]
+  },
+  "sound": "minecraft:block.fire.extinguish"
+}

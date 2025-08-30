@@ -25,13 +25,26 @@ import java.util.function.Supplier;
 
 public class ArtisanalHelpers {
     
-    public static List<Player> playersNear(Level level, BlockPos pos, int maxDistance) {
-        List<Player> toReturn = new ArrayList<>();
+    public static List<Player> playersNear(Level level, BlockPos pos, int maxDistanceHorizontal, int maxDistanceVertical) {
+        AABB area = new AABB(
+                new BlockPos(pos.getX() - maxDistanceHorizontal, pos.getY() - maxDistanceVertical, pos.getZ() - maxDistanceHorizontal),
+                new BlockPos(pos.getX() + maxDistanceHorizontal, pos.getY() + maxDistanceVertical, pos.getZ() + maxDistanceHorizontal)
+        );
         
+        return playersIn(level, area);
+    }
+    
+    public static List<Player> playersNear(Level level, BlockPos pos, int maxDistance) {
         AABB area = new AABB(
                 new BlockPos(pos.getX() - maxDistance, pos.getY() - maxDistance, pos.getZ() - maxDistance),
                 new BlockPos(pos.getX() + maxDistance, pos.getY() + maxDistance, pos.getZ() + maxDistance)
         );
+        
+        return playersIn(level, area);
+    }
+    
+    public static List<Player> playersIn(Level level, AABB area) {
+        List<Player> toReturn = new ArrayList<>();
         
         for (Player player : level.players()) {
             if (area.contains(player.position())) {
@@ -40,7 +53,6 @@ public class ArtisanalHelpers {
         }
         
         return toReturn;
-        
     }
     
 }
