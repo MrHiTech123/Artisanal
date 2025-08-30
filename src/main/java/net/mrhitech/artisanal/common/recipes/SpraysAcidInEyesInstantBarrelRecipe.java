@@ -45,7 +45,7 @@ public class SpraysAcidInEyesInstantBarrelRecipe extends InstantBarrelRecipe {
         BlockPos pos = barrel.getBlockPos();
         BlockPos oneAbove = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
         
-        if (level.getBlockState(oneAbove).getBlock().equals(Blocks.AIR)) {
+        if (!level.getBlockState(oneAbove).getBlock().equals(Blocks.AIR)) {
             return true;
         }
         
@@ -53,6 +53,8 @@ public class SpraysAcidInEyesInstantBarrelRecipe extends InstantBarrelRecipe {
     }
     
     private static boolean wearingSafetyGoggles(Player player) {
+        
+        if (player.isCreative()) return true;
         
         for (ItemStack armor : player.getArmorSlots()) {
             if (Helpers.isItem(armor.getItem(), ArtisanalTags.ITEMS.SAFETY_GOGGLES)) {

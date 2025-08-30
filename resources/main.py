@@ -1212,7 +1212,7 @@ def generate_item_tags():
     rm.item_tag('metal/distilleries', *[f'artisanal:metal/distillery/{metal}' for metal in METALS if has_distilleries(metal)])
     rm.item_tag('powders/copper', *[f'tfc:powder/{ore}' for ore in ['malachite', 'tetrahedrite', 'native_copper']])
     rm.item_tag('powders/iron', *[f'tfc:powder/{ore}' for ore in ['hematite', 'limonite', 'magnetite']])
-    # rm.item_tag('safety_goggles', 'tfc:metal/helmet/blue_steel')
+    rm.item_tag('safety_goggles', 'tfc:metal/helmet/blue_steel')
     
     
     rm.item_tag('tfc:firepit_kindling', 'artisanal:bagasse')
