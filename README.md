@@ -17,7 +17,7 @@ Artisanal is an addon for TerraFirmaCraft that adds various branches to the tech
 
 #### Other features
 - Magnifying glasses
-- A fully data-driven juicing system
+- Fully data-driven juicing and distillation systems
 - Expanded crafting options for Flint and Steel
 
 #### Recipe Enhancements
