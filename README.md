@@ -14,6 +14,8 @@ Artisanal is an addon for TerraFirmaCraft that adds various branches to the tech
 	- Canning food
 - Sugar Production
 - Powdered Milk
+- Sulfuric Acid Production
+- Oil Refining
 
 #### Other features
 - Magnifying glasses
