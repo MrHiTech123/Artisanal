@@ -1,0 +1,18 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "artisanal:leather_strap"
+    },
+    {
+      "item": "artisanal:lab_goggles_frame"
+    },
+    {
+      "item": "artisanal:lab_goggles_lens"
+    }
+  ],
+  "result": {
+    "item": "artisanal:lab_goggles"
+  }
+}

@@ -124,6 +124,15 @@ public class ArtisanalItems {
     public static final RegistryObject<Item> BITUMEN = register("bitumen", () -> new Item(new Item.Properties()));
     
     
+    public static final RegistryObject<Item> LEATHER_STRAP = register("leather_strap", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LAB_GOGGLES_FRAME = register("lab_goggles_frame", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LAB_GOGGLES_LENS = register("lab_goggles_lens", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LAB_GOGGLES = register("lab_goggles", () -> new ArmorItem(ArtisanalArmorMaterials.LAB, ArmorItem.Type.HELMET, new Item.Properties()));
+    
+    
+    
+    
+    
     public static final RegistryObject<Item> DEBUG_ANY_ITEM = register("debug/any_item", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DEBUG_WHATEVER_FOOD_WAS_INSIDE_THE_CAN = register("debug/whatever_food_was_inside_the_can", () -> new Item(new Item.Properties()));
     

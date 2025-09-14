@@ -16,7 +16,7 @@ public class ArtisanalTags {
         public static final TagKey<Item> TFC_BARRELS = create(TerraFirmaCraft.MOD_ID, "barrels");
         public static final TagKey<Item> DISTILLERIES = create("metal/distilleries");
         public static final TagKey<Item> FATS = create("fats");
-        public static final TagKey<Item> SAFETY_GOGGLES = create("safety_goggles");
+        public static final TagKey<Item> EYE_PROTECTION = create("eye_protection");
         
         private static TagKey<Item> create(String modId, String itemId) {
             return TagKey.create(Registries.ITEM, new ResourceLocation(modId, itemId));

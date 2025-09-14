@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:knapping",
+  "knapping_type": "tfc:leather",
+  "outside_slot_required": false,
+  "pattern": [
+    "XXXXX",
+    "X   X",
+    "X X X",
+    "XX XX"
+  ],
+  "result": {
+    "item": "artisanal:lab_goggles_frame"
+  }
+}

@@ -622,8 +622,18 @@ def generate_item_models():
     rm.item_model(('powder', 'cinnabar'), 'artisanal:item/powder/cinnabar').with_lang(lang('cinnabar_powder'))
     rm.item_model(('bitumen'), 'artisanal:item/bitumen').with_lang(lang('bitumen'))
     
+    rm.item_model(('leather_strap'), 'artisanal:item/leather_strap').with_lang(lang('leather_strap'))
+    rm.item_model(('lab_goggles_frame'), 'artisanal:item/lab_goggles_frame').with_lang(lang('lab_goggles_frame'))
+    rm.item_model(('lab_goggles_lens'), 'artisanal:item/lab_goggles_lens').with_lang(lang('lab_goggles_lens'))
+    rm.item_model(('lab_goggles'), 'artisanal:item/lab_goggles').with_lang(lang('lab_goggles'))
+    
+    
+    
+    
     rm.item_model(('debug', 'any_item'), 'minecraft:item/nether_star').with_lang(lang('any_item'))
     rm.item_model(('debug', 'whatever_food_was_inside_the_can'), 'minecraft:item/cooked_beef').with_lang(lang('whatever_food_was_inside_the_can'))
+    
+    
     
     
 def generate_models():
@@ -907,6 +917,8 @@ def generate_crafting_recipes():
     
     rm.crafting_shaped(('crafting', 'redstone'), ['CIC', 'SFS', 'CIC'], {'C': '#artisanal:powders/copper', 'I': '#artisanal:powders/iron', 'S': 'tfc:powder/sulfur', 'F': fluid_item_ingredient('100 artisanal:mercury')}, (8, 'minecraft:redstone'))
     
+    rm.crafting_shapeless(('crafting', 'lab_goggles'), ('artisanal:leather_strap', 'artisanal:lab_goggles_frame', 'artisanal:lab_goggles_lens'), 'artisanal:lab_goggles')
+    
 def generate_distillery_recipes():
     print('\tGenerating distillery recipes')
     
@@ -924,14 +936,25 @@ def generate_glassworking_recipes():
     glass_recipe(rm, ('orange_glass_block'), ['sulfur', 'basin_pour'], 'tfc:silica_glass_batch', 'minecraft:orange_stained_glass')
     glass_recipe(rm, ('orange_glass_pane'), ['sulfur', 'table_pour'], 'tfc:silica_glass_batch', 'tfc:orange_poured_glass')
     
+    glass_recipe(rm, ('lab_goggles_lens'), ['blow', 'stretch', 'stretch', 'roll', 'saw'], 'tfc:silica_glass_batch', 'artisanal:lab_goggles_lens')
+    
     disable_recipe(rm, 'tfc:glassworking/orange_glass_block')
     disable_recipe(rm, 'tfc:glassworking/orange_glass_pane')
     
+
+def generate_clay_knapping_recipes():
+    print('\t\tGenerating clay knapping recipes...')
+    clay_knapping(rm, ('unfired_small_pot'), [' XX  ', 'XX   ', 'X X X', '  XXX', '  XXX'], 'artisanal:ceramic/unfired_small_pot', False)
     
+def generate_leather_knapping_recipes():
+    print('\t\tGenerating leather knapping recipes...')
+    leather_knapping(rm, ('leather_strap'), ['XXXXX', 'X    ', 'XXXXX', '    X', 'XXXXX'], 'artisanal:leather_strap', False)
+    leather_knapping(rm, ('lab_goggles_frame'), ['XXXXX', 'X   X', 'X X X', 'XX XX'], 'artisanal:lab_goggles_frame', False)
+
 def generate_knapping_recipes():
     print("\tGenerating knapping recipes...")
-    clay_knapping(rm, ('unfired_small_pot'), (' XX  ', 'XX   ', 'X X X', '  XXX', '  XXX'), 'artisanal:ceramic/unfired_small_pot', False)
-    
+    generate_clay_knapping_recipes()
+    generate_leather_knapping_recipes()
     
 def generate_heat_recipes():
     print("\tGenerating heat recipes...")
@@ -1212,7 +1235,7 @@ def generate_item_tags():
     rm.item_tag('metal/distilleries', *[f'artisanal:metal/distillery/{metal}' for metal in METALS if has_distilleries(metal)])
     rm.item_tag('powders/copper', *[f'tfc:powder/{ore}' for ore in ['malachite', 'tetrahedrite', 'native_copper']])
     rm.item_tag('powders/iron', *[f'tfc:powder/{ore}' for ore in ['hematite', 'limonite', 'magnetite']])
-    rm.item_tag('safety_goggles', 'tfc:metal/helmet/blue_steel')
+    rm.item_tag('eye_protection', 'artisanal:lab_goggles', 'tfc:metal/helmet/blue_steel')
     
     
     rm.item_tag('tfc:firepit_kindling', 'artisanal:bagasse')

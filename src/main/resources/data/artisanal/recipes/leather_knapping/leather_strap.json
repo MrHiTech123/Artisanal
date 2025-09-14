@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:knapping",
+  "knapping_type": "tfc:leather",
+  "outside_slot_required": false,
+  "pattern": [
+    "XXXXX",
+    "X    ",
+    "XXXXX",
+    "    X",
+    "XXXXX"
+  ],
+  "result": {
+    "item": "artisanal:leather_strap"
+  }
+}

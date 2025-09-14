@@ -57,7 +57,7 @@ public class SpraysAcidInEyesInstantBarrelRecipe extends InstantBarrelRecipe {
         if (player.isCreative()) return true;
         
         for (ItemStack armor : player.getArmorSlots()) {
-            if (Helpers.isItem(armor.getItem(), ArtisanalTags.ITEMS.SAFETY_GOGGLES)) {
+            if (Helpers.isItem(armor.getItem(), ArtisanalTags.ITEMS.EYE_PROTECTION)) {
                 return true;
             }
         }
@@ -72,7 +72,7 @@ public class SpraysAcidInEyesInstantBarrelRecipe extends InstantBarrelRecipe {
         player.addEffect(acidBlindness);
     }
     
-    private static void maybeBlindPlayer(Player player) {
+    private static void blindPlayerIfNotWearingSafetyGoggles(Player player) {
         if (!wearingSafetyGoggles(player)) {
             blindPlayer(player);
         }
@@ -96,7 +96,7 @@ public class SpraysAcidInEyesInstantBarrelRecipe extends InstantBarrelRecipe {
             List<Player> playersNearby = ArtisanalHelpers.playersNear(level, twoAbove, 5, 8);
             
             for (Player player : playersNearby) {
-                maybeBlindPlayer(player);
+                blindPlayerIfNotWearingSafetyGoggles(player);
             }
         }
     }

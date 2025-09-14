@@ -134,6 +134,11 @@ public class ArtisanalCreativeTabs {
             event.accept(ArtisanalItems.DIRTY_SILK_CLOTH.get());
             event.accept(ArtisanalItems.DIRTY_WOOL_CLOTH.get());
             event.accept(ArtisanalItems.BITUMEN.get());
+            
+            event.accept(ArtisanalItems.LEATHER_STRAP.get());
+            event.accept(ArtisanalItems.LAB_GOGGLES_FRAME.get());
+            event.accept(ArtisanalItems.LAB_GOGGLES_LENS.get());
+            event.accept(ArtisanalItems.LAB_GOGGLES.get());
         }
     }
 }
