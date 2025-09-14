@@ -1,26 +1,16 @@
 package net.mrhitech.artisanal.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.dries007.tfc.client.model.ContainedFluidModel;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
-import net.minecraft.client.Camera;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.mrhitech.artisanal.client.render.blockentity.DistilleryBlockEntityRenderer;
@@ -31,9 +21,8 @@ import net.mrhitech.artisanal.common.container.ArtisanalContainerTypes;
 import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
 import net.mrhitech.artisanal.common.fluids.Waterlikes;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
-import org.joml.Vector3f;
+import net.mrhitech.artisanal.common.item.LabGogglesItem;
 
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 public class ClientEventHandler {
@@ -43,6 +32,7 @@ public class ClientEventHandler {
         bus.addListener(ClientEventHandler::clientSetup);
         bus.addListener(ClientEventHandler::registerColorHandlerItems);
         bus.addListener(ClientEventHandler::registerEntityRenderers);
+        bus.addListener(LabGogglesItem::registerOverlay);
         
     }
     
