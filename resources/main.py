@@ -936,7 +936,7 @@ def generate_glassworking_recipes():
     glass_recipe(rm, ('orange_glass_block'), ['sulfur', 'basin_pour'], 'tfc:silica_glass_batch', 'minecraft:orange_stained_glass')
     glass_recipe(rm, ('orange_glass_pane'), ['sulfur', 'table_pour'], 'tfc:silica_glass_batch', 'tfc:orange_poured_glass')
     
-    glass_recipe(rm, ('lab_goggles_lens'), ['blow', 'stretch', 'stretch', 'roll', 'saw'], 'tfc:silica_glass_batch', 'artisanal:lab_goggles_lens')
+    glass_recipe(rm, ('lab_goggles_lens'), ['blow', 'stretch', 'stretch', 'roll', 'pinch', 'saw'], 'tfc:silica_glass_batch', 'artisanal:lab_goggles_lens')
     
     disable_recipe(rm, 'tfc:glassworking/orange_glass_block')
     disable_recipe(rm, 'tfc:glassworking/orange_glass_pane')
