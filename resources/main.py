@@ -326,7 +326,7 @@ def generate_advancements():
     advancement(rm, ('story', 'sterilized_tin_can'), 'artisanal:metal/can/tin_sterilized', 'Local Cannery', 'Seal some food in a Can and sterilize it', 'tfc:story/sheet', inventory_changed('#artisanal:metal/sterilized_cans'))
     advancement(rm, ('story', 'distillery'), 'artisanal:metal/distillery/copper', 'Local Distillery', 'Create a distillery', 'tfc:story/sheet', inventory_changed('#artisanal:metal/distilleries'))
     advancement(rm, ('story', 'redstone'), 'minecraft:redstone', "Philosopher's Stone", 'Distill ingredients to make a magical red stone', 'artisanal:story/distillery', inventory_changed('minecraft:redstone'))
-    
+    advancement(rm, ('story', 'blinded_by_acid'), {'item': 'tfc:silica_glass_bottle', 'nbt': "{\"fluid\":{\"Amount\": 500, \"FluidName\": \"artisanal:sulfuric_acid\"}}"}, 'Lab Accident', 'Accidentally spray acid in your eyes', 'tfc:story/quern', generic('artisanal:blinded_by_acid', None), hidden=True)
     
     
 def generate_drinkables():
@@ -905,7 +905,7 @@ def generate_crafting_recipes():
             'S': heatable_ingredient('tfc:powder/sulfur', SULFUR_BURN),
             'T': '#tfc:tuyeres'
         },
-        item_stack_provider('tfc:ceramic/jug', modify_fluid=f'500 artisanal:sulfuric_acid'),
+        item_stack_provider('tfc:ceramic/jug', modify_fluid=f'500 artisanal:sulfuric_acid', other_modifier='artisanal:blind_crafting_player'),
         (0, 0)
     )
     for metal in DRUM_METALS:

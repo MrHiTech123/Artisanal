@@ -1,0 +1,30 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "tfc:story/quern",
+  "criteria": {
+    "special_condition": {
+      "trigger": "artisanal:blinded_by_acid"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "tfc:silica_glass_bottle",
+      "nbt": "{\"fluid\":{\"Amount\": 500, \"FluidName\": \"artisanal:sulfuric_acid\"}}"
+    },
+    "title": {
+      "translate": "artisanal.advancements.story.blinded_by_acid.title"
+    },
+    "description": {
+      "translate": "artisanal.advancements.story.blinded_by_acid.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "requirements": [
+    [
+      "special_condition"
+    ]
+  ]
+}

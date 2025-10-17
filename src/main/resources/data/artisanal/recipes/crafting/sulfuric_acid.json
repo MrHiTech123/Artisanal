@@ -39,7 +39,8 @@
           "fluid": "artisanal:sulfuric_acid",
           "amount": 500
         }
-      }
+      },
+      "artisanal:blind_crafting_player"
     ]
   },
   "input_row": 0,

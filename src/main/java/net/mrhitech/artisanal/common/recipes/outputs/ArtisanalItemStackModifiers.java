@@ -9,6 +9,7 @@ import net.mrhitech.artisanal.Artisanal;
 
 public class ArtisanalItemStackModifiers {
     public static void registerItemStackModifiers() {
+        register("blind_crafting_player", BlindCraftingPlayerModifier.INSTANCE);
         register("cap_heat", CapHeatModifier.Serializer.INSTANCE);
         register("copy_dynamic_food", CopyDynamicFoodModifier.INSTANCE);
         register("copy_dynamic_food_never_expires", CopyDynamicFoodNeverExpiresModifier.INSTANCE);

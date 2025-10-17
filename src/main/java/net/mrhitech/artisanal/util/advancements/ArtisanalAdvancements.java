@@ -11,6 +11,7 @@ public class ArtisanalAdvancements {
     
     public static void registerTriggers() {}
     
+    public static final GenericTrigger BLINDED_BY_ACID = registerGeneric("blinded_by_acid");
     public static final GenericTrigger JUICING = registerGeneric("juicing");
     public static final GenericTrigger PLAY_DRUM = registerGeneric("play_drum");
     

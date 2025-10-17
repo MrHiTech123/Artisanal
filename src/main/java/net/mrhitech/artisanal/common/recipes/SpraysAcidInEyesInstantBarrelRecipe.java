@@ -1,26 +1,22 @@
 package net.mrhitech.artisanal.common.recipes;
 
 import com.google.gson.JsonObject;
-import net.dries007.tfc.common.TFCEffects;
 import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
 import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
 import net.dries007.tfc.common.recipes.BarrelRecipe;
 import net.dries007.tfc.common.recipes.InstantBarrelRecipe;
 import net.dries007.tfc.common.recipes.RecipeSerializerImpl;
 import net.dries007.tfc.common.recipes.inventory.BarrelInventory;
-import net.dries007.tfc.util.Helpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.mrhitech.artisanal.common.ArtisanalTags;
 import net.mrhitech.artisanal.util.ArtisanalHelpers;
 import net.mrhitech.artisanal.util.IBarrelInventoryMixin;
+import net.mrhitech.artisanal.util.SulfuricAcidEffects;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -52,32 +48,6 @@ public class SpraysAcidInEyesInstantBarrelRecipe extends InstantBarrelRecipe {
         return false;
     }
     
-    private static boolean wearingSafetyGoggles(Player player) {
-        
-        if (player.isCreative()) return true;
-        
-        for (ItemStack armor : player.getArmorSlots()) {
-            if (Helpers.isItem(armor.getItem(), ArtisanalTags.ITEMS.EYE_PROTECTION)) {
-                return true;
-            }
-        }
-        
-        return false;
-        
-    }
-    
-    private static void blindPlayer(Player player) {
-        MobEffectInstance acidBlindness = 
-                new MobEffectInstance(TFCEffects.INK.get(), MobEffectInstance.INFINITE_DURATION);
-        player.addEffect(acidBlindness);
-    }
-    
-    private static void blindPlayerIfNotWearingSafetyGoggles(Player player) {
-        if (!wearingSafetyGoggles(player)) {
-            blindPlayer(player);
-        }
-    }
-    
     @Override
     public void assembleOutputs(BarrelInventory inventory) {
         super.assembleOutputs(inventory);
@@ -96,7 +66,7 @@ public class SpraysAcidInEyesInstantBarrelRecipe extends InstantBarrelRecipe {
             List<Player> playersNearby = ArtisanalHelpers.playersNear(level, twoAbove, 5, 8);
             
             for (Player player : playersNearby) {
-                blindPlayerIfNotWearingSafetyGoggles(player);
+                SulfuricAcidEffects.sprayAcidAtPlayerEyes(player);
             }
         }
     }
