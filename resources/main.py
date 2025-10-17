@@ -622,7 +622,6 @@ def generate_item_models():
     rm.item_model(('powder', 'cinnabar'), 'artisanal:item/powder/cinnabar').with_lang(lang('cinnabar_powder'))
     rm.item_model(('bitumen'), 'artisanal:item/bitumen').with_lang(lang('bitumen'))
     
-    rm.item_model(('leather_strap'), 'artisanal:item/leather_strap').with_lang(lang('leather_strap'))
     rm.item_model(('lab_goggles_frame'), 'artisanal:item/lab_goggles_frame').with_lang(lang('lab_goggles_frame'))
     rm.item_model(('lab_goggles_lens'), 'artisanal:item/lab_goggles_lens').with_lang(lang('lab_goggles_lens'))
     rm.item_model(('lab_goggles'), 'artisanal:item/lab_goggles').with_lang(lang('lab_goggles'))
@@ -917,7 +916,7 @@ def generate_crafting_recipes():
     
     rm.crafting_shaped(('crafting', 'redstone'), ['CIC', 'SFS', 'CIC'], {'C': '#artisanal:powders/copper', 'I': '#artisanal:powders/iron', 'S': 'tfc:powder/sulfur', 'F': fluid_item_ingredient('100 artisanal:mercury')}, (8, 'minecraft:redstone'))
     
-    rm.crafting_shapeless(('crafting', 'lab_goggles'), ('artisanal:leather_strap', 'artisanal:lab_goggles_frame', 'artisanal:lab_goggles_lens'), 'artisanal:lab_goggles')
+    rm.crafting_shapeless(('crafting', 'lab_goggles'), ('artisanal:lab_goggles_frame', 'artisanal:lab_goggles_lens'), 'artisanal:lab_goggles')
     
 def generate_distillery_recipes():
     print('\tGenerating distillery recipes')
@@ -948,7 +947,6 @@ def generate_clay_knapping_recipes():
     
 def generate_leather_knapping_recipes():
     print('\t\tGenerating leather knapping recipes...')
-    leather_knapping(rm, ('leather_strap'), ['XXXXX', 'X    ', 'XXXXX', '    X', 'XXXXX'], 'artisanal:leather_strap', False)
     leather_knapping(rm, ('lab_goggles_frame'), ['XXXXX', 'X   X', 'X X X', 'XX XX'], 'artisanal:lab_goggles_frame', False)
 
 def generate_knapping_recipes():
