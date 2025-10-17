@@ -31,6 +31,11 @@
       "type": "tfc:instant_barrel_recipe",
       "recipe": "artisanal:barrel/lava_garbage_disposal",
       "text": "Lava drums can also be used as garbage disposals."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/lab_goggles",
+      "text": "Working with hazardous materials can be dangerous, so make sure to craft a pair of $(thing)Lab Goggles$() before working with them."
     }
   ],
   "read_by_default": true,

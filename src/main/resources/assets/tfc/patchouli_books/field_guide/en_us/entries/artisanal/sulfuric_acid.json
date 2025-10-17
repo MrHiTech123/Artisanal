@@ -16,6 +16,11 @@
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/metal/pickled_double_sheet/steel",
       "text": "Like other acids, Sulfuric Acid can be used to pickle metal sheets."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/lab_goggles",
+      "text": "Working with hazardous materials can be dangerous, so make sure to craft a pair of $(thing)Lab Goggles$() before working with them."
     }
   ],
   "read_by_default": true
