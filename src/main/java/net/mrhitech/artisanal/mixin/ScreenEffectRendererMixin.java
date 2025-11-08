@@ -3,7 +3,7 @@ package net.mrhitech.artisanal.mixin;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ScreenEffectRenderer;
-import net.mrhitech.artisanal.util.RenderingHelper;
+import net.mrhitech.artisanal.util.RenderingHelpers;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
@@ -15,6 +15,6 @@ public class ScreenEffectRendererMixin {
      */
     @Overwrite
     private static void renderWater(Minecraft minecraft, PoseStack poseStack) {
-        RenderingHelper.renderWaterlike(minecraft, poseStack);
+        RenderingHelpers.renderWaterlike(minecraft, poseStack);
     }
 }

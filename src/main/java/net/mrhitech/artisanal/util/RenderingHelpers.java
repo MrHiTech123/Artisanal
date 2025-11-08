@@ -1,22 +1,24 @@
 package net.mrhitech.artisanal.util;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.dries007.tfc.common.fluids.TFCFluids;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.ScreenEffectRenderer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.fluids.FluidType;
 import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
 import net.mrhitech.artisanal.common.fluids.Waterlikes;
+import net.mrhitech.artisanal.common.item.LabGogglesItem;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class RenderingHelper {
+public class RenderingHelpers {
     
     // If you want your own overlays, put them in here
     
@@ -43,5 +45,33 @@ public class RenderingHelper {
         
         ScreenEffectRenderer.renderFluid(minecraft, poseStack, textureToRender);
         
+    }
+    
+    public static void renderTextureOverlay(GuiGraphics graphics, ResourceLocation location, float alpha)
+    {
+        final Minecraft mc = Minecraft.getInstance();
+        final int screenWidth = mc.getWindow().getGuiScaledWidth();
+        final int screenHeight = mc.getWindow().getGuiScaledHeight();
+
+        RenderSystem.disableDepthTest();
+        RenderSystem.depthMask(false);
+        graphics.setColor(1.0F, 1.0F, 1.0F, alpha);
+        graphics.blit(location, 0, 0, -90, 0.0F, 0.0F, screenWidth, screenHeight, screenWidth, screenHeight);
+        RenderSystem.depthMask(true);
+        RenderSystem.enableDepthTest();
+        graphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
+    }
+    
+    public static void renderLabGogglesOverWorldIfWorn(ForgeGui gui, GuiGraphics graphics, float partialTicks, int width, int height) {
+        
+        if (!Minecraft.getInstance().options.getCameraType().isFirstPerson()) return;
+        
+        LocalPlayer player = Minecraft.getInstance().player;
+        
+        if (player == null) return;
+        
+        if (LabGogglesItem.wearingLabGoggles(player)) {
+            renderTextureOverlay(graphics, LabGogglesItem.OVERLAY_TEXTURE, 1f);
+        }
     }
 }
