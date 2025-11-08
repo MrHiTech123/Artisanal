@@ -22,9 +22,9 @@ public class LabGogglesItem extends ArmorItem {
         super(material, Type.HELMET, properties);
     }
     
-    private static final ResourceLocation LAB_GOGGLES_OVERLAY_TEXTURE = new ResourceLocation(Artisanal.MOD_ID, "textures/gui/overlay/lab_goggles.png");
+    public static final ResourceLocation OVERLAY_TEXTURE = new ResourceLocation(Artisanal.MOD_ID, "textures/gui/overlay/lab_goggles.png");
     
-    private static boolean wearingLabGoggles(Player player) {
+    public static boolean wearingLabGoggles(Player player) {
         for (ItemStack armor : player.getArmorSlots()) {
             if (armor.getItem() instanceof LabGogglesItem) {
                 return true;
@@ -35,39 +35,10 @@ public class LabGogglesItem extends ArmorItem {
     }
     
     
-    private static void renderTextureOverlay(GuiGraphics graphics, ResourceLocation location, float alpha)
-    {
-        final Minecraft mc = Minecraft.getInstance();
-        final int screenWidth = mc.getWindow().getGuiScaledWidth();
-        final int screenHeight = mc.getWindow().getGuiScaledHeight();
-
-        RenderSystem.disableDepthTest();
-        RenderSystem.depthMask(false);
-        graphics.setColor(1.0F, 1.0F, 1.0F, alpha);
-        graphics.blit(location, 0, 0, -90, 0.0F, 0.0F, screenWidth, screenHeight, screenWidth, screenHeight);
-        RenderSystem.depthMask(true);
-        RenderSystem.enableDepthTest();
-        graphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
-    }
-    
-    private static void renderLabGogglesOverWorldIfWorn(ForgeGui gui, GuiGraphics graphics, float partialTicks, int width, int height) {
-        if (!Minecraft.getInstance().options.getCameraType().isFirstPerson()) return;
-        
-        LocalPlayer player = Minecraft.getInstance().player;
-        
-        if (player == null) return;
-        
-        if (wearingLabGoggles(player)) {
-            renderTextureOverlay(graphics, LAB_GOGGLES_OVERLAY_TEXTURE, 1f);
-        }
-        
-        
-    }
     
     
-    public static void registerOverlay(RegisterGuiOverlaysEvent overlaysEvent) {
-        overlaysEvent.registerAbove(VanillaGuiOverlay.HELMET.id(), "lab_goggles_overlay", LabGogglesItem::renderLabGogglesOverWorldIfWorn);
-    }
+    
+    
     
     
 }

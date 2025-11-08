@@ -3,13 +3,19 @@ package net.mrhitech.artisanal.client;
 import net.dries007.tfc.client.model.ContainedFluidModel;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.Metal;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
+import net.minecraftforge.client.gui.overlay.ForgeGui;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -22,6 +28,7 @@ import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
 import net.mrhitech.artisanal.common.fluids.Waterlikes;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 import net.mrhitech.artisanal.common.item.LabGogglesItem;
+import net.mrhitech.artisanal.util.RenderingHelpers;
 
 import java.util.function.Predicate;
 
@@ -32,7 +39,7 @@ public class ClientEventHandler {
         bus.addListener(ClientEventHandler::clientSetup);
         bus.addListener(ClientEventHandler::registerColorHandlerItems);
         bus.addListener(ClientEventHandler::registerEntityRenderers);
-        bus.addListener(LabGogglesItem::registerOverlay);
+        //bus.addListener(ClientEventHandler::registerOverlays);
         
     }
     
@@ -72,4 +79,10 @@ public class ClientEventHandler {
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ArtisanalBlockEntities.DISTILLERY.get(), ctx -> new DistilleryBlockEntityRenderer());
     }
+    
+    public static void registerOverlays(RegisterGuiOverlaysEvent overlaysEvent) {
+        overlaysEvent.registerAbove(VanillaGuiOverlay.HELMET.id(), "lab_goggles_overlay", RenderingHelpers::renderLabGogglesOverWorldIfWorn);
+    }
+    
+    
 }
