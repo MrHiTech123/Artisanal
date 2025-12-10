@@ -21,7 +21,7 @@
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/paper",
-      "text": "Paper can now be made by bleaching Unrefined Paper in Lye, as well as by scraping it"
+      "text": "Paper can now be made by bleaching Unrefined Paper in Lye, as well as by scraping it."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
