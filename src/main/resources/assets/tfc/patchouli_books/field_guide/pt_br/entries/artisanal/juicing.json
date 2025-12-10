@@ -1,0 +1,45 @@
+{
+  "name": "Juicing",
+  "category": "tfc:artisanal",
+  "icon": "tfc:handstone",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Sometimes, grinding an item up in a $(l:tfc:mechanics/quern)Quern$() will cause liquid to be released. This liquid can be collected in a barrel (or $(l:tfc:artisanal/drums)Drum$()) placed underneath the quern. $(br2)Note that the barrel must be open in order to accept fluid. If the barrel is closed, the result fluid will be wasted."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Juicing Apparatus",
+      "multiblock_id": "artisanal:juicing_apparatus",
+      "text": "A juicing apparatus. Liquid from items that are ground by the quern will collect in the barrel below."
+    },
+    {
+      "type": "tfc:artisanal/juicing_recipe",
+      "recipe": "artisanal:juicing/sugarcane_juice",
+      "text": "One thing that can be juiced is Sugarcane. This results in Sugarcane Juice, which is used in $(l:tfc:artisanal/sugar_production)Sugar Production$()."
+    },
+    {
+      "type": "tfc:artisanal/juicing_recipe",
+      "recipe": "artisanal:juicing/lemon_juice",
+      "text": "Apples, lemons, and oranges can also be juiced. The resulting juices can be drunk for fruit nutrition. Note that Lemon Juice is an $(thing)acid$(), so it requires a $(l:tfc:artisanal/drums)Drum$() to be placed under the quern, rather than a barrel."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/cider",
+      "text": "Apple juice can be further fermented to make Cider."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/screwdriver_mixture.png"
+      ],
+      "text": "Orange juice can be mixed with vodka to make $(thing)Screwdriver$()."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/metal/pickled_double_sheet/steel",
+      "text": "Lemon juice is an $(thing)Acid$(), so it can only be collected in a $(l:tfc:artisanal/drums)Drum$(), not a Barrel.$(br2)It can be used to pickle double metal sheets."
+    }
+  ],
+  "read_by_default": true
+}

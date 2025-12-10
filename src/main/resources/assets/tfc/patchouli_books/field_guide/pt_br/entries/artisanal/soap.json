@@ -1,0 +1,59 @@
+{
+  "name": "Soap",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:soap",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Soap$() is a useful tool for cleaning things more quickly."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "tag": "artisanal:fats"
+      },
+      "text": "The first step in producing soap is to get some animal fats, which are dropped by most animals upon death."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/suet_to_tallow.png",
+        "artisanal:textures/gui/book/pork_fat_to_lard.png",
+        "artisanal:textures/gui/book/poultry_fat_to_schmaltz.png"
+      ],
+      "anchor": "rendered_fats",
+      "text": "Then, boil the animal fats in a pot with 100 mb water per fat item to render them."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/soap_mixture.png"
+      ],
+      "text": "Mix the rendered fats (or $(l:tfc:mechanics/lamps#olives)Olive Oil$()) with lye in a 9:1 ratio to create liquid Soap."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/soap_solid",
+      "text": "Liquid Soap will solidify if left in a sealed barrel."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/soapy_water",
+      "text": "To use Soap, mix it with water to make $(thing)Soapy Water$(). Soapy Water can be used to more efficiently wash things such as Jars, Jute Nets, and Soup Bowls."
+    },
+    {
+      "type": "tfc:artisanal/three_instant_barrel_recipes",
+      "recipe": "artisanal:barrel/clean/empty_jar/soapy_water",
+      "recipe2": "artisanal:barrel/clean/jute_net/soapy_water",
+      "recipe3": "artisanal:barrel/clean/soup_bowl/soapy_water"
+    }
+  ],
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:suet": 0,
+    "artisanal:bear_fat": 0,
+    "artisanal:pork_fat": 0,
+    "artisanal:poultry_fat": 0,
+    "artisanal:soap": 4
+  }
+}

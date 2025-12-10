@@ -1,0 +1,57 @@
+{
+  "name": "Powdered Milk",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:powdered_milk",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Powdering milk is a great way to store it efficiently, either in a cellar or for long journeys. $(br2)The first step to making Powdered Milk is making $(thing)Condensed Milk$().$(br2)Then, the Condensed Milk is further boiled into $(thing)Milk Flakes$(). If you keep the fire going, this will happen automatically."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/condensed_milk_recipe.png",
+        "artisanal:textures/gui/book/milk_flakes_recipe.png"
+      ]
+    },
+    {
+      "type": "tfc:quern_recipe",
+      "recipe": "artisanal:quern/powdered_milk",
+      "text": "Finally, the Milk Flakes can be ground into Powdered Milk using a $(l:tfc:mechanics/quern)Quern$()."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/milk/cow",
+      "text": "Powdered Milk can then be recombined with water at any subsequent point to create Milk."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/milk/cow_1",
+      "text": "Powdered milk can also be crafted with a water jug to turn it into a milk jug, if you want to use it on the go."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/milk/cow_8",
+      "text": "You can also craft any fluid container with up to 8 powdered milks, to make 100 mb of milk per powdered milk used."
+    },
+    {
+      "type": "tfc:quern_recipe",
+      "recipe": "artisanal:quern/powdered_goat_milk",
+      "text": "If you have the Firmalife addon installed, you can make Powdered Milk variants for Goat and Yak Milk as well."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/milk/yak"
+    }
+  
+  ],
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:milk_flakes": 2,
+    "artisanal:goat_milk_flakes": 2,
+    "artisanal:yak_milk_flakes": 2,
+    "artisanal:powdered_milk": 3,
+    "artisanal:powdered_yak_milk": 3,
+    "artisanal:powdered_goat_milk": 3
+  }
+}

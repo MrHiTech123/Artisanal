@@ -1,0 +1,92 @@
+{
+  "name": "Distillation",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:metal/distillery/red_steel",
+  "pages": [
+    {
+      "type": "patchouli:text", 
+      "text": "If you have a mixture of two substances, it can be very hard to separate them without $(thing)Distillation$(). Distillation is a process in which the mixture put in a pot and then heated until it reaches the boiling point of one of the substances."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "tag": "artisanal:metal/distilleries"
+      },
+      "text": "That substance then evaporates, leaving the other, pure, one in the pot. The substance that evaporated then goes into a long tube where it cools, and comes out as liquid into a collection bowl."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "artisanal:anvil/metal/distillery_spout/cast_iron",
+      "text": "To make a distillery, first make a distillery spout from any tool metal, brass, or cast iron."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/distillery/copper",
+      "text": "Then, combine the distillery spout with a pot and bowl to make the full distillery."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Then, you can place the distillery on a firepit, the same as you would do with a $(l:tfc:mechanics/pot)Pot$() or $(l:tfc:mechanics/grill)Grill$()."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          ["0"],
+          ["D"]
+        ],
+        "mapping": {
+          "D": "tfc:dirt/loam",
+          "0": "artisanal:distillery/bismuth_bronze"
+        }
+      }
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["artisanal:textures/gui/fire_pit_distillery.png"]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Once inside, you will be greeted with this GUI. The bottom slot represents the item in the pot, the top one represents the item in the bowl. $(br2)To distill something, put it in the pot. Items go in the bottom slot, and fluids can be inserted by right-clicking the block, as with a pot. After the recipe is completed, you can right-click to extract the result fluid."
+    },
+    {
+      "type": "tfc:artisanal/distillery_recipe",
+      "recipe": "artisanal:distillery/salt_and_water",
+      "text": "Distilleries can be used to separate salt from water, distill mercury from cinnabar, and can also be used in $(l:tfc:artisanal/oil_refining)Oil Refining$()."
+    },
+    {
+      "type": "tfc:artisanal/distillery_recipe",
+      "recipe": "artisanal:distillery/mercury"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/redstone",
+      "text": "Mercury is used in the crafting of $(thing)Redstone$()"
+    }
+  ],
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:metal/distillery_spout/copper": 2,
+    "artisanal:metal/distillery_spout/bismuth_bronze": 2,
+    "artisanal:metal/distillery_spout/black_bronze": 2,
+    "artisanal:metal/distillery_spout/bronze": 2,
+    "artisanal:metal/distillery_spout/cast_iron": 2,
+    "artisanal:metal/distillery_spout/brass": 2,
+    "artisanal:metal/distillery_spout/wrought_iron": 2,
+    "artisanal:metal/distillery_spout/steel": 2,
+    "artisanal:metal/distillery_spout/black_steel": 2,
+    "artisanal:metal/distillery_spout/blue_steel": 2,
+    "artisanal:metal/distillery_spout/red_steel": 2,
+    "artisanal:metal/distillery/copper": 3,
+    "artisanal:metal/distillery/bismuth_bronze": 3,
+    "artisanal:metal/distillery/black_bronze": 3,
+    "artisanal:metal/distillery/bronze": 3,
+    "artisanal:metal/distillery/cast_iron": 3,
+    "artisanal:metal/distillery/brass": 3,
+    "artisanal:metal/distillery/wrought_iron": 3,
+    "artisanal:metal/distillery/steel": 3,
+    "artisanal:metal/distillery/black_steel": 3,
+    "artisanal:metal/distillery/blue_steel": 3,
+    "artisanal:metal/distillery/red_steel": 3
+  }
+}

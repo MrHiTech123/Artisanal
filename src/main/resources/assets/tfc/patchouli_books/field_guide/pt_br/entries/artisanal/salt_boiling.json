@@ -1,0 +1,22 @@
+{
+  "name": "Salt Production",
+  "category": "tfc:artisanal",
+  "icon": "tfc:powder/salt",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/salt_pot_recipe.png"
+      ],
+      "text": "Salt can be extracted from salt water by boiling away the water in the pot!"
+    }
+  ],
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "tfc:powder/salt": 1
+  }
+}
