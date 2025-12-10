@@ -1,41 +1,41 @@
 {
-  "name": "Changes From TFC",
+  "name": "Diferenças do TFC",
   "category": "tfc:artisanal",
   "icon": "tfc:powder/lime",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A list of recipes that have been changed by TFC Artisanal."
+      "text": "Uma lista de receitas que foram alteradas pelo TFC Artisanal."
     },
     {
       "type": "tfc:instant_barrel_recipe",
       "recipe": "tfc:barrel/limewater_from_lime",
-      "text": "Limewater has been renamed $(thing)Slaked Lime$(), and can now only be created using $(thing)Lime$(), not Flux."
+      "text": "Água de Cal foi renomeada para $(thing)Cal Hidratada$(), e, agora, só pode ser produzida usando $(thing)Cal$(), não Fluxo."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/writable_book",
-      "text": "Book and Quills are now crafted using Black Dye instead of an Ink Sac, and a $(l:tfc:artisanal/quillmaking)Quill$() rather than a feather."
+      "text": "Livro e Penas agora são criados usando Corante Preto ao invés de um Saco de Tinta, e uma $(l:tfc:artisanal/quillmaking)Pena$() em vez de uma Pluma."
       
     },
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/paper",
-      "text": "Paper can now be made by bleaching Unrefined Paper in Lye, as well as by scraping it"
+      "text": "Agora é possível fabricar Papel alvejando Papel Não Refinado em Lixívia, bem como raspando-o."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/clean/soup_bowl/water",
-      "text": "Cleaning dirty things in a water barrel now takes time and requires them to be sealed in the barrel."
+      "text": "Limpar objetos sujos em um barril de água agora leva tempo e exige que eles sejam selados dentro do barril."
     },
     {
       "type": "tfc:instant_barrel_recipe",
       "recipe": "artisanal:barrel/clean/jute_net/soapy_water",
-      "text": "Instantneous cleaning now requires the use of $(thing)Soapy Water$(). See $(l:tfc:artisanal/soap)Soap$()."
+      "text": "Limpeza instantânea agora requer o uso de $(thing)Água com Sabão$(). Veja $(l:tfc:artisanal/soap)Sabão$()."
     },
     {
       "type": "patchouli:text",
-      "text": "Cake and Pumpkin Pie can now be made with all tfc sweeteners, including Artisanal's Perishable and Non-Perishable Sugars, as well as ArborFirmaCraft's Birch and Maple Sugars."
+      "text": "Agora é possível fazer Bolo e Torta de Abóbora com todos os adoçantes do TFC, incluindo os Açúcares Perecíveis e Não Perecíveis do Artisanal, bem como os Açúcares de Bétula e de Bordo do ArborFirmaCraft."
     },
     {
       "type": "patchouli:crafting",
@@ -44,11 +44,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Sweeteners can now expire, and expiration dates have been added for TFC, ArborFirmaCraft (AFC), and Firmalife sweeteners (they're all set to \"Never Expires\" except for Artisanal's Perishable Sugar though). $(br2)This means that any recipe from TFC or Firmalife that uses a sweetener has been reimplemented to use a non-rotten sweetener."
+      "text": "Os adoçantes agora podem expirar, e datas de validades foram adicionadas aos adoçantes do TFC, ArborFirmaCraft (AFC) e Firmalife (todos estão configurados como \"Nunca Expira\" exceto o Açúcar Perecível do Artisanal). $(br2)Isso significa que qualquer receita do TFC ou Firmalife que utilize um adoçante foi implementada para usar um adoçante não-estragado."
     },
     {
       "type": "patchouli:text",
-      "text": "This should not affect your gameplay experience other than with Perishable Sugar.$(br2)Speaking of sugar, AFC's syrup-refining pot recipes have been reimplemented as scalable recipes, meaning that they are done proportionally (ex. 10 maple sap -> 1 concentrated maple sap) rather than in specific quantities. They also no longer require sticks."
+      "text": "Isso não deve afetar sua experiência de jogo, exceto no caso do Açúcar Perecível.$(br2)Por falar em açúcar, as receitas refino de calda do AFC foram reimplementadas como receitas escaláveis, o que significa que são feitas proporcionalmente (ex. 10 seiva de bordo -> 1 seiva de bordo concentrada) em vez de em quantidades específicas. Elas também não precisam mais de gravetos."
     }
   ],
   "read_by_default": true,
