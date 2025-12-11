@@ -1,44 +1,44 @@
 {
-  "name": "Juicing",
+  "name": "Suco",
   "category": "tfc:artisanal",
   "icon": "tfc:handstone",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Sometimes, grinding an item up in a $(l:tfc:mechanics/quern)Quern$() will cause liquid to be released. This liquid can be collected in a barrel (or $(l:tfc:artisanal/drums)Drum$()) placed underneath the quern. $(br2)Note that the barrel must be open in order to accept fluid. If the barrel is closed, the result fluid will be wasted."
+      "text": "Às vezes, moer um item em uma $(l:tfc:mechanics/quern)Moenda$() causará a liberação de líquido. Esse líquido pode ser coletado em um barril (ou $(l:tfc:artisanal/drums)Tambor$()) colocado embaixo da moenda. $(br2)Note que o barril deve estar aberto para aceitar o fluido. Se o barril estiver fechado, o líquido resultante será desperdiçado."
     },
     {
       "type": "patchouli:multiblock",
-      "name": "Juicing Apparatus",
+      "name": "Espremedor de Suco",
       "multiblock_id": "artisanal:juicing_apparatus",
-      "text": "A juicing apparatus. Liquid from items that are ground by the quern will collect in the barrel below."
+      "text": "Um espremedor de suco. O líquido dos itens moídos pela Moenda será coletado no barril abaixo."
     },
     {
       "type": "tfc:artisanal/juicing_recipe",
       "recipe": "artisanal:juicing/sugarcane_juice",
-      "text": "One thing that can be juiced is Sugarcane. This results in Sugarcane Juice, which is used in $(l:tfc:artisanal/sugar_production)Sugar Production$()."
+      "text": "Uma coisa que pode ser espremida é a Cana-de-Açúcar. Isso resulta em Garapa de Cana-de-Açúcar, que é usada na $(l:tfc:artisanal/sugar_production)Produção de Açúcar$()."
     },
     {
       "type": "tfc:artisanal/juicing_recipe",
       "recipe": "artisanal:juicing/lemon_juice",
-      "text": "Apples, lemons, and oranges can also be juiced. The resulting juices can be drunk for fruit nutrition. Note that Lemon Juice is an $(thing)acid$(), so it requires a $(l:tfc:artisanal/drums)Drum$() to be placed under the quern, rather than a barrel."
+      "text": "Maçãs, limões e laranjas também podem ser espremidos. Os sucos resultantes podem ser bebidos para nutrição de frutas. Note que Suco de Limão é um $(thing)ácido$(), então requer um $(l:tfc:artisanal/drums)Tambor$() colocado embaixo da Moenda, em vez de um barril."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/cider",
-      "text": "Apple juice can be further fermented to make Cider."
+      "text": "Suco de maçã pode ser fermentado para fazer Cidra."
     },
     {
       "type": "patchouli:image",
       "images": [
         "artisanal:textures/gui/book/screwdriver_mixture.png"
       ],
-      "text": "Orange juice can be mixed with vodka to make $(thing)Screwdriver$()."
+      "text": "Suco de laranja pode ser misturado com vodca para fazer $(thing)Screwdriver$()."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/metal/pickled_double_sheet/steel",
-      "text": "Lemon juice is an $(thing)Acid$(), so it can only be collected in a $(l:tfc:artisanal/drums)Drum$(), not a Barrel.$(br2)It can be used to pickle double metal sheets."
+      "text": "Suco de limão é um $(thing)Ácido$(), então só pode ser coletado em um $(l:tfc:artisanal/drums)Tambor$(), não em um Barril.$(br2)Pode ser usado para conservar lâminas duplas de metal."
     }
   ],
   "read_by_default": true

@@ -1,32 +1,32 @@
 {
-  "name": "Distillation",
+  "name": "Destilação",
   "category": "tfc:artisanal",
   "icon": "artisanal:metal/distillery/red_steel",
   "pages": [
     {
       "type": "patchouli:text", 
-      "text": "If you have a mixture of two substances, it can be very hard to separate them without $(thing)Distillation$(). Distillation is a process in which the mixture put in a pot and then heated until it reaches the boiling point of one of the substances."
+      "text": "Se você tiver uma mistura de duas substâncias, pode ser muito difícil separá-las sem $(thing)Destilação$(). Destilação é um processo no qual a mistura é colocada em um recipiente e aquecida até atingir o ponto de ebulição de uma das substâncias."
     },
     {
       "type": "patchouli:spotlight",
       "item": {
         "tag": "artisanal:metal/distilleries"
       },
-      "text": "That substance then evaporates, leaving the other, pure, one in the pot. The substance that evaporated then goes into a long tube where it cools, and comes out as liquid into a collection bowl."
+      "text": "Essa substância, então, evapora, deixando a outra, pura, na panela. A substância evaporada entra então em um longo tubo onde esfria e sai como líquido em uma tigela de coleta."
     },
     {
       "type": "tfc:anvil_recipe",
       "recipe": "artisanal:anvil/metal/distillery_spout/cast_iron",
-      "text": "To make a distillery, first make a distillery spout from any tool metal, brass, or cast iron."
+      "text": "Para fazer uma destilaria, primeiro faça um bico de destilaria com qualquer metal que sirva para ferramentas, latão ou ferro fundido."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/metal/distillery/copper",
-      "text": "Then, combine the distillery spout with a pot and bowl to make the full distillery."
+      "text": "Então, combine o bico da destilaria com uma panela ou tigela para fazer uma destilaria completa."
     },
     {
       "type": "patchouli:text",
-      "text": "Then, you can place the distillery on a firepit, the same as you would do with a $(l:tfc:mechanics/pot)Pot$() or $(l:tfc:mechanics/grill)Grill$()."
+      "text": "Assim, você pode posicionar a destilaria em uma fogueira, da mesma forma que você faria com uma $(l:tfc:mechanics/pot)Panela$() ou $(l:tfc:mechanics/grill)Grelha$()."
     },
     {
       "type": "patchouli:multiblock",
@@ -47,12 +47,12 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Once inside, you will be greeted with this GUI. The bottom slot represents the item in the pot, the top one represents the item in the bowl. $(br2)To distill something, put it in the pot. Items go in the bottom slot, and fluids can be inserted by right-clicking the block, as with a pot. After the recipe is completed, you can right-click to extract the result fluid."
+      "text": "Uma vez lá dentro, você verá esta interface gráfica. O compartimento inferior representa o item na panela, e o superior, o item na tigela. $(br2)Para destilar algo, coloque-o na panela. Os itens vão no espaço inferior, e os fluidos podem ser adicionados com clique-direito no bloco, como em uma panela. Após a conclusão da receita, usando clique-direito, você pode extrair o fluido resultante."
     },
     {
       "type": "tfc:artisanal/distillery_recipe",
       "recipe": "artisanal:distillery/salt_and_water",
-      "text": "Distilleries can be used to separate salt from water, distill mercury from cinnabar, and can also be used in $(l:tfc:artisanal/oil_refining)Oil Refining$()."
+      "text": "Destilarias podem ser usadas para separar sal da água, destilar mercúrio do cinábrio e também podem ser usadas em $(l:tfc:artisanal/oil_refining)Refino de Petróleo$()."
     },
     {
       "type": "tfc:artisanal/distillery_recipe",
@@ -61,7 +61,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/redstone",
-      "text": "Mercury is used in the crafting of $(thing)Redstone$()"
+      "text": "Mercúrio é usado na fabricação de $(thing)Redstone$()."
     }
   ],
   "read_by_default": true,

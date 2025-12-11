@@ -1,36 +1,36 @@
 {
-  "name": "Magnifying Glass",
+  "name": "Lupa",
   "category": "tfc:artisanal",
   "icon": "artisanal:metal/magnifying_glass/brass",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Magnifying Glass$() can be used to start fires, much like a $(l:tfc:getting_started/firepit)firestarter$(), though more quickly and without consuming durability. $(br2)However, this efficiency comes with the tradeoff that the Magnifying Glass can only be used when you have access to sunlight. $(br2)This means that when using it, either you"
+      "text": "A $(thing)Lupa$() pode ser usada para iniciar fogos, muito parecido com um $(l:tfc:getting_started/firepit)acendedor$(), embora mais rápido e sem consumir durabilidade. $(br2)No entanto, essa eficiência tem a desvantagem de que a Lupa só pode ser usada quando há acesso a luz solar. $(br2)Isso significa que enquanto estiver usando-a, você"
     },
     {
       "type": "patchouli:spotlight",
       "item": {"tag": "artisanal:magnifying_glasses"},
-      "text": "or the block you are attempting to light must be able to see the sky. Magnifying Glasses can also only be used during the day and in clear weather. $(br2)Magnifying Glasses can also be used to light $(thing)Firepits$(), $(l:tfc:getting_started/pit_kiln)Pit Kilns$(), $(thing)Torches$(), and anything else that a Firestarter can light."
+      "text": "ou o bloco que você está tentando acender precisam ser capazes de ver o céu. Lupas também só podem ser usadas durante o dia e em tempo bom. $(br2)Lupas também podem ser usadas para acender $(thing)Fogueiras$(), $(l:tfc:getting_started/pit_kiln)Forno de Cova$(), $(thing)Tochas$() e qualquer outra coisa que o Acendedor possa acender."
     },
     {
       "type": "tfc:anvil_recipe",
       "recipe": "artisanal:anvil/metal/magnifying_glass_frame/brass",
-      "text": "To make a Magnifying Glass, begin by forging a $(thing)Magnifying Glass Frame$() from a rod of your chosen material. Magnifying Glasses can be made from a variety of materials including: $(br2) Bismuth$(br) Brass$(br) Gold$(br) Rose Gold$(br) Silver$(br) Sterling Silver$(br) Tin$(br2)"
+      "text": "Para fazer uma Lupa, comecer forjando uma $(thing)Armação de Lupa$() a partir de uma haste do material escolhido. Lupas podem ser feitas de diversos materiais, incluindo: $(br2) Bismuto$(br) Latão$(br) Ouro$(br) Ouro Rosé$(br) Prata$(br) Prata Esterlina$(br) Estanho$(br2)"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/metal/magnifying_glass/rose_gold",
-      "text": "Then, craft the frame together with a $(l:tfc:mechanics/glassworking_applications)Lens$() to create your Magnifying Glass."
+      "text": "Em seguida, junte a armação com uma $(l:tfc:mechanics/glassworking_applications)Lente$() para criar sua Lupa."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/metal/magnifying_glass/tin_uncraft",
-      "text": "If you would like to salvage the Lens and/or metal used to make a Magnifying Glass, you can remove the lens from a frame by placing the Magnifying Glass into your crafting grid."
+      "text": "Se você quiser reaproveitar a Lente e/ou o metal usado para fazer uma Lupa, você pode remover a lente da armação colocando a Lupa na sua grade de criação."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/cut_gem/amethyst",
-      "text": "Magnifying Glasses are also needed to cut $(l:tfc:mechanics/gems)Gems$(). This does not consume the Magnifying Glass."
+      "text": "Lupas também são necessárias para cortar $(l:tfc:mechanics/gems)Gemas$(). Isso não consome a Lupa."
     }
     
   ],

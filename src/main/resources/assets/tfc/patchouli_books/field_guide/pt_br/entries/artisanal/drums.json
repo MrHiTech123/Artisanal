@@ -1,5 +1,5 @@
 {
-  "name": "Drums",
+  "name": "Tambores",
   "category": "tfc:artisanal",
   "icon": "artisanal:metal/drum/bismuth_bronze",
   "pages": [
@@ -8,34 +8,34 @@
       "item": {
         "tag": "artisanal:metal/drums"
       },
-      "text": "Drums are special barrels that are needed to store corrosive fluids, that would dissolve wooden barrels.$(br2)Drums are needed to store $(thing)Sulfuric Acid$() and $(thing)Lemon Juice$()."
+      "text": "Tambores são barris especiais necessários para armazenar fluidos corrosivos, que dissolveriam barris de madeira.$(br2)Tambores são necessários para armazenar $(thing)Ácido Sulfúrico$() e $(thing)Suco de Limão$()."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/metal/drum/bronze",
-      "text": "Drums are made like $(l:tfc:mechanics/barrels)Barrels$(), but with metal sheets instead of lumber."
+      "text": "Tambores são feitos como $(l:tfc:mechanics/barrels)Barris$(), mas com chapas de metal em vez de madeira."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/metal/drum/steel",
-      "text": "Drums can be made from any bronze, as well as from steel."
+      "text": "Tambores podem ser feitos de qualquer bronze, assim como de aço."
     },
     {
       "type": "patchouli:image",
       "images": [
         "artisanal:textures/gui/book/lava_drum.png"
       ],
-      "text": "Blue steel drums can also hold lava."
+      "text": "Tambores de aço azul também podem conter lava."
     },
     {
       "type": "tfc:instant_barrel_recipe",
       "recipe": "artisanal:barrel/lava_garbage_disposal",
-      "text": "Lava drums can also be used as garbage disposals."
+      "text": "Tambores de lava também podem ser usados como lixeira de itens."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "artisanal:crafting/lab_goggles",
-      "text": "Working with hazardous materials can be dangerous, so make sure to craft a pair of $(thing)Lab Goggles$() before working with them."
+      "recipe": "artisanal:crafting/lab_goggles", 
+      "text": "Trabalhar com materiais perigosos pode ser arriscado, então certifique-se de criar um par de $(thing)Óculos de Laboratório$() antes de manuseá-los."
     }
   ],
   "read_by_default": true,
