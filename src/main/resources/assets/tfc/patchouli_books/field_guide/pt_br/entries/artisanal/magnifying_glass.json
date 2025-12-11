@@ -1,0 +1,64 @@
+{
+  "name": "Lupa",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:metal/magnifying_glass/brass",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A $(thing)Lupa$() pode ser usada para iniciar fogos, muito parecido com um $(l:tfc:getting_started/firepit)acendedor$(), embora mais rápido e sem consumir durabilidade. $(br2)No entanto, essa eficiência tem a desvantagem de que a Lupa só pode ser usada quando há acesso a luz solar. $(br2)Isso significa que enquanto estiver usando-a, você"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {"tag": "artisanal:magnifying_glasses"},
+      "text": "ou o bloco que você está tentando acender precisam ser capazes de ver o céu. Lupas também só podem ser usadas durante o dia e em tempo bom. $(br2)Lupas também podem ser usadas para acender $(thing)Fogueiras$(), $(l:tfc:getting_started/pit_kiln)Forno de Cova$(), $(thing)Tochas$() e qualquer outra coisa que o Acendedor possa acender."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "artisanal:anvil/metal/magnifying_glass_frame/brass",
+      "text": "Para fazer uma Lupa, comece forjando uma $(thing)Armação de Lupa$() a partir de uma haste do material escolhido. Lupas podem ser feitas de diversos materiais, incluindo: $(br2) Bismuto$(br) Latão$(br) Ouro$(br) Ouro Rosé$(br) Prata$(br) Prata Esterlina$(br) Estanho$(br2)"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/magnifying_glass/rose_gold",
+      "text": "Em seguida, junte a armação com uma $(l:tfc:mechanics/glassworking_applications)Lente$() para criar sua Lupa."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/magnifying_glass/tin_uncraft",
+      "text": "Se você quiser reaproveitar a Lente e/ou o metal usado para fazer uma Lupa, você pode remover a lente da armação colocando a Lupa na sua grade de criação."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/cut_gem/amethyst",
+      "text": "Lupas também são necessárias para cortar $(l:tfc:mechanics/gems)Gemas$(). Isso não consome a Lupa."
+    }
+    
+  ],
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:metal/magnifying_glass_frame/bismuth": 2,
+    "artisanal:metal/magnifying_glass_frame/brass": 2,
+    "artisanal:metal/magnifying_glass_frame/gold": 2,
+    "artisanal:metal/magnifying_glass_frame/rose_gold": 2,
+    "artisanal:metal/magnifying_glass_frame/silver": 2,
+    "artisanal:metal/magnifying_glass_frame/sterling_silver": 2,
+    "artisanal:metal/magnifying_glass_frame/tin": 2,
+    "artisanal:metal/magnifying_glass/bismuth": 3,
+    "artisanal:metal/magnifying_glass/brass": 3,
+    "artisanal:metal/magnifying_glass/gold": 3,
+    "artisanal:metal/magnifying_glass/rose_gold": 3,
+    "artisanal:metal/magnifying_glass/silver": 3,
+    "artisanal:metal/magnifying_glass/sterling_silver": 3,
+    "artisanal:metal/magnifying_glass/tin": 3,
+    "tfc:gem/amethyst": 5,
+    "tfc:gem/diamond": 5,
+    "tfc:gem/emerald": 5,
+    "tfc:gem/lapis_lazuli": 5,
+    "tfc:gem/opal": 5,
+    "tfc:gem/pyrite": 5,
+    "tfc:gem/ruby": 5,
+    "tfc:gem/sapphire": 5,
+    "tfc:gem/topaz": 5
+  }
+  
+}

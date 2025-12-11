@@ -1,0 +1,27 @@
+{
+  "name": "Ácido Sulfúrico",
+  "category": "tfc:artisanal",
+  "icon": "tfc:powder/sulfur",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Ácido Sulfúrico é um fluido extremamente corrosivo. Ele só pode ser armazenado em um $(l:tfc:artisanal/drums)Tambor$(), não em um barril."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/sulfuric_acid",
+      "text": "Ácido Sulfúrico é produzido soprando os vapores do $(thing)Enxofre$() quente em uma garrafa de água com um $(thing)Alcaraviz$()."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/metal/pickled_double_sheet/steel",
+      "text": "Assim como outros ácidos, Ácido Sulfúrico pode ser usado para decapagem de chapas metálicas."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/lab_goggles",
+      "text": "Trabalhar com materiais perigosos pode ser arriscado, então certifique-se de criar um par de $(thing)Óculos de Laboratório$() antes de manuseá-los."
+    }
+  ],
+  "read_by_default": true
+}

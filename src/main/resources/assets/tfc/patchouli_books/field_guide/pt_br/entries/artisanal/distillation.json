@@ -1,0 +1,92 @@
+{
+  "name": "Destilação",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:metal/distillery/red_steel",
+  "pages": [
+    {
+      "type": "patchouli:text", 
+      "text": "Se você tiver uma mistura de duas substâncias, pode ser muito difícil separá-las sem $(thing)Destilação$(). Destilação é um processo no qual a mistura é colocada em um recipiente e aquecida até atingir o ponto de ebulição de uma das substâncias."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "tag": "artisanal:metal/distilleries"
+      },
+      "text": "Essa substância, então, evapora, deixando a outra, pura, na panela. A substância evaporada entra então em um longo tubo onde esfria e sai como líquido em uma tigela de coleta."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "artisanal:anvil/metal/distillery_spout/cast_iron",
+      "text": "Para fazer uma destilaria, primeiro faça um bico de destilaria com qualquer metal que sirva para ferramentas, latão ou ferro fundido."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/distillery/copper",
+      "text": "Então, combine o bico da destilaria com uma panela ou tigela para fazer uma destilaria completa."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Assim, você pode posicionar a destilaria em uma fogueira, da mesma forma que você faria com uma $(l:tfc:mechanics/pot)Panela$() ou $(l:tfc:mechanics/grill)Grelha$()."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          ["0"],
+          ["D"]
+        ],
+        "mapping": {
+          "D": "tfc:dirt/loam",
+          "0": "artisanal:distillery/bismuth_bronze"
+        }
+      }
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["artisanal:textures/gui/fire_pit_distillery.png"]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Uma vez lá dentro, você verá esta interface gráfica. O compartimento inferior representa o item na panela, e o superior, o item na tigela. $(br2)Para destilar algo, coloque-o na panela. Os itens vão no espaço inferior, e os fluidos podem ser adicionados com clique-direito no bloco, como em uma panela. Após a conclusão da receita, usando clique-direito, você pode extrair o fluido resultante."
+    },
+    {
+      "type": "tfc:artisanal/distillery_recipe",
+      "recipe": "artisanal:distillery/salt_and_water",
+      "text": "Destilarias podem ser usadas para separar sal da água, destilar mercúrio do cinábrio e também podem ser usadas em $(l:tfc:artisanal/oil_refining)Refino de Petróleo$()."
+    },
+    {
+      "type": "tfc:artisanal/distillery_recipe",
+      "recipe": "artisanal:distillery/mercury"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/redstone",
+      "text": "Mercúrio é usado na fabricação de $(thing)Redstone$()."
+    }
+  ],
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:metal/distillery_spout/copper": 2,
+    "artisanal:metal/distillery_spout/bismuth_bronze": 2,
+    "artisanal:metal/distillery_spout/black_bronze": 2,
+    "artisanal:metal/distillery_spout/bronze": 2,
+    "artisanal:metal/distillery_spout/cast_iron": 2,
+    "artisanal:metal/distillery_spout/brass": 2,
+    "artisanal:metal/distillery_spout/wrought_iron": 2,
+    "artisanal:metal/distillery_spout/steel": 2,
+    "artisanal:metal/distillery_spout/black_steel": 2,
+    "artisanal:metal/distillery_spout/blue_steel": 2,
+    "artisanal:metal/distillery_spout/red_steel": 2,
+    "artisanal:metal/distillery/copper": 3,
+    "artisanal:metal/distillery/bismuth_bronze": 3,
+    "artisanal:metal/distillery/black_bronze": 3,
+    "artisanal:metal/distillery/bronze": 3,
+    "artisanal:metal/distillery/cast_iron": 3,
+    "artisanal:metal/distillery/brass": 3,
+    "artisanal:metal/distillery/wrought_iron": 3,
+    "artisanal:metal/distillery/steel": 3,
+    "artisanal:metal/distillery/black_steel": 3,
+    "artisanal:metal/distillery/blue_steel": 3,
+    "artisanal:metal/distillery/red_steel": 3
+  }
+}
