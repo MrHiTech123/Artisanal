@@ -1,27 +1,27 @@
 {
-  "name": "Preservation",
+  "name": "Preservação",
   "category": "tfc:artisanal",
   "icon": "artisanal:metal/can/tin_sealed",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Various ways to preserve food past its normal expiration date.$(br2)$(bold)Contents$()$(br)$(li)$(l:tfc:artisanal/decay#potted_food)Potted food$(/t)$(li)$(l:tfc:artisanal/decay#canned_food)Canned food$(/t)"
+      "text": "Várias formas de preservar alimentos além de sua data de validade normal.$(br2)$(bold)Conteúdo$()$(br)$(li)$(l:tfc:artisanal/decay#potted_food)Alimentos em pote$(/t)$(li)$(l:tfc:artisanal/decay#canned_food)Alimentos enlatados$(/t)"
     },
     {
       "type": "tfc:knapping_recipe",
       "recipe": "artisanal:clay_knapping/unfired_small_pot",
-      "text": "One way to preserve food is to pot it, a process in which the food is isolated in liquid fat and kept inside a pot.",
+      "text": "Uma forma de preservar alimentos é colocá-los em pote, um processo no qual o alimento é isolado em gordura líquida e mantido dentro de um pote.",
       "anchor": "potted_food"
     },
     {
       "type": "tfc:heat_recipe",
       "recipe": "artisanal:heating/ceramic/unfired_small_pot",
-      "text": "The first step for this process is to knap a small pot from clay and fire it in a $(l:tfc:getting_started/pit_kiln)Pit Kiln$()."
+      "text": "O primeiro passo desse processo é moldar argila em um pequeno pote e queimá-lo em um $(l:tfc:getting_started/pit_kiln)Forno de Cova$()."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/pot/1_rendered_fat",
-      "text": "Then, craft the fired small pot with $(l:tfc:artisanal/soap#rendered_fats)Rendered Fat$(), $(l:tfc:the_world/ores_and_minerals#saltpeter)Saltpeter$(), and up to six $(thing)meats$() or $(thing)vegetables$() that you wish to pot. Pots can hold only one type of food at a time."
+      "text": "Em seguida, combine o pequeno pote queimado com $(l:tfc:artisanal/soap#rendered_fats)Gordura Derretida$(), $(l:tfc:the_world/ores_and_minerals#saltpeter)Salitre$(), e até seis $(thing)carnes$() ou $(thing)vegetais$() que você deseja conservar em pote. Potes podem armazenar apenas um tipo de alimento por vez."
     },
     {
       "type": "patchouli:crafting",
@@ -31,36 +31,36 @@
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/pot/4_butter",
-      "text": "If you have the Firmalife addon installed, you can also use $(thing)Butter$() in place of the Rendered Fat."
+      "text": "Se você tiver o complemento Firmalife instalado, também é possível utilizar $(thing)Manteiga$() no lugar da Gordura Derretida."
     },
     {
       "type": "patchouli:text",
-      "text": "Other forms of preservation are useful, but the ultimate form of preservation is $(thing)canning$(). This process involves sealing food in an airtight container, so that no microbes can reach it, and then heating the container to kill all of the microbes that are already on the food.",
+      "text": "Outras formas de preservação são úteis, porém a forma suprema de preservação é o $(thing)enlatamento$(). Este processo envolve selar alimentos em um recipiente hermético, impedindo que microrganismos o alcancem, seguido do aquecimento do recipiente para eliminar todos os microrganismos já presentes no alimento.",
       "anchor": "canned_food"
     },
     {
       "type": "tfc:welding_recipe",
       "recipe": "artisanal:welding/metal/tinplate_from_steel",
-      "text": "The raw material that cans are made from is called $(thing)Tinplate$(). It is made by welding a Tin Sheet to a Steel Double Sheet."
+      "text": "O material bruto utilizado na confecção de latas é denominado $(thing)Chapa de Flandres$(). Ele é produzido pela soldagem de uma Chapa de Estanho a uma Chapa Dupla de Aço."
     },
     {
       "type": "tfc:welding_recipe",
       "recipe": "artisanal:welding/metal/tinplate_from_iron",
-      "text": "A Wrought Iron Double Sheet can be used instead of a Steel one, at reduced efficiency."
+      "text": "Uma Chapa Dupla de Ferro Forjado pode ser utilizada no lugar de uma de Aço, com eficiência reduzida."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/metal/pickled_double_sheet/steel",
-      "text": "Double sheets can also be pickled in $(thing)acid$(). When a pickled double sheet is used for Tinplate, the recipe produces 50% more than a non-pickled one would."
+      "text": "Chapas duplas também podem ser decapadas em $(thing)ácido$(). Quando uma chapa dupla decapada é utilizada para Chapa de Flandres, a receita produz 50% a mais do que uma não decapada."
     },
     {
       "type": "tfc:anvil_recipe",
       "recipe": "artisanal:anvil/metal/can/tin",
-      "text": "Once welded, Tinplate can then be forged into an empty Tin Can."
+      "text": "Após soldada, a Chapa de Flandres pode ser forjada em uma Lata de Estanho vazia."
     },
     {
       "type": "patchouli:text",
-      "text": "Placeholder; talk about stainless steelplate"
+      "text": "Espaço reservado; abordar chapa de aço inoxidável"
     },
     {
       "type": "patchouli:crafting",
@@ -70,47 +70,47 @@
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/metal/can/tin_6",
-      "text": "A heated can can be crafted with a $(thing)Hammer$(), $(thing)Flux$(), and up to 6 $(thing)Cannable Foods$() to create a Sealed Can. Only one type of food may be kept in a given can."
+      "text": "Uma lata aquecida pode ser combinada com um $(thing)Martelo$(), $(thing)Fluxo$(), e até 6 $(thing)Alimentos Enlatáveis$() para criar uma Lata Selada. Apenas um tipo de alimento pode ser armazenado em uma determinada lata."
     },
     {
       "type": "tfc:heat_recipe",
       "recipe": "artisanal:heating/metal/can/tin_sterilized",
-      "text": "The can is then heated to kill the microbes inside, resulting in a $(thing)Sterilized Can$(). The food inside the can will last forever, until the can is opened, at which point its expiration date will start anew."
+      "text": "A lata é então aquecida para eliminar os microrganismos em seu interior, resultando em uma $(thing)Lata Esterilizada$(). O alimento dentro da lata durará indefinidamente, até que a lata seja aberta, momento no qual sua data de validade recomeçará."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/metal/open_can/tin_sterilized_can_opener",
-      "text": "To open a can, craft it with a $(thing)Can Opener$(). This recipe will output the food that was in the can."
+      "text": "Para abrir uma lata, combine-a com um $(thing)Abridor de Lata$(). Esta receita resultará no alimento que estava contido na lata."
     },
     {
       "type": "tfc:instant_barrel_recipe",
       "recipe": "artisanal:barrel/clean/tin_can/soapy_water",
-      "text": "Opening a can will also result in a $(thing)Dirty Can$(). The dirty can can then be cleaned using $(l:tfc:artisanal/soap)soapy$() or normal water. After being cleaned, the can can be reused."
+      "text": "Abrir uma lata também resulta em uma $(thing)Lata Suja$(). A lata suja pode ser limpa utilizando água $(l:tfc:artisanal/soap)com sabão$() ou água comum. Após ser limpa, a lata pode ser reutilizada."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/metal/can_opener/steel",
-      "text": "Can openers are crafted using one $(thing)Brass Mechanisms$(), two $(thing)Rods$() made of any tool metal, and two $(thing)Circle Blades$()."
+      "text": "Abridores de lata são confeccionados utilizando um $(thing)Mecanismo de Latão$(), duas $(thing)Hastes$() feitas de qualquer metal para ferramentas, e duas $(thing)Lâminas de Corte$()."
     },
     {
       "type": "tfc:anvil_recipe",
       "recipe": "artisanal:anvil/metal/circle_blade/black_bronze",
-      "text": "Circle blades are $(l:tfc:mechanics/anvils)forged$() from metal ingots."
+      "text": "Lâminas de Corte são $(l:tfc:mechanics/anvils)forjados$() a partir de lingotes de metal."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/metal/open_can/tin_sterilized_hammer",
-      "text": "If you don't have a Can Opener on you, you can also open a can with a Hammer. This results in a $(thing)Dirty Dented Can$()."
+      "text": "Caso não disponha de um Abridor de Lata, é possível abrir uma lata utilizando uma Marreta. Isto resulta em uma $(thing)Lata Suja e Amassada$()."
     },
     {
       "type": "tfc:anvil_recipe",
       "recipe": "artisanal:anvil/metal/can/tin_repair",
-      "text": "This can must be cleaned first, like normal Dirty Can. Then it can be repaired on an $(thing)Anvil$()."
+      "text": "Esta lata deve ser limpa primeiro, como uma Lata Suja comum. Depois, pode ser reparada em uma $(thing)Bigorna$()."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/metal/remove_tin_can_traits",
-      "text": "Since cans are sterilized by heating, they can sometimes gain food traits, such as $(thing)Charcoal Grilled$() or $(thing)Wood Grilled$(). These traits have no effect, since sterilized cans don't expire, but can be removed for cosmetic or stacking purposes by placing the can in your crafting grid."
+      "text": "Como latas são esterilizadas por aquecimento, podem ocasionalmente adquirir propriedades de alimentos, como $(thing)Grelhado no Carvão$() ou $(thing)Grelhado na Lenha$(). Estas propriedades não exercem efeito, visto que latas esterilizadas não expiram, mas podem ser removidas para fins cosméticos ou de empilhamento colocando a lata em sua grade de criação."
     }
   ],
   "read_by_default": true,
