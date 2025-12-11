@@ -1,20 +1,20 @@
 {
-  "name": "Oil Refining",
+  "name": "Refino de Petróleo",
   "category": "tfc:artisanal",
   "icon": "artisanal:bucket/sour_crude_oil",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Oil is a very valuable resource that can be used for several purposes. It can be found underground, both in small surface pockets from y=40 to y=130, and larger pockets from y=-30 to y=70. Both types of pocket can only be found in $(l:the_world/geology#sedimentary)Sedimentary$() rock."
+      "text": "O petróleo é um recurso muito valioso que pode ser usado para diversos fins. Ele pode ser encontrado no subsolo, tanto em pequenas bolsões superficiais de y=40 a y=130, quanto em bolsões maiores de y=-30 a y=70. Ambos os tipos de bolsões só podem ser encontrados em rochas $(l:the_world/geology#sedimentary)Sedimentares$()."
     },
     {
       "type": "patchouli:text",
-      "text": "Crude oil is either $(thing)sweet$() or $(thing)sour$(). Sweet oil is pure and easy to refine further, but sour oil needs to be processed a bit before it can be refined."
+      "text": "O petróleo bruto pode ser $(thing)doce$() ou $(thing)ácido$(). O petróleo doce é puro e fácil de refinar, mas o petróleo ácido precisa ser processado um pouco antes de ser refinado."
     },
     {
       "type": "tfc:artisanal/distillery_recipe",
       "recipe": "artisanal:distillery/sweet_crude_oil",
-      "text": "The first type of oil that can be found is $(thing)Sour Crude Oil$(). This oil must be $(l:tfc:artisanal/distillation)distilled$() into sweet crude oil before being processed further. This also produces sulfur as a by-product."
+      "text": "O primeiro tipo de petróleo que pode ser encontrado é o $(thing)Petróleo Bruto Ácido$(). Este petróleo precisa ser $(l:tfc:artisanal/distillation)destilado$() para se tornar petróleo bruto doce antes de ser processado posteriormente. Isso também produz enxofre como subproduto."
     },
     {
       "type": "patchouli:multiblock",
@@ -32,7 +32,7 @@
     {
       "type": "tfc:artisanal/distillery_recipe",
       "recipe": "artisanal:distillery/kerosene",
-      "text": "Sweet crude oil can then be further distilled into $(thing)kerosene$() and $(thing)bitumen$(). Kerosene can be used as a $(l:tfc:mechanics/lamps)lamp fuel$(), while bitumen can be used as a $(l:tfc:mechanics/charcoal_forge)forge$() fuel in a pinch."
+      "text": "O petróleo bruto doce pode então ser destilado em $(thing)querosene$() e $(thing)betume$(). Querosene pode ser usado como $(l:tfc:mechanics/lamps)combustível para lâmpadas$(), enquanto o betume pode ser usado como combustível para $(l:tfc:mechanics/charcoal_forge)forjas$() em caso de necessidade."
     },
     {
       "type": "patchouli:multiblock",

@@ -1,11 +1,11 @@
 {
-  "name": "Powdered Milk",
+  "name": "Leite em Pó",
   "category": "tfc:artisanal",
   "icon": "artisanal:powdered_milk",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Powdering milk is a great way to store it efficiently, either in a cellar or for long journeys. $(br2)The first step to making Powdered Milk is making $(thing)Condensed Milk$().$(br2)Then, the Condensed Milk is further boiled into $(thing)Milk Flakes$(). If you keep the fire going, this will happen automatically."
+      "text": "O leite em pó é uma ótima maneira de armazená-lo de forma eficiente, seja em uma adega ou para viagens longas. $(br2)O primeiro passo para fazer Leite em Pó é preparar $(thing)Leite Condensado$().$(br2)Em seguida, o Leite Condensado é fervido para se transformar em $(thing)Flocos de Leite$(). Se você mantiver o fogo aceso, isso acontecerá automaticamente."
     },
     {
       "type": "patchouli:image",
@@ -17,27 +17,27 @@
     {
       "type": "tfc:quern_recipe",
       "recipe": "artisanal:quern/powdered_milk",
-      "text": "Finally, the Milk Flakes can be ground into Powdered Milk using a $(l:tfc:mechanics/quern)Quern$()."
+      "text": "Finalmente, os Flocos de Leite podem ser moídos em Leite em Pó usando uma $(l:tfc:mechanics/quern)Moenda$()."
     },
     {
       "type": "tfc:instant_barrel_recipe",
       "recipe": "artisanal:barrel/milk/cow",
-      "text": "Powdered Milk can then be recombined with water at any subsequent point to create Milk."
+      "text": "Leite em Pó pode, então, ser recombinado com água em qualquer momento posterior para criar Leite."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/milk/cow_1",
-      "text": "Powdered milk can also be crafted with a water jug to turn it into a milk jug, if you want to use it on the go."
+      "text": "Leite em Pó também pode ser preparado com um cântaro de água para se transformar em um cântaro de leite, caso você queira usá-lo em qualquer lugar."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/milk/cow_8",
-      "text": "You can also craft any fluid container with up to 8 powdered milks, to make 100 mb of milk per powdered milk used."
+      "text": "Você também pode produzir qualquer recipiente para líquidos com até 8 leites em pó, para produzir 100 mb de leite por leite em pó utilizado."
     },
     {
       "type": "tfc:quern_recipe",
       "recipe": "artisanal:quern/powdered_goat_milk",
-      "text": "If you have the Firmalife addon installed, you can make Powdered Milk variants for Goat and Yak Milk as well."
+      "text": "Se você tiver o complemento Firmalife instalado, também poderá criar variantes de Leite em Pó para Leite de Cabra e de Iaque."
     },
     {
       "type": "tfc:instant_barrel_recipe",

@@ -1,18 +1,18 @@
 {
-  "name": "Soap",
+  "name": "Sabão",
   "category": "tfc:artisanal",
   "icon": "artisanal:soap",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Soap$() is a useful tool for cleaning things more quickly."
+      "text": "$(thing)Sabão$() é uma ferramenta útil para limpar coisas mais rapidamente."
     },
     {
       "type": "patchouli:spotlight",
       "item": {
         "tag": "artisanal:fats"
       },
-      "text": "The first step in producing soap is to get some animal fats, which are dropped by most animals upon death."
+      "text": "O primeiro passo na produção de sabão é obter gordura animal, que é obtida pela maioria dos animais após a morte."
     },
     {
       "type": "patchouli:image",
@@ -22,24 +22,24 @@
         "artisanal:textures/gui/book/poultry_fat_to_schmaltz.png"
       ],
       "anchor": "rendered_fats",
-      "text": "Then, boil the animal fats in a pot with 100 mb water per fat item to render them."
+      "text": "Em seguida, ferva as gorduras animais em uma panela com 100 mb de água por item de gordura para derretê-las."
     },
     {
       "type": "patchouli:image",
       "images": [
         "artisanal:textures/gui/book/soap_mixture.png"
       ],
-      "text": "Mix the rendered fats (or $(l:tfc:mechanics/lamps#olives)Olive Oil$()) with lye in a 9:1 ratio to create liquid Soap."
+      "text": "Misture as gorduras derretidas (ou $(l:tfc:mechanics/lamps#olives)Azeite de Oliva$()) com lixívia na proporção de 9:1 para criar Sabão líquido."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/soap_solid",
-      "text": "Liquid Soap will solidify if left in a sealed barrel."
+      "text": "O Sabão líquido irá solidificar se deixado em um barril selado."
     },
     {
       "type": "tfc:instant_barrel_recipe",
       "recipe": "artisanal:barrel/soapy_water",
-      "text": "To use Soap, mix it with water to make $(thing)Soapy Water$(). Soapy Water can be used to more efficiently wash things such as Jars, Jute Nets, and Soup Bowls."
+      "text": "Para usar Sabão, misture-o com água para fazer $(thing)Água com Sabão$(). Água com Sabão pode ser usada para lavar com mais eficiência objetos como Potes, Redes de Juta e Tigelas de Sopa."
     },
     {
       "type": "tfc:artisanal/three_instant_barrel_recipes",

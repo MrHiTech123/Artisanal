@@ -1,31 +1,31 @@
 {
-  "name": "Sugar Production",
+  "name": "Produção de Açúcar",
   "category": "tfc:artisanal",
   "icon": "artisanal:non_perishable_sugar",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Producing sugar is a much more involved process in Artisanal than it is in ordinary TerraFirmaCraft, but the results are much more...okay, so they're actually less useful. But hey, realism!"
+      "text": "Produzir açúcar é um processo muito mais complexo em Artisanal do que no TerraFirmaCraft comum, mas os resultados são muito mais...bem, na verdade, são menos úteis. Mas ei, realismo!"
     },
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/clean/sugarcane/water",
-      "text": "The first step to processing sugarcane is to clean it, which can be done by sealing it in a water barrel for 8 hours."
+      "text": "O primeiro passo no processamento da cana-de-açúcar é a sua limpeza, que pode ser feita mergulhando-a em um barril de água por 8 horas."
     },
     {
       "type": "tfc:instant_barrel_recipe",
       "recipe": "artisanal:barrel/clean/sugarcane/soapy_water",
-      "text": "Alternatively, sugarcane can be cleaned instantly using $(l:tfc:artisanal/soap)Soapy Water$()."
+      "text": "Alternativamente, a cana-de-açúcar pode ser limpa instantaneamente usando $(l:tfc:artisanal/soap)Água com Sabão$()."
     },
     {
       "type": "tfc:artisanal/juicing_recipe",
       "recipe": "artisanal:juicing/sugarcane_juice",
-      "text": "The sugarcane is then $(l:tfc:artisanal/juicing)Juiced$() in a Quern to create $(thing)Sugarcane Juice."
+      "text": "A cana-de-açúcar é então $(l:tfc:artisanal/juicing)Espremida$() em uma Moenda para criar $(thing)Caldo de Cana-de-Açúcar$()."
     },
     {
       "type": "tfc:quern_recipe",
       "recipe": "artisanal:quern/food/cleaned_sugarcane",
-      "text": "During this process, $(thing)Dry Bagasse$() is created as a by-product. It can be used as firepit fuel, kindling, or compost. $(br2)Sugarcane Juice can be boiled in a pot to create $(thing)Perishable Sugar$(). $(thing)Molassess$() is also produced as a by-product."
+      "text": "Durante esse processo, $(thing)Bagaço Seco$() é criado como subproduto. Ele pode ser usado como combustível para fogueiras, palha de fogo ou adubo. Caldo de Cana pode ser fervido em uma panela para produzir $(thing)Açúcar Perecível$(). $(thing)Melado$() também é produzido como subproduto."
     },
     {
       "type": "patchouli:image",
@@ -37,17 +37,17 @@
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/filtered_sugarcane_juice",
-      "text": "Alternatively, the Sugarcane Juice can be further filtered using $(thing)Jute Nets$()."
+      "text": "Alternativamente, o Caldo de Cana-de-Açúcar pode ser filtrado ainda mais usando $(thing)Redes de Juta$()."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/alkalized_sugarcane_juice",
-      "text": "The juice is then alkalized using Lime."
+      "text": "O caldo é então alcalinizado usando Cal."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/clarified_sugarcane_juice",
-      "text": "Then, the lime is filtered out using Jute Nets once again, leaving it clarified. $(br2)Clarified Sugarcane Juice is then boiled into Non-Perishable Sugar. Molasses is also produced as a by-product."
+      "text": "Em seguida, a Cal é filtrada novamente usando Redes de Juta, deixando o caldo clarificado. $(br2)Caldo de Cana-de-Açúcar Clarificado é então fervido para produzir Açúcar Não Perecível. Melado também é produzido como subproduto."
     },
     {
       "type": "patchouli:image",
@@ -58,12 +58,12 @@
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/sugar",
-      "text": "You can blow the fumes from hot Sulfur onto non-perishable sugar with a $(thing)Tuyere$() to make $(thing)White Sugar$()."
+      "text": "Você pode soprar os vapores do Enxofre quente sobre o açúcar não perecível com um $(thing)Alcaraviz$() para fazer $(thing)Açúcar Refinado$()."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/rum",
-      "text": "Molasses can be fermented into Rum. It can also be drunk normally and grants $(l)$(a)Fruit$() and $(l)$(2)Vegetable$() nutrition."
+      "text": "Melado pode ser fermentado para produzir Rum. Ele também pode ser bebido normalmente e fornece nutrição de $(l)$(a)Frutas$() e $(l)$(2)Vegetais$()."
     }
   ],
   "read_by_default": true,

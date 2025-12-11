@@ -1,5 +1,5 @@
 {
-  "name": "Salt Production",
+  "name": "Produção de Sal",
   "category": "tfc:artisanal",
   "icon": "tfc:powder/salt",
   "pages": [
@@ -12,7 +12,7 @@
       "images": [
         "artisanal:textures/gui/book/salt_pot_recipe.png"
       ],
-      "text": "Salt can be extracted from salt water by boiling away the water in the pot!"
+      "text": "O sal pode ser extraído da água salgada fervendo a água na panela!"
     }
   ],
   "read_by_default": true,

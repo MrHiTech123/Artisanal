@@ -1,26 +1,26 @@
 {
-  "name": "Quillmaking",
+  "name": "Fabricação de Penas",
   "category": "tfc:artisanal",
   "icon": "artisanal:quill",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Storing information, either through a $(thing)Scribing Table$() or a $(thing)Book and Quill$(), is a very useful ability. $(br2)In order to do so, you need a Quill."
+      "text": "Armazenar informações, seja por meio de uma $(thing)Mesa de Escrita$() ou de um $(thing)Livro e Pena$(), é uma habilidade muito útil. $(br2)Para fazer isso, você precisa de uma Pena."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/trimmed_feather",
-      "text": "The first step to making a quill is to trim the lower bristles off of the feather."
+      "text": "O primeiro passo para fazer uma pena de escrever é aparar as cerdas inferiores da pena."
     },
     {
       "type": "tfc:sealed_barrel_recipe",
       "recipe": "artisanal:barrel/soaked_feather",
-      "text": "Next, soak the feather in water."
+      "text": "Em seguida, molhe a pena em água."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/tempered_feather",
-      "text": "Afterwards, heat up some sand to $(7)$(bold)Very Hot**$() and craft it with the feather in order to temper it."
+      "text": "Em seguida, aqueça um pouco de areia até $(7)$(bold)Muito Quente**$() e junte-a com a pena para temperá-la."
     },
     {
       "type": "patchouli:text",
@@ -29,7 +29,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/quill",
-      "text": "Finally, craft the feather with a knife again to carve out the tip and finish the quill."
+      "text": "Por fim, use uma faca novamente para esculpir a ponta e finalizar a pena."
     },
     {
       "type": "patchouli:crafting",
@@ -39,7 +39,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "artisanal:crafting/wood/chestnut_scribing_table",
-      "text": "Quills are needed to craft Scribing Tables and Book and Quills."
+      "text": "São necessárias penas para criar Mesas de Escrita e Livros e Penas."
     }
   ],
   "read_by_default": true,
