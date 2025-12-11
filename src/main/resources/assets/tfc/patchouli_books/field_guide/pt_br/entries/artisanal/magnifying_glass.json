@@ -15,7 +15,7 @@
     {
       "type": "tfc:anvil_recipe",
       "recipe": "artisanal:anvil/metal/magnifying_glass_frame/brass",
-      "text": "Para fazer uma Lupa, comecer forjando uma $(thing)Armação de Lupa$() a partir de uma haste do material escolhido. Lupas podem ser feitas de diversos materiais, incluindo: $(br2) Bismuto$(br) Latão$(br) Ouro$(br) Ouro Rosé$(br) Prata$(br) Prata Esterlina$(br) Estanho$(br2)"
+      "text": "Para fazer uma Lupa, comece forjando uma $(thing)Armação de Lupa$() a partir de uma haste do material escolhido. Lupas podem ser feitas de diversos materiais, incluindo: $(br2) Bismuto$(br) Latão$(br) Ouro$(br) Ouro Rosé$(br) Prata$(br) Prata Esterlina$(br) Estanho$(br2)"
     },
     {
       "type": "patchouli:crafting",
