@@ -1,0 +1,53 @@
+{
+  "name": "Refino de Petróleo",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:bucket/sour_crude_oil",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "O petróleo é um recurso muito valioso que pode ser usado para diversos fins. Ele pode ser encontrado no subsolo, tanto em pequenas bolsões superficiais de y=40 a y=130, quanto em bolsões maiores de y=-30 a y=70. Ambos os tipos de bolsões só podem ser encontrados em rochas $(l:the_world/geology#sedimentary)Sedimentares$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "O petróleo bruto pode ser $(thing)doce$() ou $(thing)ácido$(). O petróleo doce é puro e fácil de refinar, mas o petróleo ácido precisa ser processado um pouco antes de ser refinado."
+    },
+    {
+      "type": "tfc:artisanal/distillery_recipe",
+      "recipe": "artisanal:distillery/sweet_crude_oil",
+      "text": "O primeiro tipo de petróleo que pode ser encontrado é o $(thing)Petróleo Bruto Ácido$(). Este petróleo precisa ser $(l:tfc:artisanal/distillation)destilado$() para se tornar petróleo bruto doce antes de ser processado posteriormente. Isso também produz enxofre como subproduto."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          [
+            "0"
+          ]
+        ],
+        "mapping": {
+          "0": "artisanal:fluid/sour_crude_oil"
+        }
+      }
+    },
+    {
+      "type": "tfc:artisanal/distillery_recipe",
+      "recipe": "artisanal:distillery/kerosene",
+      "text": "O petróleo bruto doce pode então ser destilado em $(thing)querosene$() e $(thing)betume$(). Querosene pode ser usado como $(l:tfc:mechanics/lamps)combustível para lâmpadas$(), enquanto o betume pode ser usado como combustível para $(l:tfc:mechanics/charcoal_forge)forjas$() em caso de necessidade."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "pattern": [
+          ["0"]
+        ],
+        "mapping": {
+          "0": "artisanal:fluid/sweet_crude_oil"
+        }
+      }
+    }
+  ],
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:bitumen": 4
+  }
+}

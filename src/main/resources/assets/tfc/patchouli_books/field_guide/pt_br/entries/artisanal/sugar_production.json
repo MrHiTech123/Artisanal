@@ -1,0 +1,76 @@
+{
+  "name": "Produção de Açúcar",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:non_perishable_sugar",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Produzir açúcar é um processo muito mais complexo em Artisanal do que no TerraFirmaCraft comum, mas os resultados são muito mais...bem, na verdade, são menos úteis. Mas ei, realismo!"
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/clean/sugarcane/water",
+      "text": "O primeiro passo no processamento da cana-de-açúcar é a sua limpeza, que pode ser feita mergulhando-a em um barril de água por 8 horas."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/clean/sugarcane/soapy_water",
+      "text": "Alternativamente, a cana-de-açúcar pode ser limpa instantaneamente usando $(l:tfc:artisanal/soap)Água com Sabão$()."
+    },
+    {
+      "type": "tfc:artisanal/juicing_recipe",
+      "recipe": "artisanal:juicing/sugarcane_juice",
+      "text": "A cana-de-açúcar é então $(l:tfc:artisanal/juicing)Espremida$() em uma Moenda para criar $(thing)Caldo de Cana-de-Açúcar$()."
+    },
+    {
+      "type": "tfc:quern_recipe",
+      "recipe": "artisanal:quern/food/cleaned_sugarcane",
+      "text": "Durante esse processo, $(thing)Bagaço Seco$() é criado como subproduto. Ele pode ser usado como combustível para fogueiras, palha de fogo ou adubo. Caldo de Cana pode ser fervido em uma panela para produzir $(thing)Açúcar Perecível$(). $(thing)Melado$() também é produzido como subproduto."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/perishable_sugar_recipe.png"
+      ],
+      "text": ""
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/filtered_sugarcane_juice",
+      "text": "Alternativamente, o Caldo de Cana-de-Açúcar pode ser filtrado ainda mais usando $(thing)Redes de Juta$()."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/alkalized_sugarcane_juice",
+      "text": "O caldo é então alcalinizado usando Cal."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/clarified_sugarcane_juice",
+      "text": "Em seguida, a Cal é filtrada novamente usando Redes de Juta, deixando o caldo clarificado. $(br2)Caldo de Cana-de-Açúcar Clarificado é então fervido para produzir Açúcar Não Perecível. Melado também é produzido como subproduto."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/non_perishable_sugar_recipe.png"
+      ]
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/sugar",
+      "text": "Você pode soprar os vapores do Enxofre quente sobre o açúcar não perecível com um $(thing)Alcaraviz$() para fazer $(thing)Açúcar Refinado$()."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/rum",
+      "text": "Melado pode ser fermentado para produzir Rum. Ele também pode ser bebido normalmente e fornece nutrição de $(l)$(a)Frutas$() e $(l)$(2)Vegetais$()."
+    }
+  ],
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:food/cleaned_sugarcane": 1,
+    "artisanal:bagasse": 4,
+    "artisanal:perishable_sugar": 5,
+    "artisanal:non_perishable_sugar": 9
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "name": "Sabão",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:soap",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Sabão$() é uma ferramenta útil para limpar coisas mais rapidamente."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "tag": "artisanal:fats"
+      },
+      "text": "O primeiro passo na produção de sabão é obter gordura animal, que é obtida pela maioria dos animais após a morte."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/suet_to_tallow.png",
+        "artisanal:textures/gui/book/pork_fat_to_lard.png",
+        "artisanal:textures/gui/book/poultry_fat_to_schmaltz.png"
+      ],
+      "anchor": "rendered_fats",
+      "text": "Em seguida, ferva as gorduras animais em uma panela com 100 mb de água por item de gordura para derretê-las."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/soap_mixture.png"
+      ],
+      "text": "Misture as gorduras derretidas (ou $(l:tfc:mechanics/lamps#olives)Azeite de Oliva$()) com lixívia na proporção de 9:1 para criar Sabão líquido."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/soap_solid",
+      "text": "O Sabão líquido irá solidificar se deixado em um barril selado."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/soapy_water",
+      "text": "Para usar Sabão, misture-o com água para fazer $(thing)Água com Sabão$(). Água com Sabão pode ser usada para lavar com mais eficiência objetos como Potes, Redes de Juta e Tigelas de Sopa."
+    },
+    {
+      "type": "tfc:artisanal/three_instant_barrel_recipes",
+      "recipe": "artisanal:barrel/clean/empty_jar/soapy_water",
+      "recipe2": "artisanal:barrel/clean/jute_net/soapy_water",
+      "recipe3": "artisanal:barrel/clean/soup_bowl/soapy_water"
+    }
+  ],
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:suet": 0,
+    "artisanal:bear_fat": 0,
+    "artisanal:pork_fat": 0,
+    "artisanal:poultry_fat": 0,
+    "artisanal:soap": 4
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "name": "Preservação",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:metal/can/tin_sealed",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Várias formas de preservar alimentos além de sua data de validade normal.$(br2)$(bold)Conteúdo$()$(br)$(li)$(l:tfc:artisanal/decay#potted_food)Alimentos em pote$(/t)$(li)$(l:tfc:artisanal/decay#canned_food)Alimentos enlatados$(/t)"
+    },
+    {
+      "type": "tfc:knapping_recipe",
+      "recipe": "artisanal:clay_knapping/unfired_small_pot",
+      "text": "Uma forma de preservar alimentos é colocá-los em pote, um processo no qual o alimento é isolado em gordura líquida e mantido dentro de um pote.",
+      "anchor": "potted_food"
+    },
+    {
+      "type": "tfc:heat_recipe",
+      "recipe": "artisanal:heating/ceramic/unfired_small_pot",
+      "text": "O primeiro passo desse processo é moldar argila em um pequeno pote e queimá-lo em um $(l:tfc:getting_started/pit_kiln)Forno de Cova$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/pot/1_rendered_fat",
+      "text": "Em seguida, combine o pequeno pote queimado com $(l:tfc:artisanal/soap#rendered_fats)Gordura Derretida$(), $(l:tfc:the_world/ores_and_minerals#saltpeter)Salitre$(), e até seis $(thing)carnes$() ou $(thing)vegetais$() que você deseja conservar em pote. Potes podem armazenar apenas um tipo de alimento por vez."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/pot/2_rendered_fat",
+      "recipe2": "artisanal:crafting/pot/6_rendered_fat"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/pot/4_butter",
+      "text": "Se você tiver o complemento Firmalife instalado, também é possível utilizar $(thing)Manteiga$() no lugar da Gordura Derretida."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Outras formas de preservação são úteis, porém a forma suprema de preservação é o $(thing)enlatamento$(). Este processo envolve selar alimentos em um recipiente hermético, impedindo que microrganismos o alcancem, seguido do aquecimento do recipiente para eliminar todos os microrganismos já presentes no alimento.",
+      "anchor": "canned_food"
+    },
+    {
+      "type": "tfc:welding_recipe",
+      "recipe": "artisanal:welding/metal/tinplate_from_steel",
+      "text": "O material bruto utilizado na confecção de latas é denominado $(thing)Chapa de Flandres$(). Ele é produzido pela soldagem de uma Chapa de Estanho a uma Chapa Dupla de Aço."
+    },
+    {
+      "type": "tfc:welding_recipe",
+      "recipe": "artisanal:welding/metal/tinplate_from_iron",
+      "text": "Uma Chapa Dupla de Ferro Forjado pode ser utilizada no lugar de uma de Aço, com eficiência reduzida."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/metal/pickled_double_sheet/steel",
+      "text": "Chapas duplas também podem ser decapadas em $(thing)ácido$(). Quando uma chapa dupla decapada é utilizada para Chapa de Flandres, a receita produz 50% a mais do que uma não decapada."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "artisanal:anvil/metal/can/tin",
+      "text": "Após soldada, a Chapa de Flandres pode ser forjada em uma Lata de Estanho vazia."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Espaço reservado; abordar chapa de aço inoxidável"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/can/tin_1",
+      "recipe2": "artisanal:crafting/metal/can/tin_2"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/can/tin_6",
+      "text": "Uma lata aquecida pode ser combinada com um $(thing)Martelo$(), $(thing)Fluxo$(), e até 6 $(thing)Alimentos Enlatáveis$() para criar uma Lata Selada. Apenas um tipo de alimento pode ser armazenado em uma determinada lata."
+    },
+    {
+      "type": "tfc:heat_recipe",
+      "recipe": "artisanal:heating/metal/can/tin_sterilized",
+      "text": "A lata é então aquecida para eliminar os microrganismos em seu interior, resultando em uma $(thing)Lata Esterilizada$(). O alimento dentro da lata durará indefinidamente, até que a lata seja aberta, momento no qual sua data de validade recomeçará."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/open_can/tin_sterilized_can_opener",
+      "text": "Para abrir uma lata, combine-a com um $(thing)Abridor de Lata$(). Esta receita resultará no alimento que estava contido na lata."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/clean/tin_can/soapy_water",
+      "text": "Abrir uma lata também resulta em uma $(thing)Lata Suja$(). A lata suja pode ser limpa utilizando água $(l:tfc:artisanal/soap)com sabão$() ou água comum. Após ser limpa, a lata pode ser reutilizada."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/can_opener/steel",
+      "text": "Abridores de lata são confeccionados utilizando um $(thing)Mecanismo de Latão$(), duas $(thing)Hastes$() feitas de qualquer metal para ferramentas, e duas $(thing)Lâminas de Corte$()."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "artisanal:anvil/metal/circle_blade/black_bronze",
+      "text": "Lâminas de Corte são $(l:tfc:mechanics/anvils)forjados$() a partir de lingotes de metal."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/open_can/tin_sterilized_hammer",
+      "text": "Caso não disponha de um Abridor de Lata, é possível abrir uma lata utilizando uma Marreta. Isto resulta em uma $(thing)Lata Suja e Amassada$()."
+    },
+    {
+      "type": "tfc:anvil_recipe",
+      "recipe": "artisanal:anvil/metal/can/tin_repair",
+      "text": "Esta lata deve ser limpa primeiro, como uma Lata Suja comum. Depois, pode ser reparada em uma $(thing)Bigorna$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/remove_tin_can_traits",
+      "text": "Como latas são esterilizadas por aquecimento, podem ocasionalmente adquirir propriedades de alimentos, como $(thing)Grelhado no Carvão$() ou $(thing)Grelhado na Lenha$(). Estas propriedades não exercem efeito, visto que latas esterilizadas não expiram, mas podem ser removidas para fins cosméticos ou de empilhamento colocando a lata em sua grade de criação."
+    }
+  ],
+  "read_by_default": true,
+  "extra_recipe_mappings": {
+    "artisanal:ceramic/unfired_small_pot": 1,
+    "artisanal:cermaic/small_pot": 2,
+    "artisanal:cermaic/closed_small_pot": 3,
+    "artisanal:metal/tinplate": 7,
+    "artisanal:metal/stainless_steelplate": 7,
+    "artisanal:metal/pickled_double_sheet/wrought_iron": 9,
+    "artisanal:metal/pickled_double_sheet/steel": 9,
+    "artisanal:metal/can/tin": 10,
+    "artisanal:metal/can/stainless_steel": 10,
+    "artisanal:metal/can/tin_sealed": 12,
+    "artisanal:metal/can/stainless_steel_sealed": 12,
+    "artisanal:metal/can/tin_sterilized": 14,
+    "artisanal:metal/can/stainless_steel_sterilized": 14,
+    "artisanal:metal/can/tin_dirty": 16,
+    "artisanal:metal/can/stainless_steel_dirty": 16,
+    "artisanal:metal/can/tin_dirty_dented": 16,
+    "artisanal:metal/can/stainless_steel_dirty_dented": 16,
+    "artisanal:metal/can_opener/bismuth_bronze": 17,
+    "artisanal:metal/can_opener/black_bronze": 17,
+    "artisanal:metal/can_opener/bronze": 17,
+    "artisanal:metal/can_opener/copper": 17,
+    "artisanal:metal/can_opener/wrought_iron": 17,
+    "artisanal:metal/can_opener/steel": 17,
+    "artisanal:metal/can_opener/black_steel": 17,
+    "artisanal:metal/can_opener/blue_steel": 17,
+    "artisanal:metal/can_opener/red_steel": 17,
+    "artisanal:metal/circle_blade/bismuth_bronze": 18,
+    "artisanal:metal/circle_blade/black_bronze": 18,
+    "artisanal:metal/circle_blade/bronze": 18,
+    "artisanal:metal/circle_blade/copper": 18,
+    "artisanal:metal/circle_blade/wrought_iron": 18,
+    "artisanal:metal/circle_blade/steel": 18,
+    "artisanal:metal/circle_blade/black_steel": 18,
+    "artisanal:metal/circle_blade/blue_steel": 18,
+    "artisanal:metal/circle_blade/red_steel": 18,
+    "artisanal:metal/can/tin_dented": 20,
+    "artisanal:metal/can/stainless_steel_dented": 20
+  }
+}

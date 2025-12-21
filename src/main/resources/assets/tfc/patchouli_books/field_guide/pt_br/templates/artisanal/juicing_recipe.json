@@ -1,0 +1,17 @@
+{
+  "components": [
+    {
+      "type": "patchouli:custom",
+      "x": 0,
+      "y": 0,
+      "class": "net.mrhitech.artisanal.compat.patchouli.component.JuicingRecipeComponent",
+      "recipe": "#recipe"
+    },
+    {
+      "type": "patchouli:text",
+      "x": 0,
+      "y": 45,
+      "text": "#text"
+    }
+  ]
+}

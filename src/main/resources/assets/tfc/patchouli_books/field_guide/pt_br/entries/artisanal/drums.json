@@ -1,0 +1,50 @@
+{
+  "name": "Tambores",
+  "category": "tfc:artisanal",
+  "icon": "artisanal:metal/drum/bismuth_bronze",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "tag": "artisanal:metal/drums"
+      },
+      "text": "Tambores são barris especiais necessários para armazenar fluidos corrosivos, que dissolveriam barris de madeira.$(br2)Tambores são necessários para armazenar $(thing)Ácido Sulfúrico$() e $(thing)Suco de Limão$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/drum/bronze",
+      "text": "Tambores são feitos como $(l:tfc:mechanics/barrels)Barris$(), mas com chapas de metal em vez de madeira."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/metal/drum/steel",
+      "text": "Tambores podem ser feitos de qualquer bronze, assim como de aço."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "artisanal:textures/gui/book/lava_drum.png"
+      ],
+      "text": "Tambores de aço azul também podem conter lava."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/lava_garbage_disposal",
+      "text": "Tambores de lava também podem ser usados como lixeira de itens."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/lab_goggles", 
+      "text": "Trabalhar com materiais perigosos pode ser arriscado, então certifique-se de criar um par de $(thing)Óculos de Laboratório$() antes de manuseá-los."
+    }
+  ],
+  "read_by_default": true,
+  "additional_recipe_mappings": {
+    "artisanal:metal/drum/bismuth_bronze": 1,
+    "artisanal:metal/drum/black_bronze": 1,
+    "artisanal:metal/drum/bronze": 1,
+    "artisanal:metal/drum/steel": 1,
+    "artisanal:metal/drum/blue_steel": 1,
+    "artisanal:metal/drum/red_steel": 1
+  }
+}

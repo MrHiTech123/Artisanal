@@ -1,0 +1,56 @@
+{
+  "name": "Diferenças do TFC",
+  "category": "tfc:artisanal",
+  "icon": "tfc:powder/lime",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Uma lista de receitas que foram alteradas pelo TFC Artisanal."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "tfc:barrel/limewater_from_lime",
+      "text": "Água de Cal foi renomeada para $(thing)Cal Hidratada$(), e, agora, só pode ser produzida usando $(thing)Cal$(), não Fluxo."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/writable_book",
+      "text": "Livro e Penas agora são criados usando Corante Preto ao invés de um Saco de Tinta, e uma $(l:tfc:artisanal/quillmaking)Pena$() em vez de uma Pluma."
+      
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/paper",
+      "text": "Agora é possível fabricar Papel alvejando Papel Não Refinado em Lixívia, bem como raspando-o."
+    },
+    {
+      "type": "tfc:sealed_barrel_recipe",
+      "recipe": "artisanal:barrel/clean/soup_bowl/water",
+      "text": "Limpar objetos sujos em um barril de água agora leva tempo e exige que eles sejam selados dentro do barril."
+    },
+    {
+      "type": "tfc:instant_barrel_recipe",
+      "recipe": "artisanal:barrel/clean/jute_net/soapy_water",
+      "text": "Limpeza instantânea agora requer o uso de $(thing)Água com Sabão$(). Veja $(l:tfc:artisanal/soap)Sabão$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Agora é possível fazer Bolo e Torta de Abóbora com todos os adoçantes do TFC, incluindo os Açúcares Perecíveis e Não Perecíveis do Artisanal, bem como os Açúcares de Bétula e de Bordo do ArborFirmaCraft."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "artisanal:crafting/cake",
+      "recipe2": "artisanal:crafting/pumpkin_pie"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Os adoçantes agora podem expirar, e datas de validades foram adicionadas aos adoçantes do TFC, ArborFirmaCraft (AFC) e Firmalife (todos estão configurados como \"Nunca Expira\" exceto o Açúcar Perecível do Artisanal). $(br2)Isso significa que qualquer receita do TFC ou Firmalife que utilize um adoçante foi implementada para usar um adoçante não-estragado."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Isso não deve afetar sua experiência de jogo, exceto no caso do Açúcar Perecível.$(br2)Por falar em açúcar, as receitas refino de calda do AFC foram reimplementadas como receitas escaláveis, o que significa que são feitas proporcionalmente (ex. 10 seiva de bordo -> 1 seiva de bordo concentrada) em vez de em quantidades específicas. Elas também não precisam mais de gravetos."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": -1
+}
