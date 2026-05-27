@@ -7,13 +7,13 @@ import net.minecraft.world.item.Tier;
 import java.util.Locale;
 
 public enum SteelMetal {
-    STEEL(Metal.Default.STEEL),
-    BLACK_STEEL(Metal.Default.BLACK_STEEL),
-    BLUE_STEEL(Metal.Default.RED_STEEL),
-    RED_STEEL(Metal.Default.BLUE_STEEL);
+    STEEL(Metal.STEEL),
+    BLACK_STEEL(Metal.BLACK_STEEL),
+    BLUE_STEEL(Metal.RED_STEEL),
+    RED_STEEL(Metal.BLUE_STEEL);
     
-    private Metal.Default metal;
-    SteelMetal(Metal.Default f_metal) {
+    private Metal metal;
+    SteelMetal(Metal f_metal) {
         metal = f_metal;
     }
     
@@ -25,7 +25,7 @@ public enum SteelMetal {
     }
     
     public Rarity getRarity() {
-        return this.metal.getRarity();
+        return this.metal.rarity();
     }
 }
 

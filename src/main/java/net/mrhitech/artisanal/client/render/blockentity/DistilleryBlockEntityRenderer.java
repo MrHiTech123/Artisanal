@@ -2,11 +2,10 @@ package net.mrhitech.artisanal.client.render.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.dries007.tfc.client.render.blockentity.FirepitBlockEntityRenderer;
-import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraftforge.fluids.FluidStack;
 import net.mrhitech.artisanal.common.blockentities.DistilleryBlockEntity;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 public class DistilleryBlockEntityRenderer extends FirepitBlockEntityRenderer<DistilleryBlockEntity> {
     @Override

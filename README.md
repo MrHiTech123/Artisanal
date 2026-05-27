@@ -1,34 +1,25 @@
-### About
-Artisanal is an addon for TerraFirmaCraft that adds various branches to the technology tree, as well as generally enhancing its realism.
 
-### Features
-|![A magnifying glass being used to start a fire](readme/magnifying_glass.png)|
-| ---- |
-|*A magnifying glass being used to start a fire*|
+Installation information
+=======
 
-#### Tech Tree branches
-- Soapmaking
-- Quillmaking
-- Food Preservation
-    - Potting meat
-	- Canning food
-- Sugar Production
-- Powdered Milk
-- Sulfuric Acid Production
-- Oil Refining
+This template repository can be directly cloned to get you started with a new
+mod. Simply create a new repository cloned from this one, by following the
+instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
 
-#### Other features
-- Magnifying glasses
-- Fully data-driven juicing and distillation systems
-- Expanded crafting options for Flint and Steel
+Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
 
-#### Recipe Enhancements
-- Bloomeries can be crafted with all metal sheets of Tier II or higher, not just Bronze
-- Salt water can be boiled in a pot to make salt
-- Jars return their lids when opened
+If at any point you are missing libraries in your IDE, or you've run into problems you can
+run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
+{this does not affect your code} and then start the process again.
 
-Artisanal is fully integrated with the Firmalife and Lithic Addons.
+Mapping Names:
+============
+By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
+in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
+license. For the latest license text, refer to the mapping file itself, or the reference copy here:
+https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
 
-### Links
-[Download on Curseforge](https://www.curseforge.com/minecraft/mc-mods/tfc-artisanal)<br>
-[Read the Field Guide](https://terrafirmacraft.github.io/Field-Guide/en_us/artisanal/) (Note that many sections can only be viewed properly with the in-game field guide due to external dependencies)
+Additional Resources: 
+==========
+Community Documentation: https://docs.neoforged.net/  
+NeoForged Discord: https://discord.neoforged.net/

@@ -10,12 +10,13 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import net.dries007.tfc.common.blockentities.QuernBlockEntity;
+import net.dries007.tfc.common.capabilities.InventoryItemHandler;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.common.recipes.ISimpleRecipe;
+import net.dries007.tfc.common.recipes.ItemRecipe;
 import net.dries007.tfc.common.recipes.RecipeSerializerImpl;
-import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
-import net.dries007.tfc.util.JsonHelpers;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -23,35 +24,33 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class SimpleFluidRecipe implements ISimpleRecipe<ItemStackInventory> {
+public abstract class SimpleFluidRecipe extends ItemRecipe {
     protected final ResourceLocation id;
     protected final Ingredient ingredient;
     protected final FluidStack result;
     
     public SimpleFluidRecipe(ResourceLocation id, Ingredient ingredient, FluidStack result) {
+        super(ingredient, ItemStackProvider.empty());
         this.id = id;
         this.ingredient = ingredient;
         this.result = result;
     }
     
     public Collection<Item> getValidItems() {
-        return (Collection)Arrays.stream(this.getIngredient().getItems()).map(ItemStack::getItem).collect(Collectors.toSet());
+        return (Collection<Item>)Arrays.stream(this.getIngredient().getItems()).map(ItemStack::getItem).collect(Collectors.toSet());
     }
     
-    public boolean matches(ItemStackInventory wrapper, Level level) {
-        return this.getIngredient().test(wrapper.getStack());
+    public boolean matches(InventoryItemHandler wrapper, Level level) {
+        return this.getIngredient().test(wrapper.getStackInSlot(QuernBlockEntity.SLOT_INPUT));
     }
     
     public FluidStack getResultFluid() {
         return FluidStack.EMPTY;
-    }
-    
-    public FluidStack getResult() {
-        return this.result.copy();
     }
     
     public ResourceLocation getId() {

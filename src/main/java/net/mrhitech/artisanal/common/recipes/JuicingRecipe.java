@@ -1,8 +1,8 @@
 package net.mrhitech.artisanal.common.recipes;
 
+import net.dries007.tfc.common.blockentities.QuernBlockEntity;
+import net.dries007.tfc.common.capabilities.InventoryItemHandler;
 import net.dries007.tfc.common.recipes.ISimpleRecipe;
-import net.dries007.tfc.common.recipes.SimpleItemRecipe;
-import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.util.collections.IndirectHashCollection;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
@@ -12,16 +12,16 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 public class JuicingRecipe extends SimpleFluidRecipe {
     
     public static final IndirectHashCollection<Item, JuicingRecipe> CACHE = IndirectHashCollection.createForRecipe(JuicingRecipe::getValidItems, ArtisanalRecipeTypes.JUICING);
     
     
-    public static JuicingRecipe getRecipe(Level world, ItemStackInventory wrapper)
+    public static JuicingRecipe getRecipe(Level world, InventoryItemHandler wrapper)
     {
-        for (JuicingRecipe recipe : CACHE.getAll(wrapper.getStack().getItem()))
+        for (JuicingRecipe recipe : CACHE.getAll(wrapper.getStackInSlot(QuernBlockEntity.SLOT_INPUT).getItem()))
         {
             if (recipe.matches(wrapper, world))
             {

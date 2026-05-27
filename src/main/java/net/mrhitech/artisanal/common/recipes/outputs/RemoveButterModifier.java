@@ -1,21 +1,19 @@
 package net.mrhitech.artisanal.common.recipes.outputs;
 
-import net.dries007.tfc.common.capabilities.food.FoodCapability;
-import net.dries007.tfc.common.capabilities.food.FoodHandler;
 import net.dries007.tfc.common.recipes.outputs.ItemStackModifier;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.mrhitech.artisanal.util.ArtisanalHelpers;
 
 import java.util.List;
 
-public enum RemoveButterModifier implements ItemStackModifier.SingleInstance<RemoveButterModifier> {
+public enum RemoveButterModifier implements ItemStackModifier {
     INSTANCE;
     
-    public static final ResourceLocation BUTTER = new ResourceLocation("firmalife", "food/butter");
+    public static final ResourceLocation BUTTER = ArtisanalHelpers.identifier("firmalife", "food/butter");
     
-    public ItemStack apply(ItemStack stack, ItemStack input) {
+    public ItemStack apply(ItemStack stack, ItemStack input, Context context) {
         
         stack.getCapability(FoodCapability.CAPABILITY).ifPresent(cap -> {
             if (cap instanceof FoodHandler.Dynamic inHandler) {

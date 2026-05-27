@@ -3,20 +3,18 @@ package net.mrhitech.artisanal;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLEnvironment;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.EventBus;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.mrhitech.artisanal.client.ClientEventHandler;
 import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
 import net.mrhitech.artisanal.common.blockentities.ArtisanalBlockEntities;
@@ -34,6 +32,11 @@ import net.mrhitech.artisanal.common.recipes.outputs.ArtisanalItemStackModifiers
 import net.mrhitech.artisanal.compat.patchouli.PatchouliIntegration;
 import net.mrhitech.artisanal.config.ArtisanalServerConfig;
 import net.mrhitech.artisanal.util.advancements.ArtisanalAdvancements;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -44,9 +47,8 @@ public class Artisanal
     public static final String MOD_ID = "artisanal";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
-    public Artisanal()
+    public Artisanal(IEventBus modEventBus, ModContainer modContainer)
     {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         
         ArtisanalAdvancements.registerTriggers();
         ArtisanalItems.register(modEventBus);
@@ -55,7 +57,7 @@ public class Artisanal
         ArtisanalSetupEvents.init();
         ArtisanalFluids.register(modEventBus);
         ArtisanalLootModifiers.register(modEventBus);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ArtisanalServerConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.SERVER, ArtisanalServerConfig.SPEC);
         ArtisanalContainerTypes.register(modEventBus);
         ArtisanalRecipeSerializers.register(modEventBus);
         ArtisanalRecipeTypes.register(modEventBus);
@@ -71,7 +73,7 @@ public class Artisanal
         modEventBus.addListener(this::commonSetup);
 
         // Register ourselves for server and other game events we are interested in
-        MinecraftForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(this);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -81,7 +83,6 @@ public class Artisanal
     {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
-        LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
         PatchouliIntegration.registerMultiBlocks();
     }
 
@@ -100,7 +101,7 @@ public class Artisanal
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent

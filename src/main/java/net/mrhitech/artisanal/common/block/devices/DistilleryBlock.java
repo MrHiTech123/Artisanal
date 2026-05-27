@@ -2,12 +2,12 @@ package net.mrhitech.artisanal.common.block.devices;
 
 import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.client.particle.TFCParticles;
-import net.dries007.tfc.common.TFCDamageSources;
+import net.dries007.tfc.common.TFCDamageTypes;
 import net.dries007.tfc.common.blockentities.AbstractFirepitBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
-import net.dries007.tfc.common.capabilities.Capabilities;
+import net.dries007.tfc.common.container.ItemStackContainerProvider;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.common.items.Powder;
 import net.dries007.tfc.common.items.TFCItems;
@@ -20,6 +20,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -27,21 +29,23 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.ItemHandlerHelper;
 import net.mrhitech.artisanal.common.blockentities.ArtisanalBlockEntities;
 import net.mrhitech.artisanal.common.blockentities.DistilleryBlockEntity;
+import net.mrhitech.artisanal.common.container.ArtisanalContainerTypes;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 public class DistilleryBlock extends FirepitBlock {
     
     private static final VoxelShape DISTILLERY_SHAPE = Shapes.or(BASE_SHAPE, box(2, 0, 2, 14, 16, 14));
     
-    protected Metal.Default metal;
+    protected Metal metal;
     
-    public DistilleryBlock(ExtendedProperties properties, Metal.Default metal) {
+    public DistilleryBlock(ExtendedProperties properties, Metal metal) {
         super(properties, DISTILLERY_SHAPE);
         this.metal = metal;
     }
@@ -83,16 +87,17 @@ public class DistilleryBlock extends FirepitBlock {
         AbstractFirepitBlockEntity.convertTo(level, pos, state, distillery, TFCBlocks.FIREPIT.get());
     }
     
-    private InteractionResult openGui(Player player, DistilleryBlockEntity distillery, Level level, BlockPos pos) {
+    private ItemInteractionResult openGui(Player player, DistilleryBlockEntity distillery, Level level, BlockPos pos) {
         if (player instanceof ServerPlayer serverPlayer) {
-            Helpers.openScreen(serverPlayer, distillery, pos);
+            ArtisanalContainerTypes.openScreen(serverPlayer, distillery, pos);
         }
-        return InteractionResult.sidedSuccess(level.isClientSide);
+        return ItemInteractionResult.sidedSuccess(level.isClientSide);
     }
     
+    
+    
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         return level.getBlockEntity(pos, ArtisanalBlockEntities.DISTILLERY.get()).map(distillery -> {
             final ItemStack playerHeldStack = player.getItemInHand(hand);
             
@@ -108,48 +113,50 @@ public class DistilleryBlock extends FirepitBlock {
                 }
                 
                 if (distillery.isBoiling()) {
-                    TFCDamageSources.pot(player, 1f);
+                    TFCDamageTypes.pot(player, 1f);
                     Helpers.playSound(level, pos, TFCSounds.ITEM_COOL.get());
                 }
                 
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
             else if (
                     !distillery.isBoiling() && 
-                    playerHeldStack.getCapability(Capabilities.FLUID_ITEM).isPresent()
+                    playerHeldStack.getCapability(Capabilities.FluidHandler.ITEM) != null
             ) {
                 
-                playerHeldStack.getCapability(Capabilities.FLUID_ITEM).ifPresent(cap -> {
-                    FluidTank outputTank = distillery.getOutputTank();
-                    if (!outputTank.getFluid().isEmpty()) {
-                        FluidStack transferStack = outputTank.drain(outputTank.getCapacity(), IFluidHandler.FluidAction.EXECUTE);
-                        int amountFilled = cap.fill(transferStack, IFluidHandler.FluidAction.EXECUTE);
-                        
-                        if (amountFilled != 0) {
-                            FluidHelpers.playTransferSound(level, pos, transferStack, FluidHelpers.Transfer.FILL);
-                        }
-                        
-                        FluidStack toAddBackToOutputTank = new FluidStack(transferStack.getFluid(), transferStack.getAmount() - amountFilled);
-                        outputTank.fill(toAddBackToOutputTank, IFluidHandler.FluidAction.EXECUTE);
-                    }
-                    else if (FluidHelpers.transferBetweenBlockEntityAndItem(playerHeldStack, distillery, player, hand)) {
-                        distillery.setAndUpdateSlots(-1);
-                        distillery.markForSync();
-                    }
-                    else {
-                        openGui(player, distillery, level, pos);
-                    }
-                });
+                IFluidHandler cap = playerHeldStack.getCapability(Capabilities.FluidHandler.ITEM);
+                assert cap != null;
                 
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                FluidTank outputTank = distillery.getOutputTank();
+                if (!outputTank.getFluid().isEmpty()) {
+                    FluidStack transferStack = outputTank.drain(outputTank.getCapacity(), IFluidHandler.FluidAction.EXECUTE);
+                    int amountFilled = cap.fill(transferStack, IFluidHandler.FluidAction.EXECUTE);
+                    
+                    if (amountFilled != 0) {
+                        FluidHelpers.playTransferSound(level, pos, transferStack, FluidHelpers.Transfer.FILL);
+                    }
+                    
+                    FluidStack toAddBackToOutputTank = new FluidStack(transferStack.getFluid(), transferStack.getAmount() - amountFilled);
+                    outputTank.fill(toAddBackToOutputTank, IFluidHandler.FluidAction.EXECUTE);
+                }
+                else if (FluidHelpers.transferBetweenBlockEntityAndItem(playerHeldStack, distillery, player, hand)) {
+                    distillery.setAndUpdateSlots(-1);
+                    distillery.markForSync();
+                }
+                else {
+                    openGui(player, distillery, level, pos);
+                }
+                
+                
+                return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
             else {
-                if (tryInsertLog(player, playerHeldStack, distillery, result.getLocation().y - pos.getY() < 0.6)) {
-                    return InteractionResult.sidedSuccess(level.isClientSide);
+                if (tryInsertLog(player, playerHeldStack, distillery, hitResult.getLocation().y - pos.getY() < 0.6)) {
+                    return ItemInteractionResult.sidedSuccess(level.isClientSide);
                 }
                 return openGui(player, distillery, level, pos);
             }
-        }).orElse(InteractionResult.PASS);
+        }).orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
         
         
     }

@@ -2,6 +2,7 @@ package net.mrhitech.artisanal.common.loot;
 
 import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.dries007.tfc.util.Helpers;
@@ -10,23 +11,23 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.mrhitech.artisanal.common.ArtisanalTags;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
 import net.mrhitech.artisanal.config.ArtisanalServerConfig;
+import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
 public class AddFatModifier extends AddItemStackMinMaxModifier{
-    public static final Supplier<Codec<AddFatModifier>> CODEC = Suppliers.memoize(()
-            -> RecordCodecBuilder.create(inst -> codecStart(inst)
-            .and(ForgeRegistries.ITEMS.getCodec().fieldOf("item").forGetter(m -> m.item))
+    
+    public static final MapCodec<AddFatModifier> CODEC = RecordCodecBuilder.mapCodec(inst -> codecStart(inst)
+            .and(ItemStack.CODEC.fieldOf("item").forGetter(m -> m.item))
             .and(Codec.INT.fieldOf("min").forGetter(m -> m.min))
             .and(Codec.INT.fieldOf("max").forGetter(m -> m.max))
-            .apply(inst, AddFatModifier::new)));
+            .apply(inst, AddFatModifier::new));
     
-    public AddFatModifier(LootItemCondition[] conditionsIn, Item f_item, int f_min, int f_max) {
+    public AddFatModifier(LootItemCondition[] conditionsIn, ItemStack f_item, int f_min, int f_max) {
         super(conditionsIn, f_item, f_min, f_max);
     }
     

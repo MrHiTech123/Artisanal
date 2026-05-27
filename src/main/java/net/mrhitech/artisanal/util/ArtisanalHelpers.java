@@ -1,18 +1,15 @@
 package net.mrhitech.artisanal.util;
 
-import net.dries007.tfc.common.fluids.FluidRegistryObject;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.common.util.Lazy;
-import net.minecraftforge.fluids.FluidType;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.phys.Vec3;
+import net.mrhitech.artisanal.Artisanal;
 import org.apache.commons.lang3.mutable.Mutable;
 import org.apache.commons.lang3.mutable.MutableObject;
 
@@ -25,10 +22,18 @@ import java.util.function.Supplier;
 
 public class ArtisanalHelpers {
     
+    public static ResourceLocation identifier(String namespace, String name) {
+        return ResourceLocation.fromNamespaceAndPath(namespace, name);
+    }
+    
+    public static ResourceLocation identifier(String name) {
+        return identifier(Artisanal.MOD_ID, name);
+    }
+    
     public static List<Player> playersNear(Level level, BlockPos pos, int maxDistanceHorizontal, int maxDistanceVertical) {
         AABB area = new AABB(
-                new BlockPos(pos.getX() - maxDistanceHorizontal, pos.getY() - maxDistanceVertical, pos.getZ() - maxDistanceHorizontal),
-                new BlockPos(pos.getX() + maxDistanceHorizontal, pos.getY() + maxDistanceVertical, pos.getZ() + maxDistanceHorizontal)
+                new Vec3(pos.getX() - maxDistanceHorizontal, pos.getY() - maxDistanceVertical, pos.getZ() - maxDistanceHorizontal),
+                new Vec3(pos.getX() + maxDistanceHorizontal, pos.getY() + maxDistanceVertical, pos.getZ() + maxDistanceHorizontal)
         );
         
         return playersIn(level, area);
@@ -36,8 +41,8 @@ public class ArtisanalHelpers {
     
     public static List<Player> playersNear(Level level, BlockPos pos, int maxDistance) {
         AABB area = new AABB(
-                new BlockPos(pos.getX() - maxDistance, pos.getY() - maxDistance, pos.getZ() - maxDistance),
-                new BlockPos(pos.getX() + maxDistance, pos.getY() + maxDistance, pos.getZ() + maxDistance)
+                new Vec3(pos.getX() - maxDistance, pos.getY() - maxDistance, pos.getZ() - maxDistance),
+                new Vec3(pos.getX() + maxDistance, pos.getY() + maxDistance, pos.getZ() + maxDistance)
         );
         
         return playersIn(level, area);

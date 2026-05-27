@@ -1,32 +1,33 @@
 package net.mrhitech.artisanal.common.recipes;
 
+import net.dries007.tfc.util.registry.RegistryHolder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
 import net.mrhitech.artisanal.Artisanal;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ArtisanalRecipeTypes {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, Artisanal.MOD_ID);
     
-    public static final RegistryObject<RecipeType<DistilleryRecipe>> DISTILLERY = register("distillery");
-    public static final RegistryObject<RecipeType<JuicingRecipe>> JUICING = register("juicing");
+    public static final Id<DistilleryRecipe> DISTILLERY = register("distillery");
+    public static final Id<JuicingRecipe> JUICING = register("juicing");
     
-    public static void register(IEventBus bus) {
-        RECIPE_TYPES.register(bus);
-    }
     
-    private static <R extends Recipe<?>> RegistryObject<RecipeType<R>> register(String name)
+    
+    private static <R extends Recipe<?>> Id<R> register(String name)
     {
-        return RECIPE_TYPES.register(name, () -> new RecipeType<>() {
+        return new Id<>(RECIPE_TYPES.register(name, () -> new RecipeType<>() {
             @Override
             public String toString()
             {
                 return name;
             }
-        });
+        }));
     }
+
+    public record Id<T extends Recipe<?>>(DeferredHolder<RecipeType<?>, RecipeType<T>> holder)
+        implements RegistryHolder<RecipeType<?>, RecipeType<T>> {}
     
 }

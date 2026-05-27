@@ -1,15 +1,17 @@
 package net.mrhitech.artisanal.common.recipes;
 
 import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.dries007.tfc.common.recipes.ISimpleRecipe;
+import net.dries007.tfc.common.recipes.PotRecipe;
 import net.dries007.tfc.common.recipes.RecipeSerializerImpl;
 import net.dries007.tfc.common.recipes.WeldingRecipe;
-import net.dries007.tfc.common.recipes.ingredients.FluidStackIngredient;
-import net.dries007.tfc.common.recipes.ingredients.ItemStackIngredient;
 import net.dries007.tfc.common.recipes.outputs.ItemStackModifier;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
-import net.dries007.tfc.util.JsonHelpers;
 import net.dries007.tfc.util.collections.IndirectHashCollection;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -19,12 +21,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.CraftingTableBlock;
-import net.minecraftforge.fluids.FluidStack;
 import net.mrhitech.artisanal.common.blockentities.DistilleryBlockEntity;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,21 +44,31 @@ import java.util.stream.Collectors;
 @ParametersAreNonnullByDefault
 public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.DistilleryInventory> {
     
-    private final ResourceLocation id;
-    private final ItemStackIngredient itemStackIngredient;
-    private final FluidStackIngredient fluidStackIngredient;
-    private final ItemStackProvider resultItemStack;
-    private final FluidStack resultFluidStack;
-    private final ItemStackProvider leftoverItemStack;
-    private final FluidStack leftoverFluidStack;
-    private final int minTemp;
-    private final int duration;
+    public static final MapCodec<DistilleryRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            Ingredient.CODEC.fieldOf("input_item").forGetter(c -> c.itemStackIngredient),
+            SizedFluidIngredient.FLAT_CODEC.fieldOf("input_fluid").forGetter(c -> c.fluidStackIngredient),
+            ItemStackProvider.CODEC.fieldOf("result_item").forGetter(c -> c.resultItemStack),
+            FluidStack.CODEC.fieldOf("result_fluid").forGetter(c -> c.resultFluidStack),
+            ItemStackProvider.CODEC.fieldOf("leftover_item").forGetter(c -> c.leftoverItemStack),
+            FluidStack.CODEC.fieldOf("leftover_fluid").forGetter(c -> c.leftoverFluidStack),
+            Codec.INT.fieldOf("min_temp").forGetter(c -> c.minTemp),
+            Codec.INT.fieldOf("duration").forGetter(c -> c.duration)
+    ).apply(instance, DistilleryRecipe::new));
+    
+    
+    protected final Ingredient itemStackIngredient;
+    protected final SizedFluidIngredient fluidStackIngredient;
+    protected final ItemStackProvider resultItemStack;
+    protected final FluidStack resultFluidStack;
+    protected final ItemStackProvider leftoverItemStack;
+    protected final FluidStack leftoverFluidStack;
+    protected final int minTemp;
+    protected final int duration;
     
     
     public DistilleryRecipe(
-            ResourceLocation id, 
-            ItemStackIngredient itemStackIngredient, 
-            FluidStackIngredient fluidStackIngredient, 
+            Ingredient itemStackIngredient, 
+            SizedFluidIngredient fluidStackIngredient, 
             ItemStackProvider outputItemStack, 
             FluidStack outputFluidStack,
             ItemStackProvider leftoverItemStack,
@@ -62,7 +76,6 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
             int minTemp,
             int duration
     ) {
-        this.id = id;
         this.itemStackIngredient = itemStackIngredient;
         this.fluidStackIngredient = fluidStackIngredient;
         this.resultItemStack = outputItemStack;
@@ -79,31 +92,38 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
                 fluidStackIngredient.test(distilleryInventory.getFluidInTank(DistilleryBlockEntity.TANK_INPUT_FLUID));
     }
     
-    public static Optional<DistilleryRecipe> fromInventory(Level level, DistilleryBlockEntity.DistilleryInventory inventory) {
-        return level.getRecipeManager().getRecipeFor(ArtisanalRecipeTypes.DISTILLERY.get(), inventory, level);
+    @Override
+    public @NotNull ItemStack assemble(DistilleryBlockEntity.DistilleryInventory distilleryInventory, HolderLookup.Provider provider) {
+        return ItemStack.EMPTY;
     }
     
-    public ItemStackIngredient getIngredientItem() {
+    public static Optional<DistilleryRecipe> fromInventory(Level level, DistilleryBlockEntity.DistilleryInventory inventory) {
+        return level.getRecipeManager().getRecipeFor(ArtisanalRecipeTypes.DISTILLERY.get(), inventory, level).map(RecipeHolder::value);
+    }
+    
+    public Ingredient getIngredientItem() {
         return itemStackIngredient;
     }
     
-    public FluidStackIngredient getIngredientFluid() {
+    public SizedFluidIngredient getIngredientFluid() {
         return fluidStackIngredient;
     }
     
+    
     @Override
-    public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
+    public @NotNull ItemStack getResultItem(HolderLookup.Provider registries) {
         return getResultItem().orElseGet(() -> ItemStack.EMPTY);
         // throw new RuntimeException("This version of getResultItem should not be running; why would we need registry access!?");
         // return getResultItem(ItemStack.EMPTY);
     }
     
     private int scaleOfInputItem(ItemStack inputItem) {
-        if (itemStackIngredient.ingredient().isEmpty() || inputItem.isEmpty()) {
+        if (itemStackIngredient.isEmpty() || inputItem.isEmpty()) {
             return Integer.MAX_VALUE;
         }
         else {
-            return inputItem.getCount() / itemStackIngredient.count();
+            // TODO: Check if works
+            return inputItem.getCount() / itemStackIngredient.getItems()[0].getCount();
         }
     }
     
@@ -198,11 +218,6 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
     
     
     @Override
-    public ResourceLocation getId() {
-        return id;
-    }
-    
-    @Override
     public RecipeSerializer<?> getSerializer() {
         return ArtisanalRecipeSerializers.DISTILLERY.get();
     }
@@ -216,69 +231,71 @@ public class DistilleryRecipe implements ISimpleRecipe<DistilleryBlockEntity.Dis
         return arg -> (arg == null)? null : function.apply(arg);
     }
     
-    public static class Serializer extends RecipeSerializerImpl<DistilleryRecipe> {
-        @Override
-        public @NotNull DistilleryRecipe fromJson(ResourceLocation id, JsonObject json) {
-            ItemStackIngredient itemStackIngredient = json.has("input_item")? ItemStackIngredient.fromJson(json.getAsJsonObject("input_item")) : ItemStackIngredient.EMPTY;
-            FluidStackIngredient fluidStackIngredient = json.has("input_fluid")? FluidStackIngredient.fromJson(json.getAsJsonObject("input_fluid")) : FluidStackIngredient.EMPTY;
-            ItemStackProvider resultItemStack = json.has("result_item")? ItemStackProvider.fromJson(GsonHelper.getAsJsonObject(json, "result_item")) : ItemStackProvider.empty();
-            FluidStack resultFluidStack = json.has("result_fluid")? JsonHelpers.getFluidStack(GsonHelper.getAsJsonObject(json, "result_fluid")) : FluidStack.EMPTY;
-            ItemStackProvider leftoverItemStack = json.has("leftover_item")? ItemStackProvider.fromJson(GsonHelper.getAsJsonObject(json, "leftover_item")) : ItemStackProvider.empty();
-            FluidStack leftoverFluidStack = json.has("leftover_fluid")? JsonHelpers.getFluidStack(GsonHelper.getAsJsonObject(json, "leftover_fluid")) : FluidStack.EMPTY;
-            int minTemp = json.get("min_temp").getAsInt();
-            int durationTicks = json.get("duration").getAsInt();
-            
-            return new DistilleryRecipe(
-                    id,
-                    itemStackIngredient,
-                    fluidStackIngredient,
-                    resultItemStack,
-                    resultFluidStack,
-                    leftoverItemStack,
-                    leftoverFluidStack,
-                    minTemp,
-                    durationTicks
-            );
-            
-        }
-        
-        @Override
-        public @Nullable DistilleryRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
-            ItemStackIngredient itemStackIngredient = ItemStackIngredient.fromNetwork(buffer);
-            FluidStackIngredient fluidStackIngredient = FluidStackIngredient.fromNetwork(buffer);
-            ItemStackProvider resultItemStack = ItemStackProvider.fromNetwork(buffer);
-            FluidStack resultFluidStack = FluidStack.readFromPacket(buffer);
-            ItemStackProvider leftoverItemStack = ItemStackProvider.fromNetwork(buffer);
-            FluidStack leftoverFluidStack = FluidStack.readFromPacket(buffer);
-            int minTemp = buffer.readVarInt();
-            int durationTicks = buffer.readVarInt();
-            
-            return new DistilleryRecipe(
-                    id,
-                    itemStackIngredient,
-                    fluidStackIngredient,
-                    resultItemStack,
-                    resultFluidStack,
-                    leftoverItemStack,
-                    leftoverFluidStack,
-                    minTemp,
-                    durationTicks
-            );
-        }
-        
-        @Override
-        public void toNetwork(FriendlyByteBuf buffer, DistilleryRecipe recipe) {
-            recipe.itemStackIngredient.toNetwork(buffer);
-            recipe.fluidStackIngredient.toNetwork(buffer);
-            recipe.resultItemStack.toNetwork(buffer);
-            recipe.resultFluidStack.writeToPacket(buffer);
-            recipe.leftoverItemStack.toNetwork(buffer);
-            recipe.leftoverFluidStack.writeToPacket(buffer);
-            buffer.writeVarInt(recipe.minTemp);
-            buffer.writeVarInt(recipe.duration);
-            
-        }
-    }
+    
+    
+    // public static class Serializer extends RecipeSerializerImpl<DistilleryRecipe> {
+    //     @Override
+    //     public @NotNull DistilleryRecipe fromJson(ResourceLocation id, JsonObject json) {
+    //         Ingredient itemStackIngredient = json.has("input_item")? Ingredient.fromJson(json.getAsJsonObject("input_item")) : ItemStackIngredient.EMPTY;
+    //         Ingredient fluidStackIngredient = json.has("input_fluid")? Ingredient.fromJson(json.getAsJsonObject("input_fluid")) : Ingredient.EMPTY;
+    //         ItemStackProvider resultItemStack = json.has("result_item")? ItemStackProvider.fromJson(GsonHelper.getAsJsonObject(json, "result_item")) : ItemStackProvider.empty();
+    //         FluidStack resultFluidStack = json.has("result_fluid")? JsonHelpers.getFluidStack(GsonHelper.getAsJsonObject(json, "result_fluid")) : FluidStack.EMPTY;
+    //         ItemStackProvider leftoverItemStack = json.has("leftover_item")? ItemStackProvider.fromJson(GsonHelper.getAsJsonObject(json, "leftover_item")) : ItemStackProvider.empty();
+    //         FluidStack leftoverFluidStack = json.has("leftover_fluid")? JsonHelpers.getFluidStack(GsonHelper.getAsJsonObject(json, "leftover_fluid")) : FluidStack.EMPTY;
+    //         int minTemp = json.get("min_temp").getAsInt();
+    //         int durationTicks = json.get("duration").getAsInt();
+    //        
+    //         return new DistilleryRecipe(
+    //                 id,
+    //                 itemStackIngredient,
+    //                 fluidStackIngredient,
+    //                 resultItemStack,
+    //                 resultFluidStack,
+    //                 leftoverItemStack,
+    //                 leftoverFluidStack,
+    //                 minTemp,
+    //                 durationTicks
+    //         );
+    //        
+    //     }
+    //    
+    //     @Override
+    //     public @Nullable DistilleryRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
+    //         Ingredient itemStackIngredient = Ingredient.fromNetwork(buffer);
+    //         Ingredient fluidStackIngredient = Ingredient.fromNetwork(buffer);
+    //         ItemStackProvider resultItemStack = ItemStackProvider.fromNetwork(buffer);
+    //         FluidStack resultFluidStack = FluidStack.readFromPacket(buffer);
+    //         ItemStackProvider leftoverItemStack = ItemStackProvider.fromNetwork(buffer);
+    //         FluidStack leftoverFluidStack = FluidStack.readFromPacket(buffer);
+    //         int minTemp = buffer.readVarInt();
+    //         int durationTicks = buffer.readVarInt();
+    //        
+    //         return new DistilleryRecipe(
+    //                 id,
+    //                 itemStackIngredient,
+    //                 fluidStackIngredient,
+    //                 resultItemStack,
+    //                 resultFluidStack,
+    //                 leftoverItemStack,
+    //                 leftoverFluidStack,
+    //                 minTemp,
+    //                 durationTicks
+    //         );
+    //     }
+    //    
+    //     @Override
+    //     public void toNetwork(FriendlyByteBuf buffer, DistilleryRecipe recipe) {
+    //         recipe.itemStackIngredient.toNetwork(buffer);
+    //         recipe.fluidStackIngredient.toNetwork(buffer);
+    //         recipe.resultItemStack.toNetwork(buffer);
+    //         recipe.resultFluidStack.writeToPacket(buffer);
+    //         recipe.leftoverItemStack.toNetwork(buffer);
+    //         recipe.leftoverFluidStack.writeToPacket(buffer);
+    //         buffer.writeVarInt(recipe.minTemp);
+    //         buffer.writeVarInt(recipe.duration);
+    //        
+    //     }
+    // }
     
     
 }

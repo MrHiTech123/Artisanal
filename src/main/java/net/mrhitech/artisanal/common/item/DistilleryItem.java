@@ -16,9 +16,9 @@ import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
 
 public class DistilleryItem extends Item {
     
-    protected Metal.Default metal;
+    protected Metal metal;
     
-    public DistilleryItem(Properties pProperties, Metal.Default metal) {
+    public DistilleryItem(Properties pProperties, Metal metal) {
         super(pProperties);
         this.metal = metal;
     }

@@ -3,11 +3,11 @@ package net.mrhitech.artisanal.common.creative;
 import net.dries007.tfc.common.TFCCreativeTabs;
 import net.dries007.tfc.util.Metal;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.mrhitech.artisanal.common.fluids.Waterlikes;
 import net.mrhitech.artisanal.common.block.ArtisanalBlocks;
 import net.mrhitech.artisanal.common.block.devices.DrumMetal;
 import net.mrhitech.artisanal.common.item.*;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
 public class ArtisanalCreativeTabs {
     public static void AddCreative(BuildCreativeModeTabContentsEvent event) {
@@ -95,7 +95,7 @@ public class ArtisanalCreativeTabs {
                 event.accept(ArtisanalItems.DIRTY_DENTED_CANS.get(metal));
             }
             
-            for (Metal.Default metal : Metal.Default.values()) {
+            for (Metal metal : Metal.values()) {
                 if (Metal.ItemType.AXE.has(metal)) {
                     event.accept(ArtisanalItems.CAN_OPENERS.get(metal));
                     event.accept(ArtisanalItems.CIRCLE_BLADES.get(metal));

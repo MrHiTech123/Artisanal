@@ -3,26 +3,28 @@ package net.mrhitech.artisanal.client.screen;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.client.RenderHelpers;
 import net.dries007.tfc.client.screen.BlockEntityScreen;
-import net.dries007.tfc.common.capabilities.Capabilities;
-import net.dries007.tfc.common.capabilities.heat.Heat;
+import net.dries007.tfc.common.component.heat.Heat;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
-import net.dries007.tfc.util.Tooltips;
+import net.dries007.tfc.util.tooltip.Tooltips;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.ModList;
 import net.mrhitech.artisanal.Artisanal;
 import net.mrhitech.artisanal.common.blockentities.DistilleryBlockEntity;
 import net.mrhitech.artisanal.common.container.DistilleryContainer;
+import net.mrhitech.artisanal.util.ArtisanalHelpers;
+import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 public class DistilleryScreen extends BlockEntityScreen<DistilleryBlockEntity, DistilleryContainer> {
-    private static final ResourceLocation BACKGROUND = new ResourceLocation(Artisanal.MOD_ID, "textures/gui/fire_pit_distillery.png");
+    private static final ResourceLocation BACKGROUND = ArtisanalHelpers.identifier("textures/gui/fire_pit_distillery.png");
     private static final int TICKS_PER_DRIP_ANIMATION_CYCLE = DistilleryBlockEntity.TICKS_PER_DRIP_SOUND * 4;
     
     
@@ -61,9 +63,9 @@ public class DistilleryScreen extends BlockEntityScreen<DistilleryBlockEntity, D
             }
         }
         else if (RenderHelpers.isInside(mouseX, mouseY, getGuiLeft() + 61, getGuiTop() + 51, 92 - 61, 77 - 51)) {
-            final FluidStack fluid = blockEntity.getCapability(Capabilities.FLUID)
-                    .map(c -> c.getFluidInTank(0))
-                    .orElse(FluidStack.EMPTY);
+            final IFluidHandler handler = Helpers.getCapability(Capabilities.FluidHandler.BLOCK, blockEntity);
+            assert handler != null;
+            final FluidStack fluid = handler.getFluidInTank(0);
             if (!fluid.isEmpty()) {
                 graphics.renderTooltip(font, Tooltips.fluidUnitsAndCapacityOf(fluid, FluidHelpers.BUCKET_VOLUME), mouseX, mouseY);
             }

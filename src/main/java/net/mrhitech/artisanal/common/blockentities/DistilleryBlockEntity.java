@@ -3,40 +3,45 @@ package net.mrhitech.artisanal.common.blockentities;
 import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.AbstractFirepitBlockEntity;
+import net.dries007.tfc.common.blockentities.IPotInventory;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
 import net.dries007.tfc.common.capabilities.*;
-import net.dries007.tfc.common.capabilities.heat.HeatCapability;
+import net.dries007.tfc.common.component.heat.HeatCapability;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.common.recipes.RecipeHelpers;
-import net.dries007.tfc.common.recipes.ingredients.ItemStackIngredient;
-import net.dries007.tfc.common.recipes.inventory.EmptyInventory;
 import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.INBTSerializable;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
 import net.mrhitech.artisanal.Artisanal;
 import net.mrhitech.artisanal.common.container.DistilleryContainer;
 import net.mrhitech.artisanal.common.recipes.DistilleryRecipe;
+import net.neoforged.neoforge.client.GlStateBackup;
+import net.neoforged.neoforge.common.util.INBTSerializable;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.UnknownNullability;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+
+@ParametersAreNonnullByDefault
 public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<DistilleryBlockEntity.DistilleryInventory> {
     
     private static final Component NAME = Component.translatable(Artisanal.MOD_ID + ".block_entity.distillery");
@@ -47,19 +52,19 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
     public static final int TANK_OUTPUT_FLUID = 1;
     public static final int PRE_BOIL_TIME = 100;
     
-    private final SidedHandler.Builder<IFluidHandler> sidedFluidInventory;
+    private final SidedHandler<IFluidHandler> sidedFluidInventory;
     @Nullable private DistilleryRecipe cachedRecipe;
     private int boilingTicks, preBoilingTicks;
     
     public static final int TICKS_PER_DRIP_SOUND = 36;
     
     public DistilleryBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ArtisanalBlockEntities.DISTILLERY.get(), pPos, pBlockState, DistilleryInventory::new, NAME);
+        super(ArtisanalBlockEntities.DISTILLERY.get(), pPos, pBlockState, DistilleryInventory::new);
         PotBlockEntity
         cachedRecipe = null;
         boilingTicks = 0;
         preBoilingTicks = 0;
-        sidedFluidInventory = new SidedHandler.Builder<>(inventory);
+        sidedFluidInventory = new SidedHandler<>(inventory);
         syncableData.add(() -> boilingTicks, value -> boilingTicks = value);
         
         if (TFCConfig.SERVER.firePitEnableAutomation.get()) {
@@ -68,26 +73,28 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
                 .on(new PartialItemHandler(inventory).insert(4, 5), Direction.UP);
 
             sidedFluidInventory
-                .on(new PartialFluidHandler(inventory).insert(), Direction.UP)
-                .on(new PartialFluidHandler(inventory).extract(), Direction.Plane.HORIZONTAL);
+                .on(PartialFluidHandler::insertOnly, Direction.UP)
+                .on(PartialFluidHandler::extractOnly, Direction.Plane.HORIZONTAL);
         }
         
     }
     
+    
+    // TODO: Ensure that distilleries still retain inventory between saves
     @Override
-    public void loadAdditional(CompoundTag nbt) {
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
         boilingTicks = nbt.getInt("boilingTicks");
         preBoilingTicks = nbt.getInt("preBoilingTicks");
         
-        super.loadAdditional(nbt);
+        super.loadAdditional(nbt, provider);
     }
     
     @Override
-    public void saveAdditional(CompoundTag nbt) {
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
         nbt.putInt("boilingTicks", boilingTicks);
         nbt.putInt("preBoilingTicks", preBoilingTicks);
         
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, provider);
     }
     
     @Override
@@ -271,14 +278,14 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
         return DistilleryContainer.create(this, inventory, containerId);
     }
     
-    @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == Capabilities.FLUID) {
-            return sidedFluidInventory.getSidedHandler(side).cast();
-        }
-        
-        return super.getCapability(cap, side);
-    }
+    // @Override
+    // public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+    //     if (cap == Capabilities.FLUID) {
+    //         return sidedFluidInventory.getSidedHandler(side).cast();
+    //     }
+    //    
+    //     return super.getCapability(cap, side);
+    // }
     
     public FluidStack getFluidInTank(int tank) {
         return inventory.getFluidInTank(tank).copy();
@@ -287,7 +294,7 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
     
     
     
-    public static class DistilleryInventory implements EmptyInventory, DelegateItemHandler, DelegateFluidHandler, INBTSerializable<CompoundTag> {
+    public static class DistilleryInventory implements IPotInventory, INBTSerializable<CompoundTag> {
         private final DistilleryBlockEntity distillery;
         private final ItemStackHandler inventory;
         private final FluidTank inputBowlFluidTank;
@@ -308,7 +315,7 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
             return distillery.hasRecipeStarted() && slot == SLOT_INPUT_ITEM? ItemStack.EMPTY : inventory.extractItem(slot, amount, simulate);
         }
         
-        public boolean matchItemIngredient(ItemStackIngredient required, int slot) {
+        public boolean matchItemIngredient(Ingredient required, int slot) {
             return required.test(inventory.getStackInSlot(slot));
         }
         
@@ -350,24 +357,36 @@ public class DistilleryBlockEntity extends AbstractFirepitBlockEntity<Distillery
         
         
         @Override
-        public CompoundTag serializeNBT() {
-            CompoundTag toReturn = new CompoundTag();
-            
-            toReturn.put("inventory", inventory.serializeNBT());
-            toReturn.put("inputTank", inputBowlFluidTank.writeToNBT(new CompoundTag()));
-            toReturn.put("outputTank", outputBowlFluidTank.writeToNBT(new CompoundTag()));
-            
-            return toReturn;
-            
+        public void clearFluid() {
+            inputBowlFluidTank.setFluid(FluidStack.EMPTY);
+            outputBowlFluidTank.setFluid(FluidStack.EMPTY);
         }
         
         @Override
-        public void deserializeNBT(CompoundTag nbt) {
-            inventory.deserializeNBT(nbt.getCompound("inventory"));
-            inputBowlFluidTank.readFromNBT(nbt.getCompound("inputTank"));
-            outputBowlFluidTank.readFromNBT(nbt.getCompound("outputTank"));
+        public int inputStart() {
+            return SLOT_INPUT_ITEM;
         }
         
+        @Override
+        public int inputEnd() {
+            return SLOT_INPUT_ITEM;
+        }
+        
+        @Override
+        public @UnknownNullability CompoundTag serializeNBT(HolderLookup.Provider provider) {
+            final CompoundTag nbt = new CompoundTag();
+            nbt.put("inventory", inventory.serializeNBT(provider));
+            nbt.put("inputBowlFluidTank", inputBowlFluidTank.writeToNBT(provider, new CompoundTag()));
+            nbt.put("outputBowlFluidTank", outputBowlFluidTank.writeToNBT(provider, new CompoundTag()));
+            return nbt;
+        }
+        
+        @Override
+        public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
+            inventory.deserializeNBT(provider, nbt.getCompound("inventory"));
+            inputBowlFluidTank.readFromNBT(provider, nbt.getCompound("inputTank"));
+            outputBowlFluidTank.readFromNBT(provider, nbt.getCompound("outputTank"));
+        }
     }
     
 }

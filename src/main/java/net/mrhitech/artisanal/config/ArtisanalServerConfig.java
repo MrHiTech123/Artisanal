@@ -1,13 +1,14 @@
 package net.mrhitech.artisanal.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ArtisanalServerConfig {
-    public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-    public static final ForgeConfigSpec SPEC;
+    public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+    public static final ModConfigSpec SPEC;
     
-    public static final ForgeConfigSpec.ConfigValue<Boolean> GENERIC_ANIMAL_FAT;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> FLUX_MAKES_LIMEWATER;
+    public static final ModConfigSpec.ConfigValue<Boolean> GENERIC_ANIMAL_FAT;
+    public static final ModConfigSpec.ConfigValue<Boolean> FLUX_MAKES_LIMEWATER;
     
     static {
         BUILDER.push("Artisanal Configs");

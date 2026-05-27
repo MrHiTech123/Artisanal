@@ -18,10 +18,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.level.pathfinder.PathType;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.mrhitech.artisanal.Artisanal;
 import net.mrhitech.artisanal.common.block.devices.DistilleryBlock;
 import net.mrhitech.artisanal.common.block.devices.DrumBlock;
@@ -30,6 +29,9 @@ import net.mrhitech.artisanal.common.blockentities.ArtisanalBlockEntities;
 import net.mrhitech.artisanal.common.fluids.Waterlikes;
 import net.mrhitech.artisanal.common.fluids.ArtisanalFluids;
 import net.mrhitech.artisanal.common.item.ArtisanalItems;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import javax.annotation.Nullable;
 import java.util.Locale;
@@ -40,12 +42,12 @@ import java.util.function.Supplier;
 import static net.dries007.tfc.common.blocks.TFCBlocks.litBlockEmission;
 
 public class ArtisanalBlocks {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, Artisanal.MOD_ID);
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Artisanal.MOD_ID);
     
-    public static final Map<Waterlikes, RegistryObject<LiquidBlock>> WATERLIKES = Helpers.mapOfKeys(Waterlikes.class, fluid ->
-            register("fluid/" + fluid.getId(), () -> new ArtisanalLiquidBlock(ArtisanalFluids.WATERLIKES.get(fluid).source(), BlockBehaviour.Properties.copy(Blocks.WATER).randomTicks())));
+    public static final Map<Waterlikes, DeferredBlock<LiquidBlock>> WATERLIKES = Helpers.mapOf(Waterlikes.class, fluid ->
+            register("fluid/" + fluid.getId(), () -> new ArtisanalLiquidBlock(ArtisanalFluids.WATERLIKES.get(fluid).source(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).randomTicks())));
     
-    public static final Map<DrumMetal, RegistryObject<Block>> DRUMS = Helpers.mapOfKeys(DrumMetal.class, drumMetal -> 
+    public static final Map<DrumMetal, DeferredBlock<Block>> DRUMS = Helpers.mapOf(DrumMetal.class, drumMetal -> 
             register(
                     "metal/drum/" + drumMetal.getMetal().name().toLowerCase(Locale.ROOT),
                     () -> new DrumBlock(
@@ -55,17 +57,17 @@ public class ArtisanalBlocks {
                                     .serverTicks(BarrelBlockEntity::serverTick), 
                             drumMetal.getUsableFluids()
                     ),
-                    new Item.Properties().rarity(drumMetal.getMetal().getRarity())
+                    new Item.Properties().rarity(drumMetal.getMetal().rarity())
             ));
     
-    public static final Map<Metal.Default, RegistryObject<Block>> DISTILLERIES = Helpers.mapOfKeys(Metal.Default.class, ArtisanalItems::hasDistilleries, metalType ->
+    public static final Map<Metal, DeferredBlock<Block>> DISTILLERIES = Helpers.mapOf(Metal.class, ArtisanalItems::hasDistilleries, metalType ->
             register(
                     "distillery/" + metalType.name().toLowerCase(Locale.ROOT),
                     () -> new DistilleryBlock(
                             ExtendedProperties.of(TFCBlocks.FIREPIT.get()).blockEntity(ArtisanalBlockEntities.DISTILLERY)
                                     .strength(0.4F, 0.4F).sound(SoundType.NETHER_WART)
                                     .randomTicks().noOcclusion().lightLevel(litBlockEmission(15))
-                                    .pathType(BlockPathTypes.DAMAGE_FIRE).<AbstractFirepitBlockEntity<?>>ticks(AbstractFirepitBlockEntity::serverTick, AbstractFirepitBlockEntity::clientTick),
+                                    .pathType(PathType.DAMAGE_FIRE).<AbstractFirepitBlockEntity<?>>ticks(AbstractFirepitBlockEntity::serverTick, AbstractFirepitBlockEntity::clientTick),
                             metalType
                     ),
                     new Item.Properties()
@@ -77,24 +79,34 @@ public class ArtisanalBlocks {
         BLOCKS.register(bus);
     }
     
-    private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> blockSupplier)
+    private static <T extends Block> DeferredBlock<T> registerNoItem(String name, Supplier<T> blockSupplier)
     {
         return register(name, blockSupplier, (Function<T, ? extends BlockItem>) null);
     }
     
-    private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier)
+    private static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> blockSupplier)
     {
         return register(name, blockSupplier, block -> new BlockItem(block, new Item.Properties()));
     }
     
-    private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, Item.Properties blockItemProperties)
+    private static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> blockSupplier, Item.Properties blockItemProperties)
     {
         return register(name, blockSupplier, block -> new BlockItem(block, blockItemProperties));
     }
     
-    private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory)
+    private static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory)
     {
-        return RegistrationHelpers.registerBlock(BLOCKS, ArtisanalItems.ITEMS, name, blockSupplier, blockItemFactory);
+        return registerBlock(BLOCKS, ArtisanalItems.ITEMS, name, blockSupplier, blockItemFactory);
+    }
+    
+    public static <T extends Block> DeferredBlock<T> registerBlock(DeferredRegister.Blocks blocks, DeferredRegister.Items items, String name, Supplier<T> blockSupplier, @org.jetbrains.annotations.Nullable Function<T, ? extends BlockItem> blockItemFactory) {
+        String actualName = name.toLowerCase(Locale.ROOT);
+        DeferredBlock<T> block = blocks.register(actualName, blockSupplier);
+        if (blockItemFactory != null) {
+            items.register(actualName, () -> (BlockItem)blockItemFactory.apply(block.get()));
+        }
+
+        return block;
     }
     
     

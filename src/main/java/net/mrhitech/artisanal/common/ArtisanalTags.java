@@ -19,7 +19,7 @@ public class ArtisanalTags {
         public static final TagKey<Item> EYE_PROTECTION = create("eye_protection");
         
         private static TagKey<Item> create(String modId, String itemId) {
-            return TagKey.create(Registries.ITEM, new ResourceLocation(modId, itemId));
+            return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(modId, itemId));
         }
         private static TagKey<Item> create(String id) {
             return create(Artisanal.MOD_ID, id);
@@ -30,7 +30,7 @@ public class ArtisanalTags {
         public static final TagKey<Block> TFC_BARRELS = create(TerraFirmaCraft.MOD_ID, "barrels");
         
         private static TagKey<Block> create(String modId, String itemId) {
-            return TagKey.create(Registries.BLOCK, new ResourceLocation(modId, itemId));
+            return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modId, itemId));
         }
         private static TagKey<Block> create(String id) {
             return create(Artisanal.MOD_ID, id);
@@ -43,7 +43,7 @@ public class ArtisanalTags {
         public static final TagKey<Fluid> WATER_VISION = create("water_vision");
         
         private static TagKey<Fluid> create(String modId, String itemId) {
-            return TagKey.create(Registries.FLUID, new ResourceLocation(modId, itemId));
+            return TagKey.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath(modId, itemId));
         }
         private static TagKey<Fluid> create(String id) {
             return create(Artisanal.MOD_ID, id);

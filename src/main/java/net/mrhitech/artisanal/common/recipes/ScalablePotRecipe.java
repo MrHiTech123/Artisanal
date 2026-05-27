@@ -4,33 +4,36 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import net.dries007.tfc.common.blockentities.IPotInventory;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.common.recipes.PotRecipe;
 import net.dries007.tfc.common.recipes.SimplePotRecipe;
-import net.dries007.tfc.common.recipes.ingredients.FluidStackIngredient;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
-import net.dries007.tfc.util.JsonHelpers;
+import net.dries007.tfc.common.recipes.outputs.PotOutput;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ScalablePotRecipe extends SimplePotRecipe {
     
-    public ScalablePotRecipe(ResourceLocation id, List<Ingredient> itemIngredients, FluidStackIngredient fluidIngredient, int duration, float minTemp, FluidStack outputFluid, List<ItemStackProvider> outputProviders)
-    {
-        super(id, itemIngredients, fluidIngredient, duration, minTemp, outputFluid, outputProviders);
+    private List<ItemStackProvider> outputProviders;
+    
+    public ScalablePotRecipe(PotRecipe base, FluidStack outputFluid, List<ItemStackProvider> outputProviders, boolean usesAllFluid) {
+        super(base, outputFluid, outputProviders, usesAllFluid);
+        this.outputProviders = outputProviders;
     }
     
     @Override
-    public Output getOutput(PotBlockEntity.PotInventory inventory)
+    public PotOutput getOutput(IPotInventory inventory)
     {
         int amountWasInPot = inventory.getFluidHandler().getFluidInTank(0).getAmount();
         return new ScalableOutput(outputFluid, outputProviders, fluidIngredient, amountWasInPot);
@@ -41,7 +44,7 @@ public class ScalablePotRecipe extends SimplePotRecipe {
     }
     
     
-    record ScalableOutput(FluidStack stack, List<ItemStackProvider> providers, FluidStackIngredient inputFluid, int amountWasInPot) implements Output {
+    record ScalableOutput(FluidStack stack, List<ItemStackProvider> providers, SizedFluidIngredient inputFluid, int amountWasInPot) implements PotOutput {
         @Override
         public void onFinish(PotBlockEntity.PotInventory inventory) {
             int ingredientAmount = inputFluid.amount();
@@ -51,10 +54,10 @@ public class ScalablePotRecipe extends SimplePotRecipe {
             int maxItemsBase = providers.size();
             int maxItems = maxItemsBase * scaleFactor;
             
-            for (int currentSlot = 0; currentSlot < Math.min(maxItems, inventory.getSlots() - PotBlockEntity.SLOT_EXTRA_INPUT_START); ++currentSlot) {
+            for (int currentSlot = 0; currentSlot < Math.min(maxItems, inventory.getSlots() - inventory.inputStart()); ++currentSlot) {
                 final int i = currentSlot % maxItemsBase;
                 final ItemStack input = inventory.getStackInSlot(i);
-                inventory.setStackInSlot(currentSlot + PotBlockEntity.SLOT_EXTRA_INPUT_START, providers.get(i).getSingleStack(input));
+                inventory.setStackInSlot(currentSlot + inventory.inputStart(), providers.get(i).getSingleStack(input));
             }
             FluidStack toFill = stack.copy();
             if (!toFill.isEmpty()) {
